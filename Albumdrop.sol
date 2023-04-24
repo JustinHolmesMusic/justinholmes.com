@@ -1,37 +1,28 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+contract Contribution {
+    address payable public owner;
+    uint public totalContributed;
+    bool public isReleased;
 
-contract UnlockableToken is ERC20 {
-    address public unlockAccount;
-    bool public unlocked = false;
-    uint256 public unlockTime;
-    uint256 public unlockAmount;
-
-    constructor(
-        string memory name,
-        string memory symbol,
-        uint8 decimals,
-        uint256 initialSupply,
-        address initialHolder,
-        address unlockAccount_,
-        uint256 unlockTime_,
-        uint256 unlockAmount_
-    ) ERC20(name, symbol) {
-        _setupDecimals(decimals);
-        _mint(initialHolder, initialSupply);
-        unlockAccount = unlockAccount_;
-        unlockTime = unlockTime_;
-        unlockAmount = unlockAmount_;
+    constructor() {
+        owner = payable(msg.sender);
     }
 
-    function unlock() external {
-        require(!unlocked, "Tokens have already been unlocked");
-        require(msg.sender == unlockAccount, "Not authorized to unlock tokens");
-        require(block.timestamp >= unlockTime, "Unlock time has not yet arrived");
+    function contribute() external payable {
+        require(msg.value >= 0.1 ether, "Contribution must be at least 0.1 ETH");
+        totalContributed += msg.value;
 
-        _mint(unlockAccount, unlockAmount);
-        unlocked = true;
+        if (totalContributed >= 10 ether) {
+            isReleased = true;
+        }
+    }
+
+    function withdraw() external {
+        require(msg.sender == owner, "Only the contract owner can withdraw funds");
+        require(isReleased, "Funds have not yet been released");
+
+        owner.transfer(address(this).balance);
     }
 }
