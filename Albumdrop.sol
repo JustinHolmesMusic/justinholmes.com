@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 contract Contribution {
-    address payable public owner;
+    address payable public immutable owner;
     uint public totalContributed;
     bool public isReleased;
 
