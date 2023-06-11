@@ -149,8 +149,9 @@ main {
   border-top: 1px solid #5c6067;
   padding-top: 3em;
 }
-.info {
+..info {
   width: 500px;
+  padding-top: 1em;
 }
 
 article {
