@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vowel Sounds</title>
+    <link rel="stylesheet" href="style/style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap"
+            rel="stylesheet"
+    />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.4-rc.1/web3.min.js"></script>
+
+  </head>
+
+  <body>
+    <div class="side">
+      <button class="connect-wallet" onclick="connect();">Connect Wallet</button>
+    </div>
+    <header>
+      <a class="artist-link" href="https://justinholmes.com/"
+        ><p class="about-band">The Band</p></a
+      >
+    </header>
+
+<script>
+    /* To connect using MetaMask */
+
+    let account;
+    async function connect() {
+        if (window.ethereum) {
+            await window.ethereum.request({method: "eth_requestAccounts"});
+            window.web3 = new Web3(window.ethereum);
+            account = window.web3.eth.accounts;     //Get the current MetaMask selected/active wallet
+            const walletAddress = account.givenProvider.selectedAddress;
+            console.log(`Wallet: ${walletAddress}`);
+
+        } else {
+            console.log("No wallet");
+        }
+    }
+
+    //Sending Ethereum to an address
+    async function contribute() {
+
+        await window.ethereum.request({method: "eth_requestAccounts"});
+        window.web3 = new Web3(window.ethereum);
+        account = window.web3.eth.accounts;     //Get the current MetaMask selected/active wallet
+        const walletAddress = account.givenProvider.selectedAddress;
+        console.log(`Wallet: ${walletAddress}`);
+
+        window.ethereum.request({
+                method: 'eth_sendTransaction',
+                params: [
+                    {
+                        from: walletAddress,
+                        to: '0xA5514057fb416Eb636d24826794ECF68a601f0e8',
+                        value: '0x29a2241af62c000',
+                    },
+                ],
+            })
+            .then((txHash) => console.log(txHash))
+            .catch((error) => console.error);
+    }
+</script>
+
+    <main>
+      <!-- left side -->
+      <div id="left-side" class="container">
+
+        <div class="intro2">
+            <a class="logo-hyperlink2" href="intro.html"><p>VOWEL SOUNDS</p></a>
+        </div>
+        <p class="info">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum
+        </p>
+    </div>
+
+    <!-- right side -->
+
+    <div id="countdown-container right-side" class="container">
+
+        <aside>
+            <img id="a-letter-img" src="./images/a.jpg" alt="a-letter"/>
+            <img src="./images/i.jpg" alt="i-letter"/>
+            <img src="./images/oe.jpg" alt="oe-letter"/>
+        </aside>
+
+    </div>
+</main>
+
+<div class="center">
+
+
+    <div>
+        <a>
+            <button class="paybutton"  onclick="contribute();">Contribute 0.01 ETH ⚡</button>
+        </a>
+        <a>
+            <button class="download">Download Album 🔒</button>
+        </a>
+    </div>
+
+
+    <div class="center">
+        <p id="countdown"></p>
+        <h3><span class="number">2</span>ETH util funded</h3>
+    </div>
+
+    <article id="table">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>0xdeadbeef</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>0xdeadbeef</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>0xdeadbeef</td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
+    <footer></footer>
+</body>
+<!-- Display the countdown timer in an element -->
+
+<script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Jun 11, 2023 16:30:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.getElementById("countdown").innerHTML =
+            days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+
+</script>
+</html>

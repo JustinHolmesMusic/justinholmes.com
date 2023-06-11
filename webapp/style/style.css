@@ -1,0 +1,277 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(111, 111, 116);
+  height: 100%;
+  /* position: absolute; */
+  width: 100%;
+}
+
+.paybutton {
+  border: 1px solid rgb(0, 0, 0);
+  color: white;
+  background-color: blueviolet;
+  border-radius: 10px;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-family: monospace;
+}
+.paybutton:hover {
+  background-color: black;
+  border: 1px solid white;
+  transition: 0.5s;
+  padding: 19px 35px;
+}
+.paybutton:active {
+  background-color: black;
+  color: blueviolet;
+}
+.paybutton:visited {
+  background-color: blueviolet;
+  color: black;
+  opacity: 0.2;
+}
+
+.container {
+  /* position: relative; */
+}
+
+.header {
+  margin: 0;
+  position: absolute;
+  top: 250%;
+  left: 20%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#countdown {
+  color: rgb(5, 4, 4);
+  font-family: "Bungee Shade";
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+#countdown-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#left-side {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+}
+.intro2 {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  /* height: 700px; */
+}
+
+.background1 {
+  background-image: url(../images/purple.png);
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: center;
+}
+
+h1 {
+  text-decoration: none;
+  color: rgb(166, 199, 213);
+  font-family: "Bungee Shade";
+  font-size: 20px;
+}
+
+.logo-hyperlink {
+  text-decoration: none;
+  color: white;
+  font-family: "Bungee Shade";
+  font-size: 50px;
+  letter-spacing: 5px;
+}
+
+.logo-hyperlink :hover {
+  font-size: 60px;
+  transition: 0.5s;
+  color: rgb(231, 231, 231);
+  text-shadow: 0 0 1px rgb(152, 40, 171), 0 0 20px rgb(49, 19, 50),
+    0 0 40px rgb(75, 17, 77), 0 0 80px rgb(45, 16, 38),
+    0 0 120px rgb(209, 66, 166);
+}
+.logo-hyperlink2 {
+  text-decoration: none;
+  color: rgb(50, 50, 50);
+  font-family: "Bungee Shade";
+  font-size: 25px;
+  letter-spacing: 5px;
+}
+.logo-hyperlink2 :hover {
+  font-size: 30px;
+  transition: 0.5s;
+  color: rgb(50, 50, 50);
+  text-shadow: 0 0 20px rgba(50, 50, 50);
+}
+
+main {
+  display: flex;
+  width: 85%;
+  justify-content: space-around;
+  border-bottom: 1px solid #5c6067;
+  padding-bottom: 3em;
+  align-items: center;
+  margin-left: 4em;
+  border-top: 1px solid #5c6067;
+  padding-top: 3em;
+}
+.info {
+  width: 500px;
+}
+
+article {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: black;
+
+  border-top: 5px solid black;
+  height: 40vh;
+  padding: 0;
+  margin: 0;
+}
+header {
+  width: 100%;
+  height: 45px;
+  background-color: rgb(111, 111, 116);
+  top: 0;
+}
+.about-band,
+.artist-link {
+  color: rgb(50 50 50);
+  text-align: left;
+  padding-top: 5px;
+  text-decoration: none;
+  margin: 0;
+  font-family: monospace;
+  font-size: 15px;
+  margin-left: 9em;
+}
+
+.about-band:hover {
+  color: blueviolet;
+  font-weight: bold;
+}
+table {
+  color: blueviolet;
+  font-size: 30px;
+  text-shadow: 0 0 0.5px rgb(255, 255, 255);
+}
+.center {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+h3 {
+  font-family: "Bungee Shade";
+  font-size: 20px;
+  letter-spacing: 0.5em;
+}
+p {
+  margin: 0;
+}
+.number {
+  color: black;
+  font-size: 40px;
+
+  letter-spacing: 0, 8em;
+}
+
+aside {
+  width: 300px;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+aside > img {
+  height: 100px;
+  width: auto;
+  padding: 0;
+  margin: 0;
+}
+
+aside > img :first {
+  height: 200px;
+}
+
+#a-letter-img {
+  height: 200px;
+  width: auto;
+}
+
+.download {
+  border: 1px solid rgb(0, 0, 0);
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-family: monospace;
+}
+.connect-wallet {
+  border: 1px solid blueviolet;
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-family: monospace;
+}
+.side {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
+  padding-right: 12em;
+}
