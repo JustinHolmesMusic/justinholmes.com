@@ -46,7 +46,7 @@ contract Contribution {
         // This is domain-specific logic....?
         if (materialReleased) {
             // Reset the countdown period
-            endTime = block.timestamp + countDownPeriod;
+            countdownPeriod = block.timestamp + countdownPeriod;
         }
 
         emit Contribution(msg.sender, msg.value);
