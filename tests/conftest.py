@@ -10,7 +10,19 @@ def owner(accounts):
 def receiver(accounts):
     return accounts[1]
 
-
 @pytest.fixture(scope="session")
-def nft(owner, project):
-    return owner.deploy(project.NFT)
+def not_owner(accounts):
+    return accounts[2]
+
+@pytest.fixture
+def countdownPeriod():
+    return 600
+
+@pytest.fixture
+def threshold():
+    return 1000000000000000000
+
+
+@pytest.fixture
+def contribution(project, receiver, owner, countdownPeriod, threshold):
+    return owner.deploy(project.Contribution, countdownPeriod, threshold, receiver)
