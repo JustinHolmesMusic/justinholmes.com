@@ -11,6 +11,14 @@ import pytest
 # 
 # 
 
-def test_properties(contribution: ape.Contract, owner: ape.Account, receiver: ape.Account):
+def test_properties(chain, contribution: ape.Contract, owner: ape.Account, receiver: ape.Account, deadline: int, threshold: int):
     assert owner == contribution.owner()
     assert receiver == contribution.beneficiary()
+
+    assert contribution.deadline() > chain.pending_timestamp
+    assert contribution.threshold() == threshold
+
+
+# def test_contributions(contribution: ape.Contract, owner: ape.Account, receiver: ape.Account):
+#     assert 0 == contribution.total_contributions()
+#     assert 0 == contribution.contributions(ow

@@ -14,7 +14,15 @@ def receiver(accounts):
 def not_owner(accounts):
     return accounts[2]
 
+@pytest.fixture
+def deadline():
+    return 600
 
 @pytest.fixture
-def contribution(project, receiver, owner):
-    return owner.deploy(project.Contribution, 600, 1000000000000000000, receiver)
+def threshold():
+    return 1000000000000000000
+
+
+@pytest.fixture
+def contribution(project, receiver, owner, deadline, threshold):
+    return owner.deploy(project.Contribution, deadline, threshold, receiver)
