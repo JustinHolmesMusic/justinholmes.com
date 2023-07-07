@@ -15,7 +15,7 @@ def not_owner(accounts):
     return accounts[2]
 
 @pytest.fixture
-def deadline():
+def countdownPeriod():
     return 600
 
 @pytest.fixture
@@ -24,5 +24,5 @@ def threshold():
 
 
 @pytest.fixture
-def contribution(project, receiver, owner, deadline, threshold):
-    return owner.deploy(project.Contribution, deadline, threshold, receiver)
+def contribution(project, receiver, owner, countdownPeriod, threshold):
+    return owner.deploy(project.Contribution, countdownPeriod, threshold, receiver)
