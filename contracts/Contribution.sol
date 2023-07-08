@@ -4,13 +4,12 @@ pragma solidity ^0.8.0;
 contract Contribution {
     address payable public immutable owner;
     address payable public immutable beneficiary;
-    bool public materialReleased;
+    bool public isReleased;
     uint256 public deadline;
     uint256 public countdownPeriod;
     uint256 public threshold;
 
     event Contribute(address indexed contributor, uint256 amount);
-    event FundsReleased();
     event Decryptable(address indexed lastContributor);
     event Withdraw(address indexed beneficiary, uint256 amount);
 
@@ -30,12 +29,12 @@ contract Contribution {
         // This is "contribution-revealer logic"
         require(
             block.timestamp < deadline,
-            "Contribution period has ended"
+            "Cannot contribute after the deadline"
         );
 
         if (address(this).balance >= threshold) {
             // Mark the material as released
-            materialReleased = true;
+            isReleased = true;
             emit Decryptable(msg.sender);
         }
 
@@ -54,7 +53,7 @@ contract Contribution {
             msg.sender == beneficiary,
             "Only the beneficiary can withdraw funds"
         );
-        require(deadline < block.timestamp, "Contribution period has not ended");
+        require(deadline < block.timestamp, "Cannot withdraw funds before deadline");
 
         beneficiary.transfer(address(this).balance);
         emit Withdraw(beneficiary, address(this).balance);
