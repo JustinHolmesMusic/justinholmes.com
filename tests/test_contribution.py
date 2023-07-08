@@ -21,7 +21,8 @@ def test_not_being_able_to_contribute_after_deadline(chain: ape.chain, contribut
     # contribution after deadline should fail
     chain.provider.set_timestamp(chain.pending_timestamp + countdownPeriod + 1)
 
-    with pytest.raises(Exception):
+
+    with ape.reverts("Cannot contribute after the deadline"):
         contribution.contribute(sender=not_owner, value=1)
 
 
@@ -43,7 +44,7 @@ def test_album_release(contribution: ape.Contract, owner: ape.Account, not_owner
 
 def test_cannot_withdraw_funds_before_deadline(contribution: ape.Contract, owner: ape.Account, not_owner: ape.Account, receiver: ape.Account, threshold: int):
     contribution.contribute(sender=not_owner, value=threshold // 2)
-    with pytest.raises(Exception):
+    with ape.reverts("Cannot withdraw funds before deadline"):
         contribution.withdraw(sender=receiver)
 
 
@@ -60,10 +61,10 @@ def test_withdraw_funds_after_deadline(chain: ape.chain, contribution: ape.Contr
     assert contribution.isReleased() == False 
 
     # only receiver can withdraw
-    with pytest.raises(Exception):
+    with ape.reverts("Only the beneficiary can withdraw funds"):
         contribution.withdraw(sender=not_owner)
     
-    with pytest.raises(Exception):
+    with ape.reverts("Only the beneficiary can withdraw funds"):
         contribution.withdraw(sender=owner)
     
     assert contribution.balance == contribution_amount * 2
