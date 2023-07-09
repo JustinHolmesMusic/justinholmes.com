@@ -23,7 +23,55 @@ body {
   transition-duration: 0.4s;
   cursor: pointer;
   font-family: monospace;
+  width: 17rem;
 }
+
+.contributionAmount {
+  border-bottom: 0;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  color: white;
+  background-color: black;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-family: monospace;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#contributionAmount {
+  border-bottom: 0;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  color: white;
+  background-color: black;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-family: monospace;
+  width: 30%;
+}
+
+#all-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .paybutton:hover {
   background-color: black;
   border: 1px solid white;
