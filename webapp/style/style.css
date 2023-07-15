@@ -222,7 +222,7 @@ main {
     display: flex;
     justify-content: space-around;
     /*border-bottom: 1px solid #5c6067;*/
-    padding-bottom: 3em;
+    /*padding-bottom: 3em;*/
     align-items: center;
     /*margin-left: 4em;*/
     border-top: 1px solid #5c6067;
@@ -314,11 +314,12 @@ table {
 #fundingStatus {
     font-family: "Bungee Shade";
     font-size: 20px;
-    letter-spacing: 0.5em;
+    /*letter-spacing: 0.5em;*/
     display: flex;
     justify-content: center;
     align-items: center;
     color: black;
+    font-weight: bold;
 }
 
 p {
