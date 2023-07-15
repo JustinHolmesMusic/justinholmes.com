@@ -1,326 +1,482 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 body {
-  background-color: rgb(111, 111, 116);
-  height: 100%;
-  /* position: absolute; */
-  width: 100%;
+    /*background-color: rgb(111, 111, 116);*/
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: url("../images/painting.jpg");
+    background-size: cover;
+    font-family: monospace;
+
+}
+
+
+h3 {
+    font-family: "Bungee Shade";
+    font-size: 20px;
+    letter-spacing: 0.5em;
+    text-align: center;
 }
 
 .paybutton {
-  border: 1px solid rgb(0, 0, 0);
-  color: white;
-  background-color: blueviolet;
-  border-radius: 10px;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  font-family: monospace;
-  width: 17rem;
+    border: 1px solid rgb(0, 0, 0);
+    color: white;
+    background-color: blueviolet;
+    border-radius: 10px;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    font-family: monospace;
+    width: 17rem;
 }
 
 .contributionAmount {
-  border-bottom: 0;
-  border-top: 0;
-  border-right: 0;
-  border-left: 0;
-  color: white;
-  background-color: black;
-  text-align: center;
-  text-decoration: underline;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  font-family: monospace;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+    border-bottom: 0;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    color: white;
+    background-color: black;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    font-family: monospace;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #contributionAmount {
-  border-bottom: 0;
-  border-top: 0;
-  border-right: 0;
-  border-left: 0;
-  color: white;
-  background-color: black;
-  text-align: center;
-  text-decoration: underline;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  font-family: monospace;
-  width: 30%;
+    border-bottom: 0;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    color: white;
+    background-color: black;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    font-family: monospace;
+    width: 30%;
 }
 
 #all-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+    width: 90%
+}
+
+.download:hover {
+    background-color: blueviolet;
+    border: 1px solid white;
+    transition: 0.5s;
+    /*padding: 19px 35px;*/
 }
 
 .paybutton:hover {
-  background-color: black;
-  border: 1px solid white;
-  transition: 0.5s;
-  padding: 19px 35px;
+    background-color: black;
+    border: 1px solid white;
+    transition: 0.5s;
+    /*padding: 19px 35px;*/
 }
+
 .paybutton:active {
-  background-color: black;
-  color: blueviolet;
+    background-color: black;
+    color: blueviolet;
 }
+
 .paybutton:visited {
-  background-color: blueviolet;
-  color: black;
-  opacity: 0.2;
+    background-color: blueviolet;
+    color: black;
+    opacity: 0.2;
 }
 
 .container {
-  /* position: relative; */
+    /* position: relative; */
 }
 
 .header {
-  margin: 0;
-  position: absolute;
-  top: 250%;
-  left: 20%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+    margin: 0;
+    position: absolute;
+    top: 250%;
+    left: 20%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 #countdown {
-  color: rgb(5, 4, 4);
-  font-family: "Bungee Shade";
-  font-size: 50px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 0;
+    color: rgb(5, 4, 4);
+    font-family: "Bungee Shade";
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0;
 }
 
 #countdown-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 #left-side {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
 }
+
 .intro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
 }
+
 .intro2 {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  /* height: 700px; */
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    /* height: 700px; */
+    margin-bottom: 1em;
 }
 
 .background1 {
-  background-image: url(../images/purple.png);
-  background-color: black;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position-y: center;
+    background-image: url(../images/purple.png);
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: center;
 }
 
 h1 {
-  text-decoration: none;
-  color: rgb(166, 199, 213);
-  font-family: "Bungee Shade";
-  font-size: 20px;
+    text-decoration: none;
+    color: rgb(166, 199, 213);
+    font-family: "Bungee Shade";
+    font-size: 20px;
 }
 
 .logo-hyperlink {
-  text-decoration: none;
-  color: white;
-  font-family: "Bungee Shade";
-  font-size: 50px;
-  letter-spacing: 5px;
+    text-decoration: none;
+    color: white;
+    font-family: "Bungee Shade";
+    font-size: 50px;
+    letter-spacing: 5px;
 }
 
 .logo-hyperlink :hover {
-  font-size: 60px;
-  transition: 0.5s;
-  color: rgb(231, 231, 231);
-  text-shadow: 0 0 1px rgb(152, 40, 171), 0 0 20px rgb(49, 19, 50),
+    font-size: 60px;
+    transition: 0.5s;
+    color: rgb(231, 231, 231);
+    text-shadow: 0 0 1px rgb(152, 40, 171), 0 0 20px rgb(49, 19, 50),
     0 0 40px rgb(75, 17, 77), 0 0 80px rgb(45, 16, 38),
     0 0 120px rgb(209, 66, 166);
 }
+
 .logo-hyperlink2 {
-  text-decoration: none;
-  color: rgb(50, 50, 50);
-  font-family: "Bungee Shade";
-  font-size: 25px;
-  letter-spacing: 5px;
+    text-decoration: none;
+    color: #98a2a8;
+    font-family: "Bungee Shade";
+    font-size: 25px;
+    letter-spacing: 5px;
 }
+
 .logo-hyperlink2 :hover {
-  font-size: 30px;
-  transition: 0.5s;
-  color: rgb(50, 50, 50);
-  text-shadow: 0 0 20px rgba(50, 50, 50);
+    font-size: 30px;
+    transition: 0.5s;
+    color: rgb(50, 50, 50);
+    text-shadow: 0 0 20px rgba(50, 50, 50);
 }
 
 main {
-  display: flex;
-  width: 85%;
-  justify-content: space-around;
-  border-bottom: 1px solid #5c6067;
-  padding-bottom: 3em;
-  align-items: center;
-  margin-left: 4em;
-  border-top: 1px solid #5c6067;
-  padding-top: 3em;
+    display: flex;
+    justify-content: space-around;
+    /*border-bottom: 1px solid #5c6067;*/
+    padding-bottom: 3em;
+    align-items: center;
+    /*margin-left: 4em;*/
+    border-top: 1px solid #5c6067;
+    padding-top: 3em;
+    flex-direction: column-reverse;
 }
-..info {
-  width: 500px;
-  padding-top: 1em;
+
+@media screen and (min-width: 200px) {
+    .info {
+        width: 95%;
+        color: #98a2a8;
+        font-weight: 900;
+        margin-top: 2em;
+    }
 }
+
+.info3 {
+    text-align: center;
+    color: white;
+    margin-bottom: 2em;
+}
+
+
+/*.info {*/
+/*  width: 50%;*/
+/*  padding-top: 1em;*/
+/*  text-align: center;*/
+/*}*/
 
 article {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  background-color: black;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: black;
+    border-top: 5px solid black;
+    padding: 0;
+    margin: 0;
+    margin-top: 1em;
+    border-top: 1px solid blueviolet;
+}
 
-  border-top: 5px solid black;
-  height: 40vh;
-  padding: 0;
-  margin: 0;
-}
 header {
-  width: 100%;
-  height: 45px;
-  background-color: rgb(111, 111, 116);
-  top: 0;
+    width: 100%;
+    height: 45px;
+    background-color: rgb(111, 111, 116);
+    top: 0;
 }
+
+#description {
+    border-left: 1px solid black;
+    margin-left: 1em;
+    padding-left: 1.2em;
+}
+
 .about-band,
 .artist-link {
-  color: rgb(50 50 50);
-  text-align: left;
-  padding-top: 5px;
-  text-decoration: none;
-  margin: 0;
-  font-family: monospace;
-  font-size: 15px;
-  margin-left: 9em;
+    color: #98a2a8;
+    text-align: left;
+    text-decoration: none;
+    font-family: monospace;
+    font-size: 15px;
+    margin-left: 1em;
 }
 
 .about-band:hover {
-  color: blueviolet;
-  font-weight: bold;
+    color: blueviolet;
+    font-weight: bold;
 }
+
 table {
-  color: blueviolet;
-  font-size: 30px;
-  text-shadow: 0 0 0.5px rgb(255, 255, 255);
+    color: blueviolet;
+    font-size: 30px;
+    text-shadow: 0 0 0.5px rgb(255, 255, 255);
 }
+
 .center {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 15px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
 }
-h3 {
-  font-family: "Bungee Shade";
-  font-size: 20px;
-  letter-spacing: 0.5em;
+
+.amount-button {
+    width: 2em;
 }
+
+#fundingStatus {
+    font-family: "Bungee Shade";
+    font-size: 20px;
+    letter-spacing: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
 p {
-  margin: 0;
+    margin: 0;
 }
+
 .number {
-  color: black;
-  font-size: 40px;
-
-  letter-spacing: 0, 8em;
+    color: black;
+    font-size: 40px;
+    letter-spacing: 0.8em;
 }
 
-aside {
-  width: 300px;
-  height: 200px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+#art {
+    width: 95%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-aside > img {
-  height: 100px;
-  width: auto;
-  padding: 0;
-  margin: 0;
+#aeiou {
+    height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
-aside > img :first {
-  height: 200px;
+#aeiou > img {
+    height: 80px;
+    width: 80px;
+    padding: 0;
+    margin: 0;
 }
 
 #a-letter-img {
-  height: 200px;
-  width: auto;
+    height: 160px !important;
+    width: auto !important;
+}
+
+.modal-content {
+    background-color: black !important;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    color: white;
+}
+
+.btn-primary {
+    background-color: blueviolet !important;
+    border: 1px solid white;
+    color: white;
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .download {
-  border: 1px solid rgb(0, 0, 0);
-  color: white;
-  background-color: black;
-  border-radius: 10px;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 4px 2px;
-  cursor: pointer;
-  font-family: monospace;
+    border: 1px solid rgb(0, 0, 0);
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-family: monospace;
 }
-.connect-wallet {
-  border: 1px solid blueviolet;
-  color: white;
-  background-color: black;
-  border-radius: 10px;
-  padding: 10px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
-  font-weight: bold;
-  margin: 4px 2px;
-  cursor: pointer;
-  font-family: monospace;
+
+#connect-wallet {
+    border: 1px solid white;
+    color: white;
+    background-color: blueviolet;
+    border-radius: 10px;
+    padding: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-family: monospace;
 }
+
+.btn-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.btn-group button {
+    width: 12em;
+    font-size: 10px;
+    margin-bottom: 1em;
+    background-color: #8a2be2 !important;
+    border: 1px solid black;
+}
+
+#user-amount {
+    width: 3em;
+    font-size: 14px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid black;
+    color: white;
+}
+
+#user-amount:hover {
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+.btn-group:nth-child(even) {
+    background-color: black;
+}
+
+#connect-wallet:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(50, 50, 50);
+    transition: 0.5s;
+}
+
+
 .side {
-  display: flex;
-  width: 100%;
-  justify-content: end;
-  align-items: center;
-  padding-right: 12em;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding-right: 1em;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: black;
+}
+
+#leaderboard-title {
+    font-family: "Bungee Shade";
+    font-size: 20px;
+    letter-spacing: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 1em;
+}
+
+thead {
+    color: blueviolet;
+    font-weight: bold;
+}
+
+.table-dark {
+    background-color: transparent !important;
+    color: white;
+    font-family: monospace;
+    font-size: 15px;
 }
