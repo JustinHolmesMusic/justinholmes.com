@@ -480,3 +480,16 @@ thead {
     font-family: monospace;
     font-size: 15px;
 }
+
+
+footer {
+    width: 100%;
+
+}
+#media-link{
+    background-color: black;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 2em;
+}
