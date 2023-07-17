@@ -61,23 +61,21 @@
             <button class="paybutton download" data-toggle="modal" data-target="#download-modal">
                 Get Encrypted Record 🔒
             </button>
-        <div id="preset-bids" onclick="contribute();">
+            <div id="preset-bids" onclick="contribute();">
             <span>
                 Contribute
                 <input placeholder="?" id="user-amount">ETH</input>
             </span>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button id="min-preset" type="button" class="btn btn-primary">0.1 ETH 🪕</button>
-                <button id="ten-preset" type="button" class="btn btn-primary even">Top 10 🎻</button>
-                <button id="leader-preset" type="button" class="btn btn-primary">Take the Lead 🎸</button>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button id="min-preset" type="button" class="btn btn-primary" onclick="setMinPreset();">0.1 ETH 🪕</button>
+                    <button id="ten-preset" type="button" class="btn btn-primary even" onclick="setTenPreset();">Top 10 🎻</button>
+                    <button id="leader-preset" type="button" class="btn btn-primary" onclick="setLeaderPreset()";>Take the Lead 🎸</button>
+                </div>
             </div>
-        </div>
             <button class="paybutton download">
                 Decrypt Record 🔓
             </button>
         </div>
-
-
 
 
         <!-- Modal -->
