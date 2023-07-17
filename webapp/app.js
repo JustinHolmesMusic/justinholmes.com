@@ -24,6 +24,18 @@ function connect() {
     }
 }
 
+function setMinPreset() {
+    document.getElementById("user-amount").value = 0.1;
+}
+
+function setTenPreset() {
+    document.getElementById("user-amount").value = 0.5;  // TODO: read from contract
+}
+
+function setLeaderPreset() {
+    document.getElementById("user-amount").value = 1;  // TODO: read from contract
+}
+
 async function contribute() {
     if (!account) return;
 

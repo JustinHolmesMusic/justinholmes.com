@@ -17,7 +17,7 @@ body {
 
 
 h3 {
-    font-family: "Bungee Shade";
+    font-family: "Bungee Shade", monospace;
     font-size: 20px;
     letter-spacing: 0.5em;
     text-align: center;
@@ -39,6 +39,7 @@ h3 {
     cursor: pointer;
     font-family: monospace;
     width: 17rem;
+    height: 68px;
 }
 
 .contributionAmount {
@@ -101,7 +102,6 @@ h3 {
     background-color: black;
     border: 1px solid white;
     transition: 0.5s;
-    /*padding: 19px 35px;*/
 }
 
 .paybutton:active {
@@ -130,7 +130,7 @@ h3 {
 
 #countdown {
     color: rgb(5, 4, 4);
-    font-family: "Bungee Shade";
+    font-family: "Bungee Shade", monospace;
     font-size: 50px;
     font-weight: bold;
     text-align: center;
@@ -157,13 +157,13 @@ h3 {
 }
 
 .intro {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: #000;
-	font-family: "Bungee Shade", monospace;
-	font-weight: bold;
-	font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-family: "Bungee Shade", monospace;
+    font-weight: bold;
+    font-size: 25px;
 }
 
 
@@ -211,23 +211,75 @@ main {
 
 .info {
     width: 95%;
-	color: #e4e4e4;
+    color: #e4e4e4;
     margin-top: 2em;
     font-family: monospace;
 }
 
 .info3 {
-	text-align: center;
-	margin-bottom: 2em;
-	font-family: monospace;
-	color: #e4e4e4;
-	font-weight: 900;
-	width: 32em;
+    text-align: center;
+    margin-bottom: 2em;
+    font-family: monospace;
+    color: #e4e4e4;
+    font-weight: 900;
+    width: 70%;
 }
 
 
 #contribute-button {
     min-width: 37%;
+}
+
+#preset-bids {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 4px 2px;
+    border-radius: 15px;
+    border: 1px solid transparent;
+}
+
+#preset-bids span:hover {
+    background-color: black;
+    transition: 0.5s;
+
+}
+
+#preset-bids span {
+    color: white;
+    background-color: blueviolet;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    padding: 0.5em;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: monospace;
+    border-bottom: 1px solid black;
+}
+
+#min-preset {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0 !important;
+    border: 0;
+}
+
+
+#ten-preset {
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+
+}
+
+#leader-preset {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 10px;
+    border: 0;
+    border-left: 1px solid black;
 }
 
 article {
@@ -253,6 +305,8 @@ header {
     border-left: 2px solid black;
     margin-left: 1em;
     padding-left: 1.2em;
+    padding-bottom: 1em;
+    margin-top: 2em;
 }
 
 .artist-link {
@@ -262,6 +316,12 @@ header {
     font-family: monospace;
     font-size: 15px;
     margin-left: 1em;
+    margin-bottom: 0;
+}
+
+.artist-link p {
+    margin-bottom: 0;
+    padding: 0;
 }
 
 .about-band:hover {
@@ -325,18 +385,13 @@ p {
 }
 
 #aeiou > img {
-	height: 130px;
-	width: 130px;
-	padding: 0;
-	border-radius: 9em;
-	border: 1px solid #3c3344;
-	margin: 3px;
+    height: 130px;
+    width: 130px;
+    padding: 0;
+    border-radius: 9em;
+    border: 1px solid #3c3344;
+    margin: 3px;
 }
-
-/*#a-letter-img {*/
-/*    height: 160px !important;*/
-/*    width: auto !important;*/
-/*}*/
 
 .modal-content {
     background-color: black !important;
@@ -394,12 +449,21 @@ p {
     flex-wrap: wrap;
 }
 
+
 .btn-group button {
     width: 12em;
     font-size: 10px;
-    margin-bottom: 1em;
     background-color: #8a2be2 !important;
-    border: 1px solid black;
+    border-bottom: 1px solid transparent !important;
+}
+
+.btn-group button:focus {
+    box-shadow: none;
+}
+
+.btn-group button:hover {
+    background-color: black !important;
+    border-bottom: 1px solid white !important;
 }
 
 #user-amount {
@@ -436,15 +500,15 @@ p {
 }
 
 #leaderboard-title {
-	font-family: "Bungee Shade", monospace;
-	color: #ddd;
-	font-size: 25px;
-	font-weight: 900;
-	letter-spacing: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: 1em;
+    font-family: "Bungee Shade", monospace;
+    color: #ddd;
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
 }
 
 thead {
@@ -463,19 +527,30 @@ td {
 }
 
 table img {
-	width: 6em;
-	border-radius: 1em;
-	border: 1px solid white;
+    width: 6em;
+    border-radius: 1em;
+    border: 1px solid white;
 }
 
 footer {
     width: 100%;
 
 }
-#media-link{
+
+#media-link {
     background-color: black;
     width: 100%;
     display: flex;
     justify-content: flex-end;
     padding: 2em;
+    align-items: center;
+}
+
+#media-link a {
+    color: blueviolet;
+}
+
+#media-link svg {
+	margin-right: 5px;
+	color: #919195;
 }
