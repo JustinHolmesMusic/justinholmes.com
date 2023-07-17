@@ -157,13 +157,13 @@ h3 {
 }
 
 .intro {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: #000;
-	font-family: "Bungee Shade", monospace;
-	font-weight: bold;
-	font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-family: "Bungee Shade", monospace;
+    font-weight: bold;
+    font-size: 25px;
 }
 
 
@@ -211,18 +211,18 @@ main {
 
 .info {
     width: 95%;
-	color: #e4e4e4;
+    color: #e4e4e4;
     margin-top: 2em;
     font-family: monospace;
 }
 
 .info3 {
-	text-align: center;
-	margin-bottom: 2em;
-	font-family: monospace;
-	color: #e4e4e4;
-	font-weight: 900;
-	width: 70%;
+    text-align: center;
+    margin-bottom: 2em;
+    font-family: monospace;
+    color: #e4e4e4;
+    font-weight: 900;
+    width: 70%;
 }
 
 
@@ -247,16 +247,16 @@ main {
 }
 
 #preset-bids span {
-	color: white;
-	background-color: blueviolet;
-	width: 100%;
-	border-radius: 10px 10px 0 0;
-	text-align: center;
-	padding: 0.5em;
-	font-size: 15px;
-	font-weight: bold;
-	font-family: monospace;
-	border-bottom: 1px solid black;
+    color: white;
+    background-color: blueviolet;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    padding: 0.5em;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: monospace;
+    border-bottom: 1px solid black;
 }
 
 #min-preset {
@@ -305,6 +305,8 @@ header {
     border-left: 2px solid black;
     margin-left: 1em;
     padding-left: 1.2em;
+    padding-bottom: 1em;
+    margin-top: 2em;
 }
 
 .artist-link {
@@ -315,6 +317,11 @@ header {
     font-size: 15px;
     margin-left: 1em;
     margin-bottom: 0;
+}
+
+.artist-link p {
+    margin-bottom: 0;
+    padding: 0;
 }
 
 .about-band:hover {
@@ -378,12 +385,12 @@ p {
 }
 
 #aeiou > img {
-	height: 130px;
-	width: 130px;
-	padding: 0;
-	border-radius: 9em;
-	border: 1px solid #3c3344;
-	margin: 3px;
+    height: 130px;
+    width: 130px;
+    padding: 0;
+    border-radius: 9em;
+    border: 1px solid #3c3344;
+    margin: 3px;
 }
 
 .modal-content {
@@ -493,15 +500,15 @@ p {
 }
 
 #leaderboard-title {
-	font-family: "Bungee Shade", monospace;
-	color: #ddd;
-	font-size: 25px;
-	font-weight: 900;
-	letter-spacing: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: 1em;
+    font-family: "Bungee Shade", monospace;
+    color: #ddd;
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
 }
 
 thead {
@@ -520,16 +527,17 @@ td {
 }
 
 table img {
-	width: 6em;
-	border-radius: 1em;
-	border: 1px solid white;
+    width: 6em;
+    border-radius: 1em;
+    border: 1px solid white;
 }
 
 footer {
     width: 100%;
 
 }
-#media-link{
+
+#media-link {
     background-color: black;
     width: 100%;
     display: flex;
