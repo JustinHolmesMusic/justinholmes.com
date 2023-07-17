@@ -543,4 +543,14 @@ footer {
     display: flex;
     justify-content: flex-end;
     padding: 2em;
+    align-items: center;
+}
+
+#media-link a {
+    color: blueviolet;
+}
+
+#media-link svg {
+	margin-right: 5px;
+	color: #919195;
 }
