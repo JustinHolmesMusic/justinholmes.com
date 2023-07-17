@@ -42,38 +42,40 @@
     <div id="art">
         <div id="aeiou">
             <img alt="a-letter" id="a-letter-img" src="./images/a.jpg"/>
-            <img alt="i-letter" src="./images/i.jpg"/>
             <img alt="oe-letter" src="./images/oe.jpg"/>
+            <img alt="i-letter" src="./images/i.jpg"/>
         </div>
     </div>
 
     <!-- left side -->
     <div class="container" id="left-side">
-        <div class="intro2">
-            <a class="logo-hyperlink2" href="index.html"><p>VOWEL SOUNDS</p></a>
+        <div class="intro">
+            <p>VOWEL SOUNDS</p>
         </div>
 
         <p class="info3">
             Vowel Sounds is the debut album-length 'blockchain bluegrass' offering from Justin Myles Holmes.
         </p>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary">0.1 ETH</button>
-            <button type="button" class="btn btn-primary even">Top 10</button>
-            <button type="button" class="btn btn-primary">Take the Lead</button>
-        </div>
 
         <div id="all-buttons">
             <button class="paybutton download" data-toggle="modal" data-target="#download-modal">
                 Get Encrypted Record 🔒
             </button>
-            <button class="paybutton" onclick="contribute();">
+            <button id="contribute-button" class="paybutton" onclick="contribute();">
                 Contribute
-                <input placeholder="0.1" id="user-amount">ETH</input>
+                <input placeholder="?" id="user-amount">ETH</input>
             </button>
             <button class="paybutton download">
                 Decrypt Record 🔓
             </button>
         </div>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary">0.1 ETH</button>
+            <button type="button" class="btn btn-primary even">Top 10</button>
+            <button type="button" class="btn btn-primary">Take the Lead</button>
+        </div>
+
 
         <!-- Modal -->
         <div class="modal fade" id="download-modal" tabindex="-1" role="dialog" aria-labelledby="download-modal"
@@ -124,7 +126,6 @@
 </main>
 
 <div class="center">
-
     <div class="center">
         <p id="countdown"></p>
         <span id="fundingStatus"><span id="remainingEth" class="number">-</span> ETH until funded</span>
