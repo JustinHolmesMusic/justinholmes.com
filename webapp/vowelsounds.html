@@ -24,6 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <script src="./app.js"></script>
 </head>
 
 <body>
@@ -41,39 +42,40 @@
     <div id="art">
         <div id="aeiou">
             <img alt="a-letter" id="a-letter-img" src="./images/a.jpg"/>
-            <img alt="i-letter" src="./images/i.jpg"/>
             <img alt="oe-letter" src="./images/oe.jpg"/>
+            <img alt="i-letter" src="./images/i.jpg"/>
         </div>
     </div>
 
     <!-- left side -->
     <div class="container" id="left-side">
-        <div class="intro2">
-            <a class="logo-hyperlink2" href="index.html"><p>VOWEL SOUNDS</p></a>
+        <div class="intro">
+            <p>VOWEL SOUNDS</p>
         </div>
 
         <p class="info3">
             Vowel Sounds is the debut album-length 'blockchain bluegrass' offering from Justin Myles Holmes.
         </p>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary">0.1 ETH</button>
-            <button type="button" class="btn btn-primary even">Top 10</button>
-            <button type="button" class="btn btn-primary">Take the Lead</button>
-        </div>
 
         <div id="all-buttons">
             <button class="paybutton download" data-toggle="modal" data-target="#download-modal">
                 Get Encrypted Record 🔒
             </button>
-            <button class="paybutton" onclick="contribute();">
+            <button id="contribute-button" class="paybutton" onclick="contribute();">
                 Contribute
-                <input placeholder="0.1" id="user-amount">ETH</input>
-
+                <input placeholder="?" id="user-amount">ETH</input>
             </button>
             <button class="paybutton download">
                 Decrypt Record 🔓
             </button>
         </div>
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary">0.1 ETH 🪕</button>
+            <button type="button" class="btn btn-primary even">Top 10 🎻</button>
+            <button type="button" class="btn btn-primary">Take the Lead 🎸</button>
+        </div>
+
 
         <!-- Modal -->
         <div class="modal fade" id="download-modal" tabindex="-1" role="dialog" aria-labelledby="download-modal"
@@ -120,14 +122,13 @@
         </div>
     </div>
 
-    <div class="container" id="countdown-container right-side"></div>
+    <div class="container" id="countdown-container right-side">-</div>
 </main>
 
 <div class="center">
-
     <div class="center">
         <p id="countdown"></p>
-        <span id="fundingStatus"><span class="number">0</span> ETH until funded</span>
+        <span id="fundingStatus"><span id="remainingEth" class="number">-</span> ETH until funded</span>
     </div>
 
     <article id="table">
@@ -145,565 +146,75 @@
                 <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
+                    <td><img src="images/thumbnails/aaa.png"></td>
+                    <td>0.77 ETH</td>
                     <td>@mdo</td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
+                    <td><img src="images/thumbnails/eee.png"></td>
+                    <td>0.71 ETH</td>
                     <td>@fat</td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
+                    <td><img src="images/thumbnails/ce.png"></td>
+                    <td>0.63 ETH</td>
+                    <td>@fat</td>
                 </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td><img src="images/thumbnails/ot.png"></td>
+                    <td>0.57 ETH</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td><img src="images/thumbnails/b.png"></td>
+                    <td>0.42 ETH</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">6</th>
+                    <td><img src="images/thumbnails/horseshoe.png"></td>
+                    <td>0.4 ETH</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">7</th>
+                    <td><img src="images/thumbnails/iii.png"></td>
+                    <td>0.22 ETH</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">8</th>
+                    <td><img src="images/thumbnails/uu.png"></td>
+                    <td>0.15 ETH</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">9</th>
+                    <td><img src="images/thumbnails/vv.png"></td>
+                    <td>0.1 ETH</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">10</th>
+                    <td><img src="images/thumbnails/Y.png"></td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+
                 </tbody>
             </table>
         </div>
     </article>
-    <footer></footer>
+    <footer>
+        <div id="media-link">
+            <!--<span><img src="images/twitter.png"></span>-->
+            <span><a href="https://twitter.com/vowelsoundmode">@twitter.com/vowelsoundmode</a></span>
+        </div>
+    </footer>
+
+
 </body>
-
-<script>
-
-    /* To connect using MetaMask */
-    let account;
-    let myContract;
-    const contractABI = [
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "_countdownPeriod",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_threshold",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "address payable",
-                    "name": "_beneficiary",
-                    "type": "address"
-                },
-                {
-                    "internalType": "bool",
-                    "name": "_testnet",
-                    "type": "bool"
-                }
-            ],
-            "stateMutability": "nonpayable",
-            "type": "constructor"
-        },
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": true,
-                    "internalType": "address",
-                    "name": "contributor",
-                    "type": "address"
-                },
-                {
-                    "indexed": false,
-                    "internalType": "uint256",
-                    "name": "amount",
-                    "type": "uint256"
-                }
-            ],
-            "name": "Contribute",
-            "type": "event"
-        },
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": true,
-                    "internalType": "address",
-                    "name": "lastContributor",
-                    "type": "address"
-                }
-            ],
-            "name": "Decryptable",
-            "type": "event"
-        },
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": true,
-                    "internalType": "address",
-                    "name": "beneficiary",
-                    "type": "address"
-                },
-                {
-                    "indexed": false,
-                    "internalType": "uint256",
-                    "name": "amount",
-                    "type": "uint256"
-                }
-            ],
-            "name": "Withdraw",
-            "type": "event"
-        },
-        {
-            "inputs": [],
-            "name": "amb",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "name": "amountContributedByAddress",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "beneficiary",
-            "outputs": [
-                {
-                    "internalType": "address payable",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "bridgeGasLimit",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "bytes32",
-                    "name": "_hash",
-                    "type": "bytes32"
-                },
-                {
-                    "internalType": "bytes",
-                    "name": "_ciphertext",
-                    "type": "bytes"
-                }
-            ],
-            "name": "commitSecret",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "contribute",
-            "outputs": [],
-            "stateMutability": "payable",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "countdownPeriod",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "deadline",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "destinationContract",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "isKeySet",
-            "outputs": [
-                {
-                    "internalType": "bool",
-                    "name": "",
-                    "type": "bool"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "keyCiphertext",
-            "outputs": [
-                {
-                    "internalType": "bytes",
-                    "name": "",
-                    "type": "bytes"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "keyPlaintext",
-            "outputs": [
-                {
-                    "internalType": "bytes",
-                    "name": "",
-                    "type": "bytes"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "keyPlaintextHash",
-            "outputs": [
-                {
-                    "internalType": "bytes32",
-                    "name": "",
-                    "type": "bytes32"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "materialReleaseConditionMet",
-            "outputs": [
-                {
-                    "internalType": "bool",
-                    "name": "",
-                    "type": "bool"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "owner",
-            "outputs": [
-                {
-                    "internalType": "address payable",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "resetClock",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "bytes",
-                    "name": "secret",
-                    "type": "bytes"
-                }
-            ],
-            "name": "revealSecret",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "_amb",
-                    "type": "address"
-                }
-            ],
-            "name": "setAmb",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "_bridgeGasLimit",
-                    "type": "uint256"
-                }
-            ],
-            "name": "setBridgeGasLimit",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "_destinationContract",
-                    "type": "address"
-                }
-            ],
-            "name": "setDestinationContract",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "bool",
-                    "name": "status",
-                    "type": "bool"
-                }
-            ],
-            "name": "setMaterialReleaseConditionMet",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "_threshold",
-                    "type": "uint256"
-                }
-            ],
-            "name": "setThreshold",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "threshold",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "withdraw",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "stateMutability": "payable",
-            "type": "receive"
-        }
-    ];
-    const contractAddress = '0xcc0f4fdb5740c7de0c467f0cc489680c6689825a';
-
-    function getContract() {
-        myContract = new window.web3.eth.Contract(contractABI, contractAddress);
-    }
-
-    function connect() {
-        if (window.ethereum) {
-            window.ethereum.request({method: "eth_requestAccounts"});
-            window.web3 = new Web3(window.ethereum);
-            account = window.web3.eth.accounts;     //Get the current MetaMask selected/active wallet
-            const walletAddress = account.givenProvider.selectedAddress;
-            console.log(`Wallet: ${walletAddress}`);
-            document.getElementById("connect-wallet").innerHTML =
-                walletAddress.slice(0, 6) + "..." + walletAddress.slice(-4);
-            getContract();
-        } else {
-            console.log("No wallet");
-        }
-    }
-
-    async function contribute() {
-        let userAmount = document.getElementById("contributionAmount").value;
-        const amount = web3.utils.toWei(userAmount, 'ether'); // Change the value as needed
-
-        window.ethereum.request({
-            method: 'eth_sendTransaction',
-            params: [
-                {
-                    from: walletAddress,
-                    to: contractAddress,
-                    data: myContract.methods.contribute().encodeABI(), // This encodes the function call to contribute
-                    value: web3.utils.toHex(amount),
-                },
-            ],
-        })
-            .then((txHash) => console.log(txHash))
-            .catch((error) => console.error);
-    }
-
-    // Update the count down every 1 second
-    let countDownDate;
-    var x = setInterval(function () {
-        if (!account) return;
-
-        myContract.methods.deadline().call()
-            .then((deadline) => {
-                countDownDate = deadline * 1000;
-                console.log('Deadline: ', deadline);
-            })
-            .catch((error) => console.error);
-
-        // Get today's date and time
-        var now = new Date().getTime();
-
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
-
-        // If the count down is finished, write some text
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("countdown").innerHTML = "EXPIRED";
-            return;
-        }
-
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor(
-            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Display the result in the element with id="demo"
-        document.getElementById("countdown").innerHTML =
-            days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-
-    }, 1000);
-
-    function updateFundingStatus() {
-        if (!account) return;
-
-        // Read the balance of the contract
-        window.web3.eth.getBalance(contractAddress)
-            .then((balanceInWei) => {
-                // Convert balance from Wei to Ether
-                const balanceInEth = web3.utils.fromWei(balanceInWei, 'ether');
-
-                // Fetch threshold from contract
-                myContract.methods.threshold().call()
-                    .then((thresholdInWei) => {
-                        const thresholdInEth = web3.utils.fromWei(thresholdInWei, 'ether');
-
-                        // Calculate the remaining amount needed to reach the threshold
-                        const remainingAmount = thresholdInEth - balanceInEth;
-
-                        // Update the HTML element
-                        document.getElementById('fundingStatus').textContent = remainingAmount.toFixed(3);
-                    })
-                    .catch((error) => console.error);
-            })
-            .catch((error) => console.error);
-    }
-
-    var x = setInterval(function () {
-        updateFundingStatus();
-    }, 1000);
-
-    function updateContributorsTable() {
-        // Assuming the smart contract has a method 'getContributors' to fetch the array of contributors
-        myContract.methods.contributors().call()
-            .then((contributors) => {
-                // Get the table body
-                const tableBody = document.getElementById('contributorsTable');
-
-                // Clear the table body
-                tableBody.innerHTML = "";
-
-                // Loop through the contributors and append a row for each
-                contributors.forEach((contributorAddress, index) => {
-                    // Create a new row and cells
-                    let row = document.createElement('tr');
-                    let th = document.createElement('th');
-                    let td = document.createElement('td');
-
-                    // Set the cell contents
-                    th.textContent = index + 1; // Add 1 to index to start counting from 1
-                    td.textContent = contributorAddress;
-
-                    // Add the cells to the row
-                    row.appendChild(th);
-                    row.appendChild(td);
-
-                    // Add the row to the table body
-                    tableBody.appendChild(row);
-                });
-            })
-            .catch((error) => console.error);
-    }
-
-    // updateContributorsTable()
-
-</script>
-
 </html>
