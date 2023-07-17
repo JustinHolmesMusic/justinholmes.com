@@ -249,7 +249,7 @@ header {
 }
 
 #description {
-    border-left: 1px solid black;
+    border-left: 2px solid black;
     margin-left: 1em;
     padding-left: 1.2em;
 }
@@ -435,15 +435,15 @@ p {
 }
 
 #leaderboard-title {
-    font-family: "Bungee Shade", monospace;
-    color: #c5c5c5;
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: 0.5em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
+	font-family: "Bungee Shade", monospace;
+	color: #ddd;
+	font-size: 25px;
+	font-weight: 900;
+	letter-spacing: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1em;
 }
 
 thead {
@@ -458,6 +458,11 @@ thead {
     font-size: 15px;
 }
 
+table img {
+	width: 6em;
+	border-radius: 1em;
+	border: 1px solid white;
+}
 
 footer {
     width: 100%;
