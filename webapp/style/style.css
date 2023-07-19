@@ -81,6 +81,10 @@ h3 {
     width: 30%;
 }
 
+nav span a img {
+	max-height: 40px;
+}
+
 #all-buttons {
     display: flex;
     flex-wrap: wrap;
