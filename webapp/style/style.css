@@ -323,6 +323,10 @@ header {
     margin-bottom: 0;
 }
 
+.spaced-images
+    margin-left: 2mm
+    margine-right: 2mm
+
 .artist-link p {
     margin-bottom: 0;
     padding: 0;
