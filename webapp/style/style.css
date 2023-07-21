@@ -373,7 +373,7 @@ p {
     letter-spacing: 0.8em;
 }
 
-#art {
+.art {
     width: 100%;
     height: 100%;
     display: flex;
