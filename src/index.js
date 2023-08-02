@@ -1,4 +1,5 @@
-// web3modal things
+import {Modal} from 'bootstrap'
+
 let account;
 let myContract;
 const contractABI = [{
