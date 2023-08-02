@@ -1,3 +1,5 @@
+import tippy from 'tippy.js';
+
 document.addEventListener("DOMContentLoaded", () => {
     tippy('#min-preset', {
         content: ".1 ETH is the minimum",
