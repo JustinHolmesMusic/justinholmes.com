@@ -441,22 +441,6 @@ p {
     font-family: monospace;
 }
 
-#connect-wallet {
-    border: 0;
-    color: white;
-    background-color: blueviolet;
-    border-radius: 10px;
-    padding: 8px 8px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    font-weight: bold;
-    margin: 4px 2px;
-    cursor: pointer;
-    font-family: monospace;
-}
-
 .btn-group {
     display: flex;
     flex-direction: row;

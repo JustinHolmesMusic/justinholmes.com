@@ -14,10 +14,11 @@ const wagmiConfig = createConfig({
     publicClient
 })
 const ethereumClient = new EthereumClient(wagmiConfig, chains)
-export const web3modal = new Web3Modal({projectId}, ethereumClient)
-
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById('connect-wallet').addEventListener('click', () => {
-        web3modal.openModal();
-    });
-});
+export const web3modal = new Web3Modal({
+    projectId: projectId,
+    themeVariables: {
+        "--w3m-font-family": "monospace, sans-serif",
+        "--w3m-accent-color": "blueviolet",
+        "--w3m-background-color": "blueviolet",
+    }
+}, ethereumClient);
