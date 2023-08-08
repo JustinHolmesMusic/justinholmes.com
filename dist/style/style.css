@@ -386,6 +386,11 @@ p {
     align-items: center;
 }
 
+.about-band img {
+    width: 85px;
+    margin-top: 70px;
+}
+
 #aeiou {
     height: 170px;
     display: flex;

@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     tippy('#ten-preset', {
-        content: "The top 10 bidders will receive NFT artifacts bound to unique painting by a Nashville artist",
+        content: "The top 10 bidders will receive NFT artifacts bound to a unique painting by a Nashville artist",
         placement: "bottom"
     });
 
