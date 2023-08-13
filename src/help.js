@@ -1,3 +1,5 @@
+import tippy from 'tippy.js';
+
 document.addEventListener("DOMContentLoaded", () => {
     tippy('#min-preset', {
         content: ".1 ETH is the minimum",
@@ -5,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     tippy('#ten-preset', {
-        content: "The top 10 bidders will receive NFT artifacts bound to unique painting by a Nashville artist",
+        content: "The top 10 bidders will receive NFT artifacts bound to a unique painting by a Nashville artist",
         placement: "bottom"
     });
 
