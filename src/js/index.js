@@ -1,5 +1,8 @@
 import contractABI from './contributionABI.js'
-import 'styles/style.css';
+import '../styles/style.css';
+
+require.context('../images', false, /\.(png|jpe?g|gif|svg)$/);
+require.context('../images/thumbnails', false, /\.(png|jpe?g|gif|svg)$/);
 
 let account;
 let myContract;
