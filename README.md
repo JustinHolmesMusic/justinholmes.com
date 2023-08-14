@@ -8,6 +8,7 @@ To build for development:
 `npm run devserver`
 
 This will start a local server at localhost:8080 and watch for changes to build.
+(Note: the server is started with --no-client-overlay in a lame attempt to work around this: https://github.com/WalletConnect/walletconnect-docs/issues/762)
 
 To build for production:
 
