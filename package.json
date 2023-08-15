@@ -2,7 +2,6 @@
   "name": "Vowel Sounds Revealer",
   "version": "1.0.0",
   "description": "A Revealer-compliant frontend for Vowel Sounds.",
-  "main": "index.js",
   "scripts": {
     "devserver": "webpack serve --no-client-overlay --client-progress",
     "build": "webpack --mode production"
