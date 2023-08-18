@@ -163,6 +163,56 @@ var x = setInterval(function () {
 //// Contributors Table Things
 //////////////////
 
+function getContributionsByAddress(contributionsMetadata) {
+
+    let contributionsByAdress = {}
+
+    let contributors = contributionsMetadata[0]
+    let amounts = contributionsMetadata[1]
+    let combined = contributionsMetadata[2]
+    let datetimes = contributionsMetadata[3]
+
+    for (var i = 0; i < contributors.length; i++) {
+
+        const address = contributors[i]
+        if (!(address in contributionsByAdress)) {
+            contributionsByAdress[address] = []
+        }
+
+        const is_combined = combined[i]
+        const amount = amounts[i]
+        const contributionMoment = datetimes[i]
+
+        if (is_combined) {
+            if (contributionsByAdress[address].length == 0) {
+                console.log("wtf");
+                // This ought to be an impossible situaiton - how did they dcombine with a bid that didn't exist?
+                contributionsByAdress[address].push(0)
+            }
+            contributionsByAdress[address][0] += amount
+        } else {
+            contributionsByAdress[address].push(amount)
+        }
+    }
+    return contributionsByAdress;
+}
+
+function getTopContributions(contributionsByAdress) {
+    let topContributions = []
+    for (let address in contributionsByAdress) {
+        let contributions = contributionsByAdress[address];
+        for (var c = 0; c < contributions.length; c++) {
+            topContributions.push([contributions[c], address]);
+        }
+    }
+
+    function compareContributions(a, b) {
+        return a[0] - b[0];
+    }
+
+    topContributions.sort(compareContributions);
+    return topContributions;
+}
 
 // Call updateContributorsTable when DOM is loaded.
 document.addEventListener("DOMContentLoaded", () => {
@@ -171,44 +221,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function updateContributorsTable() {
 
-    const contributors = await readContract({
+    const contributionsMetadata = await readContract({
         address: contractAddress,
         abi: contractABI,
-        functionName: 'contributionsByAddress',
+        functionName: 'getAllContributions',
         chainId: 5,
     });
 
-    return;
+    let contributionsByAddress = getContributionsByAddress(contributionsMetadata)
+    let leaders = getTopContributions(contributionsByAddress)
 
-    // Assuming the smart contract has a method 'getContributors' to fetch the array of contributors
-    myContract.methods.contributors().call()
-        .then((contributors) => {
-            // Get the table body
-            const tableBody = document.getElementById('contributorsTable');
+    // Get the table body
+    const leaderboardTable = document.getElementById('leaderboard-table');
+    const leaderboardTableBody = leaderboardTable.childNodes[3]
+    const leaderRows = leaderboardTableBody.getElementsByTagName("tr");
 
-            // Clear the table body
-            tableBody.innerHTML = "";
+    // Loop through the contributors and append a row for each
+    for (var i = 0; i < leaderRows.length; i++) {
+        let row = leaderRows[i];
+        let thisLeader = leaders[i];
 
-            // Loop through the contributors and append a row for each
-            contributors.forEach((contributorAddress, index) => {
-                // Create a new row and cells
-                let row = document.createElement('tr');
-                let th = document.createElement('th');
-                let td = document.createElement('td');
+        if (thisLeader == undefined) {
+            console.log("Not enough leaders to fill the rows.")
+            return;
+        }
 
-                // Set the cell contents
-                th.textContent = index + 1; // Add 1 to index to start counting from 1
-                td.textContent = contributorAddress;
+        let bidSlot = row.getElementsByTagName('td')[1];
+        let addressSlot = row.getElementsByTagName('td')[2];
 
-                // Add the cells to the row
-                row.appendChild(th);
-                row.appendChild(td);
+        bidSlot.innerHTML = thisLeader[0];
+        addressSlot.innerHTML = thisLeader[1];
+    }
+    ;
 
-                // Add the row to the table body
-                tableBody.appendChild(row);
-            });
-        })
-        .catch((error) => console.error);
 }
-
-// updateContributorsTable()
