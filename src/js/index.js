@@ -14,7 +14,7 @@ require.context('../images/thumbnails', false, /\.(png|jpe?g|gif|svg)$/);
 // Equivalent to importing from @wagmi/core/providers
 const chains = [mainnet, goerli]
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
-const contractAddress = '0xD49A66A88Fc85050a15aBa2F82Cb3eA8ac16a611';
+const contractAddress = '0x6Fc000Ba711d333427670482853A4604A3Bc0E03';
 
 /////////////
 // Web3Modal Things
