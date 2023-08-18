@@ -1,78 +1,109 @@
 import contractABI from './contributionABI.js'
 import '../styles/style.css';
+import {fetchBalance, writeContract} from '@wagmi/core'
+import {EthereumClient, w3mConnectors, w3mProvider} from '@web3modal/ethereum'
+import {Web3Modal} from '@web3modal/html'
+import {configureChains, createConfig, fetchBlockNumber} from '@wagmi/core'
+import {mainnet, goerli} from '@wagmi/core/chains'
+import {readContract} from '@wagmi/core'
+import {formatEther, parseEther} from "viem";
 
 require.context('../images', false, /\.(png|jpe?g|gif|svg)$/);
 require.context('../images/thumbnails', false, /\.(png|jpe?g|gif|svg)$/);
 
-let account;
-let myContract;
+// Equivalent to importing from @wagmi/core/providers
+const chains = [mainnet, goerli]
+const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
+const contractAddress = '0xD49A66A88Fc85050a15aBa2F82Cb3eA8ac16a611';
 
-const contractAddress = '0x1AC29F2e1d16ce2CDF6A68C9B85cFFE7025dA86C';
+/////////////
+// Web3Modal Things
+/////////////
 
+const {publicClient} = configureChains(chains, [w3mProvider({projectId})])
+const wagmiConfig = createConfig({
+    autoConnect: true,
+    connectors: w3mConnectors({projectId, chains}),
+    publicClient
+})
+const ethereumClient = new EthereumClient(wagmiConfig, chains)
+export const web3modal = new Web3Modal({
+    projectId: projectId,
+    themeVariables: {
+        "--w3m-font-family": "monospace, sans-serif",
+        "--w3m-accent-color": "blueviolet",
+        "--w3m-background-color": "blueviolet",
+    }
+}, ethereumClient);
+
+
+//////////////////
+//// Funding Threshold Things
+//////////////////
+
+// Call updateFundingThreshold when DOM is loaded.
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("contribute-button").onclick = contribute;
+    updateFundingThreshold();
 });
 
+// Update the countdown every 1 second
+async function updateFundingThreshold() {
 
-function getContract() {
-    myContract = new window.web3.eth.Contract(contractABI, contractAddress);
+
+    // Instead of awaiting these, do them concurrently.
+    const balance = await fetchBalance({
+        address: contractAddress,
+        chainId: 5,
+        formatUnits: "wei",
+    });
+
+    const thresholdInEth = await readContract({
+        address: contractAddress,
+        abi: contractABI,
+        chainId: 5,
+        functionName: 'threshold',
+    });
+
+    // Calculate the remaining amount needed to reach the threshold
+    const remainingAmountInWei = Number(thresholdInEth) - Number(balance.value);
+
+    // Convert the remaining amount to ETH
+    const remainingAmount = formatEther(remainingAmountInWei);
+
+    // Update the HTML element
+    document.getElementById('remainingEth').textContent = remainingAmount;
+
+    // If the threshold has been reached, stop the countdown
+    if (remainingAmount <= 0) {
+        // Put "hurrah" in the 'remainingEth' element
+        document.getElementById('remainingEth').textContent = "hurrah";
+    }
 }
 
-function setMinPreset() {
-    document.getElementById("user-amount").value = 0.1;
-}
 
-function setTenPreset() {
-    document.getElementById("user-amount").value = 0.5;  // TODO: read from contract
-}
-
-function setLeaderPreset() {
-    document.getElementById("user-amount").value = 1;  // TODO: read from contract
-}
-
-async function contribute() {
-    console.log("llamas");
-    if (!account) return;
-
-    let web3 = window.web3;
-
-    let userAmount = document.getElementById("user-amount").value;
-    const amount = web3.utils.toWei(userAmount, 'ether'); // Change the value as needed
-
-    window.ethereum.request({
-        method: 'eth_sendTransaction',
-        params: [
-            {
-                from: account,
-                to: contractAddress,
-                data: myContract.methods.contribute().encodeABI(), // This encodes the function call to contribute
-                value: web3.utils.toHex(amount),
-            },
-        ],
-    })
-        .then((txHash) => console.log(txHash))
-        .catch((error) => console.error);
-}
-
-// Update the count down every 1 second
-let countDownDate;
 var x = setInterval(function () {
-    if (!account) return;
+    updateCountdownDisplay();
+}, 10000);
 
-    myContract.methods.deadline().call()
-        .then((deadline) => {
-            countDownDate = deadline * 1000;
-            console.log('Deadline: ', deadline);
-        })
-        .catch((error) => console.error);
+async function updateCountdownDisplay() {
 
+    const deadline = await readContract({
+        address: contractAddress,
+        abi: contractABI,
+        functionName: 'deadline',
+        chainId: 5,
+    });
+
+    console.log('Deadline: ', deadline);
+
+    let countDownDate = Number(deadline) * 1000;
     // Get today's date and time
-    var now = new Date().getTime();
+    let now = new Date().getTime();
 
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
+    // Find the distance between now and the counter-downer date
+    let distance = countDownDate - now;
 
-    // If the count down is finished, write some text
+    // If the countdown is finished, write some text
     if (distance < 0) {
         clearInterval(x);
         document.getElementById("countdown").innerHTML = "EXPIRED";
@@ -92,38 +123,63 @@ var x = setInterval(function () {
         days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
 
-}, 1000);
+}
 
-function updateFundingStatus() {
-    if (!account) return;
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("contribute-button").onclick = contribute;
+});
 
-    // Read the balance of the contract
-    window.web3.eth.getBalance(contractAddress)
-        .then((balanceInWei) => {
-            // Convert balance from Wei to Ether
-            const balanceInEth = web3.utils.fromWei(balanceInWei, 'ether');
+function setMinPreset() {
+    document.getElementById("user-amount").value = 0.1;
+}
 
-            // Fetch threshold from contract
-            myContract.methods.threshold().call()
-                .then((thresholdInWei) => {
-                    const thresholdInEth = web3.utils.fromWei(thresholdInWei, 'ether');
+function setTenPreset() {
+    document.getElementById("user-amount").value = 0.5;  // TODO: read from contract
+}
 
-                    // Calculate the remaining amount needed to reach the threshold
-                    const remainingAmount = thresholdInEth - balanceInEth;
+function setLeaderPreset() {
+    document.getElementById("user-amount").value = 1;  // TODO: read from contract
+}
 
-                    // Update the HTML element
-                    document.getElementById('remainingEth').textContent = remainingAmount.toFixed(3);
-                })
-                .catch((error) => console.error);
-        })
-        .catch((error) => console.error);
+async function contribute() {
+
+    let userAmount = document.getElementById("user-amount").value;
+
+    const {hash} = await writeContract({
+        address: contractAddress,
+        abi: contractABI,
+        functionName: 'contribute',  // TODO: if they combined, this needs to be contributeAndCombine
+        value: parseEther(userAmount),
+        chainId: 5,
+    })
 }
 
 var x = setInterval(function () {
-    updateFundingStatus();
-}, 1000);
+    updateFundingThreshold();
+}, 10000);
 
-function updateContributorsTable() {
+
+//////////////////
+//// Contributors Table Things
+//////////////////
+
+
+// Call updateContributorsTable when DOM is loaded.
+document.addEventListener("DOMContentLoaded", () => {
+    updateContributorsTable();
+});
+
+async function updateContributorsTable() {
+
+    const contributors = await readContract({
+        address: contractAddress,
+        abi: contractABI,
+        functionName: 'contributionsByAddress',
+        chainId: 5,
+    });
+
+    return;
+
     // Assuming the smart contract has a method 'getContributors' to fetch the array of contributors
     myContract.methods.contributors().call()
         .then((contributors) => {
