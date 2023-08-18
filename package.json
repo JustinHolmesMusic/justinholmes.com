@@ -1,5 +1,5 @@
 {
-  "name": "Vowel Sounds Revealer",
+  "name": "vowel-sounds-revealer",
   "version": "1.0.0",
   "description": "A Revealer-compliant frontend for Vowel Sounds.",
   "scripts": {
