@@ -81,9 +81,9 @@ async function updateFundingThreshold() {
 }
 
 
-var x = setInterval(function () {
-    updateCountdownDisplay();
-}, 10000);
+// var x = setInterval(function () {
+//     updateCountdownDisplay();
+// }, 10000);
 
 async function updateCountdownDisplay() {
 
