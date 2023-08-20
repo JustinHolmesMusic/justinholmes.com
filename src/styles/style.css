@@ -367,6 +367,11 @@ header {
     padding: 0;
 }
 
+#lower-images {
+    background-color: black;
+}
+
+
 .about-band:hover {
     color: blueviolet;
     font-weight: bold;
