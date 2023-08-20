@@ -1,3 +1,10 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
+import 'popper.js';
+import 'tippy.js'
+import 'tippy.js/dist/tippy.css'
+import 'jquery';
+
 import contractABI from './contributionABI.js'
 import '../styles/style.css';
 import {fetchBalance, writeContract} from '@wagmi/core'
