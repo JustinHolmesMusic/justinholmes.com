@@ -51,6 +51,7 @@ export const web3modal = new Web3Modal({
 // Call updateFundingThreshold when DOM is loaded.
 document.addEventListener("DOMContentLoaded", () => {
     updateFundingThreshold();
+    hookupBootstrapLinkButtons();
     document.getElementById("contribute-button").onclick = contribute;
     document.getElementById("min-preset").onclick = setMinPreset;
     document.getElementById("ten-preset").onclick = setTenPreset;
