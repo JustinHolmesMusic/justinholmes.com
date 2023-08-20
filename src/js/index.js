@@ -44,6 +44,10 @@ export const web3modal = new Web3Modal({
 // Call updateFundingThreshold when DOM is loaded.
 document.addEventListener("DOMContentLoaded", () => {
     updateFundingThreshold();
+    document.getElementById("contribute-button").onclick = contribute;
+    document.getElementById("min-preset").onclick = setMinPreset;
+    document.getElementById("ten-preset").onclick = setTenPreset;
+    document.getElementById("leader-preset").onclick = setLeaderPreset;
 });
 
 // Update the countdown every 1 second
@@ -124,10 +128,6 @@ async function updateCountdownDisplay() {
 
 
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("contribute-button").onclick = contribute;
-});
 
 function setMinPreset() {
     document.getElementById("user-amount").value = 0.1;
