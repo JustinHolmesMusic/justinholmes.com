@@ -452,18 +452,52 @@ p {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 100%;
     color: white;
 }
 
+#download-modal .modal-footer {
+    /* the buttons don't overflow on mobile and are centered */  
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1em;
+} 
+
+#download-modal button {
+    /* add vertical space, so that when the buttons get wrapped on mobile, there is a vertical spacing between them. */
+    margin-bottom: 10px;
+}
+
+
 .btn-primary {
     background-color: blueviolet !important;
-    border: 1px solid white;
+    border: 1px solid transparent;
     color: white;
     font-family: monospace;
     font-size: 15px;
     font-weight: bold;
 }
+
+.btn-primary:hover {
+    background-color: black !important;
+    border: 1px solid white;
+}
+
+.btn-secondary {
+    background-color: rgb(255, 255, 255);
+    color: rgb(50, 50, 50);
+    border: 1px solid rgb(0, 0, 0);
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.btn-secondary:hover {
+    background-color: black;
+    border: 1px solid white;
+}
+
 
 .download {
     border: 1px solid rgb(0, 0, 0);

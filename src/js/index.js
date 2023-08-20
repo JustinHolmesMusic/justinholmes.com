@@ -148,6 +148,16 @@ function setLeaderPreset() {
     document.getElementById("user-amount").value = 1;  // TODO: read from contract
 }
 
+function hookupBootstrapLinkButtons() {
+    const btnLinks = document.querySelectorAll('.button-link');
+    btnLinks.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const href = this.getAttribute('data-href');
+            window.open(href, '_blank');
+        });
+    });
+}
+
 async function contribute() {
 
     let userAmount = document.getElementById("user-amount").value;
