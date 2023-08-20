@@ -9,7 +9,7 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background: url("../images/painting.jpg");
+    background: url("painting-bg.jpg");
     background-size: cover;
     font-family: monospace;
 
@@ -82,7 +82,7 @@ h3 {
 }
 
 nav span a img {
-	max-height: 40px;
+    max-height: 40px;
 }
 
 #all-buttons {
@@ -132,9 +132,47 @@ nav span a img {
     transform: translate(-50%, -50%);
 }
 
+#dateAnnouncement {
+    text-align: center;
+    color: white;
+    font-size: 61px;
+    margin-top: -55px;
+    text-shadow: 1px 1px 1px #00ff28;
+    margin-bottom: 100px;
+}
+
 #album-art img {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
+}
+
+#album-art #justins-name {
+    position: absolute;
+    margin-top: -385px;
+    font-size: 26px;
+    text-shadow: 3px 1px 2px black;
+    margin-left: 8px;
+    font-family: "Bungee Shade", monospace;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+#album-art #album-name {
+    font-size: 50px;
+    position: absolute;
+    color: #000;
+    font-family: "Bungee Shade", monospace;
+    font-weight: bold;
+    font-size: 40px;
+    margin-top: -62px;
+    margin-left: 11px;
+}
+
+#underConstruction {
+	font-size: 40px;
+	border: 3px solid black;
+	padding: 30px;
 }
 
 #countdown {
@@ -164,18 +202,6 @@ nav span a img {
     margin-right: auto;
     width: 30%;
 }
-
-.intro {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #000;
-    font-family: "Bungee Shade", monospace;
-    font-weight: bold;
-    font-size: 25px;
-    margin-top: -43px;
-}
-
 
 h1 {
     text-decoration: none;
@@ -211,7 +237,7 @@ h1 {
 
 
 main {
-    display: flex;
+    display: block;
     justify-content: space-around;
     align-items: center;
     border-top: 1px solid #5c6067;
@@ -227,12 +253,14 @@ main {
 }
 
 .info3 {
-    text-align: center;
-    margin-bottom: 2em;
-    font-family: monospace;
-    color: #e4e4e4;
-    font-weight: 900;
-    width: 70%;
+	text-align: center;
+	margin-bottom: 2em;
+	font-family: monospace;
+	color: #e4e4e4;
+	font-weight: 900;
+	width: 70%;
+	margin-top: 15px;
+	font-size: 1.4em;
 }
 
 
@@ -542,11 +570,11 @@ table img {
 }
 
 footer {
-	width: 100%;
-	display: flex !important;
-	flex-direction: row;
-	justify-content: flex-end;
-	align-items: center;
+    width: 100%;
+    display: flex !important;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
     background-color: black;
     border-top: 1px solid #32383e;
     padding: 1em;
@@ -557,6 +585,6 @@ footer span {
 }
 
 footer img {
-    width: 20px;
+    width: 33px;
 
 }
