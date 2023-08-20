@@ -13,7 +13,6 @@ module.exports = {
     entry: {
         main: './src/js/index.js',
         help: './src/js/help.js',
-        walletModal: './src/js/walletModal.js',
     },
     output: {
         filename: '[name].bundle.js',
