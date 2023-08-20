@@ -91,7 +91,7 @@ nav span a img {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1em;
+    margin-bottom: 0em;
     width: 90%
 }
 
@@ -181,7 +181,7 @@ nav span a img {
     font-size: 50px;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 0;
+    margin-bottom: 0px;
 }
 
 #countdown-container {
@@ -367,6 +367,11 @@ header {
     padding: 0;
 }
 
+#lower-images {
+    background-color: black;
+}
+
+
 .about-band:hover {
     color: blueviolet;
     font-weight: bold;
@@ -384,7 +389,7 @@ table {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 0px;
 }
 
 .amount-button {
