@@ -138,7 +138,6 @@ nav span a img {
     font-size: 61px;
     margin-top: -55px;
     text-shadow: 1px 1px 1px #00ff28;
-    margin-bottom: 100px;
 }
 
 #album-art img {
@@ -195,6 +194,10 @@ nav span a img {
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+#ensembleList {
+    color: white;
 }
 
 #left-side {
