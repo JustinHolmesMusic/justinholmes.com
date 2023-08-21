@@ -262,3 +262,12 @@ async function updateContributorsTable() {
     ;
 
 }
+
+
+// Randomly select an image from along the vowel sounds image files
+const vowelSoundsImageFiles = ['a.jpg', 'i.jpg', 'oe.jpg'];
+const randomImageFile = vowelSoundsImageFiles[Math.floor(Math.random() * vowelSoundsImageFiles.length)];
+
+// change the src of the image tag with id "album-letter-image" to the random image file.
+document.getElementById("album-letter-image").src = "images/" + randomImageFile;
+
