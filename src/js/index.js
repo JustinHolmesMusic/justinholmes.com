@@ -251,12 +251,8 @@ async function updateContributorsTable() {
 
     // Inject the contributionsByAddress into the Take the Lead / Top 10 buttons onclick functions
     // We avoid making another call to the contract when the user clicks one of those buttons, saving 400ms and making the UI more responsive.
-    //  = setTenPreset;
-    // document.getElementById("leader-preset").onclick = setLeaderPreset;
-
     document.getElementById("ten-preset").onclick = () => setTenPreset(contributionsByAddress);
     document.getElementById("leader-preset").onclick = () => setLeaderPreset(contributionsByAddress);
-
 
 
     // array, sorted by contribution amount, of arrays of [amount, address] 
