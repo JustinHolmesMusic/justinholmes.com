@@ -288,14 +288,33 @@ async function updateContributorsTable() {
     let leaders = getTopContributions(contributionsByAddress)
     const leaderRows = getLeaderboardTableBody().getElementsByTagName('tr');
 
-    // Loop through the contributors and append a row for each
+    // Create an array to hold all the ENS name lookup promises
+    const ensLookupPromises = [];
+
+    // Loop through the contributors and add ENS lookup promises to the array
+    for (var i = 0; i < leaderRows.length; i++) {
+        let thisLeader = leaders[i];
+
+        if (thisLeader == undefined) {
+            console.log("Not enough leaders to fill the rows.");
+            break;
+        }
+
+        let address = thisLeader[1];
+        ensLookupPromises.push(getENSName(address));
+    }
+
+    // Execute all the ENS name lookup promises in parallel
+    const ensNames = await Promise.all(ensLookupPromises);
+
+    // Update the table with the ENS names
     for (var i = 0; i < leaderRows.length; i++) {
         let row = leaderRows[i];
         let thisLeader = leaders[i];
 
         if (thisLeader == undefined) {
-            console.log("Not enough leaders to fill the rows.")
-            return;
+            console.log("Not enough leaders to fill the rows.");
+            break;
         }
 
         let bidSlot = row.getElementsByTagName('td')[1];
@@ -303,10 +322,8 @@ async function updateContributorsTable() {
 
         let amountInWei = thisLeader[0];
         bidSlot.innerHTML = formatEther(amountInWei) + " ETH";
-        addressSlot.innerHTML = await getENSName(thisLeader[1]);
+        addressSlot.innerHTML = ensNames[i]; // Use the ENS name from the resolved promises
     }
-    ;
-
 }
 
 
