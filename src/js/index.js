@@ -21,6 +21,11 @@ require.context('../images/thumbnails', false, /\.(png|jpe?g|gif|svg)$/);
 // Equivalent to importing from @wagmi/core/providers
 const chains = [mainnet, goerli]
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
+
+// Contract with min bid of 0.1 ETH and threshold of 10 ETH
+// const contractAddress = '0x6Fc000Ba711d333427670482853A4604A3Bc0E03';
+
+// Contract with min bid of 0.001 ETH and threshold of 0.1 ETH
 const contractAddress = '0xb96a231384eeea72a0edf8b2e896fa4bacaa22ff';
 
 
@@ -54,8 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateFundingThreshold();
     document.getElementById("contribute-button").onclick = contribute;
     document.getElementById("min-preset").onclick = setMinPreset;
-    document.getElementById("ten-preset").onclick = setTenPreset;
-    document.getElementById("leader-preset").onclick = setLeaderPreset;
 });
 
 // Update the countdown every 1 second
@@ -141,11 +144,12 @@ function setMinPreset() {
     document.getElementById("user-amount").value = 0.1;
 }
 
-function setTenPreset() {
+function setTenPreset(contributionsByAddress) {
+    // contributionsByAddress is a dictionary of address -> [amount, amount, amount, ...]
     document.getElementById("user-amount").value = 0.5;  // TODO: read from contract
 }
 
-function setLeaderPreset() {
+function setLeaderPreset(contributionsByAddress) {
     document.getElementById("user-amount").value = 1;  // TODO: read from contract
 }
 
@@ -173,7 +177,7 @@ var x = setInterval(function () {
 
 function getContributionsByAddress(contributionsMetadata) {
 
-    let contributionsByAdress = {}
+    let contributionsByAddress = {}
 
     let contributors = contributionsMetadata[0]
     let amounts = contributionsMetadata[1]
@@ -183,8 +187,8 @@ function getContributionsByAddress(contributionsMetadata) {
     for (var i = 0; i < contributors.length; i++) {
 
         const address = contributors[i]
-        if (!(address in contributionsByAdress)) {
-            contributionsByAdress[address] = []
+        if (!(address in contributionsByAddress)) {
+            contributionsByAddress[address] = []
         }
 
         const is_combined = combined[i]
@@ -192,23 +196,23 @@ function getContributionsByAddress(contributionsMetadata) {
         const contributionMoment = datetimes[i]
 
         if (is_combined) {
-            if (contributionsByAdress[address].length == 0) {
+            if (contributionsByAddress[address].length == 0) {
                 console.log("wtf");
                 // This ought to be an impossible situaiton - how did they dcombine with a bid that didn't exist?
-                contributionsByAdress[address].push(0)
+                contributionsByAddress[address].push(0)
             }
-            contributionsByAdress[address][0] += amount
+            contributionsByAddress[address][0] += amount
         } else {
-            contributionsByAdress[address].push(amount)
+            contributionsByAddress[address].push(amount)
         }
     }
-    return contributionsByAdress;
+    return contributionsByAddress;
 }
 
-function getTopContributions(contributionsByAdress) {
+function getTopContributions(contributionsByAddress) {
     let topContributions = []
-    for (let address in contributionsByAdress) {
-        let contributions = contributionsByAdress[address];
+    for (let address in contributionsByAddress) {
+        let contributions = contributionsByAddress[address];
         for (var c = 0; c < contributions.length; c++) {
             topContributions.push([contributions[c], address]);
         }
@@ -243,11 +247,13 @@ async function updateContributorsTable() {
         chainId: 5,
     });
 
-    // Save contributionsMetadata to global variable, such that it can be used by the "Take the lead" / "Top 10" buttons
-    // We avoid making another call to the contract when the user clicks one of those buttons, saving 400ms and making the UI more responsive.
-    window.contributionsMetadata = contributionsMetadata;
-
     let contributionsByAddress = getContributionsByAddress(contributionsMetadata)
+
+    // Inject the contributionsByAddress into the Take the Lead / Top 10 buttons onclick functions
+    // We avoid making another call to the contract when the user clicks one of those buttons, saving 400ms and making the UI more responsive.
+    document.getElementById("ten-preset").onclick = () => setTenPreset(contributionsByAddress);
+    document.getElementById("leader-preset").onclick = () => setLeaderPreset(contributionsByAddress);
+
 
     // array, sorted by contribution amount, of arrays of [amount, address] 
     let leaders = getTopContributions(contributionsByAddress)
