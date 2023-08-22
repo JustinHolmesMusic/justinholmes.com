@@ -14,6 +14,7 @@ import {configureChains, createConfig, fetchBlockNumber} from '@wagmi/core'
 import {mainnet, goerli} from '@wagmi/core/chains'
 import {readContract} from '@wagmi/core'
 import {formatEther, parseEther} from "viem";
+const { ethers } = require("ethers");
 
 require.context('../images', false, /\.(png|jpe?g|gif|svg)$/);
 require.context('../images/thumbnails', false, /\.(png|jpe?g|gif|svg)$/);
@@ -254,6 +255,17 @@ function getLeaderboardTableBody() {
     return leaderboardTable.getElementsByTagName("tbody")[0];
 }
 
+async function getENSName(address) {
+    let providerUrl = "https://goerli.infura.io/v3/ce45202e9889477396dca2d4afd5070e"
+    const provider = new ethers.JsonRpcProvider(providerUrl); 
+    let ensName = await provider.lookupAddress(address);
+    if (ensName == null) {
+        ensName = address;
+    }
+    return ensName;
+
+}
+
 
 async function updateContributorsTable() {
 
@@ -291,7 +303,7 @@ async function updateContributorsTable() {
 
         let amountInWei = thisLeader[0];
         bidSlot.innerHTML = formatEther(amountInWei) + " ETH";
-        addressSlot.innerHTML = thisLeader[1];
+        addressSlot.innerHTML = await getENSName(thisLeader[1]);
     }
     ;
 
