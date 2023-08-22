@@ -169,11 +169,7 @@ function hookupContributeButton() {
     const inputElement = document.getElementById('user-amount');
 
     contributeButton.addEventListener('click', async function(event) {
-        // Check if the target element is the input element
-        if (event.target === inputElement) {
-            // If the target is the input element, prevent the event from further propagation
-            event.stopPropagation();
-        } else {
+        if (event.target !== inputElement) {
             await contribute();
         }
     });
