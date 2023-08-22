@@ -155,7 +155,7 @@ nav span a img {
 #album-art #justins-name {
 	position: absolute;
 	margin-top: -395px;
-	font-size: 41px;
+	font-size: 30px;
 	text-shadow: 14px 11px 1px black;
 	margin-left: 32px;
 	font-family: monospace;
@@ -165,7 +165,6 @@ nav span a img {
 }
 
 #album-art #album-name {
-    font-size: 50px;
     position: absolute;
     color: #000;
     font-family: "Bungee Shade", monospace;
@@ -268,7 +267,6 @@ main {
 	font-family: monospace;
 	color: #e4e4e4;
 	font-weight: 900;
-	width: 70%;
 	margin-top: 15px;
 	font-size: 1.4em;
 }
