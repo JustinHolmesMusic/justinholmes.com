@@ -21,7 +21,8 @@ require.context('../images/thumbnails', false, /\.(png|jpe?g|gif|svg)$/);
 // Equivalent to importing from @wagmi/core/providers
 const chains = [mainnet, goerli]
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
-const contractAddress = '0x6Fc000Ba711d333427670482853A4604A3Bc0E03';
+const contractAddress = '0xb96a231384eeea72a0edf8b2e896fa4bacaa22ff';
+
 
 /////////////
 // Web3Modal Things
@@ -226,6 +227,13 @@ document.addEventListener("DOMContentLoaded", () => {
     updateContributorsTable();
 });
 
+
+function getLeaderboardTableBody() {
+    const leaderboardTable = document.getElementById('leaderboard-table');
+    return leaderboardTable.getElementsByTagName("tbody")[0];
+}
+
+
 async function updateContributorsTable() {
 
     const contributionsMetadata = await readContract({
@@ -235,13 +243,15 @@ async function updateContributorsTable() {
         chainId: 5,
     });
 
-    let contributionsByAddress = getContributionsByAddress(contributionsMetadata)
-    let leaders = getTopContributions(contributionsByAddress)
+    // Save contributionsMetadata to global variable, such that it can be used by the "Take the lead" / "Top 10" buttons
+    // We avoid making another call to the contract when the user clicks one of those buttons, saving 400ms and making the UI more responsive.
+    window.contributionsMetadata = contributionsMetadata;
 
-    // Get the table body
-    const leaderboardTable = document.getElementById('leaderboard-table');
-    const leaderboardTableBody = leaderboardTable.childNodes[3]
-    const leaderRows = leaderboardTableBody.getElementsByTagName("tr");
+    let contributionsByAddress = getContributionsByAddress(contributionsMetadata)
+
+    // array, sorted by contribution amount, of arrays of [amount, address] 
+    let leaders = getTopContributions(contributionsByAddress)
+    const leaderRows = getLeaderboardTableBody().getElementsByTagName('tr');
 
     // Loop through the contributors and append a row for each
     for (var i = 0; i < leaderRows.length; i++) {
@@ -256,7 +266,8 @@ async function updateContributorsTable() {
         let bidSlot = row.getElementsByTagName('td')[1];
         let addressSlot = row.getElementsByTagName('td')[2];
 
-        bidSlot.innerHTML = thisLeader[0];
+        let amountInWei = thisLeader[0];
+        bidSlot.innerHTML = formatEther(amountInWei) + " ETH";
         addressSlot.innerHTML = thisLeader[1];
     }
     ;
