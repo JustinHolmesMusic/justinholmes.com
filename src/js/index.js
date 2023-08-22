@@ -226,6 +226,13 @@ document.addEventListener("DOMContentLoaded", () => {
     updateContributorsTable();
 });
 
+
+function getLeaderboardTableBody() {
+    const leaderboardTable = document.getElementById('leaderboard-table');
+    return leaderboardTable.getElementsByTagName("tbody")[0];
+}
+
+
 async function updateContributorsTable() {
 
     const contributionsMetadata = await readContract({
@@ -236,12 +243,10 @@ async function updateContributorsTable() {
     });
 
     let contributionsByAddress = getContributionsByAddress(contributionsMetadata)
-    let leaders = getTopContributions(contributionsByAddress)
 
-    // Get the table body
-    const leaderboardTable = document.getElementById('leaderboard-table');
-    const leaderboardTableBody = leaderboardTable.childNodes[3]
-    const leaderRows = leaderboardTableBody.getElementsByTagName("tr");
+    // array, sorted by contribution amount, of arrays of [amount, address] 
+    let leaders = getTopContributions(contributionsByAddress)
+    const leaderRows = getLeaderboardTableBody().getElementsByTagName('tr');
 
     // Loop through the contributors and append a row for each
     for (var i = 0; i < leaderRows.length; i++) {
@@ -256,7 +261,8 @@ async function updateContributorsTable() {
         let bidSlot = row.getElementsByTagName('td')[1];
         let addressSlot = row.getElementsByTagName('td')[2];
 
-        bidSlot.innerHTML = thisLeader[0];
+        let amountInWei = thisLeader[0];
+        bidSlot.innerHTML = formatEther(amountInWei) + " ETH";
         addressSlot.innerHTML = thisLeader[1];
     }
     ;
