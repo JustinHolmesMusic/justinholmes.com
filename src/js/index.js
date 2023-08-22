@@ -256,7 +256,7 @@ function getLeaderboardTableBody() {
 }
 
 async function getENSName(address) {
-    let providerUrl = "https://goerli.infura.io/v3/ce45202e9889477396dca2d4afd5070e"
+    let providerUrl = "https://mainnet.infura.io/v3/55ffe1a9effa4f1eae729f9fa627dc0f"
     const provider = new ethers.JsonRpcProvider(providerUrl); 
     let ensName = await provider.lookupAddress(address);
     if (ensName == null) {
