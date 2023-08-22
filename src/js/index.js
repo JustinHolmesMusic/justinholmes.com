@@ -3,6 +3,8 @@ import 'bootstrap';
 import 'popper.js';
 import 'tippy.js'
 import 'tippy.js/dist/tippy.css'
+import 'izitoast/dist/css/iziToast.css';
+import iziToast from 'izitoast';
 import $ from 'jquery';
 
 import contractABI from './contributionABI.js'
@@ -146,11 +148,21 @@ function setMinPreset() {
 }
 
 function setTenPreset(contributionsByAddress) {
+    if (!isWalletConnected()) {
+        showWalletNotConnectedError();
+        return;
+    }
+
     // contributionsByAddress is a dictionary of address -> [amount, amount, amount, ...]
     document.getElementById("user-amount").value = 0.5;  // TODO: read from contract
 }
 
 function setLeaderPreset(contributionsByAddress) {
+    if (!isWalletConnected()) {
+        showWalletNotConnectedError();
+        return;
+    }
+
     document.getElementById("user-amount").value = 1;  // TODO: read from contract
 }
 
@@ -175,7 +187,19 @@ function hookupContributeButton() {
     });
 }
 
+function showWalletNotConnectedError() {
+    iziToast.error({
+        title: 'Error',
+        message: 'Wallet not connected',
+        position: 'topCenter'
+    });
+}
+
 async function contribute() {
+    if (!isWalletConnected()) {
+        showWalletNotConnectedError();
+        return;
+    }
 
     let userAmount = document.getElementById("user-amount").value;
 
@@ -196,6 +220,10 @@ var x = setInterval(function () {
 //////////////////
 //// Contributors Table Things
 //////////////////
+
+function isWalletConnected() {
+    return web3modal.cachedProvider != null;
+}
 
 function getContributionsByAddress(contributionsMetadata) {
 
