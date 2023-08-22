@@ -239,7 +239,7 @@ function getTopContributions(contributionsByAddress) {
         return 0;
     }
 
-    topContributions.sort(compareContributions);
+    topContributions.sort(compareContributions).reverse();
     return topContributions;
 }
 
