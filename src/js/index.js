@@ -220,9 +220,8 @@ var x = setInterval(function () {
 //////////////////
 //// Contributors Table Things
 //////////////////
-
 function isWalletConnected() {
-    return web3modal.cachedProvider != null;
+    return ethereumClient.getAccount()['isConnected'];
 }
 
 function getContributionsByAddress(contributionsMetadata) {
