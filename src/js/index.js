@@ -7,7 +7,7 @@ import $ from 'jquery';
 
 import contractABI from './contributionABI.js'
 import '../styles/style.css';
-import {fetchBalance, fetchEnsName, writeContract} from '@wagmi/core'
+import {fetchBalance, writeContract} from '@wagmi/core'
 import {EthereumClient, w3mConnectors, w3mProvider} from '@web3modal/ethereum'
 import {Web3Modal} from '@web3modal/html'
 import {configureChains, createConfig, fetchBlockNumber} from '@wagmi/core'
@@ -306,13 +306,7 @@ async function updateContributorsTable() {
 
         let amountInWei = thisLeader[0];
         bidSlot.innerHTML = formatEther(amountInWei) + " ETH";
-
-
-        let ensName = await fetchEnsName({address: thisLeader[1], chainId: 1});
-        if (ensName == undefined) {
-            ensName = thisLeader[1];
-        } 
-        addressSlot.innerHTML = ensName;
+        addressSlot.innerHTML = thisLeader[1];
     }
     ;
 
