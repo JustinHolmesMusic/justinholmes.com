@@ -7,7 +7,7 @@ import $ from 'jquery';
 
 import contractABI from './contributionABI.js'
 import '../styles/style.css';
-import {fetchBalance, writeContract} from '@wagmi/core'
+import {fetchBalance, fetchEnsName, writeContract} from '@wagmi/core'
 import {EthereumClient, w3mConnectors, w3mProvider} from '@web3modal/ethereum'
 import {Web3Modal} from '@web3modal/html'
 import {configureChains, createConfig, fetchBlockNumber} from '@wagmi/core'
@@ -58,7 +58,7 @@ export const web3modal = new Web3Modal({
 document.addEventListener("DOMContentLoaded", () => {
     updateFundingThreshold();
     hookupBootstrapLinkButtons();
-    document.getElementById("contribute-button").onclick = contribute;
+    hookupContributeButton();
     document.getElementById("min-preset").onclick = setMinPreset;
 });
 
@@ -161,6 +161,21 @@ function hookupBootstrapLinkButtons() {
             const href = this.getAttribute('data-href');
             window.open(href, '_blank');
         });
+    });
+}
+
+function hookupContributeButton() {
+    const contributeButton = document.getElementById('contribute-button');
+    const inputElement = document.getElementById('user-amount');
+
+    contributeButton.addEventListener('click', async function(event) {
+        // Check if the target element is the input element
+        if (event.target === inputElement) {
+            // If the target is the input element, prevent the event from further propagation
+            event.stopPropagation();
+        } else {
+            await contribute();
+        }
     });
 }
 
@@ -291,7 +306,13 @@ async function updateContributorsTable() {
 
         let amountInWei = thisLeader[0];
         bidSlot.innerHTML = formatEther(amountInWei) + " ETH";
-        addressSlot.innerHTML = thisLeader[1];
+
+
+        let ensName = await fetchEnsName({address: thisLeader[1], chainId: 1});
+        if (ensName == undefined) {
+            ensName = thisLeader[1];
+        } 
+        addressSlot.innerHTML = ensName;
     }
     ;
 
