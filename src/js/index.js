@@ -57,6 +57,7 @@ export const web3modal = new Web3Modal({
 // Call updateFundingThreshold when DOM is loaded.
 document.addEventListener("DOMContentLoaded", () => {
     updateFundingThreshold();
+    hookupBootstrapLinkButtons();
     document.getElementById("contribute-button").onclick = contribute;
     document.getElementById("min-preset").onclick = setMinPreset;
 });
@@ -151,6 +152,16 @@ function setTenPreset(contributionsByAddress) {
 
 function setLeaderPreset(contributionsByAddress) {
     document.getElementById("user-amount").value = 1;  // TODO: read from contract
+}
+
+function hookupBootstrapLinkButtons() {
+    const btnLinks = document.querySelectorAll('.button-link');
+    btnLinks.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const href = this.getAttribute('data-href');
+            window.open(href, '_blank');
+        });
+    });
 }
 
 async function contribute() {
