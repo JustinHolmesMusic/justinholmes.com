@@ -146,11 +146,21 @@ function setMinPreset() {
 }
 
 function setTenPreset(contributionsByAddress) {
+    if (!isWalletConnected()) {
+        showWalletNotConnectedError();
+        return;
+    }
+
     // contributionsByAddress is a dictionary of address -> [amount, amount, amount, ...]
     document.getElementById("user-amount").value = 0.5;  // TODO: read from contract
 }
 
 function setLeaderPreset(contributionsByAddress) {
+    if (!isWalletConnected()) {
+        showWalletNotConnectedError();
+        return;
+    }
+
     document.getElementById("user-amount").value = 1;  // TODO: read from contract
 }
 
@@ -175,7 +185,29 @@ function hookupContributeButton() {
     });
 }
 
+function showWalletNotConnectedError() {
+    var alertDiv = document.createElement("div");
+    alertDiv.className = "alert alert-danger position-fixed top-0 start-50 translate-middle-x";
+    alertDiv.style.marginTop = "50px";
+    alertDiv.role = "alert";
+    alertDiv.innerHTML = `
+        <strong>Error:</strong> Wallet not connected
+    `;
+
+    document.body.appendChild(alertDiv);
+
+    setTimeout(function() {
+        $(alertDiv).fadeOut(1000, function() {
+            alertDiv.remove();
+        }
+    )}, 2000);
+}
+
 async function contribute() {
+    if (!isWalletConnected()) {
+        showWalletNotConnectedError();
+        return;
+    }
 
     let userAmount = document.getElementById("user-amount").value;
 
@@ -196,6 +228,9 @@ var x = setInterval(function () {
 //////////////////
 //// Contributors Table Things
 //////////////////
+function isWalletConnected() {
+    return ethereumClient.getAccount()['isConnected'];
+}
 
 function getContributionsByAddress(contributionsMetadata) {
 
