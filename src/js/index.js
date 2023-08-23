@@ -3,8 +3,6 @@ import 'bootstrap';
 import 'popper.js';
 import 'tippy.js'
 import 'tippy.js/dist/tippy.css'
-import 'izitoast/dist/css/iziToast.css';
-import iziToast from 'izitoast';
 import $ from 'jquery';
 
 import contractABI from './contributionABI.js'
@@ -188,11 +186,21 @@ function hookupContributeButton() {
 }
 
 function showWalletNotConnectedError() {
-    iziToast.error({
-        title: 'Error',
-        message: 'Wallet not connected',
-        position: 'topCenter'
-    });
+    var alertDiv = document.createElement("div");
+    alertDiv.className = "alert alert-danger position-fixed top-0 start-50 translate-middle-x";
+    alertDiv.style.marginTop = "50px";
+    alertDiv.role = "alert";
+    alertDiv.innerHTML = `
+        <strong>Error:</strong> Wallet not connected
+    `;
+
+    document.body.appendChild(alertDiv);
+
+    setTimeout(function() {
+        $(alertDiv).fadeOut(1000, function() {
+            alertDiv.remove();
+        }
+    )}, 2000);
 }
 
 async function contribute() {
