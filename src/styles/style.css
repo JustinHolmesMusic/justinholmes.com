@@ -618,6 +618,16 @@ table img {
     border: 1px solid white;
 }
 
+#declaration {
+    color: black;
+    background-color: white;
+    font-family: monospace;
+    font-weight: bold;
+    width: 60%;
+    margin: auto;
+    padding:20px;
+}
+
 footer {
     width: 100%;
     display: flex !important;
