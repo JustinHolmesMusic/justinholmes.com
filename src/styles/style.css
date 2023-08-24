@@ -291,7 +291,6 @@ main {
 #preset-bids span:hover {
     background-color: black;
     transition: 0.5s;
-
 }
 
 #preset-bids span {
@@ -306,6 +305,32 @@ main {
     font-family: monospace;
     border-bottom: 1px solid black;
 }
+
+#combine-contribution-div {
+    color: white;
+    width: 100%;
+    background-color: blueviolet;
+    border-bottom: 1px solid black;
+    margin: 0;
+}
+
+#combine-contribution-div label {
+    font-size: 10px;
+    font-family: monospace;
+    font-weight: bold;
+
+}
+
+#combine-contribution-div:hover {
+    background-color: black;
+    transition: 0.5s;
+}
+
+#combine-contribution-toggle {
+    margin-left: 1em;
+    margin-right: 0.3em;
+}
+
 
 #min-preset {
     border-bottom-left-radius: 10px;
@@ -549,7 +574,7 @@ p {
 }
 
 #user-amount {
-    width: 3em;
+    width: 4em;
     font-size: 14px;
     text-align: center;
     background: transparent;
