@@ -4,6 +4,7 @@ import 'popper.js';
 import 'tippy.js'
 import 'tippy.js/dist/tippy.css'
 import $ from 'jquery';
+import 'spotlight.js';
 
 import contractABI from './contributionABI.js'
 import '../styles/style.css';
