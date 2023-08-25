@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
         content: "The top bidder will receive the #1 artifact bound to unique painting by a Nashville artist",
         placement: "bottom"
     });
+
+    tippy('#combine-contribution-div', {
+        content: "Combine this contribution with your first bid",
+        placement: "bottom"
+    });
 });
 
 
