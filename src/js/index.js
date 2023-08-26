@@ -22,6 +22,8 @@ require.context('../images/thumbnails', false, /\.(png|jpe?g|gif|svg)$/);
 // Equivalent to importing from @wagmi/core/providers
 const chains = [mainnet, goerli]
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
+const minContributionAmount = 0.001;
+const outbidAmountEpsilon = 0.0001;
 
 // Contract with min bid of 0.1 ETH and threshold of 10 ETH
 // const contractAddress = '0x6Fc000Ba711d333427670482853A4604A3Bc0E03';
@@ -61,8 +63,15 @@ document.addEventListener("DOMContentLoaded", () => {
     hookupBootstrapLinkButtons();
     hookupContributeButton();
     updateCountdownDisplay();
+    updateContributorsTable();
     document.getElementById("min-preset").onclick = setMinPreset;
+    setMinContributionAmount();
 });
+
+function setMinContributionAmount() {
+    document.getElementById("min-preset").innerHTML = minContributionAmount + " ETH";
+}
+
 
 // Update the countdown every 1 second
 async function updateFundingThreshold() {
@@ -159,7 +168,48 @@ async function updateCountdownDisplay() {
 }
 
 function setMinPreset() {
-    document.getElementById("user-amount").value = 0.1;
+    document.getElementById("user-amount").value = minContributionAmount;
+}
+
+function isUserInTopN(topContributions, address, n) {
+    for(var i = 0; i < Math.min(n, topContributions.length); i++) {
+        if (topContributions[i][1] == address) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+function amountOfEthToGetIntoTopN(contributionsByAddress, userAddress, combine, n) {
+    let topContributions = getTopContributions(contributionsByAddress);
+
+    if (isUserInTopN(topContributions, userAddress, n)) {
+        return 0;
+    }
+
+    if (topContributions.length < n) {
+        return minContributionAmount;
+    }
+
+    let nthContributionAmount = topContributions[n - 1][0];
+    nthContributionAmount = Number(formatEther(nthContributionAmount));
+
+
+    if (!combine) {
+        return nthContributionAmount + outbidAmountEpsilon;
+    }
+
+
+    // If the user hasn't contributed yet
+    if (contributionsByAddress[userAddress] == undefined) {
+        return nthContributionAmount + outbidAmountEpsilon;
+    }
+
+
+    let alreadyContributed = Number(formatEther(contributionsByAddress[userAddress][0]));
+    return nthContributionAmount - alreadyContributed + outbidAmountEpsilon;
 }
 
 function setTenPreset(contributionsByAddress) {
@@ -169,7 +219,20 @@ function setTenPreset(contributionsByAddress) {
     }
 
     // contributionsByAddress is a dictionary of address -> [amount, amount, amount, ...]
-    document.getElementById("user-amount").value = 0.5;  // TODO: read from contract
+    let combine = document.getElementById("combine-contribution-toggle").checked;
+    let userAmountElement = document.getElementById("user-amount");
+    let userAddress = ethereumClient.getAccount()["address"];
+    let amountToGetIntoTopTen = amountOfEthToGetIntoTopN(contributionsByAddress, userAddress, combine, 10);
+
+    // Round to 5 decimal places
+    amountToGetIntoTopTen = Math.ceil(amountToGetIntoTopTen * 100000) / 100000;
+
+    if (amountToGetIntoTopTen == 0) {
+        showError("You're already in the top 10");
+        return;
+    }
+
+    userAmountElement.value = amountToGetIntoTopTen;
 }
 
 function setLeaderPreset(contributionsByAddress) {
@@ -178,7 +241,20 @@ function setLeaderPreset(contributionsByAddress) {
         return;
     }
 
-    document.getElementById("user-amount").value = 1;  // TODO: read from contract
+    let combine = document.getElementById("combine-contribution-toggle").checked;
+    let userAmountElement = document.getElementById("user-amount");
+    let userAddress = ethereumClient.getAccount()['address'];
+    let amountToGetIntoTopTen = amountOfEthToGetIntoTopN(contributionsByAddress, userAddress, combine, 1);
+
+    // Round to 5 decimal places
+    amountToGetIntoTopTen = Math.ceil(amountToGetIntoTopTen * 100000) / 100000;
+
+    if (amountToGetIntoTopTen == 0) {
+        showError("You're already in the leader spot");
+        return;
+    }
+
+    userAmountElement.value = amountToGetIntoTopTen;
 }
 
 function hookupBootstrapLinkButtons() {
@@ -202,14 +278,12 @@ function hookupContributeButton() {
     });
 }
 
-function showWalletNotConnectedError() {
+function showError(text) {
     var alertDiv = document.createElement("div");
     alertDiv.className = "alert alert-danger position-fixed top-0 start-50 translate-middle-x";
     alertDiv.style.marginTop = "50px";
     alertDiv.role = "alert";
-    alertDiv.innerHTML = `
-        <strong>Error:</strong> Wallet not connected
-    `;
+    alertDiv.innerHTML = `<strong>Error:</strong> ${text}`;
 
     document.body.appendChild(alertDiv);
 
@@ -218,6 +292,10 @@ function showWalletNotConnectedError() {
             alertDiv.remove();
         }
     )}, 2000);
+}
+
+function showWalletNotConnectedError() {
+    showError("Please connect a wallet first");
 }
 
 async function contribute() {
@@ -306,11 +384,6 @@ function getTopContributions(contributionsByAddress) {
     return topContributions;
 }
 
-// Call updateContributorsTable when DOM is loaded.
-document.addEventListener("DOMContentLoaded", () => {
-    updateContributorsTable();
-});
-
 
 function getLeaderboardTableBody() {
     const leaderboardTable = document.getElementById('leaderboard-table');
@@ -395,4 +468,3 @@ function setNewImage() {
 var x = setInterval(function () {
     setNewImage();
 }, 10000);
-

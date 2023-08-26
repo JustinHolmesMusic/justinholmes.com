@@ -73,13 +73,16 @@
                 Get Encrypted Record 🔒
             </button>
             <div id="preset-bids">
-            <span id="contribute-button">
-                Contribute
-                <input placeholder="?" id="user-amount">ETH</input>
-            </span>
+                <span id="contribute-button">
+                        Contribute
+                        <input placeholder="?" id="user-amount">ETH</input>
+                </span>
+                <div class="form-check form-switch" id="combine-contribution-div">
+                    <input class="form-check-input" type="checkbox" role="switch" id="combine-contribution-toggle" checked>
+                    <label class="form-check-label" for="combine-contribution-toggle">Combine my contribution</label>
+                </div>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button id="min-preset" type="button" class="btn btn-primary">0.1 ETH 🪕
-                    </button>
+                    <button id="min-preset" type="button" class="btn btn-primary"></button> <!-- We set this in JS -->
                     <button id="ten-preset" type="button" class="btn btn-primary even">Top 10
                     </button>
                     <button id="leader-preset" type="button" class="btn btn-primary">Take the Lead 🎸
