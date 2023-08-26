@@ -14,6 +14,7 @@ import {configureChains, createConfig, fetchBlockNumber} from '@wagmi/core'
 import {mainnet, goerli} from '@wagmi/core/chains'
 import {readContract} from '@wagmi/core'
 import {formatEther, parseEther} from "viem";
+import tippy from 'tippy.js';
 
 require.context('../images', false, /\.(png|jpe?g|gif|svg)$/);
 require.context('../images/thumbnails', false, /\.(png|jpe?g|gif|svg)$/);
@@ -61,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateFundingThreshold();
     hookupBootstrapLinkButtons();
     hookupContributeButton();
+    updateCountdownDisplay();
     updateContributorsTable();
     document.getElementById("min-preset").onclick = setMinPreset;
     setMinContributionAmount();
@@ -106,11 +108,24 @@ async function updateFundingThreshold() {
 }
 
 
-// var x = setInterval(function () {
-//     updateCountdownDisplay();
-// }, 10000);
+var x = setInterval(function () {
+    updateCountdownDisplay();
+}, 1000); // This is unfortunate, because we are reading the contract every second and making many requests
 
 async function updateCountdownDisplay() {
+
+    const materialReleaseConditionMet = await readContract({
+        address: contractAddress,
+        abi: contractABI,
+        functionName: 'materialReleaseConditionMet',
+        chainId: 5,
+    });
+
+
+    if (!materialReleaseConditionMet) {
+        // Show the countdown only after the material is set for release
+        return;
+    }
 
     const deadline = await readContract({
         address: contractAddress,
@@ -119,7 +134,6 @@ async function updateCountdownDisplay() {
         chainId: 5,
     });
 
-    console.log('Deadline: ', deadline);
 
     let countDownDate = Number(deadline) * 1000;
     // Get today's date and time
@@ -147,7 +161,10 @@ async function updateCountdownDisplay() {
     document.getElementById("countdown").innerHTML =
         days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-
+    tippy('#countdown', {
+        content: "If no one bids before this timer expires, the contract will be closed and the funding will end. If you contribute, the countdown will reset.",
+        placement: "bottom"
+    });
 }
 
 function setMinPreset() {
