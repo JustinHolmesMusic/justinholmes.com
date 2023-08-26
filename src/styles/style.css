@@ -276,6 +276,7 @@ main {
 
 #contribute-button {
     min-width: 37%;
+    cursor: pointer;
 }
 
 #preset-bids {
