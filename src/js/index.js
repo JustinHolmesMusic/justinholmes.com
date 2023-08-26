@@ -25,6 +25,7 @@ const chains = [mainnet, goerli]
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
 const minContributionAmount = 0.001;
 const outbidAmountEpsilon = 0.0001;
+const chainId = 5;
 
 // Contract with min bid of 0.1 ETH and threshold of 10 ETH
 // const contractAddress = '0x6Fc000Ba711d333427670482853A4604A3Bc0E03';
@@ -81,14 +82,14 @@ async function updateFundingThreshold() {
     // Instead of awaiting these, do them concurrently.
     const balance = await fetchBalance({
         address: contractAddress,
-        chainId: 5,
+        chainId: chainId,
         formatUnits: "wei",
     });
 
     const thresholdInEth = await readContract({
         address: contractAddress,
         abi: contractABI,
-        chainId: 5,
+        chainId: chainId,
         functionName: 'threshold',
     });
 
@@ -119,7 +120,7 @@ async function updateCountdownDisplay() {
         address: contractAddress,
         abi: contractABI,
         functionName: 'materialReleaseConditionMet',
-        chainId: 5,
+        chainId: chainId,
     });
 
 
@@ -132,7 +133,7 @@ async function updateCountdownDisplay() {
         address: contractAddress,
         abi: contractABI,
         functionName: 'deadline',
-        chainId: 5,
+        chainId: chainId,
     });
 
 
@@ -306,14 +307,18 @@ async function contribute() {
     }
 
     let userAmount = document.getElementById("user-amount").value;
+    let combine = document.getElementById("combine-contribution-toggle").checked;
+
+    // if `combine` is true, we need to call contributeAndCombine, otherwise we call contribute
+    let functionToCall = combine ? 'contributeAndCombine' : 'contribute';
 
     const {hash} = await writeContract({
-        address: contractAddress,
-        abi: contractABI,
-        functionName: 'contribute',  // TODO: if they combined, this needs to be contributeAndCombine
-        value: parseEther(userAmount),
-        chainId: 5,
-    })
+            address: contractAddress,
+            abi: contractABI,
+            functionName: functionToCall,
+            value: parseEther(userAmount),
+            chainId: chainId,
+    });
 }
 
 var x = setInterval(function () {
@@ -398,7 +403,7 @@ async function updateContributorsTable() {
         address: contractAddress,
         abi: contractABI,
         functionName: 'getAllContributions',
-        chainId: 5,
+        chainId: chainId,
     });
 
     let contributionsByAddress = getContributionsByAddress(contributionsMetadata)
