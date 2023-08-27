@@ -133,9 +133,16 @@ nav span a img {
 }
 
 #dateAnnouncement {
-    text-align: center;
-    color: white;
-    text-shadow: 1px 1px 1px #00ff28;
+	text-align: center;
+	background: #bcd2e1;
+	font-weight: bold;
+	font-size: 2em;
+	width: 100%;
+	margin-top: 0;
+	margin-bottom: 1em;
+	color: black;
+	padding: 8px;
+	border: 0;
 }
 
 #album-art img {
@@ -277,7 +284,6 @@ main {
     display: block;
     justify-content: space-around;
     align-items: center;
-    border-top: 1px solid #5c6067;
     padding-top: 1em;
     flex-direction: column-reverse;
 }
@@ -398,6 +404,7 @@ header {
     width: 100%;
     height: 55px;
     background-color: rgb(111, 111, 116);
+    border-bottom: 1px solid #5c6067;
     top: 0;
 }
 
