@@ -8,12 +8,11 @@ import 'spotlight.js';
 
 import contractABI from './contributionABI.js'
 import '../styles/style.css';
-import {fetchBalance, fetchEnsName, writeContract} from '@wagmi/core'
+import {configureChains, createConfig, fetchBalance, fetchEnsName, readContract, writeContract} from '@wagmi/core'
 import {EthereumClient, w3mConnectors, w3mProvider} from '@web3modal/ethereum'
 import {Web3Modal} from '@web3modal/html'
-import {configureChains, createConfig, fetchBlockNumber} from '@wagmi/core'
-import {mainnet, goerli} from '@wagmi/core/chains'
-import {readContract} from '@wagmi/core'
+import {goerli, mainnet} from '@wagmi/core/chains'
+import {infuraProvider} from 'wagmi/providers/infura'
 import {formatEther, parseEther} from "viem";
 import tippy from 'tippy.js';
 
@@ -31,14 +30,17 @@ const chainId = 5;
 // const contractAddress = '0x6Fc000Ba711d333427670482853A4604A3Bc0E03';
 
 // Contract with min bid of 0.001 ETH and threshold of 0.1 ETH
-const contractAddress = '0xb96a231384eeea72a0edf8b2e896fa4bacaa22ff';
+const contractAddress = '0xb96A231384eEeA72A0EDF8b2e896FA4BaCAa22fF';
 
 
 /////////////
 // Web3Modal Things
 /////////////
 
-const {publicClient} = configureChains(chains, [w3mProvider({projectId})])
+const {publicClient} = configureChains(chains, [
+    // w3mProvider({projectId}),
+    infuraProvider({apiKey: '2096b0699ab146b1a019961a2a9f9127'})])
+
 const wagmiConfig = createConfig({
     autoConnect: true,
     connectors: w3mConnectors({projectId, chains}),
@@ -112,7 +114,7 @@ async function updateFundingThreshold() {
 
 var x = setInterval(function () {
     updateCountdownDisplay();
-}, 1000); // This is unfortunate, because we are reading the contract every second and making many requests
+}, 20000); // This is unfortunate, because we are reading the contract every second and making many requests
 
 async function updateCountdownDisplay() {
 
@@ -174,7 +176,7 @@ function setMinPreset() {
 }
 
 function isUserInTopN(topContributions, address, n) {
-    for(var i = 0; i < Math.min(n, topContributions.length); i++) {
+    for (var i = 0; i < Math.min(n, topContributions.length); i++) {
         if (topContributions[i][1] == address) {
             return true;
         }
@@ -273,7 +275,7 @@ function hookupContributeButton() {
     const contributeButton = document.getElementById('contribute-button');
     const inputElement = document.getElementById('user-amount');
 
-    contributeButton.addEventListener('click', async function(event) {
+    contributeButton.addEventListener('click', async function (event) {
         if (event.target !== inputElement) {
             await contribute();
         }
@@ -289,11 +291,12 @@ function showError(text) {
 
     document.body.appendChild(alertDiv);
 
-    setTimeout(function() {
-        $(alertDiv).fadeOut(1000, function() {
-            alertDiv.remove();
-        }
-    )}, 2000);
+    setTimeout(function () {
+        $(alertDiv).fadeOut(1000, function () {
+                alertDiv.remove();
+            }
+        )
+    }, 2000);
 }
 
 function showWalletNotConnectedError() {
@@ -323,7 +326,7 @@ async function contribute() {
 
 var x = setInterval(function () {
     updateFundingThreshold();
-}, 10000);
+}, 20000);
 
 
 //////////////////
@@ -438,7 +441,7 @@ async function updateContributorsTable() {
         let ensName = await fetchEnsName({address: thisLeader[1], chainId: 1});
         if (ensName == undefined) {
             ensName = thisLeader[1];
-        } 
+        }
         addressSlot.innerHTML = ensName;
     }
     ;
