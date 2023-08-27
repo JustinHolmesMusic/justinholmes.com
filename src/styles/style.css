@@ -455,7 +455,6 @@ p {
 
 .art {
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -672,4 +671,26 @@ footer span {
 footer img {
     width: 33px;
 
+}
+
+.accordion h2 {
+    font-family: monospace;
+}
+
+.accordion {
+    width: 80%;
+    margin: auto;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: blueviolet;
+    color: white;
+}
+
+.accordion-item {
+    border-top: 2px solid blueviolet !important;
+}
+
+#headingTen .accordion-button::after {
+    background-image: none;
 }
