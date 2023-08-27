@@ -447,33 +447,3 @@ async function updateContributorsTable() {
     ;
 
 }
-
-
-const vowelSoundsImageFiles = ['a.jpg', 'i.jpg', 'oe.jpg'];
-
-function chooseNewImage() {
-    // Randomly select an image from along the vowel sounds image files
-    let randomImageFile = vowelSoundsImageFiles[Math.floor(Math.random() * vowelSoundsImageFiles.length)];
-    return randomImageFile;
-}
-
-let randomImageFile = chooseNewImage();
-document.getElementById("album-letter-image").src = "images/" + randomImageFile;
-
-function setNewImage() {
-    let currentImage = randomImageFile;
-    while (randomImageFile == currentImage) {
-        randomImageFile = chooseNewImage();
-    }
-
-    // Fade the old image out, and the new one in, using jquery
-    $("#album-letter-image").fadeOut(100, function () {
-        document.getElementById("album-letter-image").src = "images/" + randomImageFile;
-        $("#album-letter-image").fadeIn(100);
-    });
-}
-
-
-var x = setInterval(function () {
-    setNewImage();
-}, 10000);
