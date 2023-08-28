@@ -160,11 +160,13 @@ nav span a img {
 }
 
 #album-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1em;
+	margin-bottom: 2em;
+    flex-wrap: wrap;
 }
 
 #album-art #justins-name {
