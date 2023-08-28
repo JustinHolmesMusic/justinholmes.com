@@ -48,46 +48,42 @@
             </div>
         </div>
 
-        <div class="row">
+        <div id="contribution-container" style="display: none">
+            <div class="form-check form-switch" id="combine-contribution-div">
+                <input class="form-check-input" type="checkbox" role="switch" id="combine-contribution-toggle" checked>
+                <label class="form-check-label" for="combine-contribution-toggle">Increase my contribution</label>
+            </div>
 
-        </div>
-
-        <div class="info3">
-            <h2>So how does this work?</h2>
-            The record is encrypted and available for download. Once contributions have crossed the threshold of 10ETH,
-            the decryption key will be made available. The record will be then be in the public domain, free to download
-            and
-            use
-            under a creative commons license.
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button id="min-preset" type="button" class="btn btn-primary"></button> <!-- We set this in JS -->
+                <button id="ten-preset" type="button" class="btn btn-primary even">Top 10</button>
+                <button id="leader-preset" type="button" class="btn btn-primary">Take the Lead 🎸</button>
+            </div>
         </div>
 
         <div id="all-buttons">
             <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#download-modal">
                 Get Encrypted Record 🔒
             </button>
-            <div id="preset-bids">
-                <span id="contribute-button">
-                        Contribute
-                        <input placeholder="?" id="user-amount">ETH</input>
-                </span>
-                <div class="form-check form-switch" id="combine-contribution-div">
-                    <input class="form-check-input" type="checkbox" role="switch" id="combine-contribution-toggle"
-                           checked>
-                    <label class="form-check-label" for="combine-contribution-toggle">Combine my contribution</label>
-                </div>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button id="min-preset" type="button" class="btn btn-primary"></button> <!-- We set this in JS -->
-                    <button id="ten-preset" type="button" class="btn btn-primary even">Top 10
-                    </button>
-                    <button id="leader-preset" type="button" class="btn btn-primary">Take the Lead 🎸
-                    </button>
-                </div>
-            </div>
+            <button class="paybutton download" id="contribute-button">Contribute ⚡</button>
             <button class="paybutton download">
                 Decrypt Record 🔓
             </button>
         </div>
 
+
+
+        <div class="row">
+            <div class="col-md" id="how-does-this-work">
+                <h2>So how does this work?</h2>
+                <p>
+                    The record is encrypted and available for download. Once contributions have crossed the threshold of 10ETH,
+                    anyone can download the encrypted record. The decryption key will be made available on the Ethereum blockchain
+                    using Threshold Network's Access Control (TACo). Once released, the record will be in the public domain,
+                    free to download and use under a creative commons license.
+                </p>
+            </div>
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="download-modal" tabindex="-1" role="dialog" aria-labelledby="download-modal"
