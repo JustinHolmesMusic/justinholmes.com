@@ -147,7 +147,7 @@ function updateCountdownDisplay() {
 
     if (distance < 0) {
         clearInterval(countdownInterval);
-        document.getElementById("countdown").innerHTML = "EXPIRED";
+        document.getElementById("countdown").innerHTML = "Artist Funded 🎉";
         return;
     }
 
