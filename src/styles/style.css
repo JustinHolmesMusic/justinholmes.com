@@ -303,7 +303,6 @@ main {
 
 #how-does-this-work {
 	text-align: center;
-	margin-bottom: 2em;
 	font-family: monospace;
 	color: #e4e4e4;
 	margin-top: 2em;
@@ -314,7 +313,8 @@ main {
 	align-items: center;
 	width: 100%;
 	background: #000000b2;
-    padding: 4em 5em 5em;
+	padding: 4em 5em 5em;
+	border-top: 2px solid blueviolet;
 }
 
 #how-does-this-work > h2 {
@@ -418,7 +418,6 @@ article {
     border-top: 5px solid black;
     padding: 0;
     margin: 0;
-    margin-top: 1em;
     border-top: 1px solid blueviolet;
 }
 
@@ -521,22 +520,36 @@ p {
 
 }
 
+#the-big-questions {
+    margin-bottom: 0 !important;
+
+}
+
 #aeiou {
-	height: 170px;
 	display: flex;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	flex-direction: row;
-	margin-bottom: 1em;
+	margin-bottom: 5em;
+    justify-content: center;
+    align-items: center;
 }
 
 
-#aeiou > img {
-    height: 130px;
-    width: 130px;
-    padding: 0;
-    border-radius: 9em;
-    border: 1px solid #3c3344;
-    margin: 3px;
+#aeiou img {
+	height: 190px;
+	width: 190px;
+	padding: 0;
+	border-radius: 9em;
+	border: 1px solid #3c3344;
+	margin: 6px;
+    clip: auto;
+    object-fit: cover;
+}
+
+#aeiou img:hover {
+    opacity: 0.5;
+    transition: 0.5s;
+    border: 1px solid white;
 }
 
 .modal-content {
