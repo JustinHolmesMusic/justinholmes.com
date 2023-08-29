@@ -70,6 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
     updateContributorsTable();
     document.getElementById("min-preset").onclick = setMinPreset;
     setMinContributionAmount();
+    fetchCountdownContractData();
+    updateCountdownDisplay();
 });
 
 function setMinContributionAmount() {
@@ -111,57 +113,49 @@ async function updateFundingThreshold() {
     }
 }
 
+let materialReleaseConditionMet = false;
+let deadline = 0;
 
-var x = setInterval(function () {
-    updateCountdownDisplay();
-}, 20000); // This is unfortunate, because we are reading the contract every second and making many requests
-
-async function updateCountdownDisplay() {
-
-    const materialReleaseConditionMet = await readContract({
+// Fetch contract data initially and every 20 seconds
+async function fetchCountdownContractData() {
+    materialReleaseConditionMet = await readContract({
         address: contractAddress,
         abi: contractABI,
         functionName: 'materialReleaseConditionMet',
         chainId: chainId,
     });
 
+    if (materialReleaseConditionMet) {
+        deadline = await readContract({
+            address: contractAddress,
+            abi: contractABI,
+            functionName: 'deadline',
+            chainId: chainId,
+        });
+    }
+}
 
+// Update the countdown display based on the fetched data
+function updateCountdownDisplay() {
     if (!materialReleaseConditionMet) {
-        // Show the countdown only after the material is set for release
         return;
     }
 
-    const deadline = await readContract({
-        address: contractAddress,
-        abi: contractABI,
-        functionName: 'deadline',
-        chainId: chainId,
-    });
-
-
     let countDownDate = Number(deadline) * 1000;
-    // Get today's date and time
     let now = new Date().getTime();
-
-    // Find the distance between now and the counter-downer date
     let distance = countDownDate - now;
 
-    // If the countdown is finished, write some text
     if (distance < 0) {
-        clearInterval(x);
+        clearInterval(countdownInterval);
         document.getElementById("countdown").innerHTML = "EXPIRED";
         return;
     }
 
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Display the result in the element with id="demo"
     document.getElementById("countdown").innerHTML =
         days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
@@ -170,6 +164,11 @@ async function updateCountdownDisplay() {
         placement: "bottom"
     });
 }
+
+
+setInterval(fetchCountdownContractData, 20000);
+let countdownInterval = setInterval(updateCountdownDisplay, 1000);
+
 
 function setMinPreset() {
     document.getElementById("user-amount").value = minContributionAmount;
