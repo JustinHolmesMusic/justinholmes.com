@@ -138,7 +138,6 @@ async function fetchCountdownContractData() {
 // Update the countdown display based on the fetched data
 function updateCountdownDisplay() {
     if (!materialReleaseConditionMet) {
-        document.getElementById("countdown").innerHTML = "Waiting for material release...";
         return;
     }
 
