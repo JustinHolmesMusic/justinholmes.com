@@ -297,20 +297,50 @@ main {
     font-family: monospace;
 }
 
-.info3 {
-    text-align: center;
-    margin-bottom: 2em;
-    font-family: monospace;
-    color: #e4e4e4;
-    font-weight: 900;
-    margin-top: 15px;
-    font-size: 1.4em;
+#contract-status {
+    padding: 2em;
 }
 
+#how-does-this-work {
+	text-align: center;
+	font-family: monospace;
+	color: #e4e4e4;
+	margin-top: 2em;
+	font-size: 16px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	background: #000000b2;
+	padding: 4em 5em 5em;
+	border-top: 2px solid blueviolet;
+}
+
+#how-does-this-work > h2 {
+	color: white;
+	font-weight: bold;
+	margin-bottom: 1em;
+}
+
+#how-does-this-work > p {
+	color: white;
+	width: 50%;
+	margin-bottom: 4em;
+}
+
+#how-does-this-work > span {
+    color: white;
+    font-weight: bold;
+}
+
+#contribution-container {
+
+}
 
 #contribute-button {
-    min-width: 37%;
-    cursor: pointer;
+	cursor: pointer;
+	background-color: blueviolet;
 }
 
 #preset-bids {
@@ -332,21 +362,19 @@ main {
     color: white;
     background-color: blueviolet;
     width: 100%;
-    border-radius: 10px 10px 0 0;
+    border-radius: 5px;
     text-align: center;
     padding: 0.5em;
     font-size: 15px;
     font-weight: bold;
     font-family: monospace;
-    border-bottom: 1px solid black;
 }
 
 #combine-contribution-div {
     color: white;
     width: 100%;
     background-color: blueviolet;
-    border-bottom: 1px solid black;
-    margin: 0;
+    border-radius: 5px;
 }
 
 #combine-contribution-div label {
@@ -368,26 +396,18 @@ main {
 
 
 #min-preset {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 0;
-    border-top-left-radius: 0 !important;
+    border-radius: 5px;
     border: 0;
 }
 
-
 #ten-preset {
-    border-top: 0;
-    border-bottom: 0;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-
+    border-radius: 5px;
+    border: 0
 }
 
 #leader-preset {
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 10px;
+    border-radius: 5px;
     border: 0;
-    border-left: 1px solid black;
 }
 
 article {
@@ -398,7 +418,6 @@ article {
     border-top: 5px solid black;
     padding: 0;
     margin: 0;
-    margin-top: 1em;
     border-top: 1px solid blueviolet;
 }
 
@@ -501,20 +520,36 @@ p {
 
 }
 
-#aeiou {
-    height: 170px;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
+#the-big-questions {
+    margin-bottom: 0 !important;
+
 }
 
-#aeiou > img {
-    height: 130px;
-    width: 130px;
-    padding: 0;
-    border-radius: 9em;
-    border: 1px solid #3c3344;
-    margin: 3px;
+#aeiou {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	margin-bottom: 5em;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#aeiou img {
+	height: 190px;
+	width: 190px;
+	padding: 0;
+	border-radius: 9em;
+	border: 1px solid #3c3344;
+	margin: 6px;
+    clip: auto;
+    object-fit: cover;
+}
+
+#aeiou img:hover {
+    opacity: 0.5;
+    transition: 0.5s;
+    border: 1px solid white;
 }
 
 .modal-content {

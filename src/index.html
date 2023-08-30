@@ -20,7 +20,9 @@
     <a class="artist-link" href="https://justinholmes.com/">
         <p class="about-band"><img src="images/thumbnails/jh-logo-shaded-white.svg"></p>
     </a>
-    <div><w3m-core-button></w3m-core-button></div>
+    <div>
+        <w3m-core-button></w3m-core-button>
+    </div>
 </header>
 <h3 id="dateAnnouncement">~Coming September 1~</h3>
 
@@ -38,54 +40,85 @@
                     <strong><i>Vowel Sounds</i></strong> is the debut album-length offering from Justin Myles Holmes.
                     <br><br>
                     Recorded in Nashville with a
-                    hand-picked ensemble of award-winning bluegrass session musicians, it packs a hard-driving acoustic feel
-                    along with the wind instruments and varied singing techniques that have made Holmes' live shows a draw
+                    hand-picked ensemble of award-winning bluegrass session musicians, it packs a hard-driving acoustic
+                    feel
+                    along with the wind instruments and varied singing techniques that have made Holmes' live shows a
+                    draw
                     at blockchain events around the world.
                     <br><br>
-                    The album will be released on the Ethereum blockchain, with the record itself encrypted and available
+                    The album will be released on the Ethereum blockchain, with the record itself encrypted and
+                    available
                     for download once the contract reaches 10ETH.
                 </p>
             </div>
         </div>
 
-        <div class="row">
+        <div id="contribution-container" style="display: none">
+            <div class="form-check form-switch" id="combine-contribution-div">
+                <input class="form-check-input" type="checkbox" role="switch" id="combine-contribution-toggle" checked>
+                <label class="form-check-label" for="combine-contribution-toggle">Increase my contribution</label>
+            </div>
 
-        </div>
-
-        <div class="info3">
-            <h2>So how does this work?</h2>
-            The record is encrypted and available for download. Once contributions have crossed the threshold of 10ETH,
-            the decryption key will be made available. The record will be then be in the public domain, free to download
-            and
-            use
-            under a creative commons license.
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button id="min-preset" type="button" class="btn btn-primary"></button> <!-- We set this in JS -->
+                <button id="ten-preset" type="button" class="btn btn-primary even">Top 10</button>
+                <button id="leader-preset" type="button" class="btn btn-primary">Take the Lead 🎸</button>
+            </div>
         </div>
 
         <div id="all-buttons">
             <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#download-modal">
                 Get Encrypted Record 🔒
             </button>
-            <div id="preset-bids">
-                <span id="contribute-button">
-                        Contribute
-                        <input placeholder="?" id="user-amount">ETH</input>
-                </span>
-                <div class="form-check form-switch" id="combine-contribution-div">
-                    <input class="form-check-input" type="checkbox" role="switch" id="combine-contribution-toggle"
-                           checked>
-                    <label class="form-check-label" for="combine-contribution-toggle">Combine my contribution</label>
-                </div>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button id="min-preset" type="button" class="btn btn-primary"></button> <!-- We set this in JS -->
-                    <button id="ten-preset" type="button" class="btn btn-primary even">Top 10
-                    </button>
-                    <button id="leader-preset" type="button" class="btn btn-primary">Take the Lead 🎸
-                    </button>
-                </div>
-            </div>
-            <button class="paybutton download">
+            <button class="paybutton download" id="contribute-button">Contribute ⚡</button>
+            <button disabled class="paybutton download">
                 Decrypt Record 🔓
             </button>
+        </div>
+
+        <div class="center" id="contract-status">
+            <p id="countdown"></p>
+            <span id="fundingStatus"><span id="remainingEth" class="number">-</span> ETH until funded</span>
+        </div>
+
+        <div class="row" id="the-big-questions">
+            <div class="col-md" id="how-does-this-work">
+
+                <h2>What is this?</h2>
+                <p>
+                    This is a new kind of music release. It's a way to fund the creation of a record, and to distribute
+                    it
+                    in a way that is fair to the artist and the audience. It's a way to make sure that the record is
+                    available to everyone, and that the artist is compensated for their work.
+                </p>
+
+                <div class="art">
+                    <div id="aeiou">
+                        <a class="spotlight" href="images/IMG_9611.jpg">
+                            <img src="images/thumbnails/IMG_9611.jpg"/>
+                        </a>
+                        <img alt="a-letter" id="a-letter-img" src="images/a.jpg"/>
+                        <a class="spotlight" href="images/IMG_0487.jpg">
+                            <img src="images/thumbnails/IMG_0487.jpg"/>
+                        </a>
+                        <img alt="i-letter" src="images/i.jpg"/>
+                        <a class="spotlight" href="images/IMG_9581.jpg">
+                            <img src="images/thumbnails/IMG_9581.jpg"/>
+                        </a>
+                    </div>
+                </div>
+
+                <h2>So how does it work?</h2>
+                <p>
+                    The record is encrypted and available for download. Once contributions have crossed the threshold of
+                    10ETH,
+                    anyone can download the encrypted record. The decryption key will be made available on the Ethereum
+                    blockchain
+                    using Threshold Network's Access Control (TACo). Once released, the record will be in the public
+                    domain,
+                    free to download and use under a creative commons license.
+                </p>
+            </div>
         </div>
 
 
@@ -116,48 +149,10 @@
                 </div>
             </div>
         </div>
-        <div class="center">
 
-            <p id="countdown"></p>
-            <span id="fundingStatus"><span id="remainingEth" class="number">-</span> ETH until funded</span>
-        </div>
-
-        <br/>
-        <br/>
-
-        <ul id="ensembleList">
-            <li>Justin Holmes: Guitar, Tin Whistle, Vocals, Overtone Singing, Melodica, Double Flute</li>
-            <li>Jake Stargel: Bass, Vocals</li>
-            <li>Cory Walker: Banjo</li>
-            <li>Harry Clark: Mandolin (Dan)</li>
-            <li>Jakub Vysocky: Mandolin (Kyū), Vocals</li>
-            <li>Christian Ward: Fiddle</li>
-            <li>Allen Cooke: Dobro</li>
-        </ul>
-    </div>
-
-    <div class="container" id="countdown-container right-side">-</div>
     </div>
 
 </main>
-
-<div class="center">
-    <div class="art">
-        <div class="spaced-images">
-            <a class="spotlight" href="images/IMG_9611.jpg" title="Description for IMG_9731">
-                <img src="images/thumbnails/IMG_9611.jpg"/>
-            </a>
-
-            <a class="spotlight" href="images/IMG_0487.jpg" title="Description for IMG_9731">
-                <img src="images/thumbnails/IMG_0487.jpg"/>
-            </a>
-
-            <a class="spotlight" href="images/IMG_9581.jpg" title="Description for IMG_9731">
-                <img src="images/thumbnails/IMG_9581.jpg"/>
-            </a>
-        </div>
-    </div>
-</div>
 
 <article id="table">
     <div class="container">
@@ -596,13 +591,7 @@
     </div>
 </div>
 
-<div class="art">
-    <div id="aeiou">
-        <img alt="a-letter" id="a-letter-img" src="images/a.jpg"/>
-        <img alt="oe-letter" src="images/oe.jpg"/>
-        <img alt="i-letter" src="images/i.jpg"/>
-    </div>
-</div>
+
 <aside id="declaration">
     >>> ^C
     <br/>
