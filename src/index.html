@@ -145,26 +145,16 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="contributeModalLabel">Contribute now, NFT later.</h5>
+                        <h5 class="modal-title" id="contributeModalLabel">Support The Album!</h5>
                     </div>
                     <div class="modal-body">
-                        The ciphertext of the record is available for download.
-                        Once the contract reaches 10ETH, the decryption key will become available.
+                        Contribute to the contract to help fund the creation of the record.
+                        NFTs will be minted and distributed to contributors once the countdown reaches zero.
+                        Use the presets to contribute to the leaderboard, or enter a custom amount.
                     </div>
                     <div class="modal-footer">
-                        <div id="contribution-container">
 
-                            <label for="user-amount">Custom</label><input id="user-amount" placeholder="?"/>
-                            <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#contribute-modal"
-                                    id="pay">Contribute ⚡
-                            </button>
-
-                            <div class="form-check form-switch" id="combine-contribution-div">
-                                <input class="form-check-input" type="checkbox" role="switch"
-                                       id="combine-contribution-toggle" checked>
-                                <label class="form-check-label" for="combine-contribution-toggle">Increase my
-                                    contribution</label>
-                            </div>
+                            <label id="user-amount-label" for="user-amount">Contribute<input id="user-amount" placeholder="?"/>ETH</label>
 
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button id="min-preset" type="button" class="btn btn-primary"></button>
@@ -173,7 +163,15 @@
                                 <button id="leader-preset" type="button" class="btn btn-primary">Take the Lead 🎸
                                 </button>
                             </div>
-                        </div>
+                            <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#contribute-modal"
+                                    id="pay">Contribute ⚡
+                            </button>
+                            <div class="form-check form-switch" id="combine-contribution-div">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                       id="combine-contribution-toggle" checked>
+                                <label class="form-check-label" for="combine-contribution-toggle">
+                                    Increase existing contribution</label>
+                            </div>
                     </div>
                 </div>
             </div>
