@@ -268,7 +268,7 @@ function hookupBootstrapLinkButtons() {
 }
 
 function hookupContributeButton() {
-    const contributeButton = document.getElementById('contribute-button');
+    const contributeButton = document.getElementById('pay');
     const inputElement = document.getElementById('user-amount');
 
     contributeButton.addEventListener('click', async function (event) {

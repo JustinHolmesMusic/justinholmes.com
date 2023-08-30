@@ -411,14 +411,17 @@ main {
 }
 
 article {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    background-color: black;
-    border-top: 5px solid black;
-    padding: 0;
-    margin: 0;
-    border-top: 1px solid blueviolet;
+	display: flex;
+	width: 100%;
+	background-color: black;
+	/* border-top: 5px solid black; */
+	padding: 4em;
+	margin: 0;
+	border-top: 1px solid blueviolet;
+	flex-direction: column;
+	justify-content: space-around;
+	/* align-items: flex-start; */
+	padding-left: 6em;
 }
 
 header {
@@ -468,9 +471,14 @@ header {
 }
 
 table {
-    color: blueviolet;
-    font-size: 30px;
-    text-shadow: 0 0 0.5px rgb(255, 255, 255);
+	color: blueviolet;
+	font-size: 20px;
+	text-shadow: 0 0 0.5px rgb(255, 255, 255);
+	width: 90%;
+}
+
+.leaderboard-row {
+  border-bottom: 1px solid #32383e;
 }
 
 .center {
@@ -677,15 +685,16 @@ p {
 }
 
 #leaderboard-title {
-    font-family: "Bungee Shade", monospace;
-    color: #ddd;
-    font-size: 25px;
-    font-weight: 900;
-    letter-spacing: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
+	font-family: "Bungee Shade", monospace;
+	color: #ddd;
+	font-size: 3em;
+	font-weight: 900;
+	letter-spacing: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1em;
+	margin-bottom: 2em;
 }
 
 thead {
@@ -708,9 +717,10 @@ td {
 }
 
 table img {
-    width: 6em;
-    border-radius: 1em;
-    border: 1px solid white;
+	width: 7em;
+	border-radius: 1em;
+	border: 1px solid white;
+	margin: 1em;
 }
 
 #declaration {
