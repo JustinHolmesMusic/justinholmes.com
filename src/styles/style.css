@@ -752,10 +752,10 @@ td {
 }
 
 table img {
-	width: 7em;
+	width: 5em;
 	border-radius: 1em;
 	border: 1px solid #d9d8d8;
-	margin: 1em;
+	margin: 10px;
 }
 
 #declaration {
@@ -795,6 +795,13 @@ footer img {
 .accordion {
     width: 80%;
     margin: auto;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
 }
 
 .accordion-button:not(.collapsed) {
