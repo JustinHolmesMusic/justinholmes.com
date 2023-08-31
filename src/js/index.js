@@ -124,16 +124,18 @@ async function updateFundingThreshold() {
     });
 
     // Calculate the remaining amount needed to reach the threshold
-    const remainingAmountInWei = Number(thresholdInEth) - Number(balance.value);
+
+    const alreadyFunded = formatEther(Number(balance.value));
+    // const remainingAmountInWei = Number(thresholdInEth) - Number(balance.value);
 
     // Convert the remaining amount to ETH
-    const remainingAmount = formatEther(remainingAmountInWei);
+    // const remainingAmount = formatEther(remainingAmountInWei);
 
-    // Update the HTML element
-    document.getElementById('remainingEth').textContent = remainingAmount + " ETH";
+    // Show how much has been funded out of the threshold
+    document.getElementById('remainingEth').textContent = alreadyFunded + " / " + formatEther(thresholdInEth) + " ETH";
 
     // If the threshold has been reached, stop the countdown
-    if (remainingAmount <= 0) {
+    if (alreadyFunded >= formatEther(thresholdInEth)) {
         // Put "hurrah" in the 'remainingEth' element
         document.getElementById('remainingEth').textContent = "Album Dropped 🎉";
     }
