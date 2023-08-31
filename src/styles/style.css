@@ -556,6 +556,10 @@ table {
 	width: 90%;
 }
 
+td > a {
+    color: rgb(166, 199, 213);
+}
+
 .leaderboard-row {
   border-bottom: 1px solid #32383e;
 }
