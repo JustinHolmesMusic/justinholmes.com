@@ -56,6 +56,12 @@ export const web3modal = new Web3Modal({
     }
 }, ethereumClient);
 
+web3modal.subscribeEvents((event) => {
+    if (event.name === "ACCOUNT_CONNECTED") {
+        updateContributorsTable(); // This has a side-effect of updating the combine contribution toggle visibility
+    }
+    }
+)
 
 //////////////////
 //// Funding Threshold Things
@@ -505,4 +511,28 @@ async function updateContributorsTable() {
     }
     ;
 
+    updateCombineContributionToggleVisibility(contributionsByAddress);
+}
+
+
+function updateCombineContributionToggleVisibility(contributionsByAddress) {
+    // If the user already contributed, show the toggle
+    if (!isWalletConnected()) {
+        document.getElementById("combine-contribution-div").style.display = "none";
+        return;
+    }
+
+    let userAddress = ethereumClient.getAccount()['address'];
+
+    for (let address in contributionsByAddress) {
+        address = address.toLowerCase();
+        userAddress = userAddress.toLowerCase();
+
+        if (address === userAddress) {
+            document.getElementById("combine-contribution-div").style.display = "block";
+            return;
+        }
+    }
+
+    document.getElementById("combine-contribution-div").style.display = "none";
 }
