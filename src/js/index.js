@@ -332,6 +332,7 @@ function showError(text) {
     var alertDiv = document.createElement("div");
     alertDiv.className = "alert alert-danger position-fixed top-0 start-50 translate-middle-x";
     alertDiv.style.marginTop = "50px";
+    alertDiv.style.zIndex = "1100"; // higher than the bootstrap modal
     alertDiv.role = "alert";
     alertDiv.innerHTML = `<strong>Error:</strong> ${text}`;
 
