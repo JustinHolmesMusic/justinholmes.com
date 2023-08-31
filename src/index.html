@@ -53,24 +53,13 @@
             </div>
         </div>
 
-        <div id="contribution-container" style="display: none">
-            <div class="form-check form-switch" id="combine-contribution-div">
-                <input class="form-check-input" type="checkbox" role="switch" id="combine-contribution-toggle" checked>
-                <label class="form-check-label" for="combine-contribution-toggle">Increase my contribution</label>
-            </div>
-
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button id="min-preset" type="button" class="btn btn-primary"></button> <!-- We set this in JS -->
-                <button id="ten-preset" type="button" class="btn btn-primary even">Top 10</button>
-                <button id="leader-preset" type="button" class="btn btn-primary">Take the Lead 🎸</button>
-            </div>
-        </div>
-
         <div id="all-buttons">
             <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#download-modal">
                 Get Encrypted Record 🔒
             </button>
-            <button class="paybutton download" id="contribute-button">Contribute ⚡</button>
+            <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#contribute-modal"
+                    id="contribute-button">Contribute ⚡
+            </button>
             <button disabled class="paybutton download">
                 Decrypt Record 🔓
             </button>
@@ -122,7 +111,7 @@
         </div>
 
 
-        <!-- Modal -->
+        <!-- Download Modal -->
         <div class="modal fade" id="download-modal" tabindex="-1" role="dialog" aria-labelledby="download-modal"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -150,89 +139,121 @@
             </div>
         </div>
 
+        <!-- Contribute Modal -->
+        <div class="modal fade" id="contribute-modal" tabindex="-1" role="dialog" aria-labelledby="download-modal"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="contributeModalLabel">Support The Album!</h5>
+                    </div>
+                    <div class="modal-body">
+                        Contribute to the contract to help fund the creation of the record.
+                        NFTs will be minted and distributed to contributors once the countdown reaches zero.
+                        Use the presets to contribute to the leaderboard, or enter a custom amount.
+                    </div>
+                    <div class="modal-footer">
+
+                            <label id="user-amount-label" for="user-amount">Contribute<input id="user-amount" placeholder="?"/>ETH</label>
+
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button id="min-preset" type="button" class="btn btn-primary"></button>
+                                <!-- We set this in JS -->
+                                <button id="ten-preset" type="button" class="btn btn-primary even">Top 10</button>
+                                <button id="leader-preset" type="button" class="btn btn-primary">Take the Lead 🎸
+                                </button>
+                            </div>
+                            <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#contribute-modal"
+                                    id="pay">Contribute ⚡
+                            </button>
+                            <div class="form-check form-switch" id="combine-contribution-div">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                       id="combine-contribution-toggle" checked>
+                                <label class="form-check-label" for="combine-contribution-toggle">
+                                    Increase existing contribution</label>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </main>
 
 <article id="table">
-    <div class="container">
-        <p id="leaderboard-title">Artifact Leaderboard</p>
-        <br/>
-        <table id="leaderboard-table" class="table table-dark">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Art</th>
-                <th scope="col">Bid</th>
-                <th scope="col">Address</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td><img src="images/thumbnails/aaa.png"></td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td><img src="images/thumbnails/eee.png"></td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td><img src="images/thumbnails/ce.png"></td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <th scope="row">4</th>
-                <td><img src="images/thumbnails/ot.png"></td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <th scope="row">5</th>
-                <td><img src="images/thumbnails/b.png"></td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <th scope="row">6</th>
-                <td><img src="images/thumbnails/horseshoe.png"></td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <th scope="row">7</th>
-                <td><img src="images/thumbnails/iii.png"></td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <th scope="row">8</th>
-                <td><img src="images/thumbnails/uu.png"></td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <th scope="row">9</th>
-                <td><img src="images/thumbnails/vv.png"></td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <th scope="row">10</th>
-                <td><img src="images/thumbnails/Y.png"></td>
-                <td>-</td>
-                <td>-</td>
-
-            </tbody>
-        </table>
-    </div>
-
-
+    <p id="leaderboard-title">Artifact Leaderboard</p>
+    <br/>
+    <table id="leaderboard-table">
+        <thead>
+        <tr class="leaderboard-row">
+            <th scope="col">#</th>
+            <th scope="col">Art</th>
+            <th scope="col">Bid</th>
+            <th scope="col">Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="leaderboard-row">
+            <th scope="row">1</th>
+            <td><img src="images/thumbnails/aaa.png"></td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr class="leaderboard-row">
+            <th scope="row">2</th>
+            <td><img src="images/thumbnails/eee.png"></td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr class="leaderboard-row">
+            <th scope="row">3</th>
+            <td><img src="images/thumbnails/ce.png"></td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr class="leaderboard-row">
+            <th scope="row">4</th>
+            <td><img src="images/thumbnails/ot.png"></td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr class="leaderboard-row">
+            <th scope="row">5</th>
+            <td><img src="images/thumbnails/b.png"></td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr class="leaderboard-row">
+            <th scope="row">6</th>
+            <td><img src="images/thumbnails/horseshoe.png"></td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr class="leaderboard-row">
+            <th scope="row">7</th>
+            <td><img src="images/thumbnails/iii.png"></td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr class="leaderboard-row">
+            <th scope="row">8</th>
+            <td><img src="images/thumbnails/uu.png"></td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr class="leaderboard-row">
+            <th scope="row">9</th>
+            <td><img src="images/thumbnails/vv.png"></td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr class="leaderboard-row">
+            <th scope="row">10</th>
+            <td><img src="images/thumbnails/Y.png"></td>
+            <td>-</td>
+            <td>-</td>
+        </tbody>
+    </table>
 </article>
 
 <div class="center" id="lower-images">

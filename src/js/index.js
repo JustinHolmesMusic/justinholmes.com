@@ -110,11 +110,20 @@ async function updateFundingThreshold() {
     }
 }
 
+let isKeySet = false;
 let materialReleaseConditionMet = false;
 let deadline = 0;
 
 // Fetch contract data initially and every 20 seconds
 async function fetchCountdownContractData() {
+    isKeySet = await readContract({
+        address: contractAddress,
+        abi: contractABI,
+        functionName: 'isKeySet',
+        chainId: chainId,
+    });
+
+
     materialReleaseConditionMet = await readContract({
         address: contractAddress,
         abi: contractABI,
@@ -134,15 +143,16 @@ async function fetchCountdownContractData() {
 
 // Update the countdown display based on the fetched data
 function updateCountdownDisplay() {
-    if (!materialReleaseConditionMet) {
-        return;
-    }
 
     let countDownDate = Number(deadline) * 1000;
     let now = new Date().getTime();
     let distance = countDownDate - now;
 
-    if (distance < 0) {
+    if (!isKeySet) {
+        document.getElementById("countdown").innerHTML = "Waiting for Art 🕰️";
+        return;
+    }
+    else if (distance < 0) {
         clearInterval(countdownInterval);
         document.getElementById("countdown").innerHTML = "Artist Funded 🎉";
         return;
@@ -268,7 +278,7 @@ function hookupBootstrapLinkButtons() {
 }
 
 function hookupContributeButton() {
-    const contributeButton = document.getElementById('contribute-button');
+    const contributeButton = document.getElementById('pay');
     const inputElement = document.getElementById('user-amount');
 
     contributeButton.addEventListener('click', async function (event) {
@@ -412,13 +422,12 @@ async function updateContributorsTable() {
     document.getElementById("ten-preset").onclick = () => setTenPreset(contributionsByAddress);
     document.getElementById("leader-preset").onclick = () => setLeaderPreset(contributionsByAddress);
 
-
-    // array, sorted by contribution amount, of arrays of [amount, address] 
+    // array, sorted by contribution amount, of arrays of [amount, address]
     let leaders = getTopContributions(contributionsByAddress)
     const leaderRows = getLeaderboardTableBody().getElementsByTagName('tr');
 
     // Loop through the contributors and append a row for each
-    for (var i = 0; i < leaderRows.length; i++) {
+    for (let i = 0; i < leaderRows.length; i++) {
         let row = leaderRows[i];
         let thisLeader = leaders[i];
 
@@ -439,7 +448,6 @@ async function updateContributorsTable() {
             ensName = thisLeader[1];
         }
         addressSlot.innerHTML = ensName;
-    }
-    ;
+    };
 
 }
