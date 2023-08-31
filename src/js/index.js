@@ -101,18 +101,18 @@ async function updateFundingThreshold() {
     const remainingAmount = formatEther(remainingAmountInWei);
 
     // Update the HTML element
-    document.getElementById('remainingEth').textContent = remainingAmount;
+    document.getElementById('remainingEth').textContent = remainingAmount + " ETH";
 
     // If the threshold has been reached, stop the countdown
     if (remainingAmount <= 0) {
         // Put "hurrah" in the 'remainingEth' element
-        document.getElementById('remainingEth').textContent = "hurrah";
+        document.getElementById('remainingEth').textContent = "Album Dropped 🎉";
     }
 }
 
 let isKeySet = false;
 let materialReleaseConditionMet = false;
-let deadline = 0;
+let deadline;
 
 // Fetch contract data initially and every 20 seconds
 async function fetchCountdownContractData() {
@@ -123,7 +123,6 @@ async function fetchCountdownContractData() {
         chainId: chainId,
     });
 
-
     materialReleaseConditionMet = await readContract({
         address: contractAddress,
         abi: contractABI,
@@ -131,14 +130,12 @@ async function fetchCountdownContractData() {
         chainId: chainId,
     });
 
-    if (materialReleaseConditionMet) {
-        deadline = await readContract({
-            address: contractAddress,
-            abi: contractABI,
-            functionName: 'deadline',
-            chainId: chainId,
-        });
-    }
+    deadline = await readContract({
+        address: contractAddress,
+        abi: contractABI,
+        functionName: 'deadline',
+        chainId: chainId,
+    });
 }
 
 // Update the countdown display based on the fetched data
@@ -148,12 +145,18 @@ function updateCountdownDisplay() {
     let now = new Date().getTime();
     let distance = countDownDate - now;
 
-    if (!isKeySet) {
+    if (deadline === undefined) {
+        // If the deadline is undefined, most likely there is some kind of network error reading the contract.
+        document.getElementById("countdown").innerHTML = "-";
+        return;
+    }
+    else if (!isKeySet) {
         document.getElementById("countdown").innerHTML = "Waiting for Artist to Upload Encrypted Material 🕰️";
         return;
     }
     else if (distance < 0) {
         clearInterval(countdownInterval);
+        // document.getElementById("countdown").innerHTML = "Artist Funded 🎉";
         document.getElementById("countdown").innerHTML = "Artist Funded 🎉";
         return;
     }
@@ -182,8 +185,8 @@ function setMinPreset() {
 }
 
 function isUserInTopN(topContributions, address, n) {
-    for (var i = 0; i < Math.min(n, topContributions.length); i++) {
-        if (topContributions[i][1] == address) {
+    for (let i = 0; i < Math.min(n, topContributions.length); i++) {
+        if (topContributions[i][1] === address) {
             return true;
         }
     }

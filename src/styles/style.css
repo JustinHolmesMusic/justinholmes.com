@@ -216,10 +216,10 @@ nav span a img {
 #countdown {
     color: rgb(5, 4, 4);
     font-family: "Bungee Shade", monospace;
-    font-size: 50px;
+    font-size: 2em;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 #countdown-container {
@@ -298,7 +298,48 @@ main {
 }
 
 #contract-status {
-    padding: 2em;
+	padding: 2em;
+	font-family: "Bungee Shade", monospace;
+	font-weight: bold;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: row-reverse;
+	max-width: 50em;
+	flex-wrap: wrap;
+}
+
+#fundingStatus {
+	font-family: "Bungee Shade", monospace;
+	font-size: 2em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
+	font-weight: bold;
+	flex-direction: column;
+	margin: 1em;
+	border-top: 1px solid #212529;
+	padding-top: 0.5em;
+	border-bottom: 1px solid #212529;
+	padding-bottom: 0.5em;
+}
+
+#funding-label {
+	font-size: 16px;
+	color: #212529;
+	margin-top: 0;
+}
+
+#countdown-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-top: 1px solid #212529;
+	padding-top: 1em;
+	border-bottom: 1px solid #212529;
+	padding-bottom: 1em;
 }
 
 #how-does-this-work {
@@ -483,25 +524,15 @@ table {
     width: 2em;
 }
 
-#fundingStatus {
-    font-family: "Bungee Shade", monospace;
-    font-size: 20px;
-    /*letter-spacing: 0.5em;*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    font-weight: bold;
-}
 
 p {
     margin: 0;
 }
 
 .number {
-    color: black;
-    font-size: 40px;
-    letter-spacing: 0.8em;
+	color: black;
+	font-size: 1em;
+	letter-spacing: 10px;
 }
 
 .art {
