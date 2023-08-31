@@ -9,7 +9,7 @@ import 'spotlight.js';
 import contractABI from './contributionABI.js'
 import '../styles/style.css';
 import {configureChains, createConfig, fetchBalance, fetchEnsName, readContract, writeContract} from '@wagmi/core'
-import {EthereumClient, w3mConnectors, w3mProvider} from '@web3modal/ethereum'
+import {EthereumClient, w3mConnectors} from '@web3modal/ethereum'
 import {Web3Modal} from '@web3modal/html'
 import {goerli, mainnet} from '@wagmi/core/chains'
 import {infuraProvider} from 'wagmi/providers/infura'
@@ -60,6 +60,7 @@ export const web3modal = new Web3Modal({
 
 // Call updateFundingThreshold when DOM is loaded.
 document.addEventListener("DOMContentLoaded", () => {
+    openBooklet();
     updateFundingThreshold();
     hookupBootstrapLinkButtons();
     hookupContributeButton();
@@ -70,6 +71,34 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchCountdownContractData();
     updateCountdownDisplay();
 });
+
+let currentBookletPage = 1;
+let maxBookletPage = document.querySelectorAll('[data-booklet-page]').length;
+
+
+function openBooklet() {
+    let firstPage = document.querySelector('[data-booklet-page="1"]');
+    document.getElementById("booklet-content").innerHTML = firstPage.innerHTML;
+    setupBookletNavigation();
+}
+
+function getNextBookletPage() {
+    currentBookletPage = currentBookletPage + 1;
+    if (currentBookletPage > maxBookletPage) {
+        currentBookletPage = 1;
+    }
+    return currentBookletPage;
+}
+
+function setupBookletNavigation() {
+    document.getElementById("next-booklet-page").onclick = () => {
+        let nextBookletPage = getNextBookletPage();
+        let selector = `[data-booklet-page="${nextBookletPage}"]`;
+        let nextBookletPageElement = document.querySelector(selector);
+        document.getElementById("booklet-content").innerHTML = nextBookletPageElement.innerHTML;
+        setupBookletNavigation();
+    };
+}
 
 function setMinContributionAmount() {
     document.getElementById("min-preset").innerHTML = minContributionAmount + " ETH";
@@ -101,18 +130,18 @@ async function updateFundingThreshold() {
     const remainingAmount = formatEther(remainingAmountInWei);
 
     // Update the HTML element
-    document.getElementById('remainingEth').textContent = remainingAmount;
+    document.getElementById('remainingEth').textContent = remainingAmount + " ETH";
 
     // If the threshold has been reached, stop the countdown
     if (remainingAmount <= 0) {
         // Put "hurrah" in the 'remainingEth' element
-        document.getElementById('remainingEth').textContent = "hurrah";
+        document.getElementById('remainingEth').textContent = "Album Dropped 🎉";
     }
 }
 
 let isKeySet = false;
 let materialReleaseConditionMet = false;
-let deadline = 0;
+let deadline;
 
 // Fetch contract data initially and every 20 seconds
 async function fetchCountdownContractData() {
@@ -123,7 +152,6 @@ async function fetchCountdownContractData() {
         chainId: chainId,
     });
 
-
     materialReleaseConditionMet = await readContract({
         address: contractAddress,
         abi: contractABI,
@@ -131,14 +159,12 @@ async function fetchCountdownContractData() {
         chainId: chainId,
     });
 
-    if (materialReleaseConditionMet) {
-        deadline = await readContract({
-            address: contractAddress,
-            abi: contractABI,
-            functionName: 'deadline',
-            chainId: chainId,
-        });
-    }
+    deadline = await readContract({
+        address: contractAddress,
+        abi: contractABI,
+        functionName: 'deadline',
+        chainId: chainId,
+    });
 }
 
 // Update the countdown display based on the fetched data
@@ -148,12 +174,16 @@ function updateCountdownDisplay() {
     let now = new Date().getTime();
     let distance = countDownDate - now;
 
-    if (!isKeySet) {
+    if (deadline === undefined) {
+        // If the deadline is undefined, most likely there is some kind of network error reading the contract.
+        document.getElementById("countdown").innerHTML = "-";
+        return;
+    } else if (!isKeySet) {
         document.getElementById("countdown").innerHTML = "Waiting for Artist to Upload Encrypted Material 🕰️";
         return;
-    }
-    else if (distance < 0) {
+    } else if (distance < 0) {
         clearInterval(countdownInterval);
+        // document.getElementById("countdown").innerHTML = "Artist Funded 🎉";
         document.getElementById("countdown").innerHTML = "Artist Funded 🎉";
         return;
     }
@@ -182,8 +212,8 @@ function setMinPreset() {
 }
 
 function isUserInTopN(topContributions, address, n) {
-    for (var i = 0; i < Math.min(n, topContributions.length); i++) {
-        if (topContributions[i][1] == address) {
+    for (let i = 0; i < Math.min(n, topContributions.length); i++) {
+        if (topContributions[i][1] === address) {
             return true;
         }
     }
@@ -322,11 +352,11 @@ async function contribute() {
     let functionToCall = combine ? 'contributeAndCombine' : 'contribute';
 
     const {hash} = await writeContract({
-            address: contractAddress,
-            abi: contractABI,
-            functionName: functionToCall,
-            value: parseEther(userAmount),
-            chainId: chainId,
+        address: contractAddress,
+        abi: contractABI,
+        functionName: functionToCall,
+        value: parseEther(userAmount),
+        chainId: chainId,
     });
 }
 
@@ -448,6 +478,7 @@ async function updateContributorsTable() {
             ensName = thisLeader[1];
         }
         addressSlot.innerHTML = ensName;
-    };
+    }
+    ;
 
 }
