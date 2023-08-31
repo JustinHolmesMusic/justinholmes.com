@@ -507,7 +507,9 @@ async function updateContributorsTable() {
         if (ensName == undefined) {
             ensName = thisLeader[1];
         }
-        addressSlot.innerHTML = ensName;
+
+        const etherscanBaseUrl = "https://etherscan.io/address/";
+        addressSlot.innerHTML = " <a href='" + etherscanBaseUrl + thisLeader[1] + "' target='_blank'>" + ensName + "</a>";
     }
     ;
 
