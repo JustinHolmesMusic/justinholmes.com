@@ -19,6 +19,8 @@ import tippy from 'tippy.js';
 
 require.context('../images', false, /\.(png|jpe?g|gif|svg)$/);
 require.context('../images/thumbnails', false, /\.(png|jpe?g|gif|svg)$/);
+require.context('../audio', false, /\.(mp3|flac)$/);
+
 
 // Equivalent to importing from @wagmi/core/providers
 const chains = [mainnet, goerli]
