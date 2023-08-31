@@ -509,14 +509,6 @@ async function updateContributorsTable() {
         }
 
         const etherscanBaseUrl = "https://etherscan.io/address/";
-
-        // const linkElement = document.createElement("a");
-        // linkElement.href = etherscanBaseUrl + ethereumAddress;
-        // linkElement.target = "_blank"; // Open in a new tab/window
-        // linkElement.textContent = "Click here to view on Etherscan";
-
-        // document.body.appendChild(linkElement);
-
         addressSlot.innerHTML = " <a href='" + etherscanBaseUrl + thisLeader[1] + "' target='_blank'>" + ensName + "</a>";
     }
     ;
