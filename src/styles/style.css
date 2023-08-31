@@ -198,7 +198,7 @@ nav span a img {
 	text-align: center;
 }
 
-.album-overview > p {
+.booklet > p {
 	background: #000000b2;
 	height: 400px;
 	width: 400px;
@@ -296,6 +296,40 @@ main {
     margin-top: 2em;
     font-family: monospace;
 }
+
+.album-overview {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	flex-wrap: nowrap;
+}
+
+#next-booklet-page {
+	width: 25px;
+	height: 25px;
+	padding: 3px;
+	background-color: #000000b2;
+	margin-left: -12px;
+	color: #d3d8da;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 30%;
+	border: 1px solid black;
+	margin-right: -12px;
+}
+
+#next-booklet-page:hover {
+    background-color: #000000b2;
+    color: #d3d8da;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
 
 #contract-status {
 	padding: 2em;
