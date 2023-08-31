@@ -451,6 +451,7 @@ main {
     color: #d9d8d8;
     background-color: transparent;
     border-radius: 5px;
+    display: none;
 }
 
 #combine-contribution-div label {
