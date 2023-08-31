@@ -149,7 +149,7 @@ function updateCountdownDisplay() {
     let distance = countDownDate - now;
 
     if (!isKeySet) {
-        document.getElementById("countdown").innerHTML = "Waiting for Art 🕰️";
+        document.getElementById("countdown").innerHTML = "Waiting for Artist to Upload Encrypted Material 🕰️";
         return;
     }
     else if (distance < 0) {
