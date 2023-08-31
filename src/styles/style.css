@@ -585,8 +585,20 @@ p {
 }
 
 #the-big-questions {
-    margin-bottom: 0 !important;
+	margin-bottom: 0 !important;
+	width: 100%;
+}
 
+
+#decrypt {
+    width: 98%;
+}
+
+#player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
 }
 
 #aeiou {
