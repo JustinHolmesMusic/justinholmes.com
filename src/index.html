@@ -27,7 +27,7 @@
 <h3 id="dateAnnouncement">~Coming September 1~</h3>
 
 <main>
-    <div class="container-fluid" id="left-side">
+    <div id="left-side">
 
         <div id="album-container">
             <div id="album-art">
@@ -55,16 +55,19 @@
                     of planet respect, ancient vocal pedagogy, and freedom beautifully and still remains playful
                     in all its complexity. [The description of vocal overtone solos explained and then employed
                     is nothing short of fascinating. Holmes has proven he’s a master of fitting woodwind instruments
-                    onto a traditional Bluegrass canvas with his use of tin whistle, melodica and flute which impressively
+                    onto a traditional Bluegrass canvas with his use of tin whistle, melodica and flute which
+                    impressively
                     turns each instrument into an Appalachian adjacent voice.] After listen-through, Vowel Sounds leaves
                     you wanting to already hear a follow-up project from this creative and mystical human!"
                     <br><br>
                     - Vickie Vaugh, bassist, Della Mae
                 </p>
                 <p data-booklet-page="3" style="display: none;">
-                    "Justin Holmes new album is a masterful weaving of twangy bluegrass music and poetic lyrics about power
-                    structures, society, cryptography, trust, and community.  If you like bluegrass or folk music,
-                    then this album is great listening on that basis alone.. but it's also a great way to learn more about
+                    "Justin Holmes new album is a masterful weaving of twangy bluegrass music and poetic lyrics about
+                    power
+                    structures, society, cryptography, trust, and community. If you like bluegrass or folk music,
+                    then this album is great listening on that basis alone.. but it's also a great way to learn more
+                    about
                     cryptography."
                     <br><br>
                     -Kevin Owocki, co-founder, Gitcoin and host, Green Pill Podcast
@@ -85,11 +88,12 @@
             <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#download-modal">
                 Get Encrypted Record 🔒
             </button>
-            <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#contribute-modal" id="contribute-button">
+            <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#contribute-modal"
+                    id="contribute-button">
                 Contribute ⚡
             </button>
             <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#decrypt-modal">
-                Decrypt Record 🔓
+                Hear Vowel Sounds 💿
             </button>
         </div>
 
@@ -214,26 +218,32 @@
                         <h5 class="modal-title" id="decryptModalLabel">Listen to Vowel Sounds, Decrypted.</h5>
                     </div>
                     <div class="modal-body">
-                        <p>Once the album is funded, the decryption key will be available here.</p>
-                        <span id="condition-status">Awaiting Funding</span>
+                        <p>
+                            Once the album is funded, the decryption key will be available here. Until then,
+                            listen to this teaser...
+                        </p>
+                        <div id="player">
+                            <audio controls>
+                                <source src="audio/lost-teaser.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <label>If you have an encrypted song, upload it here<input type="file"></label>
 
-                        <button type="button" class="btn btn-primary button-link" data-href="https://www.google.com">
-                            Decrypt
+                        <label for="formFileMultiple" class="form-label"> If you have encrypted songs, decrypt them here
+                        </label>
+                        <input class="form-control" type="file" id="formFileMultiple" multiple>
+
+                        <button id="decrypt" type="button" class="btn btn-primary button-link" data-href="https://www.google.com">
+                            Decrypt 🔓
                         </button>
 
-                        <audio controls>
-                            <source src="audio/Matterhorn.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 </main>
 
