@@ -25,7 +25,7 @@ module.exports = {
                 use: ['style-loader', 'css-loader']
             },
             {
-                test: /\.(png|jpe?g|gif|svg)$/,
+                test: /\.(png|jpe?g|gif|svg|mp3)$/,
                 type: 'asset/resource',
                 generator: {
                     filename: (pathData) => {
