@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
+
 
 module.exports = {
     plugins: [
@@ -9,6 +11,14 @@ module.exports = {
             template: './src/index.html', // source html
             filename: 'index.html'        // destination html file
         }),
+
+        // for some reason adding mp3 suffix to the regex doesn't work, so we use the copy plugin
+        // TODO: figure out why
+        new CopyPlugin({
+                patterns: [
+                    {from: 'src/audio', to: 'audio'}, 
+                ]
+        })
     ],
     entry: {
         main: './src/js/index.js',
@@ -34,7 +44,8 @@ module.exports = {
                         return newPath;
                     }
                 }
-            }
+            },
+
         ]
     },
     mode: "development",
