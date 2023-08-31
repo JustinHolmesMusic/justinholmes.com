@@ -172,7 +172,7 @@ nav span a img {
 #album-art #justins-name {
 	position: absolute;
 	margin-top: -291px;
-	font-size: 19px;
+	font-size: 18px;
 	margin-left: 5px;
 	font-family: larissa;
 	font-weight: bold;
@@ -186,16 +186,17 @@ nav span a img {
 
 #album-art #album-name {
 	position: absolute;
-	color: #323232;
+	color: #e8e8e8;
 	font-family: "Bungee Shade", monospace;
 	font-weight: bold;
-	font-size: 29px;
-	margin-top: -333px;
+	font-size: 35px;
+	margin-top: -361px;
 	margin-left: 5px;
 	letter-spacing: -1px;
-	background-color: rgba(206, 206, 206, 0.86);
+	/* background-color: rgba(206, 206, 206, 0.86); */
 	width: 390px;
 	text-align: center;
+	text-shadow: 1px 1px 1px black, -1px -1px 2px black, 0px 0px 2px black, -2px 1px 1px black;
 }
 
 .album-overview > p {
