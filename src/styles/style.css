@@ -496,7 +496,11 @@ article {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-    padding: 2em 0 4em;
+	padding: 2em 1em 4em;
+}
+
+article h1 {
+    margin: 2em;
 }
 
 header {
@@ -547,7 +551,7 @@ header {
 
 table {
 	color: blueviolet;
-	font-size: 20px;
+	font-size: 14px;
 	text-shadow: 0 0 0.5px rgb(255, 255, 255);
 	width: 90%;
 }
@@ -556,12 +560,19 @@ table {
   border-bottom: 1px solid #32383e;
 }
 
+#art-label {
+	text-align: left;
+	padding-left: 2em;
+}
+
 .leaderboard-row td:nth-child(3) {
-  min-width: 9em;
+	min-width: 4em;
+	letter-spacing: 0px;
+	word-spacing: -5px;
 }
 
 .leaderboard-row td:nth-child(4) {
-    max-width: 15em;
+    max-width: 8em;
     overflow: hidden;
     text-overflow: ellipsis;
 }
