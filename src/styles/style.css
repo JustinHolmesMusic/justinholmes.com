@@ -556,6 +556,10 @@ table {
 	width: 90%;
 }
 
+td > a {
+    color: rgb(166, 199, 213);
+}
+
 .leaderboard-row {
   border-bottom: 1px solid #32383e;
 }
@@ -699,6 +703,12 @@ p {
     border: 1px solid white;
 }
 
+.modal-dialog {
+	max-width: 35em;
+	margin-right: auto;
+	margin-left: auto;
+}
+
 .modal-title {
 	margin-bottom: 0;
 	line-height: var(--bs-modal-title-line-height);
@@ -709,12 +719,10 @@ p {
 
 
 .modal-content {
-	/* background-color: blueviolet !important; */
 	margin: auto;
 	padding: 20px;
-	/*border: 0 !important;*/
-    border: 1px solid black;
-	width: 100%;
+	border: 1px solid black;
+	width: 90%;
 	color: black;
 	background: linear-gradient(#9198e5, #6e33a4);
 }
