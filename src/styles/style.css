@@ -340,7 +340,7 @@ main {
 	justify-content: space-around;
 	align-items: center;
 	flex-direction: row-reverse;
-	max-width: 50em;
+	max-width: 70em;
 	flex-wrap: wrap;
 }
 
