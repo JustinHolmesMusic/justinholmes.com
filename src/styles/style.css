@@ -895,3 +895,8 @@ button:focus {
 #headingTen .accordion-button::after {
     background-image: none;
 }
+
+html {
+    visibility: visible;
+    opacity: 1;
+}
