@@ -516,6 +516,7 @@ async function updateContributorsTable() {
 function updateCombineContributionToggleVisibility(contributionsByAddress) {
     // If the user already contributed, show the toggle
     if (!isWalletConnected()) {
+        document.getElementById("combine-contribution-div").style.display = "none";
         return;
     }
 
