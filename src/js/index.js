@@ -183,7 +183,6 @@ function updateCountdownDisplay() {
         return;
     } else if (distance < 0) {
         clearInterval(countdownInterval);
-        // document.getElementById("countdown").innerHTML = "Artist Funded 🎉";
         document.getElementById("countdown").innerHTML = "Artist Funded 🎉";
         return;
     }
@@ -381,7 +380,7 @@ function getContributionsByAddress(contributionsMetadata) {
     let combined = contributionsMetadata[2]
     let datetimes = contributionsMetadata[3]
 
-    for (var i = 0; i < contributors.length; i++) {
+    for (let i = 0; i < contributors.length; i++) {
 
         const address = contributors[i]
         if (!(address in contributionsByAddress)) {
@@ -393,12 +392,12 @@ function getContributionsByAddress(contributionsMetadata) {
         const contributionMoment = datetimes[i]
 
         if (is_combined) {
-            if (contributionsByAddress[address].length == 0) {
+            if (contributionsByAddress[address].length === 0) {
                 console.log("wtf");
                 // This ought to be an impossible situaiton - how did they dcombine with a bid that didn't exist?
-                contributionsByAddress[address].push(0)
+                contributionsByAddress[address].push(Number(0))
             }
-            contributionsByAddress[address][0] += amount
+            contributionsByAddress[address][0] += Number(amount)
         } else {
             contributionsByAddress[address].push(amount)
         }

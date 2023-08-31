@@ -85,6 +85,8 @@ nav span a img {
     max-height: 40px;
 }
 
+.hidden {display:none;}
+
 #all-buttons {
     display: flex;
     flex-wrap: wrap;
@@ -209,8 +211,8 @@ nav span a img {
 	border-radius: 0 5px 5px 0;
 	margin-left: 0;
 	border-left: 1px dashed #94aab2;
-	font-size: 14px;
-	padding: 35px 25px;
+	font-size: 12px;
+    padding: 30px 30px 30px 25px;
 }
 
 #countdown {
@@ -339,7 +341,7 @@ main {
 	justify-content: space-around;
 	align-items: center;
 	flex-direction: row-reverse;
-	max-width: 50em;
+	max-width: 70em;
 	flex-wrap: wrap;
 }
 

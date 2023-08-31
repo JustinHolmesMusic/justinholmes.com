@@ -85,10 +85,10 @@
             <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#download-modal">
                 Get Encrypted Record 🔒
             </button>
-            <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#contribute-modal"
-                    id="contribute-button">Contribute ⚡
+            <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#contribute-modal" id="contribute-button">
+                Contribute ⚡
             </button>
-            <button disabled class="paybutton download">
+            <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#decrypt-modal">
                 Decrypt Record 🔓
             </button>
         </div>
@@ -104,8 +104,7 @@
                 <h2>What is this?</h2>
                 <p>
                     This is a new kind of music release. It's a way to fund the creation of a record, and to distribute
-                    it
-                    in a way that is fair to the artist and the audience. It's a way to make sure that the record is
+                    it in a way that is fair to the artist and the audience. It's a way to make sure that the record is
                     available to everyone, and that the artist is compensated for their work.
                 </p>
 
@@ -168,7 +167,7 @@
         </div>
 
         <!-- Contribute Modal -->
-        <div class="modal fade" id="contribute-modal" tabindex="-1" role="dialog" aria-labelledby="download-modal"
+        <div class="modal fade" id="contribute-modal" tabindex="-1" role="dialog" aria-labelledby="contribute-modal"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -205,7 +204,36 @@
                 </div>
             </div>
         </div>
-    </div>
+
+        <!-- Decrypt Modal -->
+        <div class="modal fade" id="decrypt-modal" tabindex="-1" role="dialog" aria-labelledby="decrypt-modal"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="decryptModalLabel">Listen to Vowel Sounds, Decrypted.</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Once the album is funded, the decryption key will be available here.</p>
+                        <span id="condition-status">Awaiting Funding</span>
+                    </div>
+                    <div class="modal-footer">
+                        <label>If you have an encrypted song, upload it here<input type="file"></label>
+
+                        <button type="button" class="btn btn-primary button-link" data-href="https://www.google.com">
+                            Decrypt
+                        </button>
+
+                        <audio controls>
+                            <source src="audio/Matterhorn.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </main>
 
