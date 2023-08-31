@@ -507,7 +507,17 @@ async function updateContributorsTable() {
         if (ensName == undefined) {
             ensName = thisLeader[1];
         }
-        addressSlot.innerHTML = ensName;
+
+        const etherscanBaseUrl = "https://etherscan.io/address/";
+
+        // const linkElement = document.createElement("a");
+        // linkElement.href = etherscanBaseUrl + ethereumAddress;
+        // linkElement.target = "_blank"; // Open in a new tab/window
+        // linkElement.textContent = "Click here to view on Etherscan";
+
+        // document.body.appendChild(linkElement);
+
+        addressSlot.innerHTML = " <a href='" + etherscanBaseUrl + thisLeader[1] + "' target='_blank'>" + ensName + "</a>";
     }
     ;
 
