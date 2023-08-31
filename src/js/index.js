@@ -411,7 +411,7 @@ function getContributionsByAddress(contributionsMetadata) {
         }
 
         const is_combined = combined[i]
-        const amount = amounts[i]
+        const amount = Number(amounts[i])
         const contributionMoment = datetimes[i]
 
         if (is_combined) {
