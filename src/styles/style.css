@@ -171,14 +171,14 @@ nav span a img {
 
 #album-art #justins-name {
 	position: absolute;
-	margin-top: -286px;
-	font-size: 13px;
+	margin-top: -291px;
+	font-size: 19px;
 	margin-left: 5px;
-	font-family: "Bungee Shade", monospace;
+	font-family: larissa;
 	font-weight: bold;
 	color: rgb(0, 0, 0);
 	text-align: center;
-	letter-spacing: 10.5px;
+	letter-spacing: 4.5px;
 	background-color: rgba(206, 206, 206, 0.54);
 	padding-left: 4px;
 	width: 390px;
@@ -190,7 +190,7 @@ nav span a img {
 	font-family: "Bungee Shade", monospace;
 	font-weight: bold;
 	font-size: 29px;
-	margin-top: -329px;
+	margin-top: -333px;
 	margin-left: 5px;
 	letter-spacing: -1px;
 	background-color: rgba(206, 206, 206, 0.86);
