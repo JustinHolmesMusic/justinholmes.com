@@ -476,7 +476,7 @@ async function updateContributorsTable() {
 
     // array, sorted by contribution amount, of arrays of [amount, address]
     let leaders = getTopContributions(contributionsByAddress)
-    const leaderRows = getLeaderboardTableBody().getElementsByTagName('tr');
+    const leaderRows = getLeaderboardTableBody().getElementsByClassName("leaderboard-row");
 
     // Loop through the contributors and append a row for each
     for (let i = 0; i < leaderRows.length; i++) {
