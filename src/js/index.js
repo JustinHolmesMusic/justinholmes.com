@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
+import {Toast} from 'bootstrap';
 import 'popper.js';
 import 'tippy.js'
 import 'tippy.js/dist/tippy.css'
@@ -8,7 +9,7 @@ import 'spotlight.js';
 
 import contractABI from './contributionABI.js'
 import '../styles/style.css';
-import {configureChains, createConfig, fetchBalance, fetchEnsName, readContract, writeContract} from '@wagmi/core'
+import {configureChains, createConfig, fetchBalance, fetchEnsName, readContract, waitForTransaction, writeContract} from '@wagmi/core'
 import {EthereumClient, w3mConnectors} from '@web3modal/ethereum'
 import {Web3Modal} from '@web3modal/html'
 import {goerli, mainnet} from '@wagmi/core/chains'
@@ -359,6 +360,26 @@ async function contribute() {
         value: parseEther(userAmount),
         chainId: chainId,
     });
+
+    // show bootstrap toast "Waiting for transaction to be accepted"
+    let toast = document.getElementById('pending-transaction-toast');
+    let bsToast = new Toast(toast);
+    bsToast.show();
+
+    await waitForTransaction({hash, chainId});
+
+    // hide toast
+    bsToast.hide();
+
+    let toastConfirmed = document.getElementById('transaction-confirmed-toast');
+    let bsToastConfirmed = new Toast(toastConfirmed);
+    bsToastConfirmed.show();
+
+    // Update the funding threshold display
+    updateContributorsTable();
+    updateFundingThreshold();
+
+    return hash;
 }
 
 var x = setInterval(function () {
