@@ -398,7 +398,7 @@ function getContributionsByAddress(contributionsMetadata) {
                 // This ought to be an impossible situaiton - how did they dcombine with a bid that didn't exist?
                 contributionsByAddress[address].push(0)
             }
-            contributionsByAddress[address][0] += amount
+            contributionsByAddress[address][0] += Number(amount)
         } else {
             contributionsByAddress[address].push(amount)
         }
