@@ -26,6 +26,7 @@ import {infuraProvider} from 'wagmi/providers/infura'
 import {formatEther, parseEther} from "viem";
 import tippy from 'tippy.js';
 import fernet from 'fernet/fernetBrowser.js';
+import { alchemyProvider } from '@wagmi/core/providers/alchemy'
 // import { Secret } from 'fernet';
 
 require.context('../images', false, /\.(png|jpe?g|gif|svg|avif)$/);
@@ -36,21 +37,19 @@ require.context('../audio', false, /\.(mp3|flac)$/);
 // Equivalent to importing from @wagmi/core/providers
 const chains = [mainnet, goerli]
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
-const minContributionAmount = 0.001;
-const outbidAmountEpsilon = 0.0001;
-const chainId = 5;
+const minContributionAmount = 0.1;
+const outbidAmountEpsilon = 0.01;
+const chainId = 1;
 
 // Final test contract deployed on Goerli with initialWindow feature
-const contractAddress = '0x96ebdf35199219BDd16E3c3E1aD8C89C9185b734';
+const contractAddress = '0xa812137EFf2B368d0B2880A39B609fB60c426850';
 
 
 /////////////
 // Web3Modal Things
 /////////////
 
-const {publicClient} = configureChains(chains, [
-    // w3mProvider({projectId}),
-    infuraProvider({apiKey: '017e58bbcef2470ebe2233c0cccf110d'})])
+const {publicClient} = configureChains(chains, [alchemyProvider({ apiKey: 'fEzVwWJ9CcYxbNyyUvEF5Lp9g94nYXM8' })])
 
 const wagmiConfig = createConfig({
     autoConnect: true,
@@ -563,7 +562,7 @@ async function useSecretToDecryptMaterial() {
         chainId: chainId,
     });
 
-    if (keyPlaintextBytes === undefined) {
+    if (keyPlaintextBytes === "0x") {
         console.log("key not revealed yet.");
         return;
     }
