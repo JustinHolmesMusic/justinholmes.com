@@ -203,7 +203,7 @@ nav span a img {
 .booklet > p {
 	background: #000000b2;
 	height: 400px;
-	width: 400px;
+	width: 350px;
 	text-align: left;
 	color: #eaeff1;
 	font-family: monospace;
@@ -334,7 +334,7 @@ main {
 
 
 #contract-status {
-	padding: 2em;
+	padding: 0em;
 	font-family: "Bungee Shade", monospace;
 	font-weight: bold;
 	display: flex;
@@ -382,7 +382,7 @@ main {
 	text-align: center;
 	font-family: monospace;
 	color: #e4e4e4;
-	margin-top: 2em;
+	margin-top: 0em;
 	font-size: 19px;
 	display: flex;
 	flex-direction: column;
@@ -398,6 +398,8 @@ main {
 	color: #d9d8d8;
 	font-weight: bold;
 	margin-bottom: 1em;
+    margin-top: -55px;
+    padding: 0em 15%;
 }
 
 #how-does-this-work > p {
@@ -500,7 +502,7 @@ article {
 }
 
 article h1 {
-    margin: 2em;
+    margin: 1em;
 }
 
 header {
@@ -561,7 +563,8 @@ td > a {
 }
 
 .leaderboard-row {
-  border-bottom: 1px solid #32383e;
+    border-bottom: 1px solid #32383e;
+    margin: 1em;
 }
 
 #art-label {
@@ -619,7 +622,7 @@ p {
 }
 
 #the-big-questions {
-	margin-bottom: 0 !important;
+	margin-bottom: -3 !important;
 	width: 100%;
 }
 
