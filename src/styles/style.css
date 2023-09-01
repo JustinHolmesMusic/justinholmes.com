@@ -1133,7 +1133,22 @@ footer img {
 .accordion {
 	width: 80%;
 	margin: auto;
-	max-width: 150em;
+	max-width: 65em;
+}
+
+.accordion-item {
+	color: rgb(166, 199, 213);
+	background-color: #0000005c;
+	border-bottom: 1px solid #252526;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+}
+
+.accordion-button {
+    background-color: #0000005c;
+    color: white;
+    border: 0;
 }
 
 input:focus,
