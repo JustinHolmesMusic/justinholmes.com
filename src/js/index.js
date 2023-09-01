@@ -6,16 +6,27 @@ import 'tippy.js'
 import 'tippy.js/dist/tippy.css'
 import $ from 'jquery';
 import 'spotlight.js';
+import {encode, decode} from "@msgpack/msgpack";
 
 import contractABI from './contributionABI.js'
 import '../styles/style.css';
-import {configureChains, createConfig, fetchBalance, fetchEnsName, readContract, waitForTransaction, writeContract} from '@wagmi/core'
+import {
+    configureChains,
+    createConfig,
+    fetchBalance,
+    fetchEnsName,
+    readContract,
+    waitForTransaction,
+    writeContract
+} from '@wagmi/core'
 import {EthereumClient, w3mConnectors} from '@web3modal/ethereum'
 import {Web3Modal} from '@web3modal/html'
 import {goerli, mainnet} from '@wagmi/core/chains'
 import {infuraProvider} from 'wagmi/providers/infura'
 import {formatEther, parseEther} from "viem";
 import tippy from 'tippy.js';
+import fernet from 'fernet/fernetBrowser.js';
+// import { Secret } from 'fernet';
 
 require.context('../images', false, /\.(png|jpe?g|gif|svg)$/);
 require.context('../images/thumbnails', false, /\.(png|jpe?g|gif|svg)$/);
@@ -79,6 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
     setMinContributionAmount();
     fetchCountdownContractData();
     updateCountdownDisplay();
+    // Set the onclick of the button with ID 'decrypt' to call readFilesToDecrypt
+    document.getElementById('decrypt').onclick = readFilesToDecrypt;
+
 });
 
 let currentBookletPage = 1;
@@ -213,6 +227,48 @@ function updateCountdownDisplay() {
 }
 
 
+async function readFilesToDecrypt() {
+// Read files from the DOM element with ID formFileMultiple
+    const files = document.getElementById('formFileMultiple').files;
+
+    if (files.length === 0) {
+        showError("No files selected");
+        return;
+    }
+    // use decode on the files
+    const decodedFiles = [];
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+
+        reader.onerror = (error) => {
+            console.log(new Error("File reading failed: " + error));
+        };
+
+        reader.onload = async (event) => {
+            const decoded = decode(event.target.result);
+
+            console.log(decoded);
+
+            // decoded is json; lookup 'bulk_ciphertext' and pass it to fernet
+            const ciphertext = decoded['bulk_ciphertext'];
+            const ciphertextString = uInt8ArrayToString(ciphertext);
+
+            const decrypted = window.token.decode(ciphertextString);
+
+            // Write that to a file and let the user download it
+            const blob = new Blob([decrypted], {type: 'image/jpeg'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+        }
+        // now read the file
+        await reader.readAsArrayBuffer(file);
+    }
+
+
+}
+
+
 setInterval(fetchCountdownContractData, 20000);
 let countdownInterval = setInterval(updateCountdownDisplay, 1000);
 
@@ -246,11 +302,9 @@ function amountOfEthToGetIntoTopN(contributionsByAddress, userAddress, combine, 
     let nthContributionAmount = topContributions[n - 1][0];
     nthContributionAmount = Number(formatEther(nthContributionAmount));
 
-
     if (!combine) {
         return nthContributionAmount + outbidAmountEpsilon;
     }
-
 
     // If the user hasn't contributed yet
     if (contributionsByAddress[userAddress] == undefined) {
@@ -467,6 +521,46 @@ function getLeaderboardTableBody() {
 }
 
 
+//////// So unnecessarily boilerplatehy
+function hexToBytes(hex) {
+    // Ensure the hex string length is even
+    if (hex.length % 2 !== 0) {
+        console.error('Invalid hex string length.');
+        return;
+    }
+
+    let bytes = new Uint8Array(hex.length / 2);
+    for (let i = 0; i < hex.length; i += 2) {
+        bytes[i / 2] = parseInt(hex.substring(i, i + 2), 16);
+    }
+    return bytes;
+}
+
+function uInt8ArrayToString(array) {
+    const decoder = new TextDecoder();
+    return decoder.decode(array);
+}
+
+
+async function useSecretToDecryptMaterial() {
+
+    let keyPlaintextBytes = await readContract({
+        address: contractAddress,
+        abi: contractABI,
+        functionName: 'keyPlaintext',
+        chainId: chainId,
+    });
+    console.log(keyPlaintextBytes);
+
+    // Slice keyPlaintextBytes to remove the leading 0x
+    let keyPlaintextBytesSliced = keyPlaintextBytes.slice(2);
+    const bytesOfKeyPlaintext = hexToBytes(keyPlaintextBytesSliced);
+    const base64StringOfKeyPlaintext = uInt8ArrayToString(bytesOfKeyPlaintext);
+    const openSecret = new fernet.Secret(base64StringOfKeyPlaintext);
+    window.token = new fernet.Token({secret: openSecret, ttl: 0})
+    console.log(base64StringOfKeyPlaintext);
+}
+
 async function updateContributorsTable() {
 
     const contributionsMetadata = await readContract({
@@ -482,6 +576,8 @@ async function updateContributorsTable() {
     // We avoid making another call to the contract when the user clicks one of those buttons, saving 400ms and making the UI more responsive.
     document.getElementById("ten-preset").onclick = () => setTenPreset(contributionsByAddress);
     document.getElementById("leader-preset").onclick = () => setLeaderPreset(contributionsByAddress);
+    document.getElementById("bigPublishButton").onclick = () => useSecretToDecryptMaterial();
+
 
     // array, sorted by contribution amount, of arrays of [amount, address]
     let leaders = getTopContributions(contributionsByAddress)
