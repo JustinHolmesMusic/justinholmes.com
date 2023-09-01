@@ -28,7 +28,10 @@
         <w3m-core-button></w3m-core-button>
     </div>
 </header>
-<h3 id="dateAnnouncement">~Coming Today, after some merges and stuff.~</h3>
+
+<!--<h3 id="dateAnnouncement">
+YOUR ANNOUNCEMENT BANNER TEXT HERE
+</h3>-->
 
 <main>
     <div id="left-side">
@@ -71,8 +74,9 @@
                     at blockchain events around the world.
                     <br><br>
                     The album will be released on the Ethereum blockchain using <a
-                        href="https://github.com/JustinHolmesMusic/Revealer">Revealer,</a>
+                        href="https://github.com/JustinHolmesMusic/Revealer">Revealer</a>,
                     a tool made by Holmes and other bluegrass musicians and fans to release music using <a
+                        id="threshold-network-link"
                         href="https://docs.threshold.network/">
                     <img class="logo-in-paragraph" src="images/threshold-logo-circle-purple.avif">Threshold
                     Network.</a>
@@ -149,17 +153,20 @@
 
                 <div class="art">
                     <div id="aeiou">
-                        <a class="spotlight" href="images/IMG_9611.jpg" title="Justin at Stargel Studios. Photograph by R.J. Partington III.">
+                        <a class="spotlight" href="images/IMG_9611.jpg"
+                           title="Justin at Stargel Studios. Photograph by R.J. Partington III.">
                             <img src="images/thumbnails/IMG_9611.jpg"/>
                         </a>
                         <img alt="a-letter" id="a-letter-img" src="images/a.jpg">
 
-                        <a class="spotlight" href="images/IMG_0487.jpg" title="Justin Holmes, Jakub Vysoky, Cory Walker, Christian Ward, and Jake Stargel take the stage at EthDenver. Photograph by R.J. Partington III.">
+                        <a class="spotlight" href="images/IMG_0487.jpg"
+                           title="Justin Holmes, Jakub Vysoky, Cory Walker, Christian Ward, and Jake Stargel take the stage at EthDenver. Photograph by R.J. Partington III.">
                             <img src="images/thumbnails/IMG_0487.jpg"/>
                         </a>
 
                         <img alt="i-letter" src="images/i.jpg"/>
-                        <a class="spotlight" href="images/IMG_0433.jpg" title="Running a few last minute, backstage at EthDenver. Photograph by R.J. Partington III.">
+                        <a class="spotlight" href="images/IMG_0433.jpg"
+                           title="Running a few last minute, backstage at EthDenver. Photograph by R.J. Partington III.">
                             <img src="images/thumbnails/IMG_0433.jpg"/>
                         </a>
                     </div>
@@ -194,19 +201,12 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary button-link" ,
-                                data-href="test-art/vowel-sounds-cover-art-800.png.encrypted">
-                            Download from here (centralized)
-                        </button>
-                        <button type="button" class="btn btn-primary button-link" , data-href="https://ipfs.tech/">
+                        <button type="button" class="btn btn-primary button-link" data-href="https://pin.ski/47RwXWJ">
                             IPFS
                         </button>
-                        <button type="button" class="btn btn-primary button-link" data-href="https://www.arweave.org/">
-                            Arweave
-                        </button>
-                        <button type="button" class="btn btn-primary button-link"
-                                data-href="https://www.bittorrent.com/">Bittorrent
-                        </button>
+                        <!-- <button type="button" class="btn btn-primary button-link"-->
+                        <!--         data-href="https://www.bittorrent.com/">Bittorrent-->
+                        <!-- </button>-->
                     </div>
                 </div>
             </div>
@@ -311,7 +311,7 @@
             <th scope="col">Address</th>
         </tr>
         </thead>
-        <body>
+        <tbody>
         <tr class="leaderboard-row">
             <th scope="row">1</th>
             <td><a class="spotlight" href="images/aaa.png" title="Art by Sophie Clark.">
@@ -382,519 +382,760 @@
             </a>
             <td>-</td>
             <td>-</td>
-        </body>
+        </tbody>
     </table>
 </article>
 
-<br/>
-
-<div class="container text-center">
-    <div class="row">
-        <div class="col">
-            <a class="spotlight" href="images/IMG_9731.jpg" title="Luna Lavender at Stargel Studios. Photograph by R.J. Partington III.">
+<div id="track-list">
+    <div class="reel">
+        <div>
+            <a class="spotlight" href="images/IMG_9731.jpg"
+               title="Luna Lavender at Stargel Studios. Photograph by R.J. Partington III.">
                 <img src="images/thumbnails/IMG_9731.jpg" alt="Luna Lavender at Stargel Studios."/>
             </a>
         </div>
-        <div class="col">
-            <a class="spotlight" href="images/IMG_0515.jpg" title="The experienced musicians knew what the lighting was going to be like in their faces. Justin did not. Photograph by R.J. Partington III.">
-                <img src="images/thumbnails/IMG_0515.jpg" alt="Justin and the boys on stage at EthDenver"/>
+        <div>
+            <a class="spotlight" href="images/IMG_0515.jpg"
+               title="The experienced musicians knew what the lighting was going to be like in their faces. Justin did not. Photograph by R.J. Partington III.">
+                <img src="images/thumbnails/IMG_0515.jpg" alt="Thumbnail for IMG_9789.jp"/>
             </a>
         </div>
-        <div class="col">
-            <a class="spotlight" href="images/IMG_9789.jpg" title="Justin Holmes and Jake Stargel looking over a take at the Stargel Studios console. Photograph by R.J. Partington III.">
-                <img src="images/thumbnails/IMG_9789.jpg" alt="Justin Holmes and Jake Stargel looking over a take at the Stargel Studios console."/>
+        <div>
+            <a class="spotlight" href="images/IMG_9789.jpg"
+               title="Justin Holmes and Jake Stargel looking over a take at the Stargel Studios console. Photograph by R.J. Partington III.">
+                <img src="images/thumbnails/IMG_9789.jpg"
+                     alt="Justin Holmes and Jake Stargel looking over a take at the Stargel Studios console."/>
             </a>
         </div>
     </div>
-</div>
+    <div class="accordion" id="trackListAccordion">
+        <h1 class="center">Track List</h1>
 
-<br/>
+        <!-- Lost -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTen">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTen"
+                        aria-expanded="true" aria-controls="collapseTen">
+                    1 - Lost
+                </button>
+            </h2>
+        </div>
 
-<h1 class="center">Track List</h1>
-
-<br/>
-
-<div class="accordion" id="trackListAccordion">
-
-    <!-- Lost -->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTen">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseTen"
-                    aria-expanded="true" aria-controls="collapseTen">
-                1 - Lost
-            </button>
-        </h2>
-    </div>
-
-    <!-- Hell or High Water (A Policeman and a Fortune Teller) -->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingFour">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFour"
-                    aria-expanded="true" aria-controls="collapseFour">
-                2 - Hell or High Water (A Policeman and a Fortune Teller) (5:28)
-            </button>
-        </h2>
-        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-             data-bs-parent="#trackListAccordion">
-            <div class="accordion-body">
-                Music and <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseHoHW"
-                             role="button"
-                             aria-expanded="false" aria-controls="collapseHoHW">
-                lyrics
-            </a> by Justin Holmes.
-                <div class="collapse" id="collapseHoHW">
-                    <div class="card card-body">
-                        A policeman and a fortune teller
-                        <br/>
-                        both left their posts at `or(hell, high_water)`
-                        <br/>
-                        cuz neither of them were who they'd set out to be
-                        <br/>
-                        <hr/>
-                        You can lie about the mail; you can lie about the money
-                        <br/>
-                        but a little bit of math will always find the funny business
-                        <br/>
-                        trust comes from the earth like the banyan tree
-                        <hr/>
-                        Hold on and be brave
-                        <br/>
-                        I know you see that comin' wave
-                        <hr/>
-                        The water is dear if we want to live
-                        <br/>
-                        and the fire in our hearts is ours to give
-                        <br/>
-                        the earth makes nodes out of some of its stone
-                        <br/>
-                        and they carry good news through the air back home
-                        <hr/>
-                        I push-to-talk with my right ring finger
-                        <br/>
-                        and fly back home with my left wing lingering
-                        <br/>
-                        never knowing who will walk through my front door
-                        <hr/>
-                        With a cup and a string, I can say anything
-                        <br/>
-                        to a shadowban trap like a mouse with a spring
-                        <br/>
-                        and that's how we arrive at our credit score
-                        <hr/>
-                        Hold on and be brave
-                        <br/>
-                        I know you see that comin' wave
-                        <hr/>
-                        The water is dear if we want to live
-                        <br/>
-                        and the fire in our hearts is ours to give
-                        <br/>
-                        the earth makes nodes out of some of its stone
-                        <br/>
-                        and they carry good news through the air back home
-                        <hr/>
-                        A policeman and a fortune teller
-                        <br/>
-                        both left their posts at `or(hell, high_water)`
-                        <br/>
-                        cuz neither of them were who they'd set out to be
-                        <br/>
-                        <hr/>
-                        You can lie about the mail; you can lie about the money
-                        <br/>
-                        but a little bit of math will always find the funny business
-                        <br/>
-                        trust comes from the earth like the banyan tree
+        <!-- Hell or High Water (A Policeman and a Fortune Teller) -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFour"
+                        aria-expanded="true" aria-controls="collapseFour">
+                    2 - Hell or High Water (A Policeman and a Fortune Teller) (5:28)
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                 data-bs-parent="#trackListAccordion">
+                <div class="accordion-body">
+                    Music and <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseHoHW"
+                                 role="button"
+                                 aria-expanded="false" aria-controls="collapseHoHW">
+                    lyrics
+                </a> by Justin Holmes.
+                    <div class="collapse" id="collapseHoHW">
+                        <div class="card card-body">
+                            A policeman and a fortune teller
+                            <br/>
+                            both left their posts at `or(hell, high_water)`
+                            <br/>
+                            cuz neither of them were who they'd set out to be
+                            <br/>
+                            <hr/>
+                            You can lie about the mail; you can lie about the money
+                            <br/>
+                            but a little bit of math will always find the funny business
+                            <br/>
+                            trust comes from the earth like the banyan tree
+                            <hr/>
+                            Hold on and be brave
+                            <br/>
+                            I know you see that comin' wave
+                            <hr/>
+                            The water is dear if we want to live
+                            <br/>
+                            and the fire in our hearts is ours to give
+                            <br/>
+                            the earth makes nodes out of some of its stone
+                            <br/>
+                            and they carry good news through the air back home
+                            <hr/>
+                            I push-to-talk with my right ring finger
+                            <br/>
+                            and fly back home with my left wing lingering
+                            <br/>
+                            never knowing who will walk through my front door
+                            <hr/>
+                            With a cup and a string, I can say anything
+                            <br/>
+                            to a shadowban trap like a mouse with a spring
+                            <br/>
+                            and that's how we arrive at our credit score
+                            <hr/>
+                            Hold on and be brave
+                            <br/>
+                            I know you see that comin' wave
+                            <hr/>
+                            The water is dear if we want to live
+                            <br/>
+                            and the fire in our hearts is ours to give
+                            <br/>
+                            the earth makes nodes out of some of its stone
+                            <br/>
+                            and they carry good news through the air back home
+                            <hr/>
+                            A policeman and a fortune teller
+                            <br/>
+                            both left their posts at `or(hell, high_water)`
+                            <br/>
+                            cuz neither of them were who they'd set out to be
+                            <br/>
+                            <hr/>
+                            You can lie about the mail; you can lie about the money
+                            <br/>
+                            but a little bit of math will always find the funny business
+                            <br/>
+                            trust comes from the earth like the banyan tree
+                        </div>
                     </div>
+
+
                 </div>
-
-
             </div>
         </div>
-    </div>
 
-    <!-- Cork Board -->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingFive">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFive"
-                    aria-expanded="true" aria-controls="collapseFive">
-                3 - Cork Board (5:26)
-            </button>
-        </h2>
-        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-             data-bs-parent="#trackListAccordion">
-            <div class="accordion-body">
-                Music by Justin Holmes.
-                <hr/>
-                Featuring a wooden double flute made by an indigenous artisan in Rapid City, in the Black Hills.
-                <hr/>
-                May this piece serve as a reminder that our indigenous neighbors are not a historical aside, but a
-                living modern people with insights and practices which are vital to the future of humanity.
+        <!-- Cork Board -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive"
+                        aria-expanded="true" aria-controls="collapseFive">
+                    3 - Cork Board (5:26)
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                 data-bs-parent="#trackListAccordion">
+                <div class="accordion-body">
+                    Music by Justin Holmes.
+                    <hr/>
+                    Featuring a wooden double flute made by an indigenous artisan in Rapid City, in the Black Hills.
+                    <hr/>
+                    May this piece serve as a reminder that our indigenous neighbors are not a historical aside, but a
+                    living modern people with insights and practices which are vital to the future of humanity.
+                </div>
             </div>
         </div>
-    </div>
 
-    <!--    Power Underneath-->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                4 - Power Underneath (2:59)
-            </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-             data-bs-parent="#trackListAccordion">
-            <div class="accordion-body">
-                Music and <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapsePowerUnderneath"
-                             role="button"
-                             aria-expanded="false" aria-controls="collapsePowerUnderneath">
-                lyrics
-            </a> by Justin Holmes.
-                <div class="collapse" id="collapsePowerUnderneath">
-                    <div class="card card-body">
-                        The sands had to move; there was power underneath.
-                        <br/>
-                        The sugar and the flour took away our teeth.
-                        <br/>
-                        The bag was watered down because the ATM was leaking.
-                        <br/>
-                        There's never enough oil when every wheel is squeaking.
-                        <br/>
-                        <hr/>
-                        And the missiles propagate the database's state;
-                        <br/>
-                        the empire rolls on by keeping spreadsheets up to date
-                        <br/>
-                        and the planet pays the fiat interest rate.
-                        <br/>
-                        <hr/>
-                        Accordions are useful when you're hunting in the fields.
-                        <br/>
-                        Announce your presence loudly and save your swords and shields.
-                        <br/>
-                        Wake up with a memory of a story you were told,
-                        <br/>
-                        and watch the plot and storyline auspiciously unfold.
-                        <br/>
-                        <hr/>
-                        And the missiles propagate the database's state;
-                        <br/>
-                        the empire rolls on by keeping spreadsheets up to date
-                        <br/>
-                        and the planet pays the fiat interest rate.
-                        <br/>
-                        <hr/>
-                        We did not ask the governor to help us find a block,
-                        <br/>
-                        but he blamed us for his hastening of battleships and clocks.
-                        <br/>
-                        The next time that you hear that your node is pouring smoke,
-                        <br/>
-                        find the banker's dagger in the royal assassin's cloak.
-                        <br/>
-                        <hr/>
-                        And the missiles propagate the database's state;
-                        <br/>
-                        the empire rolls on by keeping spreadsheets up to date
-                        <br/>
-                        and the planet pays the fiat interest rate.
-                        <br/>
-                        <hr/>
-                        The sands will have to move; there is power underneath.
-                        <br/>
-                        The path already trodden is all we can bequeath.
+        <!--    Power Underneath-->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    4 - Power Underneath (2:59)
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                 data-bs-parent="#trackListAccordion">
+                <div class="accordion-body">
+                    Music and <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapsePowerUnderneath"
+                                 role="button"
+                                 aria-expanded="false" aria-controls="collapsePowerUnderneath">
+                    lyrics
+                </a> by Justin Holmes.
+                    <div class="collapse" id="collapsePowerUnderneath">
+                        <div class="card card-body">
+                            The sands had to move; there was power underneath.
+                            <br/>
+                            The sugar and the flour took away our teeth.
+                            <br/>
+                            The bag was watered down because the ATM was leaking.
+                            <br/>
+                            There's never enough oil when every wheel is squeaking.
+                            <br/>
+                            <hr/>
+                            And the missiles propagate the database's state;
+                            <br/>
+                            the empire rolls on by keeping spreadsheets up to date
+                            <br/>
+                            and the planet pays the fiat interest rate.
+                            <br/>
+                            <hr/>
+                            Accordions are useful when you're hunting in the fields.
+                            <br/>
+                            Announce your presence loudly and save your swords and shields.
+                            <br/>
+                            Wake up with a memory of a story you were told,
+                            <br/>
+                            and watch the plot and storyline auspiciously unfold.
+                            <br/>
+                            <hr/>
+                            And the missiles propagate the database's state;
+                            <br/>
+                            the empire rolls on by keeping spreadsheets up to date
+                            <br/>
+                            and the planet pays the fiat interest rate.
+                            <br/>
+                            <hr/>
+                            We did not ask the governor to help us find a block,
+                            <br/>
+                            but he blamed us for his hastening of battleships and clocks.
+                            <br/>
+                            The next time that you hear that your node is pouring smoke,
+                            <br/>
+                            find the banker's dagger in the royal assassin's cloak.
+                            <br/>
+                            <hr/>
+                            And the missiles propagate the database's state;
+                            <br/>
+                            the empire rolls on by keeping spreadsheets up to date
+                            <br/>
+                            and the planet pays the fiat interest rate.
+                            <br/>
+                            <hr/>
+                            The sands will have to move; there is power underneath.
+                            <br/>
+                            The path already trodden is all we can bequeath.
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- return(Place) -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSeven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSeven"
+                        aria-expanded="true" aria-controls="collapseSeven">
+                    5 - return(Place) (4:17)
+                </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                 data-bs-parent="#trackListAccordion">
+                <div class="accordion-body">
+                    Based on "The Place I'll Return to, Someday" from Final Fantasy IX, by Nobuo Uematsu.
+                </div>
+            </div>
+        </div>
+
+        <!--    Vowel Sounds (track)-->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree"
+                        aria-expanded="true" aria-controls="collapseThree">
+                    6 - Vowel Sounds (11:17)
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                 data-bs-parent="#trackListAccordion">
+                <div class="accordion-body">
+                    Music and commentary by Justin Holmes.
+                </div>
+            </div>
+        </div>
+
+        <!-- gm☕-->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSix"
+                        aria-expanded="true" aria-controls="collapseSix">
+                    7 - gm☕ (2:47)
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                 data-bs-parent="#trackListAccordion">
+                <div class="accordion-body">
+                    Music and lyrics by Justin Holmes.
+                    <br/>
+                    A morning song sung to Fibonacci since he was a week old.
+                    <br/>
+                    Featuring Fibonacci Emery Holmes in his vocal debut.
+                </div>
+            </div>
+        </div>
+
+        <!-- The Morning of the Bank Run -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingNine">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseNine"
+                        aria-expanded="true" aria-controls="collapseNine">
+                    8 - The Morning of the Bank Run (6:19)
+                </button>
+            </h2>
+            <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
+                 data-bs-parent="#trackListAccordion">
+                <div class="accordion-body">
+                    Music and lyrics by Justin Holmes.
+                </div>
+            </div>
+        </div>
+
+        <!-- Rollups and Rearview Mirrors -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseEight"
+                        aria-expanded="true" aria-controls="collapseEight">
+                    9 - Rollups and Rearview Mirrors (3:19)
+                </button>
+            </h2>
+            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                 data-bs-parent="#trackListAccordion">
+                <div class="accordion-body">
+                    Music and lyrics by Justin Holmes.
+                </div>
+            </div>
+        </div>
+
+        <!--    Barlow's Jig-->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+                    10 - Barlow's Jig (4:38)
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                 data-bs-parent="#trackListAccordion">
+                <div class="accordion-body">
+                    Music by Justin Holmes.
+                    <br/><br/>
+                    Excerpts from "A Declaration of the Independence of Cyberspace", by John Perry Barlow, read by Luna
+                    Lavender
+                    <br/><br/>
+                    Inspired by an improvisation with the wonderful Hudson Valley flute-and-comedy technician Marty
+                    Reisinger in New Paltz, NY. Reisinger was offered writing credit and declined.
+                </div>
+            </div>
+        </div>
+
     </div>
 
-
-    <!-- return(Place) -->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingSeven">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseSeven"
-                    aria-expanded="true" aria-controls="collapseSeven">
-                5 - return(Place) (4:17)
-            </button>
-        </h2>
-        <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
-             data-bs-parent="#trackListAccordion">
-            <div class="accordion-body">
-                Based on "The Place I'll Return to, Someday" from Final Fantasy IX, by Nobuo Uematsu.
+    <!-- Image Reel -->
+    <div class="container text-center">
+        <div class="reel">
+            <div>
+                <a class="spotlight" href="images/IMG_0484.jpg"
+                   title="Justin and the boys on-stage at EthDenver. Photograph by R.j. Partington III.">
+                    <img src="images/thumbnails/IMG_0484.jpg" alt="Justin and the boys on-stage at EthDenver."/>
+                </a>
+            </div>
+            <div>
+                <a class="spotlight" href="images/IMG_9777.jpg"
+                   title="Skyler Golden gets Justin's pedal boards dialed in for the recording session. Photograph by R.j. Partington III.">
+                    <img src="images/thumbnails/IMG_9777.jpg"
+                         alt="Skyler Golden gets Justin's pedal boards dialed in for the recording session."/>
+                </a>
+            </div>
+            <div>
+                <a class="spotlight" href="images/IMG_9565.jpg"
+                   title="Fibonacci looks over a take at the console. Photograph by R.j. Partington III.">
+                    <img src="images/thumbnails/IMG_9565.jpg" alt="Fibonacci looks over a take at the console."/>
+                </a>
             </div>
         </div>
     </div>
-
-
-    <!--    Vowel Sounds (track)-->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                6 - Vowel Sounds (11:17)
-            </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-             data-bs-parent="#trackListAccordion">
-            <div class="accordion-body">
-                Music and commentary by Justin Holmes.
-            </div>
-        </div>
-    </div>
-
-
-    <!-- gm☕-->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingSix">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseSix"
-                    aria-expanded="true" aria-controls="collapseSix">
-                7 - gm☕ (2:47)
-            </button>
-        </h2>
-        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-             data-bs-parent="#trackListAccordion">
-            <div class="accordion-body">
-                Music and lyrics by Justin Holmes.
-                <br/>
-                A morning song sung to Fibonacci since he was a week old.
-                <br/>
-                Featuring Fibonacci Emery Holmes in his vocal debut.
-            </div>
-        </div>
-    </div>
-
-    <!-- The Morning of the Bank Run -->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingNine">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseNine"
-                    aria-expanded="true" aria-controls="collapseNine">
-                8 - The Morning of the Bank Run (6:19)
-            </button>
-        </h2>
-        <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
-             data-bs-parent="#trackListAccordion">
-            <div class="accordion-body">
-                Music and lyrics by Justin Holmes.
-            </div>
-        </div>
-    </div>
-
-    <!-- Rollups and Rearview Mirrors -->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingEight">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseEight"
-                    aria-expanded="true" aria-controls="collapseEight">
-                9 - Rollups and Rearview Mirrors (3:19)
-            </button>
-        </h2>
-        <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
-             data-bs-parent="#trackListAccordion">
-            <div class="accordion-body">
-                Music and lyrics by Justin Holmes.
-            </div>
-        </div>
-    </div>
-
-
-    <!--    Barlow's Jig-->
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                10 - Barlow's Jig (4:38)
-            </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-             data-bs-parent="#trackListAccordion">
-            <div class="accordion-body">
-                Music by Justin Holmes.
-                <br/><br/>
-                Excerpts from "A Declaration of the Independence of Cyberspace", by John Perry Barlow, read by Luna
-                Lavender
-                <br/><br/>
-                Inspired by an improvisation with the wonderful Hudson Valley flute-and-comedy technician Marty
-                Reisinger in New Paltz, NY. Reisinger was offered writing credit and declined.
-            </div>
-        </div>
-    </div>
-
-
 </div>
 
-<br/>
 
-<div class="container text-center">
-    <div class="row">
-        <div class="col">
-            <a class="spotlight" href="images/IMG_0484.jpg" title="Justin and the boys on-stage at EthDenver. Photograph by R.j. Partington III.">
-                <img src="images/thumbnails/IMG_0484.jpg" alt="Justin and the boys on-stage at EthDenver."/>
-            </a>
-        </div>
-        <div class="col">
-            <a class="spotlight" href="images/IMG_9777.jpg" title="Skyler Golden gets Justin's pedal boards dialed in for the recording session. Photograph by R.j. Partington III.">
-                <img src="images/thumbnails/IMG_9777.jpg" alt="Skyler Golden gets Justin's pedal boards dialed in for the recording session."/>
-            </a>
-        </div>
-        <div class="col">
-            <a class="spotlight" href="images/IMG_9565.jpg" title="Fibonacci looks over a take at the console. Photograph by R.j. Partington III.">
-                <img src="images/thumbnails/IMG_9565.jpg" alt="Fibonacci looks over a take at the console."/>
-            </a>
-        </div>
+<div id="FAQ">
+
+    <div id="faq-questions">
+        <h1>FAQ</h1>
+
+        <h3>What's the difference between a duck?</h3>
+        <p>
+            One leg is both the same.
+        </p>
+
+        <h3>What is Revealer exactly?</h3>
+        <p>
+
+            Revealer is a decentralized application that allows you to reveal a secret to the world via a
+            commit-and-reveal
+            scheme.
+
+            It is built on top of Threshold Network, and a few of the contributors to Revealer are also long-time
+            contributors
+            to Threshold.
+
+            At the cryptological layer, there's nothing about Revealer that is specific to the arts. However, when it
+            became
+            obvious
+            that conditionally revealing a committed-to secret was possible because of advances at Threshold, it seemed
+            that
+            Create Commons-licensed art was the first obvious use case.
+
+            It's fairly simple: using Threshold Access Control, a symmetric key is encrypted. A smart contract is
+            deployed
+            such that a boolean flag is flipped to true once a 'threshold' of contributions are made. The nodes on the
+            Threshold
+            Network watch for the flipping of this flag, and only then participate in their typical multi-party
+            computation
+            to reveal the symmetric key.
+
+            At that moment, whatever the artist has encrypted with that key (int his case, a bluegrass record) becomes
+            public.
+        </p>
+
+        <h3>What is an Artifact??</h3>
+        <p>
+            Revealer Artifacts are ERC-721 tokens that are minted after contributions are closed, and awarded to
+            everyone
+            who contributed. They are serialized starting from 0, with lower numbers going to higher contributors.
+
+            Everyone who contributes above the .1eth minimum will receive an Artifact, sent to the address from which
+            they
+            contributed.
+
+            The top 11 contributors will have their Artifact bound to one of the paintings by Nashville artist Sophie
+            Clark.
+
+            Part of the medium-term vision of Threshold Network is to use NFTs to unlock access to content, and these
+            Artifacts
+            are intended to be used for that purpose.
+        </p>
+
+        <h3>Why is there a minimum contribution amount? Can I contribute less?</h3>
+        <p>
+            The primary reason to establish a minimum contribution amount is to prevent spamming of small contributions
+            in order to farm Artifacts. The Artifacts are intended to be special, and part of the long-term ecosystem of
+            Justin's music.
+
+            However, if you want to contribute and don't care about getting an Artifact, you can simply send ETH
+            straight to
+            the
+            contract address.
+            This will count toward unlocking the record, but won't be recorded as an official contribution on the
+            leaderboard,
+            etc.
+        </p>
+
+
+        <h3>How long do I have to contribute?</h3>
+        <p>
+            Until 10eth are raised, or 14 days have elapsed - whichever happens last.
+
+            However, if, at any time, there are less than 24 hours remaining, any contribution will cause the clock
+            to be set to 24 hours from that moment.
+
+            The record will be released when contributions reach 10ETH, regardless of whether the 14 days have passed.
+
+            The 14-day window and 24-hour extension are parameterized - future Revealers can have different values.
+        </p>
+
     </div>
+
 </div>
-
-<br/>
-
-<aisde id="FAQ">
-
-    <p>
-    <h3>What's the difference between a duck?</h3>
-
-    One leg is both the same.
-    </p>
-
-    <p>
-    <h3>What is Revealer exactly?</h3>
-
-    Revealer is a decentralized application that allows you to reveal a secret to the world via a commit-and-reveal
-    scheme.
-
-    It is built on top of Threshold Network, and a few of the contributors to Revealer are also long-time contributors
-    to Threshold.
-
-    At the cryptological layer, there's nothing about Revealer that is specific to the arts. However, when it became
-    obvious
-    that conditionally revealing a committed-to secret was possible because of advances at Threshold, it seemed that
-    Create Commons-licensed art was the first obvious use case.
-
-    It's fairly simple: using Threshold Access Control, a symmetric key is encrypted. A smart contract is deployed
-    such that a boolean flag is flipped to true once a 'threshold' of contributions are made. The nodes on the Threshold
-    Network watch for the flipping of this flag, and only then participate in their typical multi-party computation
-    to reveal the symmetric key.
-
-    At that moment, whatever the artist has encrypted with that key (int his case, a bluegrass record) becomes public.
-    </p>
-
-    <p>
-    <h3>What is an Artifact??</h3>
-
-    Revealer Artifacts are ERC-721 tokens that are minted after contributions are closed, and awarded to everyone
-    who contributed. They are serialized starting from 0, with lower numbers going to higher contributors.
-
-    Everyone who contributes above the .1eth minimum will receive an Artifact, sent to the address from which they
-    contributed.
-
-    The top 11 contributors will have their Artifact bound to one of the paintings by Nashville artist Sophie Clark.
-
-    Part of the medium-term vision of Threshold Network is to use NFTs to unlock access to content, and these Artifacts
-    are intended to be used for that purpose.
-
-    </p>
-
-    <p>
-    <h3>Why is there a minimum contribution amount? Can I contribute less?</h3>
-
-    The primary reason to establish a minimum contribution amount is to prevent spamming of small contributions
-    in order to farm Artifacts. The Artifacts are intended to be special, and part of the long-term ecosystem of
-    Justin's music.
-
-    However, if you want to contribute and don't care about getting an Artifact, you can simply send ETH straight to the
-    contract address.
-    This will count toward unlocking the record, but won't be recorded as an official contribution on the leaderboard,
-    etc.
-
-    </p>
-
-
-    <p>
-    <h3>How long do I have to contribute?</h3>
-    Until 10eth are raised, or 14 days have elapsed - whichever happens last.
-
-    However, if, at any time, there are less than 24 hours remaining, any contribution will cause the clock
-    to be set to 24 hours from that moment.
-
-    The record will be released when contributions reach 10ETH, regardless of whether the 14 days have passed.
-
-    The 14-day window and 24-hour extension are parameterized - future Revealers can have different values.
-
-    </p>
-
-
-</aisde>
 
 <aside id="ack">
     <h1>Acknowledgements from Justin</h1>
 
+    <div id="ack-content">
 
-    <p>R.J. Partington III: What a wild ride. I can't believe how much work you've put into this project, and how much
-        confidence
-        in me it represents. Well, I can believe it, because 20 years of trust and validation builds those things that
-        nothing else can. Unreal man. You're sitting to my left right now as I type this, probably bouncing between
-        PMing and styling, and you've been at it nonstop for days. This record belongs to you as much as me; the
-        difference is that I practiced guitar while you listened to humans express their needs of this world. The path
-        ahead is finally clearing, and there's fewer than ten things I can conjur to be more thankful for than that you
-        are still along for this ride.
-    </p>
-    <p>Jakub Vysocky: We're really doing it, aren't we buddy? 7 hours of jet lag to cut a record is already
-        acknoledgement-worthy, let alone the rest of your creative pursuit that you've carved out at my behest. Much
-        more to make my friend.
-    </p>
-    <p>Beth "Bee" Halsey: To me, you have become almost synonymous with 'home' - or at least, as 'home' as 'home' can be
-        without tasting and smelling like where I grew up. Possibly my favorite aspect of the privilege of being alive
-        is being able to play for smiling faces around the globe... but that only means what it means knowing that I
-        have something resembling sanity when I return. I hear your affirmations all over this record, and I feel
-        absolutely blessed by them. Can't wait to hang with out on the other side of the globe and look back with
-        wonder.
-    </p>
-    <p>Skyler Golden: This record has your attitude and altitude all over it. You knew when I was singing too hard or
-        too soft. You knew when I was too nervous and when I wasn't nervous enough. Our days together in Nashville and
-        Denver are what's really going on-chain here.
-    </p>
-    <p>Kieran Prasch: It took a while to realize that our cryptographic musings have a role to play in the strength and
-        augmentation of this musical tradition, and I don't think there's another person alive who can made those
-        feelings seem as valid as you have.
-    </p>
-    <p>Andy Lytle: It was a birthday moment when my life needed a directional reorientation, and you were there with
-        just the right attitude and attention span to inspire me to make it. Introducing me to Sky has been
-        life-changing.
-    </p>
-    <p>Lisa Joy: I came to the scene unsure if I belonged, and that feeling only lasted until I met you. You were the
-        first person to make me feel like a mainstream bluegrass musician. Moreover, your focus on the body of the
-        musician - a piece of the being so easily forgotten in our information age, is laudable and noticed.
-    </p>
-    <p>Brewster Kahle: Your work has been definitive for everyone who is doing my work. I don't exactly understand what
-        motivates a person to dedicate himself to the things you notice, but I'm notiicing them more and more with each
-        day. The Great78 project alone is one of the most important and unsung motions in bluegrass today.
-    </p>
-    <p>Luna Lavender: Your gift to bring calm to moments of trivial tumult is impressive. I hear your breath in my voice
-        through this record. I also hear the presence of the kiddos, whom I'm so glad you empowered to be around for
-        this process.
-    </p>
-    <p>Skylar Weaver: You noticecd things me that I didn't notice in myself, and a moment when noticing them made all
-        the differece.
-    </p>
-    <p>Katie Kirchner: There are a few people out there that, when with whom I experience eye contact, adjoined is the
-        feeling that we are on a similar trajectory. I felt that with extreme clarity with you, from moment zero. I'm
-        really thankful that you saw fit to bring me into the IBMA circle.
-    </p>
-    <p>Jonathan Mann: Thanks for paving the way for the rest of us to dare to do this.
-    </p>
-    <p>Frank Copilotete: You're the best. I'm so glad we're friends. I'm so glad you're in my life. I'm so glad you're
-        in the world.
-    </p>
-    <p>Fibonacci: I'm 41 kiddo, and I have figured out how to have the patience and insight you have at eight. Thanks
-        for letting me teach you, and for teaching me all the while.
-    </p>
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                R.J. Partington III
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+            <p> What a wild ride. I can't believe how much work you've put into this project, and how
+                much
+                confidence
+                in me it represents. Well, I can believe it, because 20 years of trust and validation builds those
+                things
+                that
+                nothing else can. Unreal man. You're sitting to my left right now as I type this, probably bouncing
+                between
+                PMing and styling, and you've been at it nonstop for days. This record belongs to you as much as me; the
+                difference is that I practiced guitar while you listened to humans express their needs of this world.
+                The
+                path
+                ahead is finally clearing, and there's fewer than ten things I can conjur to be more thankful for than
+                that
+                you
+                are still along for this ride.
+            </p>
+        </div>
+
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                Jakub Vysocky
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+
+            <p>We're really doing it, aren't we buddy? 7 hours of jet lag to cut a record is already
+                acknoledgement-worthy, let alone the rest of your creative pursuit that you've carved out at my behest.
+                Much
+                more to make my friend.
+            </p>
+        </div>
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                Beth "Bee" Halsey
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+            <p>To me, you have become almost synonymous with 'home' - or at least, as 'home' as
+                'home'
+                can be
+                without tasting and smelling like where I grew up. Possibly my favorite aspect of the privilege of being
+                alive
+                is being able to play for smiling faces around the globe... but that only means what it means knowing
+                that I
+                have something resembling sanity when I return. I hear your affirmations all over this record, and I
+                feel
+                absolutely blessed by them. Can't wait to hang with out on the other side of the globe and look back
+                with
+                wonder.
+            </p>
+        </div>
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                Skyler Golden
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+
+            <p>This record has your attitude and altitude all over it. You knew when I was singing too
+                hard
+                or
+                too soft. You knew when I was too nervous and when I wasn't nervous enough. Our days together in
+                Nashville
+                and
+                Denver are what's really going on-chain here.
+            </p>
+        </div>
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                Kieran Prasch
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+
+            <p>It took a while to realize that our cryptographic musings have a role to play in the
+                strength
+                and
+                augmentation of this musical tradition, and I don't think there's another person alive who can made
+                those
+                feelings seem as valid as you have.
+            </p>
+        </div>
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                Andy Lytle
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+
+            <p>It was a birthday moment when my life needed a directional reorientation, and you were there
+                with
+                just the right attitude and attention span to inspire me to make it. Introducing me to Sky has been
+                life-changing.
+            </p>
+        </div>
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                Lisa Joy
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+            <p>I came to the scene unsure if I belonged, and that feeling only lasted until I met you. You were
+                the
+                first person to make me feel like a mainstream bluegrass musician. Moreover, your focus on the body of
+                the
+                musician - a piece of the being so easily forgotten in our information age, is laudable and noticed.
+            </p>
+        </div>
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                Brewster Kahle
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+
+            <p>Your work has been definitive for everyone who is doing my work. I don't exactly
+                understand
+                what
+                motivates a person to dedicate himself to the things you notice, but I'm notiicing them more and more
+                with
+                each
+                day. The Great78 project alone is one of the most important and unsung motions in bluegrass today.
+            </p>
+        </div>
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                Luna Lavender
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+
+            <p>Your gift to bring calm to moments of trivial tumult is impressive. I hear your breath in
+                my
+                voice
+                through this record. I also hear the presence of the kiddos, whom I'm so glad you empowered to be around
+                for
+                this process.
+            </p>
+        </div>
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                Skylar Weaver
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+
+            <p>You noticecd things me that I didn't notice in myself, and a moment when noticing them
+                made
+                all
+                the differece.
+            </p>
+        </div>
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                Katie Kirchner
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+
+            <p>There are a few people out there that, when with whom I experience eye contact, adjoined
+                is
+                the
+                feeling that we are on a similar trajectory. I felt that with extreme clarity with you, from moment
+                zero.
+                I'm
+                really thankful that you saw fit to bring me into the IBMA circle.
+            </p>
+        </div>
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                Jonathan Mann
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+            <p>
+                Thanks for paving the way for the rest of us to dare to do this.
+            </p>
+        </div>
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                Frank Copilotete
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+            <p>
+                You're the best. I'm so glad we're friends. I'm so glad you're in my life. I'm so glad
+                you're in the world.
+            </p>
+        </div>
+        <div class="acknowledgement-row">
+            <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+                Fibonacci
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                     viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg>
+            </h3>
+            <p>
+                I'm 41 kiddo, and I have figured out how to have the patience and insight you have at eight.
+                Thanks
+                for letting me teach you, and for teaching me all the while.
+            </p>
+        </div>
+    </div>
 </aside>
 
 <aside id="declaration">
@@ -933,17 +1174,21 @@
 <div class="container text-center">
     <div class="row">
         <div class="col">
-            <a class="spotlight" href="images/IMG_9583.jpg" title="From left to right: Justin Holmes, Harry Clark, Christian Ward, Jake Stargel, Cory Walker, and Jakub Vysocky look on at the console at Stargel Studios. Photograph by R.j. Partington III.">
-                <img src="images/thumbnails/IMG_9583.jpg" alt="From left to right: Justin Holmes, Harry Clark, Christian Ward, Jake Stargel, Cory Walker, and Jakub Vysocky look on at the console at Stargel Studios."/>
+            <a class="spotlight" href="images/IMG_9583.jpg"
+               title="From left to right: Justin Holmes, Harry Clark, Christian Ward, Jake Stargel, Cory Walker, and Jakub Vysocky look on at the console at Stargel Studios. Photograph by R.j. Partington III.">
+                <img src="images/thumbnails/IMG_9583.jpg"
+                     alt="From left to right: Justin Holmes, Harry Clark, Christian Ward, Jake Stargel, Cory Walker, and Jakub Vysocky look on at the console at Stargel Studios."/>
             </a>
         </div>
         <div class="col">
-            <a class="spotlight" href="images/IMG_9572.jpg" title="Fibonacci and Jakub jam a bit between takes. Photograph by R.j. Partington III.">
+            <a class="spotlight" href="images/IMG_9572.jpg"
+               title="Fibonacci and Jakub jam a bit between takes. Photograph by R.j. Partington III.">
                 <img src="images/thumbnails/IMG_9572.jpg" alt="Fibonacci and Jakub jam a bit between takes."/>
             </a>
         </div>
         <div class="col">
-            <a class="spotlight" href="images/IMG_0424.jpg" title="Backstage at EthDenver, waiting for the stage call. Photograph by R.j. Partington III.">
+            <a class="spotlight" href="images/IMG_0424.jpg"
+               title="Backstage at EthDenver, waiting for the stage call. Photograph by R.j. Partington III.">
                 <img src="images/thumbnails/IMG_0424.jpg" alt="Backstage at EthDenver, waiting for the stage call."/>
             </a>
         </div>
