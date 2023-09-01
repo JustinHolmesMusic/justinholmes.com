@@ -14,10 +14,6 @@ module.exports = {
         main: './src/js/index.js',
         help: './src/js/help.js',
     },
-    output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-    },
     module: {
         rules: [
             {
@@ -37,6 +33,4 @@ module.exports = {
             }
         ]
     },
-    mode: "development",
-    devtool: 'eval-source-map',
 };
