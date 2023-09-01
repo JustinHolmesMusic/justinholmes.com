@@ -356,7 +356,7 @@ h1 {
     text-decoration: none;
     color: rgb(166, 199, 213);
     font-family: "Bungee Shade", monospace;
-    font-size: 40px;
+    font-size: min(10vw, 40px);
 }
 
 h2, h3, h4 {
