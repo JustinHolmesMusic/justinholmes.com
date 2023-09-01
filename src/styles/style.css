@@ -16,6 +16,13 @@ body {
 }
 
 
+h1 {
+    text-decoration: none;
+    color: rgb(166, 199, 213);
+    font-family: "Bungee Shade", monospace;
+    font-size: min(7vw, 40px);
+}
+
 h3 {
     font-family: "Bungee Shade", monospace;
     font-size: 20px;
@@ -96,7 +103,7 @@ nav span a img {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 0em;
+    margin-bottom: 0;
     width: 90%
 }
 
@@ -226,6 +233,14 @@ nav span a img {
     color: blueviolet !important;
 }
 
+#help {
+    font-size: 12px;
+}
+
+#help a {
+    color: rgb(166, 199, 213);
+}
+
 #FAQ {
 	background: black;
 	color: white;
@@ -276,8 +291,9 @@ nav span a img {
 
 
 #ack h1 {
-    color: black;
-    padding: 1em;
+	color: black;
+	padding: 1em;
+	max-width: 16em;
 }
 
 
@@ -318,7 +334,6 @@ nav span a img {
 	width: 65%;
 	font-size: 14px;
 	text-align: right;
-	border-right: 1px solid #8a2be245;
 	padding-right: 2em;
 }
 
@@ -489,7 +504,7 @@ main {
     text-align: center;
     font-family: monospace;
     color: #e4e4e4;
-    margin-top: 0em;
+    margin-top: 0;
     font-size: 19px;
     display: flex;
     flex-direction: column;
@@ -505,8 +520,8 @@ main {
     color: #d9d8d8;
     font-weight: bold;
     margin-bottom: 1em;
-    margin-top: -55px;
-    padding: 0em 15%;
+    margin-top: -20px;
+    padding: 0 15%;
 }
 
 #how-does-this-work > p {
@@ -892,13 +907,14 @@ p {
 
 
 .modal-content {
-    margin: auto;
-    padding: 20px;
+	margin: auto;
     border: 1px solid black;
-    width: 90%;
-    color: black;
-    background: linear-gradient(#9198e5, #6e33a4);
+	width: 90%;
+	color: black;
+	background: linear-gradient(#9198e5, #6e33a4);
+    padding: 20px 20px 5px;
 }
+
 
 #download-modal .modal-footer {
     /* the buttons don't overflow on mobile and are centered */
@@ -1088,14 +1104,6 @@ table img {
     margin: 10px;
 }
 
-#declaration {
-	color: black;
-	background-color: #d9d8d8;
-	font-family: monospace;
-	font-weight: bold;
-	width: 100%;
-	padding: 20px;
-}
 
 #declaration {
 	color: #57a841;
@@ -1103,9 +1111,34 @@ table img {
 	font-family: monospace;
 	font-weight: 100;
 	width: 100%;
-	padding: 20px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: row;
+	padding: 5em;
+}
+
+#declaration-content {
+    color: #57a841;
+	font-family: monospace;
+	font-weight: 100;
+	max-width: 150em;
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	flex-direction: row-reverse;
+	padding: 5em;
+}
+
+#declaration .reel {
+    padding: 1em;
+    display: flex;
+    flex-wrap: wrap-reverse;
+}
+
+#declaration-text {
+	width: 80%;
+	max-width: 65em;
 }
 
 footer {
@@ -1151,6 +1184,13 @@ footer img {
     background-color: #0000005c;
     color: white;
     border: 0;
+}
+
+.card-body {
+	flex: 1 1 auto;
+	padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+	color: #eaeff1;
+	background: transparent;
 }
 
 input:focus,
