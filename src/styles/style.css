@@ -293,7 +293,7 @@ nav span a img {
 	margin: 2em;
 	align-items: center;
 	border-bottom: 1px solid #ffffff26;
-	padding-bottom: 4em;
+	padding-bottom: 2em;
 }
 
 
@@ -505,9 +505,10 @@ main {
 }
 
 #how-does-this-work > p {
-    color: #d9d8d8;
-    width: 90%;
-    margin-bottom: 4em;
+	color: #d9d8d8;
+	width: 90%;
+	margin-bottom: 4em;
+	max-width: 100em;
 }
 
 #how-does-this-work > span {
@@ -678,10 +679,11 @@ header {
 }
 
 table {
-    color: blueviolet;
-    font-size: 14px;
-    text-shadow: 0 0 0.5px rgb(255, 255, 255);
-    width: 90%;
+	color: blueviolet;
+	font-size: 14px;
+	text-shadow: 0 0 0.5px rgb(255, 255, 255);
+	width: 90%;
+	max-width: 200em;
 }
 
 td > a {
@@ -1115,8 +1117,9 @@ footer img {
 }
 
 .accordion {
-    width: 80%;
-    margin: auto;
+	width: 80%;
+	margin: auto;
+	max-width: 150em;
 }
 
 input:focus,
