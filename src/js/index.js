@@ -28,7 +28,7 @@ import tippy from 'tippy.js';
 import fernet from 'fernet/fernetBrowser.js';
 // import { Secret } from 'fernet';
 
-require.context('../images', false, /\.(png|jpe?g|gif|svg)$/);
+require.context('../images', false, /\.(png|jpe?g|gif|svg|avif)$/);
 require.context('../images/thumbnails', false, /\.(png|jpe?g|gif|svg)$/);
 require.context('../audio', false, /\.(mp3|flac)$/);
 

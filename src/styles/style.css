@@ -1006,3 +1006,14 @@ html {
     visibility: visible;
     opacity: 1;
 }
+
+.logo-in-paragraph {
+    width: 1.3em;
+}
+
+#intentionally-blank {
+	font-size: 33px;
+	text-align: center;
+	font-weight: bold;
+	width: 100%;
+}
