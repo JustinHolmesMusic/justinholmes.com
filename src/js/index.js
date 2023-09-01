@@ -411,6 +411,17 @@ async function contribute() {
         return;
     }
 
+    // Check user is using correct network
+    let chainIdToNetworkName = {
+        1: "Ethereum Mainnet",
+        5: "Goerli Testnet",
+    }
+
+    if (ethereumClient.getNetwork().chain.id !== chainId) {
+        showError("Please switch to the " + chainIdToNetworkName[chainId] + " network");
+        return;
+    }
+
     let userAmount = document.getElementById("user-amount").value;
     let combine = document.getElementById("combine-contribution-toggle").checked;
 
