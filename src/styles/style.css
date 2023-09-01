@@ -235,12 +235,12 @@ nav span a img {
 }
 
 #FAQ h3 {
-	color: white;
 	font-weight: bold;
 	margin: 1em;
 	font-size: 2em;
 	font-family: monospace;
 	letter-spacing: 1px;
+	color: rgb(166, 199, 213);
 }
 
 #faq-questions {
@@ -254,7 +254,53 @@ nav span a img {
 }
 
 #faq-questions > p {
-    margin: 1em;
+	margin: 1em;
+	border-bottom: 1px solid #a6c7d5;
+	padding-bottom: 3em;
+}
+
+
+#ack {
+	background: #000000b2;
+	color: white;
+	padding: 2em;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	border-top: 1px solid blueviolet;
+}
+
+
+#ack-content {
+	width: 75%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: left;
+	align-items: center;
+	max-width: 100em;
+}
+
+.acknowledgement-row {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin: 2em;
+	align-items: center;
+}
+
+
+.acknowledgement-row h3 {
+	width: 25%;
+	font-weight: bold;
+	font-family: mono;
+	font-size: 1em;
+}
+
+.acknowledgement-row p {
+	width: 65%;
+	font-size: 12px;
 }
 
 #countdown {
