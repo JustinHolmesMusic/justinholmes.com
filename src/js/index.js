@@ -50,7 +50,7 @@ const contractAddress = '0x96ebdf35199219BDd16E3c3E1aD8C89C9185b734';
 
 const {publicClient} = configureChains(chains, [
     // w3mProvider({projectId}),
-    infuraProvider({apiKey: '2096b0699ab146b1a019961a2a9f9127'})])
+    infuraProvider({apiKey: '017e58bbcef2470ebe2233c0cccf110d'})])
 
 const wagmiConfig = createConfig({
     autoConnect: true,
