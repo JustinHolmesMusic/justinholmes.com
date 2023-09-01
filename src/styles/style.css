@@ -255,10 +255,12 @@ nav span a img {
 
 #faq-questions > p {
 	margin: 1em;
-	border-bottom: 1px solid #a6c7d5;
 	padding-bottom: 3em;
 }
 
+#faq-questions p.end-of-answer {
+    border-bottom: 1px solid #a6c7d5;
+}
 
 #ack {
 	background: #a6c7d5b8;
