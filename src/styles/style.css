@@ -271,6 +271,10 @@ nav span a img {
 	border-top: 1px solid blueviolet;
 }
 
+#ack h1 {
+    padding: 1em;
+}
+
 
 #ack-content {
 	width: 75%;
@@ -288,19 +292,29 @@ nav span a img {
 	width: 100%;
 	margin: 2em;
 	align-items: center;
+	border-bottom: 1px solid #ffffff26;
+	padding-bottom: 4em;
 }
 
 
 .acknowledgement-row h3 {
 	width: 25%;
 	font-weight: bold;
-	font-family: mono;
+	font-family: monospace;
 	font-size: 1em;
+	letter-spacing: 2px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
 .acknowledgement-row p {
 	width: 65%;
 	font-size: 12px;
+	text-align: right;
+	border-right: 1px solid #00000042;
+	padding-right: 2em;
 }
 
 #countdown {
