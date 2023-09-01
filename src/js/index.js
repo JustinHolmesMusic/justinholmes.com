@@ -90,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setMinContributionAmount();
     fetchCountdownContractData();
     updateCountdownDisplay();
+    useSecretToDecryptMaterial();
     // Set the onclick of the button with ID 'decrypt' to call readFilesToDecrypt
     document.getElementById('decrypt').onclick = readFilesToDecrypt;
 
@@ -550,7 +551,14 @@ async function useSecretToDecryptMaterial() {
         functionName: 'keyPlaintext',
         chainId: chainId,
     });
-    console.log(keyPlaintextBytes);
+
+    if (keyPlaintextBytes === undefined) {
+        console.log("key not revealed yet.");
+        return;
+    }
+
+    document.getElementById("revealer").style.display = "flex";
+    document.getElementById("key-plaintext").innerHTML = keyPlaintextBytes;
 
     // Slice keyPlaintextBytes to remove the leading 0x
     let keyPlaintextBytesSliced = keyPlaintextBytes.slice(2);
@@ -576,8 +584,6 @@ async function updateContributorsTable() {
     // We avoid making another call to the contract when the user clicks one of those buttons, saving 400ms and making the UI more responsive.
     document.getElementById("ten-preset").onclick = () => setTenPreset(contributionsByAddress);
     document.getElementById("leader-preset").onclick = () => setLeaderPreset(contributionsByAddress);
-    document.getElementById("bigPublishButton").onclick = () => useSecretToDecryptMaterial();
-
 
     // array, sorted by contribution amount, of arrays of [amount, address]
     let leaders = getTopContributions(contributionsByAddress)

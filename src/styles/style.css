@@ -505,6 +505,30 @@ article h1 {
     margin: 1em;
 }
 
+
+#revealer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	margin: 4px 2px;
+	border-radius: 5px;
+	border: 1px dashed white;
+	padding: 1em;
+	height: 9em;
+	color: black;
+	text-align: center;
+}
+
+#key-label {
+    font-weight: bolder;
+}
+
+#key-plaintext {
+    word-wrap: break-word;
+    width: 100%;
+}
+
 header {
     width: 100%;
     height: 55px;
