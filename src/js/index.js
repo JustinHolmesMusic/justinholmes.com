@@ -607,7 +607,7 @@ async function updateContributorsTable() {
 
         if (thisLeader == undefined) {
             console.log("Not enough leaders to fill the rows.")
-            return;
+            break;
         }
 
         let bidSlot = row.getElementsByTagName('td')[1];
