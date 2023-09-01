@@ -1110,6 +1110,18 @@ table img {
 	font-weight: 100;
 	width: 100%;
 	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: row;
+	padding: 5em;
+}
+
+#declaration-content {
+    color: #57a841;
+	font-family: monospace;
+	font-weight: 100;
+	max-width: 150em;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: row-reverse;
@@ -1122,7 +1134,7 @@ table img {
     flex-wrap: wrap-reverse;
 }
 
-#declaration-content {
+#declaration-text {
 	width: 80%;
 	max-width: 65em;
 }
