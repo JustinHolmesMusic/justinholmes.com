@@ -158,10 +158,10 @@ async function updateFundingThreshold() {
     document.getElementById('remainingEth').textContent = alreadyFunded + " / " + formatEther(thresholdInEth) + " ETH";
 
     // If the threshold has been reached, stop the countdown
-    if (alreadyFunded >= formatEther(thresholdInEth)) {
-        // Put "hurrah" in the 'remainingEth' element
-        document.getElementById('remainingEth').textContent = "Album Dropped 🎉";
-    }
+    // if (alreadyFunded >= formatEther(thresholdInEth)) {
+    //     // Put "hurrah" in the 'remainingEth' element
+    //     document.getElementById('remainingEth').textContent = "Album Dropped 🎉";
+    // }
 }
 
 let isKeySet = false;
