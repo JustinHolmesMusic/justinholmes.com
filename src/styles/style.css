@@ -352,8 +352,22 @@ nav span a img {
     flex-direction: column;
 }
 
-#ensembleList {
+#ensemble {
+    width: 50%;
+}
+
+#ensemble h1 {
+    margin-bottom: 1em;
+}
+
+#ensemble h4.card-title {
     color: #d9d8d8;
+    font-family: larissa;
+}
+
+#ensemble .card {
+    border-top: 1px solid blueviolet;
+    border-left: 1px solid blueviolet;
 }
 
 #left-side {
