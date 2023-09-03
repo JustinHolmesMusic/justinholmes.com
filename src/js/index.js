@@ -6,7 +6,9 @@ import 'tippy.js'
 import 'tippy.js/dist/tippy.css'
 import $ from 'jquery';
 import 'spotlight.js';
-import {encode, decode} from "@msgpack/msgpack";
+import {decode} from "@msgpack/msgpack";
+import {switchNetwork} from '@wagmi/core';
+import {sendTransaction} from '@wagmi/core';
 
 import contractABI from './contributionABI.js'
 import '../styles/style.css';
@@ -430,6 +432,18 @@ async function contribute() {
     let chainIdToNetworkName = {
         1: "Ethereum Mainnet",
         5: "Goerli Testnet",
+    }
+
+    if (ethereumClient.getNetwork().chain.id !== chainId) {
+        const changingNetwork = switchNetwork({
+            chainId: chainId,
+        });
+
+        changingNetwork.catch((err) => {
+            console.log("Error switching network - probably unsupported by wallet: " + err);
+        });
+
+        await changingNetwork;
     }
 
     if (ethereumClient.getNetwork().chain.id !== chainId) {
