@@ -22,12 +22,22 @@ import {
 import {EthereumClient, w3mConnectors} from '@web3modal/ethereum'
 import {Web3Modal} from '@web3modal/html'
 import {goerli, mainnet} from '@wagmi/core/chains'
-import {infuraProvider} from 'wagmi/providers/infura'
 import {formatEther, parseEther} from "viem";
 import tippy from 'tippy.js';
 import fernet from 'fernet/fernetBrowser.js';
-import { alchemyProvider } from '@wagmi/core/providers/alchemy'
-// import { Secret } from 'fernet';
+
+let bullshitCentralizedProvider;
+
+if (process.env.NODE_ENV === 'development') {
+    console.log("Using Infura in development.");
+    const importedProvider = await import("wagmi/providers/infura");
+    bullshitCentralizedProvider = importedProvider.infuraProvider({apiKey: 'adc98e27c31d4eca8ed8e4e7f7d35b8f'});
+} else {
+    // Infrua seems to be working for now.
+    console.log("Using Infura in production.  Gross.");
+    const importedProvider = await import("wagmi/providers/infura");
+    bullshitCentralizedProvider = importedProvider.infuraProvider({apiKey: 'adc98e27c31d4eca8ed8e4e7f7d35b8f'});
+}
 
 require.context('../images', false, /\.(png|jpe?g|gif|svg|avif)$/);
 require.context('../images/thumbnails', false, /\.(png|jpe?g|gif|svg)$/);
@@ -45,11 +55,13 @@ const chainId = 1;
 const contractAddress = '0xa812137EFf2B368d0B2880A39B609fB60c426850';
 
 
+
+
 /////////////
 // Web3Modal Things
 /////////////
 
-const {publicClient} = configureChains(chains, [alchemyProvider({ apiKey: 'fEzVwWJ9CcYxbNyyUvEF5Lp9g94nYXM8' })])
+const {publicClient} = configureChains(chains, [bullshitCentralizedProvider])
 
 const wagmiConfig = createConfig({
     autoConnect: true,
@@ -67,9 +79,9 @@ export const web3modal = new Web3Modal({
 }, ethereumClient);
 
 web3modal.subscribeEvents((event) => {
-    if (event.name === "ACCOUNT_CONNECTED") {
-        updateContributorsTable(); // This has a side-effect of updating the combine contribution toggle visibility
-    }
+        if (event.name === "ACCOUNT_CONNECTED") {
+            updateContributorsTable(); // This has a side-effect of updating the combine contribution toggle visibility
+        }
     }
 )
 

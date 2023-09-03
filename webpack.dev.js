@@ -1,12 +1,14 @@
+const webpack = require('webpack');
 const {merge} = require('webpack-merge');
 const common = require('./webpack.common.js');
+
 
 module.exports = merge(common, {
     mode: 'development',
     devtool: 'eval-source-map',
-    // devServer: {
-    //     contentBase: './dist',
-    //     hot: true,
-    // },
-    // ... Any other development-specific plugins or loaders
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('development'),
+        }),
+    ]
 });
