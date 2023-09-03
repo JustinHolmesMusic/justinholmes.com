@@ -1175,15 +1175,15 @@ table img {
 }
 
 #declaration-content {
-    color: #57a841;
+	color: #57a841;
 	font-family: monospace;
 	font-weight: 100;
 	max-width: 150em;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex-direction: row-reverse;
-	padding: 5em;
+	flex-direction: column;
+	padding: 0;
 }
 
 #declaration .reel {
