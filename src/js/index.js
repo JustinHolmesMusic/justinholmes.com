@@ -156,7 +156,7 @@ async function updateFundingThreshold() {
     });
     const thresholdInEth = formatEther(thresholdInWei);
 
-    const contractBalanceAsEther =formatEther(Number(balance.value));
+    const contractBalanceAsEther = formatEther(Number(balance.value));
 
     // Calculate the remaining amount needed to reach the threshold
 
@@ -613,7 +613,21 @@ async function updateContributorsTable() {
 
     // array, sorted by contribution amount, of arrays of [amount, address]
     let leaders = getTopContributions(contributionsByAddress)
-    const leaderRows = getLeaderboardTableBody().getElementsByClassName("leaderboard-row");
+    let leaderRows = getLeaderboardTableBody().getElementsByClassName("leaderboard-row");
+    const extraRowsNeeded = leaders.length - leaderRows.length;
+
+    // Loop extraRowsNeeded times, adding a new row each time
+    for (let i = 0; i < extraRowsNeeded; i++) {
+        const leaderNumber = i + 11  // We have ten rows by default, so we start adding at the 11th.
+        let row = document.createElement("tr");
+        row.className = "leaderboard-row collapse otherBidders";
+        row.innerHTML = '<th scope="row">' + leaderNumber
+            + '</th><td></td><td></td><td></td>';
+        getLeaderboardTableBody().appendChild(row);
+    }
+
+    leaderRows = getLeaderboardTableBody().getElementsByClassName("leaderboard-row");
+    console.log("There are now " + leaderRows.length + " rows in the leaderboard table.");
 
     // Loop through the contributors and append a row for each
     for (let i = 0; i < leaderRows.length; i++) {
