@@ -242,75 +242,81 @@ nav span a img {
 }
 
 #FAQ {
-	background: black;
-	color: white;
-	padding: 2em;
-	display: flex;
-	justify-content: center;
+    background: black;
+    color: white;
+    padding: 2em;
+    display: flex;
+    justify-content: center;
 }
 
 #FAQ h3 {
-	font-weight: bold;
-	margin: 1em;
-	font-size: 2em;
-	font-family: monospace;
-	letter-spacing: 1px;
-	color: rgb(166, 199, 213);
+    font-weight: bold;
+    margin: 1em;
+    font-size: 2em;
+    font-family: monospace;
+    letter-spacing: 1px;
+    color: rgb(166, 199, 213);
 }
 
 #faq-questions {
-	width: 75%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-align: left;
-	align-items: center;
-	max-width: 100em;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    max-width: 100em;
 }
 
+
 #faq-questions > p {
-	margin: 1em;
-	padding-bottom: 3em;
+    margin: 1em;
 }
 
 #faq-questions p.end-of-answer {
     border-bottom: 1px solid #a6c7d5;
+    padding-bottom: 3em;
 }
 
 #ack {
-	background: #a6c7d5b8;
-	color: black;
-	padding: 2em;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
-	border-top: 1px solid blueviolet;
-	border-bottom: 1px solid black;
+    background: #a6c7d5b8;
+    color: black;
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid blueviolet;
+    border-bottom: 1px solid black;
 }
 
 
 #ack h2 {
-	color: black;
-	padding: 1em;
+    color: black;
+    padding: 1em;
 }
 
 
 #ack-content {
-	width: 75%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-align: left;
-	align-items: center;
-	max-width: 100em;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    max-width: 100em;
 }
 
 .acknowledgement-row {
-	width: 100%;
-	margin: 0 2em 2em 2em;
-	border-bottom: 1px solid #0000003d;
-	padding-bottom: 2em;
+    width: 100%;
+    margin: 0 2em 2em 2em;
+    border-bottom: 1px solid #0000003d;
+    padding-bottom: 2em;
+}
+
+.acknowledgement-row:nth-child(odd) {
+    flex-direction: row-reverse;
+
 }
 
 .acknowledgment-name {
@@ -322,19 +328,19 @@ nav span a img {
 
 
 .acknowledgement-row h3 {
-	font-weight: bold;
-	font-family: monospace;
-	font-size: 1em;
-	letter-spacing: 2px;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 1em;
+    letter-spacing: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .acknowledgement-row p {
-	font-size: 14px;
-	text-align: center;
+    font-size: 14px;
+    text-align: left;
 }
 
 #countdown {
@@ -470,7 +476,7 @@ main {
 
 
 #contract-status {
-    padding: 0em;
+    padding-top: 1em;
     font-family: "Bungee Shade", monospace;
     font-weight: bold;
     display: flex;
@@ -542,10 +548,10 @@ main {
 }
 
 #how-does-this-work > p {
-	color: #d9d8d8;
-	width: 90%;
-	margin-bottom: 4em;
-	max-width: 100em;
+    color: #d9d8d8;
+    width: 90%;
+    margin-bottom: 4em;
+    max-width: 100em;
 }
 
 #how-does-this-work > span {
@@ -715,11 +721,11 @@ header {
 }
 
 table {
-	color: blueviolet;
-	font-size: 14px;
-	text-shadow: 0 0 0.5px rgb(255, 255, 255);
-	width: 90%;
-	max-width: 200em;
+    color: blueviolet;
+    font-size: 14px;
+    text-shadow: 0 0 0.5px rgb(255, 255, 255);
+    width: 90%;
+    max-width: 200em;
 }
 
 td > a {
@@ -727,25 +733,39 @@ td > a {
 }
 
 #artifactIntro {
-    background-color: black;
-    border-top: 4px solid blueviolet;
+	background-color: black;
+	border-top: 4px solid blueviolet;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#artifact-description-body {
+    background: transparent !important;
+}
+
+#artifact-description-text {
+    line-height: 25px;
+    width: 45em;
+    text-align: center;
 }
 
 #artifactIntro h1 {
-    padding: 1em 0 1em 0;
+    padding: 1em 0 0 0;
 }
 
 .collapsing-quote {
-	margin-top: 1em;
-	border: 2px solid white;
-	padding: 2em;
-	background-color: #50499f1a;
+    margin-top: 2em;
+    border: 2px solid white;
+    padding: 2em;
+    background-color: #50499f1a;
+    text-shadow: #8a2be287 0 0 5em;
 }
 
 .collapsing-quote a, .collapsing-quote a:not([href]):not([class]) {
-	color: #a291d2;
-	cursor: pointer;
-	text-decoration: underline;
+    color: #a291d2;
+    cursor: pointer;
 }
 
 .collapsing-quote .collapsing {
@@ -755,8 +775,9 @@ td > a {
 }
 
 .reviewer-name {
-    font-family: larissa;
-    font-size: 1.5em;
+    font-family: larissa, monospace;
+    font-size: 1em;
+    margin-top: 1em;
 }
 
 .leaderboard-row {
@@ -787,7 +808,8 @@ td > a {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin-top: 0px;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .amount-button {
@@ -833,13 +855,13 @@ p {
 
 .reel img {
     height: auto;
-	width: 99%;
-	padding: 0;
-	border-radius: 10px;
-	border: 1px solid #3c3344;
-	margin: 0.5rem;
-	clip: auto;
-	object-fit: cover;
+    width: 99%;
+    padding: 0;
+    border-radius: 10px;
+    border: 1px solid #3c3344;
+    margin: 0.5rem;
+    clip: auto;
+    object-fit: cover;
 }
 
 
@@ -955,11 +977,11 @@ p {
 
 
 .modal-content {
-	margin: auto;
+    margin: auto;
     border: 1px solid black;
-	width: 90%;
-	color: black;
-	background: linear-gradient(#9198e5, #6e33a4);
+    width: 90%;
+    color: black;
+    background: linear-gradient(#9198e5, #6e33a4);
     padding: 20px 20px 5px;
 }
 
@@ -1154,28 +1176,28 @@ table img {
 
 
 #declaration {
-	color: #57a841;
-	background-color: #000;
-	font-family: monospace;
-	font-weight: 100;
-	width: 100%;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-direction: row;
-	padding: 5em;
+    color: #57a841;
+    background-color: #000;
+    font-family: monospace;
+    font-weight: 100;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    padding: 5em;
 }
 
 #declaration-content {
     color: #57a841;
-	font-family: monospace;
-	font-weight: 100;
-	max-width: 150em;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: row-reverse;
-	padding: 5em;
+    font-family: monospace;
+    font-weight: 100;
+    max-width: 150em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
 }
 
 #declaration .reel {
@@ -1185,19 +1207,19 @@ table img {
 }
 
 #declaration-text {
-	width: 80%;
-	max-width: 65em;
+    width: 80%;
+    max-width: 65em;
 }
 
 footer {
-	width: 100%;
-	display: flex !important;
-	flex-direction: column;
-	justify-content: flex-end;
-	align-items: center;
-	background-color: black;
-	border-top: 1px solid #32383e;
-	padding-bottom: 1em;
+    width: 100%;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: black;
+    border-top: 1px solid #32383e;
+    padding-bottom: 1em;
 }
 
 footer span {
@@ -1214,18 +1236,18 @@ footer img {
 }
 
 .accordion {
-	width: 80%;
-	margin: auto;
-	max-width: 65em;
+    width: 80%;
+    margin: auto;
+    max-width: 65em;
 }
 
 .accordion-item {
-	color: rgb(166, 199, 213);
-	background-color: #0000005c;
-	border-bottom: 1px solid #252526;
-	border-left: 0;
-	border-right: 0;
-	border-top: 0;
+    color: rgb(166, 199, 213);
+    background-color: #0000005c;
+    border-bottom: 1px solid #252526;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
 }
 
 .accordion-button {
@@ -1235,10 +1257,10 @@ footer img {
 }
 
 .card-body {
-	flex: 1 1 auto;
-	padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-	color: #eaeff1;
-	background: transparent;
+    flex: 1 1 auto;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    color: #eaeff1;
+    background: transparent;
 }
 
 input:focus,
@@ -1267,9 +1289,9 @@ html {
 }
 
 .logo-in-paragraph {
-	width: 1.3em;
-	margin-right: 3px;
-	margin-left: -2px;
+    width: 1.3em;
+    margin-right: 3px;
+    margin-left: -2px;
 }
 
 #intentionally-blank {

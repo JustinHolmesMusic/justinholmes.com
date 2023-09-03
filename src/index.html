@@ -291,20 +291,18 @@
     <div class="d-flex justify-content-center text-center">
         <h1>Artifact Leaderboard</h1>
     </div>
-    <div class="container-sm">
-        <div class="card text-bg-dark">
-            <div class="card-body">
-                <p>
-                    Everyone who contributes above the .1eth minimum will receive an Artifact, sent to the address from
-                    which
-                    they
-                    contributed.
-                    <br/><br/>
-                    The top 10 contributors will have their Artifact bound to one of the paintings by Nashville artist
-                    Sophie
-                    Clark.
-                </p>
-            </div>
+    <div id="artifact-description-body" class="card text-bg-dark">
+        <div id="artifact-description-text" class="card-body">
+            <p>
+                Everyone who contributes above the .1eth minimum will receive an Artifact, sent to the address from
+                which
+                they
+                contributed.
+                <br/><br/>
+                The top 10 contributors will have their Artifact bound to one of the paintings by Nashville artist
+                Sophie
+                Clark.
+            </p>
         </div>
     </div>
 </div>
@@ -475,10 +473,10 @@
         <span class="collapse show multi-collapse">"...</span>
         <span class="collapse multi-collapse">"Vowel Sounds is a masterful weaving of</span>
         <a
-            data-bs-toggle="collapse" data-bs-target="#kevin-quote .multi-collapse"
-            aria-expanded="false">twangy bluegrass music and poetic lyrics about
-        power
-        structures, society, cryptography, trust, and community.</a>
+                data-bs-toggle="collapse" data-bs-target="#kevin-quote .multi-collapse"
+                aria-expanded="false">twangy bluegrass music and poetic lyrics about
+            power
+            structures, society, cryptography, trust, and community.</a>
         <span class="collapse multi-collapse">If you like bluegrass or folk music,
         then this album is great listening on that basis alone.. but it's also a great way to learn more
         about
@@ -809,12 +807,14 @@
                     in all its complexity. The description of vocal overtone solos explained and then employed
                     is nothing short of fascinating.</span>
 
-        <span class="collapse show multi-collapse">"...</span><a data-bs-toggle="collapse" data-bs-target="#vickie-quote .multi-collapse"
-           aria-expanded="false">Holmes has proven he’s a master of fitting woodwind instruments
-            onto a traditional Bluegrass canvas with his use of tin whistle, melodica and flute which
-            impressively
-            turns each instrument into an Appalachian adjacent voice.
-        </a>
+        <span class="collapse show multi-collapse">"...</span><a data-bs-toggle="collapse"
+                                                                 data-bs-target="#vickie-quote .multi-collapse"
+                                                                 aria-expanded="false">Holmes has proven he’s a master
+        of fitting woodwind instruments
+        onto a traditional Bluegrass canvas with his use of tin whistle, melodica and flute which
+        impressively
+        turns each instrument into an Appalachian adjacent voice.
+    </a>
         <span class="collapse show multi-collapse">..."</span>
 
         <span class="collapse multi-collapse">After listen-through, Vowel Sounds leaves
@@ -1139,12 +1139,16 @@
                         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
                     </svg>
                 </h3>
+            </div>
+            <div class="col-lg-8">
                 <p>I have often needed the devil on my other shoulder to encourage me to put myself out there more, and
                     I'm really thankful that you are the one who has stepped up to be this voice for me. I don't much
                     care for calls usually, but somehow they always work better when you're on them. And I do enjoy
                     having another colleague whose kids can often be heard. :-)</p>
             </div>
-            <div class="acknowledgement-row">
+        </div>
+        <div class="acknowledgement-row row">
+            <div class="col acknowledgment-name">
                 <h3>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
                          viewBox="0 0 16 16">
