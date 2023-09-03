@@ -370,7 +370,7 @@ nav span a img {
     border-left: 1px solid blueviolet;
 }
 
-#left-side {
+#intro-and-contributions {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -631,7 +631,6 @@ article {
     width: 100%;
     background-color: black;
     margin: 0;
-    border-top: 1px solid blueviolet;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -725,7 +724,23 @@ td > a {
 }
 
 #artifactIntro {
-    width: 50%;
+    background-color: black;
+    border-top: 4px solid blueviolet;
+}
+
+#artifactIntro h1 {
+    padding: 1em 0 1em 0;
+}
+
+.collapsing-quote a, .collapsing-quote a:not([href]):not([class]) {
+    color: blueviolet;
+    cursor: pointer;
+}
+
+.collapsing-quote .collapsing {
+    height: 0;
+    overflow: hidden;
+    transition: none;
 }
 
 .leaderboard-row {
@@ -812,7 +827,7 @@ p {
 }
 
 
-#track-list {
+#below-the-fold {
     text-align: center;
     font-family: monospace;
     color: #e4e4e4;
@@ -827,7 +842,6 @@ p {
     padding: 2em;
     border-top: 2px solid blueviolet;
     border-bottom: 2px solid blueviolet;
-
 }
 
 #decrypt {

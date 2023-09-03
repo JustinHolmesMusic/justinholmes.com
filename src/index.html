@@ -34,7 +34,7 @@
 </h3>
 
 <main>
-    <div id="left-side">
+    <div id="intro-and-contributions">
 
         <div class="toast-container position-fixed top-5 end-0 p-3">
             <div id="pending-transaction-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -301,29 +301,30 @@
             </div>
         </div>
     </div>
-
 </main>
 
-<article id="table">
-    <div class="d-flex justify-content-center">
+<div id="artifactIntro" class="container-fluid">
+    <div class="d-flex justify-content-center text-center">
         <h1>Artifact Leaderboard</h1>
     </div>
-    <div id="artifactIntro" class="card text-bg-dark mb-3">
-        <div class="card-body">
-            <p>
-                Everyone who contributes above the .1eth minimum will receive an Artifact, sent to the address from
-                which
-                they
-                contributed.
-                <br/><br/>
-                The top 10 contributors will have their Artifact bound to one of the paintings by Nashville artist
-                Sophie
-                Clark.
-            </p>
+    <div class="container-sm">
+        <div class="card text-bg-dark">
+            <div class="card-body">
+                <p>
+                    Everyone who contributes above the .1eth minimum will receive an Artifact, sent to the address from
+                    which
+                    they
+                    contributed.
+                    <br/><br/>
+                    The top 10 contributors will have their Artifact bound to one of the paintings by Nashville artist
+                    Sophie
+                    Clark.
+                </p>
+            </div>
         </div>
     </div>
-
-    <br/>
+</div>
+<article id="table">
     <table id="leaderboard-table">
         <thead>
         <tr class=" leaderboard-row
@@ -409,7 +410,7 @@
     </table>
 </article>
 
-<div id="track-list">
+<div id="below-the-fold">
     <div class="reel">
         <div>
             <a class="spotlight" href="images/IMG_9731.jpg"
@@ -799,6 +800,29 @@
 
     </div>
 
+    <div class="collapsing-quote container-md">
+
+        <span class="collapse multi-collapse" id="beforeThing">"Justin Holmes’ new record, <i>Vowel Sounds</i>, feels like a Trans-Atlantic space journey into
+                    its very own aural world. With a virtuosic Bluegrass sound bed, Holmes weaves lyrical subjects
+                    of planet respect, ancient vocal pedagogy, and freedom beautifully and still remains playful
+                    in all its complexity. The description of vocal overtone solos explained and then employed
+                    is nothing short of fascinating.</span>
+
+        <span class="collapse show multi-collapse">..."</span>
+
+        <a data-bs-toggle="collapse" data-bs-target=".multi-collapse"
+           aria-expanded="false">Holmes has proven he’s a master of fitting woodwind instruments
+            onto a traditional Bluegrass canvas with his use of tin whistle, melodica and flute which
+            impressively
+            turns each instrument into an Appalachian adjacent voice.
+        </a>
+        <span class="collapse show multi-collapse">..."</span>
+
+        <span class="collapse multi-collapse" id="afterThing">After listen-through, Vowel Sounds leaves
+                    you wanting to already hear a follow-up project from this creative and mystical human!"</span>
+    </div>
+
+
     <!-- Image Reel -->
     <div class="container text-center">
         <div class="reel">
@@ -935,369 +959,383 @@
 
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                R.J. Partington III
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    R.J. Partington III
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
             <div class="col-lg-8">
-            <p> What a wild ride. I can't believe how much work you've put into this project, and how
-                much
-                confidence
-                in me it represents. Well, I can believe it, because 20 years of trust and validation builds those
-                things
-                that
-                nothing else can. Unreal man. You're sitting to my left right now as I type this, probably bouncing
-                between
-                PMing and styling, and you've been at it nonstop for days. This record belongs to you as much as me; the
-                difference is that I practiced guitar while you listened to humans express their needs of this world.
-                The
-                path
-                ahead is finally clearing, and there's fewer than ten things I can conjur to be more thankful for than
-                that
-                you
-                are still along for this ride.
-            </p>
+                <p> What a wild ride. I can't believe how much work you've put into this project, and how
+                    much
+                    confidence
+                    in me it represents. Well, I can believe it, because 20 years of trust and validation builds those
+                    things
+                    that
+                    nothing else can. Unreal man. You're sitting to my left right now as I type this, probably bouncing
+                    between
+                    PMing and styling, and you've been at it nonstop for days. This record belongs to you as much as me;
+                    the
+                    difference is that I practiced guitar while you listened to humans express their needs of this
+                    world.
+                    The
+                    path
+                    ahead is finally clearing, and there's fewer than ten things I can conjur to be more thankful for
+                    than
+                    that
+                    you
+                    are still along for this ride.
+                </p>
             </div>
         </div>
 
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Jakub Vysoky
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Jakub Vysoky
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
 
             <div class="col-lg-8">
-            <p>We're really doing it, aren't we buddy? 7 hours of jet lag to cut a record is already
-                acknoledgement-worthy, let alone the rest of your creative pursuit that you've carved out at my behest.
-                Much
-                more to make, my friend.
-            </p>
+                <p>We're really doing it, aren't we buddy? 7 hours of jet lag to cut a record is already
+                    acknoledgement-worthy, let alone the rest of your creative pursuit that you've carved out at my
+                    behest.
+                    Much
+                    more to make, my friend.
+                </p>
             </div>
         </div>
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Beth "Bee" Halsey
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Beth "Bee" Halsey
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
             <div class="col-lg-8">
-            <p>To me, you have become almost synonymous with 'home' - or at least, as 'home' as
-                'home'
-                can be
-                without tasting and smelling like where I grew up. Possibly my favorite aspect of the privilege of being
-                alive
-                is being able to play for smiling faces around the globe... but that only means what it means knowing
-                that I
-                have something resembling sanity when I return. I hear your affirmations all over this record, and I
-                feel
-                absolutely blessed by them. Can't wait to hang with out on the other side of the globe and look back
-                with
-                wonder.
-            </p>
+                <p>To me, you have become almost synonymous with 'home' - or at least, as 'home' as
+                    'home'
+                    can be
+                    without tasting and smelling like where I grew up. Possibly my favorite aspect of the privilege of
+                    being
+                    alive
+                    is being able to play for smiling faces around the globe... but that only means what it means
+                    knowing
+                    that I
+                    have something resembling sanity when I return. I hear your affirmations all over this record, and I
+                    feel
+                    absolutely blessed by them. Can't wait to hang with out on the other side of the globe and look back
+                    with
+                    wonder.
+                </p>
             </div>
         </div>
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Skyler Golden
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Skyler Golden
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
 
             <div class="col-lg-8">
-            <p>This record has your attitude and altitude all over it. You knew when I was singing too
-                hard
-                or
-                too soft. You knew when I was too nervous and when I wasn't nervous enough. Our days together in
-                Nashville
-                and
-                Denver are what's really going on-chain here.
-            </p>
+                <p>This record has your attitude and altitude all over it. You knew when I was singing too
+                    hard
+                    or
+                    too soft. You knew when I was too nervous and when I wasn't nervous enough. Our days together in
+                    Nashville
+                    and
+                    Denver are what's really going on-chain here.
+                </p>
             </div>
         </div>
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Kieran Prasch
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Kieran Prasch
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
 
             <div class="col-lg-8">
-            <p>It took a while to realize that our cryptographic musings have a role to play in the
-                strength
-                and
-                augmentation of this musical tradition, and I don't think there's another person alive who can make
-                those
-                feelings seem as valid as you have.
-            </p>
+                <p>It took a while to realize that our cryptographic musings have a role to play in the
+                    strength
+                    and
+                    augmentation of this musical tradition, and I don't think there's another person alive who can make
+                    those
+                    feelings seem as valid as you have.
+                </p>
             </div>
         </div>
 
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Andy Lytle
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Andy Lytle
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
 
             <div class="col-lg-8">
-            <p>It was a birthday moment when my life needed a directional reorientation, and you were there
-                with
-                just the right attitude and attention span to inspire me to make it. Introducing me to Sky has been
-                life-changing.
-            </p>
+                <p>It was a birthday moment when my life needed a directional reorientation, and you were there
+                    with
+                    just the right attitude and attention span to inspire me to make it. Introducing me to Sky has been
+                    life-changing.
+                </p>
             </div>
         </div>
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Ashley Reynolds
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
-            <p>I have often needed the devil on my other shoulder to encourage me to put myself out there more, and I'm really thankful that you are the one who has stepped up to be this voice for me. I don't much care for calls usually, but somehow they always work better when you're on them. And I do enjoy having another colleague whose kids can often be heard.  :-)</p>
-        </div>
-        <div class="acknowledgement-row">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Lisa Joy
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Ashley Reynolds
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
+                <p>I have often needed the devil on my other shoulder to encourage me to put myself out there more, and
+                    I'm really thankful that you are the one who has stepped up to be this voice for me. I don't much
+                    care for calls usually, but somehow they always work better when you're on them. And I do enjoy
+                    having another colleague whose kids can often be heard. :-)</p>
+            </div>
+            <div class="acknowledgement-row">
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Lisa Joy
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
 
             <div class="col-lg-8">
-            <p>I came to the scene unsure if I belonged, and that feeling only lasted until I met you. You were
-                the
-                first person to make me feel like a mainstream bluegrass musician. Moreover, your focus on the body of
-                the
-                musician - a piece of the being so easily forgotten in our information age, is laudable and noticed.
-            </p>
+                <p>I came to the scene unsure if I belonged, and that feeling only lasted until I met you. You were
+                    the
+                    first person to make me feel like a mainstream bluegrass musician. Moreover, your focus on the body
+                    of
+                    the
+                    musician - a piece of the being so easily forgotten in our information age, is laudable and noticed.
+                </p>
             </div>
         </div>
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Brewster Kahle
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Brewster Kahle
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
 
             <div class="col-lg-8">
-            <p>Your work has been definitive for everyone who is doing my work. I don't exactly
-                understand
-                what
-                motivates a person to dedicate himself to the things you notice, but I'm notiicing them more and more
-                with
-                each
-                day. The Great78 project alone is one of the most important and unsung motions in bluegrass today. It's
-                an absolute honor to produce something that interests you so much.
-            </p>
+                <p>Your work has been definitive for everyone who is doing my work. I don't exactly
+                    understand
+                    what
+                    motivates a person to dedicate himself to the things you notice, but I'm notiicing them more and
+                    more
+                    with
+                    each
+                    day. The Great78 project alone is one of the most important and unsung motions in bluegrass today.
+                    It's
+                    an absolute honor to produce something that interests you so much.
+                </p>
             </div>
         </div>
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Luna Lavender
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Luna Lavender
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
 
             <div class="col-lg-8">
-            <p>Your gift to bring calm to moments of trivial tumult is impressive. I hear your breath in
-                my
-                voice
-                throughout this record. I also hear the presence of the kiddos, whom I'm so glad you empowered to be around
-                for
-                this process.
-            </p>
+                <p>Your gift to bring calm to moments of trivial tumult is impressive. I hear your breath in
+                    my
+                    voice
+                    throughout this record. I also hear the presence of the kiddos, whom I'm so glad you empowered to be
+                    around
+                    for
+                    this process.
+                </p>
             </div>
         </div>
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Skylar Weaver
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Skylar Weaver
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
 
             <div class="col-lg-8">
-            <p>You noticed things me that I didn't notice in myself, and noticed them at a moment when noticing them
-                made
-                all
-                the differece.
-            </p>
+                <p>You noticed things me that I didn't notice in myself, and noticed them at a moment when noticing them
+                    made
+                    all
+                    the differece.
+                </p>
             </div>
         </div>
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Katie Kirchner
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Katie Kirchner
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
 
             <div class="col-lg-8">
-            <p>There are a few people out there that, when with whom I experience eye contact, adjoined
-                is
-                the
-                feeling that we are on a similar trajectory. I felt that with extreme clarity with you, from moment
-                zero.
-                I'm
-                really thankful that you saw fit to bring me into the IBMA circle, and I'm psyched to share this part of the road with Full Cord.
-            </p>
+                <p>There are a few people out there that, when with whom I experience eye contact, adjoined
+                    is
+                    the
+                    feeling that we are on a similar trajectory. I felt that with extreme clarity with you, from moment
+                    zero.
+                    I'm
+                    really thankful that you saw fit to bring me into the IBMA circle, and I'm psyched to share this
+                    part of the road with Full Cord.
+                </p>
             </div>
         </div>
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Jonathan Mann
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Jonathan Mann
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
             <div class="col-lg-8">
-            <p>
-                Thanks for paving the way for the rest of us to dare to do this.
-            </p>
+                <p>
+                    Thanks for paving the way for the rest of us to dare to do this.
+                </p>
             </div>
         </div>
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Frank Copilotete
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Frank Copilotete
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
 
             <div class="col-lg-8">
-            <p>
-                You're the best. I'm so glad we're friends. I'm so glad you're in my life. I'm so glad
-                you're in the world.
-            </p>
+                <p>
+                    You're the best. I'm so glad we're friends. I'm so glad you're in my life. I'm so glad
+                    you're in the world.
+                </p>
             </div>
         </div>
         <div class="acknowledgement-row row">
             <div class="col acknowledgment-name">
-            <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-                Fibonacci
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                     viewBox="0 0 16 16">
-                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                </svg>
-            </h3>
+                <h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                    Fibonacci
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg>
+                </h3>
             </div>
 
             <div class="col-lg-8">
-            <p>
-                I'm 41 kiddo, and I haven't figured out how to have the patience and insight you have at eight.
-                Thanks
-                for letting me teach you, and for teaching me all the while.
-            </p>
+                <p>
+                    I'm 41 kiddo, and I haven't figured out how to have the patience and insight you have at eight.
+                    Thanks
+                    for letting me teach you, and for teaching me all the while.
+                </p>
             </div>
         </div>
     </div>
