@@ -476,7 +476,7 @@ main {
 
 
 #contract-status {
-    padding: 0em;
+    padding-top: 1em;
     font-family: "Bungee Shade", monospace;
     font-weight: bold;
     display: flex;
