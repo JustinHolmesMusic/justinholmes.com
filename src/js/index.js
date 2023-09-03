@@ -85,19 +85,24 @@ web3modal.subscribeEvents((event) => {
 )
 
 function displayArtifactMinimumWarningIfNeeded() {
-    if (isWalletConnected() && window.contributionsByAddress != undefined && window.alreadyContributed == undefined) {
-        console.log("Figuring out how much already contrib")
-        let userAddress = ethereumClient.getAccount()['address'];
-        window.alreadyContributed = Number(formatEther(window.contributionsByAddress[userAddress][0]));
-    }
-
-    console.log("Already contributed: " + window.alreadyContributed);
 
     let userAmount = document.getElementById('user-amount').value;
     let combine = document.getElementById("combine-contribution-toggle").checked;
 
     if (combine) {
-        userAmount = Number(userAmount) + Number(window.alreadyContributed);
+        document.getElementById('artifact-warning').style.display = 'none';
+
+        // if the amount is less than the minimum, display the epsilon warning.
+        if (userAmount < minContributionAmount) {
+            document.getElementById('combine-epsilon-warning').style.display = 'block';
+            return
+        } else {
+            // Otherwise, they must be above the min and there's no need for a warning.
+            document.getElementById('combine-epsilon-warning').style.display = 'none';
+            return;
+        }
+    } else {
+        document.getElementById('combine-epsilon-warning').style.display = 'none';
     }
 
     console.log("User amount: " + userAmount)
@@ -331,6 +336,7 @@ let countdownInterval = setInterval(updateCountdownDisplay, 1000);
 
 function setMinPreset() {
     document.getElementById("user-amount").value = minContributionAmount;
+    displayArtifactMinimumWarningIfNeeded();
 }
 
 function isUserInTopN(topContributions, address, n) {
@@ -393,6 +399,7 @@ function setTenPreset(contributionsByAddress) {
     }
 
     userAmountElement.value = amountToGetIntoTopTen;
+    displayArtifactMinimumWarningIfNeeded();
 }
 
 function setLeaderPreset(contributionsByAddress) {
@@ -417,6 +424,7 @@ function setLeaderPreset(contributionsByAddress) {
     }
 
     userAmountElement.value = amountToGetIntoTopTen;
+    displayArtifactMinimumWarningIfNeeded();
 }
 
 function hookupBootstrapLinkButtons() {
@@ -493,26 +501,22 @@ async function contribute() {
     let combine = document.getElementById("combine-contribution-toggle").checked;
 
     let userEnteredAmount = document.getElementById("user-amount").value;
-    let totalUserAmount;
-    if (combine) {
-        if (window.alreadyContributed == undefined) {
-            // These two combined will update the window.alreadyContributed variable
-            await updateContributorsTable();
-            displayArtifactMinimumWarningIfNeeded();
-        }
-        totalUserAmount = Number(userEnteredAmount) + Number(window.alreadyContributed);
-    }
 
     let receipt;
 
-    if (totalUserAmount < minContributionAmount) {
-        console.log("User amount is " + totalUserAmount + ", which is less than Artifact amount - sending as tx.");
+    if (userEnteredAmount < minContributionAmount) {
+        if (combine) {
+            let epsilonWarningToast = new Toast(document.getElementById('below-epsilon-toast'));
+            epsilonWarningToast.show();
+            return
+        }
+        console.log("User amount is " + userEnteredAmount + ", which is less than Artifact amount - sending as tx.");
         receipt = await sendTransaction({
             to: contractAddress,
             value: parseEther(userEnteredAmount),
         })
     } else {
-        console.log("User amount is " + totalUserAmount + ", which is greater than Artifact amount - sending as contract call.")
+        console.log("User amount is " + userEnteredAmount + ", which is greater than Artifact amount - sending as contract call.")
 
         // if `combine` is true, we need to call contributeAndCombine, otherwise we call contribute
         let functionToCall = combine ? 'contributeAndCombine' : 'contribute';
@@ -720,6 +724,10 @@ async function updateContributorsTable() {
         }
 
         let bidSlot = row.getElementsByTagName('td')[1];
+        if (bidSlot == undefined) {
+            console.log("bidSlot is undefined");
+            break;
+        }
         let addressSlot = row.getElementsByTagName('td')[2];
 
         let amountInWei = thisLeader[0];

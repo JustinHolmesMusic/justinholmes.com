@@ -37,7 +37,8 @@
     <div id="intro-and-contributions">
 
         <div class="toast-container position-fixed top-5 end-0 p-3">
-            <div id="pending-transaction-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div id="pending-transaction-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"
+                 data-bs-autohide="false">
                 <div class="toast-header">
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
@@ -52,6 +53,15 @@
                 </div>
                 <div class="toast-body">
                     Transaction confirmed!
+                </div>
+            </div>
+
+            <div id="below-epsilon-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    The minimum increase for an existing bid is .1 eth.
                 </div>
             </div>
         </div>
@@ -212,11 +222,17 @@
                         <br/><br/>
                         Contributions of .1eth and up are also a bid for an "Artifact":
                         Once the countdown reaches zero, serialized ERC-721 Artifacts will be awarded, ordered by
-                        contribution amount. All contributors over .1 eth will receive an Artifact, sent to the address from which they contributed.
+                        contribution amount. All contributors over .1 eth will receive an Artifact, sent to the address
+                        from which they contributed.
                         <br/><br/>
-                        The top ten Artifacts will be represented on-chain by a piece of artwork by Nashville artist Sophie Clark.
+                        The top ten Artifacts will be represented on-chain by a piece of artwork by Nashville artist
+                        Sophie Clark.
+                        <div id="combine-epsilon-warning">
+                            The minimum increase for an existing bid is .1 eth.
+                        </div>
                         <div id="artifact-warning">
-                            Note: A contribution of less than .1 eth will help reveal the album, but will not qualify for an Artifact.
+                            Note: A contribution of less than .1 eth will help reveal the album, but will not qualify
+                            for an Artifact.
                         </div
                     </div>
                     <div class="modal-footer">
@@ -237,9 +253,9 @@
 
                         <div class="form-check form-switch" id="combine-contribution-div">
                             <input class="form-check-input" type="checkbox" role="switch"
-                                   id="combine-contribution-toggle" checked>
+                                   id="combine-contribution-toggle">
                             <label class="form-check-label" for="combine-contribution-toggle">
-                                Increase existing contribution</label>
+                                Increase first contribution</label>
                         </div>
 
                         <span id="help">Need help?
@@ -405,9 +421,10 @@
 
         </tbody>
     </table>
-      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".otherBidders" aria-expanded="false">
-    Other Artifacts
-  </button>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".otherBidders"
+            aria-expanded="false">
+        Other Artifacts
+    </button>
 
 </article>
 
