@@ -746,9 +746,15 @@ td > a {
 }
 
 #artifact-description-text {
-    line-height: 25px;
-    width: 45em;
-    text-align: center;
+	line-height: 25px;
+    max-width: 40em;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+
+#artifact-description-text p {
+    padding: 1em;
 }
 
 #artifactIntro h1 {

@@ -54,8 +54,6 @@ const chainId = 1;
 const contractAddress = '0xa812137EFf2B368d0B2880A39B609fB60c426850';
 
 
-
-
 /////////////
 // Web3Modal Things
 /////////////
