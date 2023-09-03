@@ -732,15 +732,28 @@ td > a {
     padding: 1em 0 1em 0;
 }
 
+.collapsing-quote {
+	margin-top: 1em;
+	border: 2px solid white;
+	padding: 2em;
+	background-color: #50499f1a;
+}
+
 .collapsing-quote a, .collapsing-quote a:not([href]):not([class]) {
-    color: blueviolet;
-    cursor: pointer;
+	color: #a291d2;
+	cursor: pointer;
+	text-decoration: underline;
 }
 
 .collapsing-quote .collapsing {
     height: 0;
     overflow: hidden;
     transition: none;
+}
+
+.reviewer-name {
+    font-family: larissa;
+    font-size: 1.5em;
 }
 
 .leaderboard-row {
