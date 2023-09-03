@@ -313,6 +313,11 @@ nav span a img {
 	padding-bottom: 2em;
 }
 
+.acknowledgement-row:nth-child(odd) {
+    flex-direction: row-reverse;
+
+}
+
 .acknowledgment-name {
     /* aling center vertically */
     display: flex;
@@ -334,7 +339,7 @@ nav span a img {
 
 .acknowledgement-row p {
 	font-size: 14px;
-	text-align: center;
+	text-align: left;
 }
 
 #countdown {
