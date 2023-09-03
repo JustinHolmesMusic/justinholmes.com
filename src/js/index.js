@@ -84,6 +84,31 @@ web3modal.subscribeEvents((event) => {
     }
 )
 
+function displayArtifactMinimumWarningIfNeeded() {
+    if (isWalletConnected() && window.contributionsByAddress != undefined && window.alreadyContributed == undefined) {
+        console.log("Figuring out how much already contrib")
+        let userAddress = ethereumClient.getAccount()['address'];
+        window.alreadyContributed = Number(formatEther(window.contributionsByAddress[userAddress][0]));
+    }
+
+    console.log("Already contributed: " + window.alreadyContributed);
+
+    let userAmount = document.getElementById('user-amount').value;
+    let combine = document.getElementById("combine-contribution-toggle").checked;
+
+    if (combine) {
+        userAmount = Number(userAmount) + Number(window.alreadyContributed);
+    }
+
+    console.log("User amount: " + userAmount)
+
+    if (userAmount < minContributionAmount) {
+        document.getElementById('artifact-warning').style.display = 'block';
+    } else {
+        document.getElementById('artifact-warning').style.display = 'none';
+    }
+}
+
 //////////////////
 //// Funding Threshold Things
 //////////////////
@@ -103,6 +128,19 @@ document.addEventListener("DOMContentLoaded", () => {
     useSecretToDecryptMaterial();
     // Set the onclick of the button with ID 'decrypt' to call readFilesToDecrypt
     document.getElementById('decrypt').onclick = readFilesToDecrypt;
+
+    // If the number in #user-amount is changed to below .1, reveal a message telling them they won't get an Artifact.
+    $("#user-amount").on("keyup", function () {
+        displayArtifactMinimumWarningIfNeeded();
+    });
+
+    $('#combine-contribution-toggle').on('change', function () {
+        displayArtifactMinimumWarningIfNeeded();
+    });
+
+
+    // In case they refreshed the page with the value set lower than the minimum.
+    displayArtifactMinimumWarningIfNeeded();
 
 });
 
@@ -363,6 +401,8 @@ function setLeaderPreset(contributionsByAddress) {
         return;
     }
 
+    // TODO: Network change (prolly oughta be done when they open the modal)
+
     let combine = document.getElementById("combine-contribution-toggle").checked;
     let userAmountElement = document.getElementById("user-amount");
     let userAddress = ethereumClient.getAccount()['address'];
@@ -450,34 +490,57 @@ async function contribute() {
         showError("Please switch to the " + chainIdToNetworkName[chainId] + " network");
         return;
     }
-
-    let userAmount = document.getElementById("user-amount").value;
     let combine = document.getElementById("combine-contribution-toggle").checked;
 
-    // if `combine` is true, we need to call contributeAndCombine, otherwise we call contribute
-    let functionToCall = combine ? 'contributeAndCombine' : 'contribute';
+    let userEnteredAmount = document.getElementById("user-amount").value;
+    let totalUserAmount;
+    if (combine) {
+        if (window.alreadyContributed == undefined) {
+            // These two combined will update the window.alreadyContributed variable
+            await updateContributorsTable();
+            displayArtifactMinimumWarningIfNeeded();
+        }
+        totalUserAmount = Number(userEnteredAmount) + Number(window.alreadyContributed);
+    }
 
-    const {hash} = await writeContract({
-        address: contractAddress,
-        abi: contractABI,
-        functionName: functionToCall,
-        value: parseEther(userAmount),
-        chainId: chainId,
-    });
+    let receipt;
+
+    if (totalUserAmount < minContributionAmount) {
+        console.log("User amount is " + totalUserAmount + ", which is less than Artifact amount - sending as tx.");
+        receipt = await sendTransaction({
+            to: contractAddress,
+            value: parseEther(userEnteredAmount),
+        })
+    } else {
+        console.log("User amount is " + totalUserAmount + ", which is greater than Artifact amount - sending as contract call.")
+
+        // if `combine` is true, we need to call contributeAndCombine, otherwise we call contribute
+        let functionToCall = combine ? 'contributeAndCombine' : 'contribute';
+
+        receipt = await writeContract({
+            address: contractAddress,
+            abi: contractABI,
+            functionName: functionToCall,
+            value: parseEther(userEnteredAmount),
+            chainId: chainId,
+        });
+    }
 
     // show bootstrap toast "Waiting for transaction to be accepted"
     let toast = document.getElementById('pending-transaction-toast');
     let bsToast = new Toast(toast);
     bsToast.show();
 
-    await waitForTransaction({hash, chainId});
+    const hash = receipt['hash'];
 
-    // hide toast
-    bsToast.hide();
+    await waitForTransaction({hash, chainId});
 
     let toastConfirmed = document.getElementById('transaction-confirmed-toast');
     let bsToastConfirmed = new Toast(toastConfirmed);
     bsToastConfirmed.show();
+
+    // hide toast
+    bsToast.hide();
 
     // Update the funding threshold display
     updateContributorsTable();
@@ -619,6 +682,9 @@ async function updateContributorsTable() {
     });
 
     let contributionsByAddress = getContributionsByAddress(contributionsMetadata)
+
+    // Cheating here, to use for modal calc.
+    window.contributionsByAddress = contributionsByAddress;
 
     // Inject the contributionsByAddress into the Take the Lead / Top 10 buttons onclick functions
     // We avoid making another call to the contract when the user clicks one of those buttons, saving 400ms and making the UI more responsive.

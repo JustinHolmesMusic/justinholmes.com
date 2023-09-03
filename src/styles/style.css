@@ -732,13 +732,20 @@ td > a {
     color: rgb(166, 199, 213);
 }
 
+#artifact-warning {
+    display: none;
+    border: 2px solid black;
+    background-color: dimgray;
+    color: white;
+}
+
 #artifactIntro {
-	background-color: black;
-	border-top: 4px solid blueviolet;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+    background-color: black;
+    border-top: 4px solid blueviolet;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #artifact-description-body {
@@ -746,11 +753,11 @@ td > a {
 }
 
 #artifact-description-text {
-	line-height: 25px;
+    line-height: 25px;
     max-width: 40em;
-	text-align: center;
-	display: flex;
-	justify-content: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 #artifact-description-text p {
