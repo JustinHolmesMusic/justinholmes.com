@@ -25,18 +25,17 @@ import {goerli, mainnet} from '@wagmi/core/chains'
 import {formatEther, parseEther} from "viem";
 import tippy from 'tippy.js';
 import fernet from 'fernet/fernetBrowser.js';
+import {infuraProvider} from 'wagmi/providers/infura'
 
 let bullshitCentralizedProvider;
 
 if (process.env.NODE_ENV === 'development') {
     console.log("Using Infura in development.");
-    const importedProvider = await import("wagmi/providers/infura");
-    bullshitCentralizedProvider = importedProvider.infuraProvider({apiKey: 'adc98e27c31d4eca8ed8e4e7f7d35b8f'});
+    bullshitCentralizedProvider = infuraProvider({apiKey: 'adc98e27c31d4eca8ed8e4e7f7d35b8f'});
 } else {
     // Infrua seems to be working for now.
     console.log("Using Infura in production.  Gross.");
-    const importedProvider = await import("wagmi/providers/infura");
-    bullshitCentralizedProvider = importedProvider.infuraProvider({apiKey: 'adc98e27c31d4eca8ed8e4e7f7d35b8f'});
+    bullshitCentralizedProvider = infuraProvider({apiKey: 'adc98e27c31d4eca8ed8e4e7f7d35b8f'});
 }
 
 require.context('../images', false, /\.(png|jpe?g|gif|svg|avif)$/);
