@@ -208,10 +208,16 @@
                         <h5 class="modal-title" id="contributeModalLabel">Bid for an Artifact</h5>
                     </div>
                     <div class="modal-body">
-                        Contribute to the contract to help reveal the album, and to get yourself an Artifact.
+                        Contribute to help reveal the album.
+                        <br/><br/>
+                        Contributions of .1eth and up are also a bid for an "Artifact":
                         Once the countdown reaches zero, serialized ERC-721 Artifacts will be awarded, ordered by
-                        contribution amount.
-                        The top ten Artifacts will be bound to one of the paintings by Nashville artist Sophie Clark.
+                        contribution amount. All contributors over .1 eth will receive an Artifact, sent to the address from which they contributed.
+                        <br/><br/>
+                        The top ten Artifacts will be represented on-chain by a piece of artwork by Nashville artist Sophie Clark.
+                        <div id="artifact-warning">
+                            Note: A contribution of less than .1 eth will help reveal the album, but will not qualify for an Artifact.
+                        </div
                     </div>
                     <div class="modal-footer">
 
@@ -929,8 +935,10 @@
             are intended to be used for that purpose.
         </p>
 
-        <h3>Why is there a minimum contribution amount? Can I contribute less?</h3>
+        <h3>Why is there a minimum contribution amount to bid for an Artifact? Can I contribute less?</h3>
         <p>
+            You can contribute less, but you won't receive an Artifact.
+
             The primary reason to establish a minimum contribution amount is to prevent spamming of small contributions
             in order to farm Artifacts. The Artifacts are intended to be special, and part of the long-term ecosystem of
             Justin's music.
@@ -939,12 +947,11 @@
             However, if you want to contribute and don't care about getting an Artifact, you can simply send ETH
             straight to
             the
-            contract address.
+            contract address (whic is what happens if you enter less than the minimum in the 'contribute' modal above).
             This will count toward unlocking the record, but won't be recorded as an official contribution on the
             leaderboard,
             etc.
         </p>
-
 
         <h3>How long do I have to contribute?</h3>
         <p>
