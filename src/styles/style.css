@@ -497,8 +497,11 @@ main {
     padding-bottom: 0.5em;
 }
 
-#funding-label {
+.slightly-smaller {
     font-size: 16px;
+}
+
+#funding-label {
     color: #212529;
     margin-top: 0;
 }

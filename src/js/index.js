@@ -150,26 +150,33 @@ async function updateFundingThreshold() {
         formatUnits: "wei",
     });
 
-    const thresholdInEth = await readContract({
+    const thresholdInWei = await readContract({
         address: contractAddress,
         abi: contractABI,
         chainId: chainId,
         functionName: 'threshold',
     });
+    const thresholdInEth = formatEther(thresholdInWei);
+
+    const contractBalanceAsEther =formatEther(Number(balance.value));
 
     // Calculate the remaining amount needed to reach the threshold
 
-    const alreadyFunded = formatEther(Number(balance.value));
-    // const remainingAmountInWei = Number(thresholdInEth) - Number(balance.value);
+    const toBeFunded = Number(thresholdInEth) - contractBalanceAsEther;
+    // const remainingAmountInWei = Number(thresholdInWei) - Number(balance.value);
 
     // Convert the remaining amount to ETH
     // const remainingAmount = formatEther(remainingAmountInWei);
 
     // Show how much has been funded out of the threshold
-    document.getElementById('remainingEth').textContent = alreadyFunded + " / " + formatEther(thresholdInEth) + " ETH";
+    document.getElementById('raisedSoFar').textContent = "(" + Number(contractBalanceAsEther).toFixed(2) + " ETH";
+
+    // Show how much is remaining
+    document.getElementById('remainingEth').textContent = Number(toBeFunded).toFixed(2) + " ETH";
+
 
     // If the threshold has been reached, stop the countdown
-    // if (alreadyFunded >= formatEther(thresholdInEth)) {
+    // if (alreadyFunded >= formatEther(thresholdInWei)) {
     //     // Put "hurrah" in the 'remainingEth' element
     //     document.getElementById('remainingEth').textContent = "Album Dropped 🎉";
     // }
