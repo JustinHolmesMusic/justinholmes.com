@@ -968,7 +968,7 @@ p {
     opacity: var(--bs-btn-close-opacity);
 }
 
-#below-epsilon-toast .toast-body {
+#below-epsilon-toast .toast-body, #error-toast .toast-body {
     background: linear-gradient(#ab1b1b, #ffc3c3);
 }
 

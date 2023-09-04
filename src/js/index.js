@@ -105,7 +105,7 @@ function displayArtifactMinimumWarningIfNeeded() {
         document.getElementById('combine-epsilon-warning').style.display = 'none';
     }
 
-    console.log("User amount: " + userAmount)
+    // console.log("User amount: " + userAmount)
 
     if (userAmount < minContributionAmount) {
         document.getElementById('artifact-warning').style.display = 'block';
@@ -504,7 +504,7 @@ async function contribute() {
 
     let userEnteredAmount = document.getElementById("user-amount").value;
 
-    let receipt;
+    let receiptPromise;
 
     if (userEnteredAmount < minContributionAmount) {
         if (combine) {
@@ -513,7 +513,7 @@ async function contribute() {
             return
         }
         console.log("User amount is " + userEnteredAmount + ", which is less than Artifact amount - sending as tx.");
-        receipt = await sendTransaction({
+        receiptPromise = sendTransaction({
             to: contractAddress,
             value: parseEther(userEnteredAmount),
         })
@@ -523,7 +523,7 @@ async function contribute() {
         // if `combine` is true, we need to call contributeAndCombine, otherwise we call contribute
         let functionToCall = combine ? 'contributeAndCombine' : 'contribute';
 
-        receipt = await writeContract({
+        receiptPromise = writeContract({
             address: contractAddress,
             abi: contractABI,
             functionName: functionToCall,
@@ -532,27 +532,37 @@ async function contribute() {
         });
     }
 
-    // show bootstrap toast "Waiting for transaction to be accepted"
-    let toast = document.getElementById('pending-transaction-toast');
-    let bsToast = new Toast(toast);
-    bsToast.show();
+    receiptPromise.then(async function _showThings(receipt) {
 
-    const hash = receipt['hash'];
+            // show bootstrap toast "Waiting for transaction to be accepted"
+            let toast = document.getElementById('pending-transaction-toast');
+            let bsToast = new Toast(toast);
+            bsToast.show();
 
-    await waitForTransaction({hash, chainId});
+            const hash = receipt['hash'];
 
-    let toastConfirmed = document.getElementById('transaction-confirmed-toast');
-    let bsToastConfirmed = new Toast(toastConfirmed);
-    bsToastConfirmed.show();
+            await waitForTransaction({hash, chainId});
 
-    // hide toast
-    bsToast.hide();
+            let toastConfirmed = document.getElementById('transaction-confirmed-toast');
+            let bsToastConfirmed = new Toast(toastConfirmed);
+            bsToastConfirmed.show();
 
-    // Update the funding threshold display
-    updateContributorsTable();
-    updateFundingThreshold();
+            // hide toast
+            bsToast.hide();
 
-    return hash;
+            // Update the funding threshold display
+            updateContributorsTable();
+            updateFundingThreshold();
+        }
+    ).catch(
+        (err) => {
+            // Show the error in #txErrorMessage
+            document.getElementById("txErrorMessage").innerHTML = err;
+            // Show the toast.
+            let errorToast = new Toast(document.getElementById('error-toast'));
+            errorToast.show();
+        }
+    )
 }
 
 var x = setInterval(function () {
@@ -589,7 +599,7 @@ function getContributionsByAddress(contributionsMetadata) {
 
         if (is_combined) {
             if (contributionsByAddress[address].length === 0) {
-                console.log("wtf");
+                // console.log("wtf");
                 // This ought to be an impossible situaiton - how did they dcombine with a bid that didn't exist?
                 contributionsByAddress[address].push(Number(0))
             }
