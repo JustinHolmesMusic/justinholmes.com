@@ -1,24 +1,30 @@
 import tippy from 'tippy.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-    tippy('#min-preset', {
+    console.log("Firing DOM Content Loaded");
+
+    tippy('#user-amount', {
+        triggerTarget: document.getElementById('min-preset'),
         content: ".1 is the minimum to qualify for an Artifact",
-        placement: "bottom"
+        placement: "top"
     });
 
-    tippy('#ten-preset', {
+    tippy('#user-amount', {
+        triggerTarget: document.getElementById('ten-preset'),
         content: "The top 10 bidders will receive NFT artifacts bound to a unique painting by a Nashville artist",
-        placement: "bottom"
+        placement: "top"
     });
 
-    tippy('#leader-preset', {
+    tippy('#user-amount', {
+        triggerTarget: document.getElementById('leader-preset'),
         content: "The top bidder will receive the #1 artifact bound to unique painting by a Nashville artist",
-        placement: "bottom"
+        placement: "top"
     });
 
-    tippy('#combine-contribution-div', {
+    tippy('#user-amount', {
+        triggerTarget: document.getElementById('combine-contribution-div'),
         content: "Combine this contribution with your first bid",
-        placement: "bottom"
+        placement: "top"
     });
 });
 

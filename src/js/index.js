@@ -139,6 +139,10 @@ document.addEventListener("DOMContentLoaded", () => {
         displayArtifactMinimumWarningIfNeeded();
     });
 
+    $("#user-amount").on("change", function () {
+        displayArtifactMinimumWarningIfNeeded();
+    });
+
     $('#combine-contribution-toggle').on('change', function () {
         displayArtifactMinimumWarningIfNeeded();
     });
@@ -257,6 +261,7 @@ async function fetchCountdownContractData() {
 function updateCountdownDisplay() {
     return
 }
+
 //
 //     let countDownDate = Number(deadline) * 1000;
 //     let now = new Date().getTime();

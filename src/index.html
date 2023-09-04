@@ -226,35 +226,23 @@
         <!-- Contribute Modal -->
         <div class="modal fade" id="contribute-modal" tabindex="-1" role="dialog" aria-labelledby="contribute-modal"
              aria-hidden="true">
+
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="contributeModalLabel">Bid for an Artifact</h5>
                     </div>
                     <div class="modal-body">
-                        Contribute to help reveal the album.
-                        <br/><br/>
-                        Contributions of 0.1eth and up are also a bid for an "Artifact":
-                        Once the countdown reaches zero, serialized ERC-721 Artifacts will be awarded, ordered by
-                        contribution amount. All contributors over 0.1 eth will receive an Artifact, sent to the address
-                        from which they contributed.
-                        <br/><br/>
-                        The top ten Artifacts will be represented on-chain by a piece of artwork by Nashville artist
-                        Sophie Clark.
-                        <div id="combine-epsilon-warning">
-                            The minimum increase for an existing bid is 0.1 eth.
-                        </div>
-                        <div id="artifact-warning">
-                            Note: A contribution of less than 0.1 eth will help reveal the album, but will not qualify
-                            for an Artifact.
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-
-                        <label id="user-amount-label" for="user-amount">Contribute<input id="user-amount"
-                                                                                         placeholder="?"/>ETH</label>
-
-                        <div class="btn-group" role="group" aria-label="Basic example">
+                        <form>
+                            <div class="mb-1">
+                                <label id="user-amount-label" for="user-amount">Contribute
+                                    <input id="user-amount"
+                                           type="number" step="0.05"
+                                           value="0.1"/>ETH
+                                </label>
+                            </div>
+                        </form>
+                        <div class="btn-group" role="group">
                             <button id="min-preset" type="button" class="btn btn-primary"></button>
                             <!-- We set this in JS -->
                             <button id="ten-preset" type="button" class="btn btn-primary even">Top 10</button>
@@ -272,9 +260,27 @@
                                 Increase first contribution</label>
                         </div>
 
-                        <span id="help">Need help?
+                        <div id="discord-for-help">Need help?
                             <a href="https://discord.gg/B8rEXkSAJ4">Join our discord</a>.
-                        </span>
+                        </div>
+                        <div id="artifact-warning">
+                            Note: A contribution of less than 0.1 eth will help reveal the album, but will not qualify
+                            for an Artifact.
+                        </div>
+                        <div id="combine-epsilon-warning">
+                            The minimum increase for an existing bid is 0.1 eth.
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        Contributions of 0.1eth and up are a bid for an Artifact.
+                        <br/><br/>
+                        All contributors over 0.1eth will receive an Artifact, sent to the address
+                        from which they contributed.
+                        <br/><br/>
+                        The top ten Artifacts will be represented on-chain by a piece of artwork by Nashville artist
+                        Sophie Clark.
                     </div>
                 </div>
             </div>
@@ -961,7 +967,8 @@
         <p>
             Revealer Artifacts are ERC-721 tokens that are minted after contributions are closed, and awarded to
             everyone
-            who contributed. They are serialized, with lower numbers going to higher contributors (ie, top contributor gets #1, then #2, etc). We
+            who contributed. They are serialized, with lower numbers going to higher contributors (ie, top contributor
+            gets #1, then #2, etc). We
             plan to mint them on Gnosis chain for Revealer 1, within a few weeks of the reveal.
         </p>
         <p>
