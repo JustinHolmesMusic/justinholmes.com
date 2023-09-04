@@ -255,37 +255,39 @@ async function fetchCountdownContractData() {
 
 // Update the countdown display based on the fetched data
 function updateCountdownDisplay() {
-
-    let countDownDate = Number(deadline) * 1000;
-    let now = new Date().getTime();
-    let distance = countDownDate - now;
-
-    if (deadline === undefined) {
-        // If the deadline is undefined, most likely there is some kind of network error reading the contract.
-        document.getElementById("countdown").innerHTML = "-";
-        return;
-    } else if (!isKeySet) {
-        document.getElementById("countdown").innerHTML = "Waiting for Artist to Upload Encrypted Material 🕰️";
-        return;
-    } else if (distance < 0) {
-        clearInterval(countdownInterval);
-        document.getElementById("countdown").innerHTML = "Artist Funded 🎉";
-        return;
-    }
-
-    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("countdown").innerHTML =
-        days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-    tippy('#countdown', {
-        content: "If no one bids before this timer expires, the contract will be closed and the funding will end. If you contribute, the countdown will reset.",
-        placement: "bottom"
-    });
+    return
 }
+//
+//     let countDownDate = Number(deadline) * 1000;
+//     let now = new Date().getTime();
+//     let distance = countDownDate - now;
+//
+//     if (deadline === undefined) {
+//         // If the deadline is undefined, most likely there is some kind of network error reading the contract.
+//         document.getElementById("countdown").innerHTML = "-";
+//         return;
+//     } else if (!isKeySet) {
+//         document.getElementById("countdown").innerHTML = "Waiting for Artist to Upload Encrypted Material 🕰️";
+//         return;
+//     } else if (distance < 0) {
+//         clearInterval(countdownInterval);
+//         document.getElementById("countdown").innerHTML = "Artist Funded 🎉";
+//         return;
+//     }
+//
+//     let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+//     let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+//
+//     document.getElementById("countdown").innerHTML =
+//         days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+//
+//     tippy('#countdown', {
+//         content: "If no one bids before this timer expires, the contract will be closed and the funding will end. If you contribute, the countdown will reset.",
+//         placement: "bottom"
+//     });
+// }
 
 
 async function readFilesToDecrypt() {
