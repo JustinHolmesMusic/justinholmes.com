@@ -367,7 +367,7 @@ nav span a img {
 }
 
 #ensemble {
-    width: 50%;
+    /*width: 50%;*/
 }
 
 #ensemble h1 {
@@ -380,8 +380,15 @@ nav span a img {
 }
 
 #ensemble .card {
-    border-top: 1px solid blueviolet;
-    border-left: 1px solid blueviolet;
+	border-top: 1px solid blueviolet;
+	border-left: 1px solid blueviolet;
+	min-width: 310px;
+	width: fit-content;
+    margin: auto;
+}
+
+#ensemble .card-text {
+    font-size: .6em;
 }
 
 #intro-and-contributions {
