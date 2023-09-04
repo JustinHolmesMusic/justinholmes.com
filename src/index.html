@@ -899,7 +899,7 @@
 <div id="FAQ">
 
     <div id="faq-questions">
-        <h1>FAQ</h1>
+        <h1>Questions of Varying Frequency</h1>
 
         <h3>What's the difference between a duck?</h3>
         <p class="end-of-answer">
@@ -961,6 +961,40 @@
             Artifacts
             are intended to be used for that purpose.
         </p>
+        <h3>So does that mean there are no royalties for Revealer projects?</h3>
+        <p>Certainly we hope for the concept of royalties to evolve beyond what it has become.</p>
+
+        <p>We want the moment of listening to music to be free, permissionless, and unencumbered by industry
+            interests.</p>
+
+        <p>On the other hand, for Revealer One (this project - the Vowel Sounds record), we imagine Artifact royalties
+            as
+            follows:</p>
+
+        <ul>
+            <li>The initial canonical owner of an Artifact is the address from which the respective contribution was
+                made.
+            </li>
+            <li>If an Artifact is transfered to another address, the canonical owner remains the initial address.</li>
+            <li>In order to transfer canonical ownership status, a royalty-ish instrument (we don't have a name for this
+                yet) will be paid to the initial contract.
+            </li>
+            <li>Whatever benefits Justin decides to confer to holders of the Artifacts, whether in-person or online,
+                will be conferred only to canonical owners.
+            </li>
+        </ul>
+
+        <p>This way, Artifacts can still be backed up on hardware wallets, bought and sold in open markets, etc., but
+            the artist
+            will still receive some of the market value of any transaction of the Artifact (the long-term value of which
+            will presumably be driven in part by the artist's commitment to Artifact hodlers).
+        </p>
+        <h4>That's all fine, but what if I release my record on Revealer, and then once Revealed, I (or anyone) puts it
+            on a streaming platform - can I get paid?</h4>
+        <p class="end-of-answer">
+            The short answer is "yes", but the long answer is that we'll need to develop a new license for this.
+            Hopefully our friends at archive.org or the EFF can help.
+        </p>
 
         <h3>Why is there a minimum contribution amount to bid for an Artifact? Can I contribute less?</h3>
         <p>
@@ -980,16 +1014,25 @@
             etc.
         </p>
 
-        <h3>How long do I have to contribute?</h3>
+        <h3>What is the time period for contributions?</h3>
         <p>
-            Until 10eth are raised, or 14 days have elapsed - whichever happens last.
+            Until 10eth are raised, or 14 days have elapsed, or 24 hours after the last contribution - whichever of
+            those happens last.
         </p>
         <p>
-            However, if, at any time, there are less than 24 hours remaining, any contribution will cause the clock
+            In other words, if, at any time, there are less than 24 hours remaining, any contribution will cause the
+            clock
             to be set to 24 hours from that moment.
         </p>
         <p>
             The record will be released when contributions reach 10ETH, regardless of whether the 14 days have passed.
+            Conversely, the contribution window will be open for at least 14 days, regardless of whether 10ETH are
+            raised.
+        </p>
+        <p>
+            <a href="https://etherscan.io/address/0xa812137EFf2B368d0B2880A39B609fB60c426850#readContract">The
+                contract</a>
+            was deployed <a href="https://etherscan.io/tx/0xb747660b14b6632c72f858de344873f361378b9dd96f3d3931a68f076a104e3c">on September 1.</a>
         </p>
         <p class="end-of-answer">
             The 14-day window and 24-hour extension are parameterized - future Revealers can have different values.

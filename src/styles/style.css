@@ -249,14 +249,22 @@ nav span a img {
     justify-content: center;
 }
 
-#FAQ h3 {
+#FAQ h3, #FAQ h4 {
     font-weight: bold;
     margin: 1em;
-    font-size: 2em;
     font-family: monospace;
     letter-spacing: 1px;
     color: rgb(166, 199, 213);
 }
+
+#FAQ h3 {
+    font-size: 2em;
+}
+
+#FAQ h4 {
+    font-size: 1.5em;
+}
+
 
 #faq-questions {
     width: 85%;
@@ -503,8 +511,20 @@ main {
     padding-bottom: 0.5em;
 }
 
-.slightly-smaller {
+#fundingStatus.side-by-side {
+    font-size: 2em;
+}
+
+#fundingStatus.single-column {
+    font-size:3em;
+}
+
+.side-by-side .slightly-smaller {
     font-size: 16px;
+}
+
+.single-column .slightly-smaller {
+    font-size: 20px;
 }
 
 #funding-label {
@@ -537,6 +557,7 @@ main {
     background: #000000b2;
     padding: 4em 15%;
     border-top: 2px solid blueviolet;
+    padding-bottom: 0;
 }
 
 #how-does-this-work > h2 {
