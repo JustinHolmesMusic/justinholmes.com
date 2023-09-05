@@ -31,6 +31,10 @@ h3 {
 }
 
 
+a {
+    color: rgb(166, 199, 213);
+}
+
 .paybutton {
     border: 1px solid rgb(0, 0, 0);
     color: #d9d8d8;
@@ -234,8 +238,8 @@ nav span a img {
 }
 
 #discord-for-help {
-    font-size: 18px;
-    padding: 8px;
+	font-size: 14px;
+	padding: 8px;
 }
 
 #discord-for-help a {
@@ -368,7 +372,9 @@ nav span a img {
 }
 
 #ensemble {
-    /*width: 50%;*/
+	width: 70%;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 #ensemble h1 {
@@ -377,15 +383,15 @@ nav span a img {
 
 #ensemble h4.card-title {
     color: #d9d8d8;
-    font-family: larissa;
+    font-family: larissa, monospace;
 }
 
 #ensemble .card {
-	border-top: 1px solid blueviolet;
 	border-left: 1px solid blueviolet;
-	min-width: 310px;
-	width: fit-content;
-    margin: auto;
+	min-width: 20em;
+	/*width: fit-content;*/
+	margin: auto;
+	width: 33%;
 }
 
 #ensemble .card-text {
@@ -761,20 +767,24 @@ td > a {
     color: rgb(166, 199, 213);
 }
 
-#artifact-warning {
-    display: none;
-    border: 2px solid black;
-    background-color: #85434DFF;
-    color: white;
-    padding: 5px;
+
+.user-amount-warning {
+	display: none;
+	border: 1px solid black;
+	/*background-color: rgb(166, 199, 213);*/
+	background: transparent;
+    color: black;
+	margin-bottom: 0.5em;
+	font-size: 13px;
+	width: 40em;
+	text-align: center;
+	padding: 1em;
+	border-radius: 5px;
+    /*font-style: italic;*/
 }
 
-#combine-epsilon-warning {
-    display: none;
-    border: 2px solid black;
-    background-color: #85434DFF;
-    color: white;
-    padding: 5px;
+.user-amount-warning > i {
+    color: #bcd2e1;
 }
 
 #artifactIntro {
@@ -935,6 +945,11 @@ p {
 
 #decrypt {
     width: 98%;
+}
+
+.toast-container {
+    position: fixed;
+    top: 0.5em;
 }
 
 .toast-header {
@@ -1150,21 +1165,29 @@ p {
 
 
 #user-amount-label {
-    font-family: monospace;
-    font-size: 15px;
-    font-weight: bold;
-    color: #d9d8d8;
+	font-family: monospace;
+	font-size: 18px;
+	font-weight: bold;
+	color: #d9d8d8;
 }
 
 #user-amount {
-    width: 4em;
-    font-size: 14px;
-    text-align: center;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid black;
-    color: #d9d8d8;
+	width: 5em;
+	font-size: 18px;
+	text-align: center;
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid black;
+	color: #fff;
+    margin: 0.5em 0.5em 0.5em -3px;
 }
+
+/*input[type=number] {*/
+/*    -moz-appearance: textfield;*/
+/*    appearance: textfield;*/
+/*    margin: 0;*/
+/*}*/
+
 
 #user-amount:hover {
     color: white;
