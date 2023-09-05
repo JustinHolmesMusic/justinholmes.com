@@ -1362,3 +1362,24 @@ html {
     align-items: center;
     margin-top: 1em;
 }
+
+#decrypting-overlay {
+    height: 100%;
+    background-color: #562567c7;
+    display:none;
+    z-index: 8000;
+}
+
+#decrypting-overlay #secondBubble {
+    color: blueviolet !important;
+    position: relative;
+    left: 280px;
+}
+
+#whatAreWeDecrypting {
+font-size: 1em;
+font-family: larissa;
+    color: white;
+    border: 1px dashed white;
+
+}
