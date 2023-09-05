@@ -1,5 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
+
+var AES = require('crypto-js/aes');
+const CryptoJS = require("crypto-js");
 import {Toast} from 'bootstrap';
 import 'popper.js';
 import 'tippy.js'
@@ -306,7 +309,7 @@ async function readFilesToDecrypt() {
     // use decode on the files
     const decodedFiles = [];
     for (let i = 0; i < files.length; i++) {
-        const file = files[i];
+        let file = files[i];
         const reader = new FileReader();
 
         reader.onerror = (error) => {
@@ -322,12 +325,33 @@ async function readFilesToDecrypt() {
             const ciphertext = decoded['bulk_ciphertext'];
             const ciphertextString = uInt8ArrayToString(ciphertext);
 
+            console.log("Decrypting " + file);
             const decrypted = window.token.decode(ciphertextString);
+            const base64String = CryptoJS.enc.Base64.stringify(decrypted);
+            const decodedAndDecrypted = atob(base64String);
+            const finallyBytes = new Uint8Array([...decodedAndDecrypted].map(ch => ch.charCodeAt(0)));
+            const unpacked = decode(finallyBytes);
+            const metadata = unpacked['metadata'];
+            const fileContent = unpacked['file_content'];
 
-            // Write that to a file and let the user download it
-            const blob = new Blob([decrypted], {type: 'image/jpeg'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
+            const filename = metadata.filename;
+            const extension = filename.split('.').slice(-1);
+
+            if (extension === 'png') {
+
+                // Write that to a file and let the user download it
+                const blob = new Blob([fileContent], {type: 'image/png'});
+                const objectURL = URL.createObjectURL(blob);
+                // const a = document.createElement('a');
+
+                let imgElement = document.createElement('img');
+                imgElement.src = objectURL;
+
+                const decryptModal = document.getElementById('decrypt-modal');
+                const modalBody = decryptModal.getElementsByClassName('modal-content')[0];
+                modalBody.appendChild(imgElement);
+            }
+
         }
         // now read the file
         await reader.readAsArrayBuffer(file);
@@ -690,6 +714,19 @@ async function useSecretToDecryptMaterial() {
     const base64StringOfKeyPlaintext = uInt8ArrayToString(bytesOfKeyPlaintext);
     const openSecret = new fernet.Secret(base64StringOfKeyPlaintext);
     window.token = new fernet.Token({secret: openSecret, ttl: 0})
+
+    fernet.decryptMessage = function (cipherText, encryptionKey, iv) {
+        console.log("Decrypting and not presuming UTF-8.")
+        var encrypted = {};
+        encrypted.key = encryptionKey;
+        encrypted.iv = iv;
+        encrypted.ciphertext = cipherText;
+        var decrypted = AES.decrypt(encrypted, encryptionKey, {iv: iv});
+        // UTF-8 nonsense is here in parent version.
+
+        return decrypted
+    }
+
     console.log(base64StringOfKeyPlaintext);
 }
 
