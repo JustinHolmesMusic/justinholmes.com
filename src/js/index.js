@@ -298,6 +298,18 @@ function updateCountdownDisplay() {
 //     });
 // }
 
+function unpackFromDecoded(decoded) {
+    const ciphertext = decoded['bulk_ciphertext'];
+    const ciphertextString = uInt8ArrayToString(ciphertext);
+    const decrypted = window.token.decode(ciphertextString);
+    const base64String = CryptoJS.enc.Base64.stringify(decrypted);
+    const decodedAndDecrypted = atob(base64String);
+    const finallyBytes = new Uint8Array([...decodedAndDecrypted].map(ch => ch.charCodeAt(0)));
+
+    const unpacked = decode(finallyBytes);
+    return unpacked;
+}
+
 function readFileAsArrayBuffer(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -308,27 +320,15 @@ function readFileAsArrayBuffer(file) {
         };
         reader.onload = (event) => {
             const decoded = decode(event.target.result);
+            const unpacked = unpackFromDecoded(decoded);
 
-            console.log(decoded);
-
-            // decoded is json; lookup 'bulk_ciphertext' and pass it to fernet
-            const ciphertext = decoded['bulk_ciphertext'];
-            const ciphertextString = uInt8ArrayToString(ciphertext);
-
-            console.log("Decrypting " + file);
-            const decrypted = window.token.decode(ciphertextString);
-            const base64String = CryptoJS.enc.Base64.stringify(decrypted);
-            const decodedAndDecrypted = atob(base64String);
-            const finallyBytes = new Uint8Array([...decodedAndDecrypted].map(ch => ch.charCodeAt(0)));
-            const unpacked = decode(finallyBytes);
             const metadata = unpacked['metadata'];
             const fileContent = unpacked['file_content'];
 
             const filename = metadata.filename;
             const extension = filename.split('.').slice(-1)[0];
             console.log("Extension: " + extension);
-            const decryptModal = document.getElementById('decrypt-modal');
-            const modalBody = decryptModal.getElementsByClassName('modal-content')[0];
+
 
             if (extension === 'png') {
                 console.log("This is an image.  Let's display it.")
@@ -340,30 +340,50 @@ function readFileAsArrayBuffer(file) {
 
                 let imgElement = document.createElement('img');
                 imgElement.src = objectURL;
-
+                const decryptModal = document.getElementById('decrypt-modal');
+                const modalBody = decryptModal.getElementsByClassName('modal-content')[0];
                 modalBody.appendChild(imgElement);
             } else if (extension === 'flac') {
                 console.log("It's a flac.  Blobbing and embedding.")
                 const audioBlob = new Blob([fileContent], {type: 'audio/flac'});
                 const objectURL = URL.createObjectURL(audioBlob);
+                //
+                // var sound = new Howl({
+                //     src: [objectURL],
+                //     format: ['flac'] // Adjust according to the format of your audio Blob (mp3, wav, etc.)
+                // });
+                // console.log("Playing.");
+                // sound.play();
+                let trackNumberAndNAme = filename.split("Justin Holmes - Vowel Sounds - ")[1]
+                let trackNumber = trackNumberAndNAme.split(" ")[0]
 
-                var sound = new Howl({
-                    src: [objectURL],
-                    format: ['flac'] // Adjust according to the format of your audio Blob (mp3, wav, etc.)
-                });
-                console.log("Playing.");
-                sound.play();
-                let downloadLink = document.createElement('a');
+                let decryptedTrackDiv = document.getElementById('decrypted-track-' + trackNumber);
+
+                let songTitleElement = decryptedTrackDiv.getElementsByClassName('actual-track-title')[0];
+                songTitleElement.innerHTML = trackNumberAndNAme;
+
+                let audioElement = decryptedTrackDiv.getElementsByTagName('audio')[0];
+                audioElement.src = objectURL;
+                audioElement.controls = true;
+                audioElement.type = 'audio/flac';
+                audioElement.innerHTML = "Your browser does not support the audio element.";
+
+                let downloadLink = decryptedTrackDiv.getElementsByTagName('a')[0];
                 downloadLink.href = objectURL;
-                downloadLink.innerText = "Download Audio"; // or any other descriptive text
-                downloadLink.download = 'desiredFilename.mp3'; // Set your desired filename and extension here
-                modalBody.appendChild(downloadLink);
+                downloadLink.download = filename; // Set your desired filename and extension here
+
+                // Display the decrypted tracks area.
+                document.getElementById('decrypted-tracks-area').style.display = 'block';
+
+                // Display this track's div.
+                decryptedTrackDiv.style.display = 'block';
+
             } else {
                 console.log("This is not a png or flac.")
             }
             resolve(event.target.result);
         }
-            // Put the filename in whatAreWeDecrypting
+        // Put the filename in whatAreWeDecrypting
         const filenameToDecrypt = file.name;
         document.getElementById('whatAreWeDecrypting').innerHTML = filenameToDecrypt;
         reader.readAsArrayBuffer(file);

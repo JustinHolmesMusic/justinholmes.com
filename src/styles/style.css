@@ -381,10 +381,10 @@ nav span a img {
 }
 
 #ensemble .card {
-	border-top: 1px solid blueviolet;
-	border-left: 1px solid blueviolet;
-	min-width: 310px;
-	width: fit-content;
+    border-top: 1px solid blueviolet;
+    border-left: 1px solid blueviolet;
+    min-width: 310px;
+    width: fit-content;
     margin: auto;
 }
 
@@ -524,7 +524,7 @@ main {
 }
 
 #fundingStatus.single-column {
-    font-size:3em;
+    font-size: 3em;
 }
 
 .side-by-side .slightly-smaller {
@@ -1041,7 +1041,7 @@ p {
 }
 
 
-#download-modal .modal-footer{
+#download-modal .modal-footer {
     /* the buttons don't overflow on mobile and are centered */
     display: flex;
     flex-wrap: wrap;
@@ -1366,8 +1366,14 @@ html {
 #decrypting-overlay {
     height: 100%;
     background-color: #562567c7;
-    display:none;
+    display: none;
     z-index: 8000;
+}
+
+#decrypting-overlay h3
+{
+    font-family : Courier, larissa;
+    color: white;
 }
 
 #decrypting-overlay #secondBubble {
@@ -1377,9 +1383,37 @@ html {
 }
 
 #whatAreWeDecrypting {
-font-size: 1em;
-font-family: larissa;
+    font-size: 1em;
+    font-family: larissa;
     color: white;
     border: 1px dashed white;
 
+}
+
+#decrypted-tracks-area {
+    margin-top: 20px;
+    border-top: 1px solid black;
+    display:none;
+}
+
+.decrypted-track {
+    border-top: 1px solid white;
+    padding-top: 5px;
+    margin-top: 3px;
+    color: white;
+    display: none;
+}
+
+.decrypted-track audio {
+    width: 100%;
+}
+
+.decrypted-track a {
+    position: relative;
+    bottom: 15px;
+}
+
+.decrypted-track a img {
+    width: 100%;
+    filter: invert(42%) sepia(93%) saturate(0%) hue-rotate(0deg) brightness(119%) contrast(350%)
 }
