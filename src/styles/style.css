@@ -874,8 +874,12 @@ p {
 
 .number {
     color: black;
-    font-size: 1em;
+    font-size: .8em;
     letter-spacing: 10px;
+}
+
+#raisedSoFar {
+    font-size: .6em;
 }
 
 .art {
