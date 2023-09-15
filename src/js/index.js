@@ -1,7 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
-import {Howl, Howler} from 'howler';
-
 var AES = require('crypto-js/aes');
 const CryptoJS = require("crypto-js");
 import {Toast} from 'bootstrap';
@@ -343,13 +341,6 @@ function readFileAsArrayBuffer(file) {
                 console.log("It's a flac.  Blobbing and embedding.")
                 const audioBlob = new Blob([fileContent], {type: 'audio/flac'});
                 const objectURL = URL.createObjectURL(audioBlob);
-                //
-                // var sound = new Howl({
-                //     src: [objectURL],
-                //     format: ['flac'] // Adjust according to the format of your audio Blob (mp3, wav, etc.)
-                // });
-                // console.log("Playing.");
-                // sound.play();
                 let trackNumberAndNAme = filename.split("Justin Holmes - Vowel Sounds - ")[1]
                 let trackNumber = trackNumberAndNAme.split(" ")[0]
 
