@@ -530,7 +530,7 @@ main {
 }
 
 #fundingStatus.single-column {
-    font-size:3em;
+    font-size: 3em;
 }
 
 .side-by-side .slightly-smaller {
@@ -1060,7 +1060,7 @@ p {
 }
 
 
-#download-modal .modal-footer{
+#download-modal .modal-footer {
     /* the buttons don't overflow on mobile and are centered */
     display: flex;
     flex-wrap: wrap;
@@ -1320,6 +1320,9 @@ footer img {
     width: 80%;
     margin: auto;
     max-width: 65em;
+    --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='blueViolet'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+
 }
 
 .accordion-item {
@@ -1388,4 +1391,58 @@ html {
     justify-content: center;
     align-items: center;
     margin-top: 1em;
+}
+
+#decrypting-overlay {
+    height: 100%;
+    background-color: #562567c7;
+    display: none;
+    z-index: 8000;
+}
+
+#decrypting-overlay h3 {
+    font-family: Courier, larissa;
+    color: white;
+}
+
+#decrypting-overlay #secondBubble {
+    color: blueviolet !important;
+    position: relative;
+    left: 280px;
+}
+
+#whatAreWeDecrypting {
+    font-size: 1em;
+    font-family: larissa;
+    color: white;
+    border: 1px dashed white;
+
+}
+
+#decrypted-tracks-area {
+    margin-top: 20px;
+    border-top: 1px solid black;
+    display: none;
+}
+
+.decrypted-track {
+    border-top: 1px solid white;
+    padding-top: 5px;
+    margin-top: 3px;
+    color: white;
+    display: none;
+}
+
+.decrypted-track audio {
+    width: 100%;
+}
+
+.decrypted-track a {
+    position: relative;
+    bottom: 15px;
+}
+
+.decrypted-track a img {
+    width: 100%;
+    filter: invert(42%) sepia(93%) saturate(0%) hue-rotate(0deg) brightness(119%) contrast(350%)
 }

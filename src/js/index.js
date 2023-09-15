@@ -1,5 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
+import {Howl, Howler} from 'howler';
+
+var AES = require('crypto-js/aes');
+const CryptoJS = require("crypto-js");
 import {Toast} from 'bootstrap';
 import 'popper.js';
 import 'tippy.js'
@@ -132,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCountdownDisplay();
     useSecretToDecryptMaterial();
     // Set the onclick of the button with ID 'decrypt' to call readFilesToDecrypt
-    document.getElementById('decrypt').onclick = readFilesToDecrypt;
+    document.getElementById('decrypt').onclick = decodeAndReadFilesToDecrypt;
 
     // If the number in #user-amount is changed to below .1, reveal a message telling them they won't get an Artifact.
     $("#user-amount").on("keyup", function () {
@@ -290,46 +294,131 @@ function updateCountdownDisplay() {
     });
 }
 
+function unpackFromDecoded(decoded) {
+    const ciphertext = decoded['bulk_ciphertext'];
+    const ciphertextString = uInt8ArrayToString(ciphertext);
+    const decrypted = window.token.decode(ciphertextString);
+    const base64String = CryptoJS.enc.Base64.stringify(decrypted);
+    const decodedAndDecrypted = atob(base64String);
+    const finallyBytes = new Uint8Array([...decodedAndDecrypted].map(ch => ch.charCodeAt(0)));
 
-async function readFilesToDecrypt() {
-// Read files from the DOM element with ID formFileMultiple
-    const files = document.getElementById('formFileMultiple').files;
+    const unpacked = decode(finallyBytes);
+    return unpacked;
+}
 
-    if (files.length === 0) {
-        showError("No files selected");
-        return;
-    }
-    // use decode on the files
-    const decodedFiles = [];
-    for (let i = 0; i < files.length; i++) {
-        const file = files[i];
+function readFileAsArrayBuffer(file) {
+    return new Promise((resolve, reject) => {
         const reader = new FileReader();
 
         reader.onerror = (error) => {
             console.log(new Error("File reading failed: " + error));
+            reject(new Error("Error reading file: " + error));
         };
-
-        reader.onload = async (event) => {
+        reader.onload = (event) => {
             const decoded = decode(event.target.result);
+            const unpacked = unpackFromDecoded(decoded);
 
-            console.log(decoded);
+            const metadata = unpacked['metadata'];
+            const fileContent = unpacked['file_content'];
 
-            // decoded is json; lookup 'bulk_ciphertext' and pass it to fernet
-            const ciphertext = decoded['bulk_ciphertext'];
-            const ciphertextString = uInt8ArrayToString(ciphertext);
+            const filename = metadata.filename;
+            const extension = filename.split('.').slice(-1)[0];
+            console.log("Extension: " + extension);
 
-            const decrypted = window.token.decode(ciphertextString);
 
-            // Write that to a file and let the user download it
-            const blob = new Blob([decrypted], {type: 'image/jpeg'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
+            if (extension === 'png') {
+                console.log("This is an image.  Let's display it.")
+
+                // Write that to a file and let the user download it
+                const blob = new Blob([fileContent], {type: 'image/png'});
+                const objectURL = URL.createObjectURL(blob);
+                // const a = document.createElement('a');
+
+                let imgElement = document.createElement('img');
+                imgElement.src = objectURL;
+                const decryptModal = document.getElementById('decrypt-modal');
+                const modalBody = decryptModal.getElementsByClassName('modal-content')[0];
+                modalBody.appendChild(imgElement);
+            } else if (extension === 'flac') {
+                console.log("It's a flac.  Blobbing and embedding.")
+                const audioBlob = new Blob([fileContent], {type: 'audio/flac'});
+                const objectURL = URL.createObjectURL(audioBlob);
+                //
+                // var sound = new Howl({
+                //     src: [objectURL],
+                //     format: ['flac'] // Adjust according to the format of your audio Blob (mp3, wav, etc.)
+                // });
+                // console.log("Playing.");
+                // sound.play();
+                let trackNumberAndNAme = filename.split("Justin Holmes - Vowel Sounds - ")[1]
+                let trackNumber = trackNumberAndNAme.split(" ")[0]
+
+                let decryptedTrackDiv = document.getElementById('decrypted-track-' + trackNumber);
+
+                let songTitleElement = decryptedTrackDiv.getElementsByClassName('actual-track-title')[0];
+                songTitleElement.innerHTML = trackNumberAndNAme;
+
+                let audioElement = decryptedTrackDiv.getElementsByTagName('audio')[0];
+                audioElement.src = objectURL;
+                audioElement.controls = true;
+                audioElement.type = 'audio/flac';
+                audioElement.innerHTML = "Your browser does not support the audio element.";
+
+                let downloadLink = decryptedTrackDiv.getElementsByTagName('a')[0];
+                downloadLink.href = objectURL;
+                downloadLink.download = filename; // Set your desired filename and extension here
+
+                // Display the decrypted tracks area.
+                document.getElementById('decrypted-tracks-area').style.display = 'block';
+
+                // Display this track's div.
+                decryptedTrackDiv.style.display = 'block';
+
+            } else {
+                console.log("This is not a png or flac.")
+            }
+            resolve(event.target.result);
         }
-        // now read the file
-        await reader.readAsArrayBuffer(file);
-    }
+        // Put the filename in whatAreWeDecrypting
+        const filenameToDecrypt = file.name;
+        document.getElementById('whatAreWeDecrypting').innerHTML = filenameToDecrypt;
+        reader.readAsArrayBuffer(file);
+    });
+}
+
+async function processFiles(files) {
+    const results = await Promise.allSettled(files.map(file => readFileAsArrayBuffer(file)));
+
+    const report = results.map((result, index) => {
+        if (result.status === "fulfilled") {
+            return {
+                file: files[index].name,
+                status: "success",
+                data: result.value
+            };
+        } else {
+            return {
+                file: files[index].name,
+                status: "error",
+                error: result.reason
+            };
+        }
+    });
+
+    return report;
+}
 
 
+function decodeAndReadFilesToDecrypt() {
+    // Show the overlay.
+    document.getElementById('decrypting-overlay').style.display = 'block';
+    const filesList = document.getElementById('formFileMultiple').files;
+    const files = [...filesList]
+    processFiles(files).then(report => {
+        console.log(report);
+        document.getElementById('decrypting-overlay').style.display = 'none';
+
+    });
 }
 
 
@@ -686,6 +775,19 @@ async function useSecretToDecryptMaterial() {
     const base64StringOfKeyPlaintext = uInt8ArrayToString(bytesOfKeyPlaintext);
     const openSecret = new fernet.Secret(base64StringOfKeyPlaintext);
     window.token = new fernet.Token({secret: openSecret, ttl: 0})
+
+    fernet.decryptMessage = function (cipherText, encryptionKey, iv) {
+        console.log("Decrypting and not presuming UTF-8.")
+        var encrypted = {};
+        encrypted.key = encryptionKey;
+        encrypted.iv = iv;
+        encrypted.ciphertext = cipherText;
+        var decrypted = AES.decrypt(encrypted, encryptionKey, {iv: iv});
+        // UTF-8 nonsense is here in parent version.
+
+        return decrypted
+    }
+
     console.log(base64StringOfKeyPlaintext);
 }
 
