@@ -64,58 +64,58 @@ const contractAddress = '0xa812137EFf2B368d0B2880A39B609fB60c426850';
 // Web3Modal Things
 /////////////
 
-const {publicClient} = configureChains(chains, [bullshitCentralizedProvider])
+const { publicClient } = configureChains(chains, [bullshitCentralizedProvider]);
 
 const wagmiConfig = createConfig({
-    autoConnect: true,
-    connectors: w3mConnectors({projectId, chains}),
-    publicClient
-})
-const ethereumClient = new EthereumClient(wagmiConfig, chains)
+  autoConnect: true,
+  connectors: w3mConnectors({ projectId, chains }),
+  publicClient,
+});
+const ethereumClient = new EthereumClient(wagmiConfig, chains);
 export const web3modal = new Web3Modal({
-    projectId: projectId,
-    themeVariables: {
-        "--w3m-font-family": "monospace, sans-serif",
-        "--w3m-accent-color": "blueviolet",
-        "--w3m-background-color": "blueviolet",
-    }
+  projectId: projectId,
+  themeVariables: {
+    '--w3m-font-family': 'monospace, sans-serif',
+    '--w3m-accent-color': 'blueviolet',
+    '--w3m-background-color': 'blueviolet',
+  },
 }, ethereumClient);
 
 web3modal.subscribeEvents((event) => {
-        if (event.name === "ACCOUNT_CONNECTED") {
-            updateContributorsTable(); // This has a side-effect of updating the combine contribution toggle visibility
-        }
+    if (event.name === 'ACCOUNT_CONNECTED') {
+      updateContributorsTable(); // This has a side-effect of updating the combine contribution toggle visibility
     }
-)
+  },
+);
 
 function displayArtifactMinimumWarningIfNeeded() {
 
-    let userAmount = document.getElementById('user-amount').value;
-    let combine = document.getElementById("combine-contribution-toggle").checked;
+  let userAmount = document.getElementById('user-amount').value;
+  let combine = document.getElementById('combine-contribution-toggle').checked;
 
-    if (combine) {
-        document.getElementById('artifact-warning').style.display = 'none';
+  if (combine) {
+    document.getElementById('artifact-warning').style.display = 'none';
 
-        // if the amount is less than the minimum, display the epsilon warning.
-        if (userAmount < minContributionAmount) {
-            document.getElementById('combine-epsilon-warning').style.display = 'block';
-            return
-        } else {
-            // Otherwise, they must be above the min and there's no need for a warning.
-            document.getElementById('combine-epsilon-warning').style.display = 'none';
-            return;
-        }
-    } else {
-        document.getElementById('combine-epsilon-warning').style.display = 'none';
-    }
-
-    // console.log("User amount: " + userAmount)
-
+    // if the amount is less than the minimum, display the epsilon warning.
     if (userAmount < minContributionAmount) {
-        document.getElementById('artifact-warning').style.display = 'block';
+      document.getElementById('combine-epsilon-warning').style.display = 'block';
+      return;
     } else {
-        document.getElementById('artifact-warning').style.display = 'none';
+      // Otherwise, they must be above the min and there's no need for a warning.
+      document.getElementById('combine-epsilon-warning').style.display = 'none';
+      return;
     }
+  } else {
+    document.getElementById('combine-epsilon-warning').style.display = 'none';
+  }
+
+  // console.log("User amount: " + userAmount)
+
+  if (userAmount < minContributionAmount) {
+    document.getElementById('artifact-warning').style.display = 'block';
+  } else {
+    document.getElementById('artifact-warning').style.display = 'none';
+  }
 }
 
 //////////////////
@@ -138,22 +138,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set the onclick of the button with ID 'decrypt' to call readFilesToDecrypt
     document.getElementById('decrypt').onclick = decodeAndReadFilesToDecrypt;
 
-    // If the number in #user-amount is changed to below .1, reveal a message telling them they won't get an Artifact.
-    $("#user-amount").on("keyup", function () {
-        displayArtifactMinimumWarningIfNeeded();
-    });
-
-    $("#user-amount").on("change", function () {
-        displayArtifactMinimumWarningIfNeeded();
-    });
-
-    $('#combine-contribution-toggle').on('change', function () {
-        displayArtifactMinimumWarningIfNeeded();
-    });
-
-
-    // In case they refreshed the page with the value set lower than the minimum.
+  // If the number in #user-amount is changed to below .1, reveal a message telling them they won't get an Artifact.
+  $('#user-amount').on('keyup', function() {
     displayArtifactMinimumWarningIfNeeded();
+  });
+
+  $('#user-amount').on('change', function() {
+    displayArtifactMinimumWarningIfNeeded();
+  });
+
+  $('#combine-contribution-toggle').on('change', function() {
+    displayArtifactMinimumWarningIfNeeded();
+  });
+
+
+  // In case they refreshed the page with the value set lower than the minimum.
+  displayArtifactMinimumWarningIfNeeded();
 
 });
 
@@ -162,31 +162,31 @@ let maxBookletPage = document.querySelectorAll('[data-booklet-page]').length;
 
 
 function openBooklet() {
-    let firstPage = document.querySelector('[data-booklet-page="1"]');
-    document.getElementById("booklet-content").innerHTML = firstPage.innerHTML;
-    setupBookletNavigation();
+  let firstPage = document.querySelector('[data-booklet-page="1"]');
+  document.getElementById('booklet-content').innerHTML = firstPage.innerHTML;
+  setupBookletNavigation();
 }
 
 function getNextBookletPage() {
-    currentBookletPage = currentBookletPage + 1;
-    if (currentBookletPage > maxBookletPage) {
-        currentBookletPage = 1;
-    }
-    return currentBookletPage;
+  currentBookletPage = currentBookletPage + 1;
+  if (currentBookletPage > maxBookletPage) {
+    currentBookletPage = 1;
+  }
+  return currentBookletPage;
 }
 
 function setupBookletNavigation() {
-    document.getElementById("next-booklet-page").onclick = () => {
-        let nextBookletPage = getNextBookletPage();
-        let selector = `[data-booklet-page="${nextBookletPage}"]`;
-        let nextBookletPageElement = document.querySelector(selector);
-        document.getElementById("booklet-content").innerHTML = nextBookletPageElement.innerHTML;
-        setupBookletNavigation();
-    };
+  document.getElementById('next-booklet-page').onclick = () => {
+    let nextBookletPage = getNextBookletPage();
+    let selector = `[data-booklet-page="${nextBookletPage}"]`;
+    let nextBookletPageElement = document.querySelector(selector);
+    document.getElementById('booklet-content').innerHTML = nextBookletPageElement.innerHTML;
+    setupBookletNavigation();
+  };
 }
 
 function setMinContributionAmount() {
-    document.getElementById("min-preset").innerHTML = minContributionAmount + " ETH";
+  document.getElementById('min-preset').innerHTML = minContributionAmount + ' ETH';
 }
 
 
@@ -194,43 +194,43 @@ function setMinContributionAmount() {
 async function updateFundingThreshold() {
 
 
-    // Instead of awaiting these, do them concurrently.
-    const balance = await fetchBalance({
-        address: contractAddress,
-        chainId: chainId,
-        formatUnits: "wei",
-    });
+  // Instead of awaiting these, do them concurrently.
+  const balance = await fetchBalance({
+    address: contractAddress,
+    chainId: chainId,
+    formatUnits: 'wei',
+  });
 
-    const thresholdInWei = await readContract({
-        address: contractAddress,
-        abi: contractABI,
-        chainId: chainId,
-        functionName: 'threshold',
-    });
-    const thresholdInEth = formatEther(thresholdInWei);
+  const thresholdInWei = await readContract({
+    address: contractAddress,
+    abi: contractABI,
+    chainId: chainId,
+    functionName: 'threshold',
+  });
+  const thresholdInEth = formatEther(thresholdInWei);
 
-    const contractBalanceAsEther = formatEther(Number(balance.value));
+  const contractBalanceAsEther = formatEther(Number(balance.value));
 
-    // Calculate the remaining amount needed to reach the threshold
+  // Calculate the remaining amount needed to reach the threshold
 
-    const toBeFunded = Number(thresholdInEth) - contractBalanceAsEther;
-    // const remainingAmountInWei = Number(thresholdInWei) - Number(balance.value);
+  const toBeFunded = Number(thresholdInEth) - contractBalanceAsEther;
+  // const remainingAmountInWei = Number(thresholdInWei) - Number(balance.value);
 
-    // Convert the remaining amount to ETH
-    // const remainingAmount = formatEther(remainingAmountInWei);
+  // Convert the remaining amount to ETH
+  // const remainingAmount = formatEther(remainingAmountInWei);
 
-    // Show how much has been funded out of the threshold
-    document.getElementById('raisedSoFar').textContent = Number(contractBalanceAsEther).toFixed(3) + " ETH";
+  // Show how much has been funded out of the threshold
+  document.getElementById('raisedSoFar').textContent = Number(contractBalanceAsEther).toFixed(3) + ' ETH';
 
-    // Show how much is remaining
-    // document.getElementById('remainingEth').textContent = Number(toBeFunded).toFixed(2) + " ETH";
+  // Show how much is remaining
+  // document.getElementById('remainingEth').textContent = Number(toBeFunded).toFixed(2) + " ETH";
 
 
-    // If the threshold has been reached, stop the countdown
-    // if (alreadyFunded >= formatEther(thresholdInWei)) {
-    //     // Put "hurrah" in the 'remainingEth' element
-    //     document.getElementById('remainingEth').textContent = "Album Dropped 🎉";
-    // }
+  // If the threshold has been reached, stop the countdown
+  // if (alreadyFunded >= formatEther(thresholdInWei)) {
+  //     // Put "hurrah" in the 'remainingEth' element
+  //     document.getElementById('remainingEth').textContent = "Album Dropped 🎉";
+  // }
 }
 
 let isKeySet = false;
@@ -443,15 +443,12 @@ function isUserInTopN(topContributions, address, n) {
 
 
 function amountOfEthToGetIntoTopN(contributionsByAddress, userAddress, combine, n) {
-    let topContributions = getTopContributions(contributionsByAddress);
-
+  let topContributions = getTopContributions(contributionsByAddress);
+  if (combine) {
     if (isUserInTopN(topContributions, userAddress, n)) {
-        return 0;
+      return 0;
     }
-
-    if (topContributions.length < n) {
-        return minContributionAmount;
-    }
+  }
 
     let nthContributionAmount = topContributions[n - 1][0];
     nthContributionAmount = Number(formatEther(nthContributionAmount));
@@ -664,110 +661,124 @@ var x = setInterval(function () {
 //// Contributors Table Things
 //////////////////
 function isWalletConnected() {
-    return ethereumClient.getAccount()['isConnected'];
+  return ethereumClient.getAccount()['isConnected'];
 }
 
 function getContributionsByAddress(contributionsMetadata) {
 
-    let contributionsByAddress = {}
+  let contributionsByAddress = {};
 
-    let contributors = contributionsMetadata[0]
-    let amounts = contributionsMetadata[1]
-    let combined = contributionsMetadata[2]
-    let datetimes = contributionsMetadata[3]
+  let contributors = contributionsMetadata[0];
+  let amounts = contributionsMetadata[1];
+  let combined = contributionsMetadata[2];
+  let datetimes = contributionsMetadata[3];
 
-    for (let i = 0; i < contributors.length; i++) {
+  for (let i = 0; i < contributors.length; i++) {
 
-        const address = contributors[i]
-        if (!(address in contributionsByAddress)) {
-            contributionsByAddress[address] = []
-        }
-
-        const is_combined = combined[i]
-        const amount = Number(amounts[i])
-        const contributionMoment = datetimes[i]
-
-        if (is_combined) {
-            if (contributionsByAddress[address].length === 0) {
-                // console.log("wtf");
-                // This ought to be an impossible situaiton - how did they dcombine with a bid that didn't exist?
-                contributionsByAddress[address].push(Number(0))
-            }
-            contributionsByAddress[address][0] += Number(amount)
-        } else {
-            contributionsByAddress[address].push(amount)
-        }
+    const address = contributors[i];
+    if (!(address in contributionsByAddress)) {
+      contributionsByAddress[address] = [];
     }
-    return contributionsByAddress;
+
+    const is_combined = combined[i];
+    const amount = Number(amounts[i]);
+    const contributionMoment = datetimes[i];
+
+    if (is_combined) {
+      if (contributionsByAddress[address].length === 0) {
+        // console.log("wtf");
+        // This ought to be an impossible situaiton - how did they dcombine with a bid that didn't exist?
+        contributionsByAddress[address].push([Number(0), contributionMoment]);
+      }
+      contributionsByAddress[address][0][0] += Number(amount);
+    } else {
+      contributionsByAddress[address].push([amount, contributionMoment]);
+    }
+  }
+  return contributionsByAddress;
 }
 
 function getTopContributions(contributionsByAddress) {
-    let topContributions = []
-    for (let address in contributionsByAddress) {
-        let contributions = contributionsByAddress[address];
-        for (var c = 0; c < contributions.length; c++) {
-            topContributions.push([contributions[c], address]);
-        }
+  let topContributions = [];
+  for (let address in contributionsByAddress) {
+    let contributions = contributionsByAddress[address];
+    for (var c = 0; c < contributions.length; c++) {
+      topContributions.push([contributions[c], address]);
     }
+  }
 
-    function compareContributions(a, b) {
-        if (a[0] > b[0]) {
-            return -1;
-        }
-        if (a[0] < b[0]) {
-            return 1;
-        }
-        return 0;
+  function compareContributions(a, b) {
+    let a_metadata = a[0];
+    let b_metadata = b[0];
+    let aContributionAmount = a_metadata[0];
+    let bContributionAmount = b_metadata[0];
+    if (aContributionAmount > bContributionAmount) {
+      return -1;
     }
+    if (aContributionAmount < bContributionAmount) {
+      return 1;
+    }
+    if (aContributionAmount == bContributionAmount) {
+      let aContributionDatetime = a_metadata[1];
+      let bContributionDatetime = b_metadata[1];
+      if (aContributionDatetime > bContributionDatetime) {
+        return 1;
+      }
+      if (aContributionDatetime < bContributionDatetime) {
+        return -1;
+      }
+    }
+    return 0;
+  }
 
-    topContributions.sort(compareContributions);
-    return topContributions;
+  topContributions.sort(compareContributions);
+  return topContributions;
 }
 
 
 function getLeaderboardTableBody() {
-    const leaderboardTable = document.getElementById('leaderboard-table');
-    return leaderboardTable.getElementsByTagName("tbody")[0];
+  const leaderboardTable = document.getElementById('leaderboard-table');
+  return leaderboardTable.getElementsByTagName('tbody')[0];
 }
 
 
 //////// So unnecessarily boilerplatehy
 function hexToBytes(hex) {
-    // Ensure the hex string length is even
-    if (hex.length % 2 !== 0) {
-        console.error('Invalid hex string length.');
-        return;
-    }
+  // Ensure the hex string length is even
+  if (hex.length % 2 !== 0) {
+    console.error('Invalid hex string length.');
+    return;
+  }
 
-    let bytes = new Uint8Array(hex.length / 2);
-    for (let i = 0; i < hex.length; i += 2) {
-        bytes[i / 2] = parseInt(hex.substring(i, i + 2), 16);
-    }
-    return bytes;
+  let bytes = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < hex.length; i += 2) {
+    bytes[i / 2] = parseInt(hex.substring(i, i + 2), 16);
+  }
+  return bytes;
 }
 
 function uInt8ArrayToString(array) {
-    const decoder = new TextDecoder();
-    return decoder.decode(array);
+  const decoder = new TextDecoder();
+  return decoder.decode(array);
 }
 
 
 async function useSecretToDecryptMaterial() {
 
-    let keyPlaintextBytes = await readContract({
-        address: contractAddress,
-        abi: contractABI,
-        functionName: 'keyPlaintext',
-        chainId: chainId,
-    });
+  let keyPlaintextBytes = await readContract({
+    address: contractAddress,
+    abi: contractABI,
+    functionName: 'keyPlaintext',
+    chainId: chainId,
+  });
 
-    if (keyPlaintextBytes === "0x") {
-        console.log("key not revealed yet.");
-        return;
-    }
+  if (keyPlaintextBytes === '0x') {
+    console.log('key not revealed yet.');
+    return;
+  }
 
-    document.getElementById("revealer").style.display = "flex";
-    document.getElementById("key-plaintext").innerHTML = keyPlaintextBytes;
+  document.getElementById('revealer').style.display = 'flex';
+  document.getElementById('key-plaintext').innerHTML = keyPlaintextBytes;
 
     // Slice keyPlaintextBytes to remove the leading 0x
     let keyPlaintextBytesSliced = keyPlaintextBytes.slice(2);
@@ -793,94 +804,95 @@ async function useSecretToDecryptMaterial() {
 
 async function updateContributorsTable() {
 
-    const contributionsMetadata = await readContract({
-        address: contractAddress,
-        abi: contractABI,
-        functionName: 'getAllContributions',
-        chainId: chainId,
-    });
+  const contributionsMetadata = await readContract({
+    address: contractAddress,
+    abi: contractABI,
+    functionName: 'getAllContributions',
+    chainId: chainId,
+  });
 
-    let contributionsByAddress = getContributionsByAddress(contributionsMetadata)
+  let contributionsByAddress = getContributionsByAddress(contributionsMetadata);
 
-    // Cheating here, to use for modal calc.
-    window.contributionsByAddress = contributionsByAddress;
+  // Cheating here, to use for modal calc.
+  window.contributionsByAddress = contributionsByAddress;
 
-    // Inject the contributionsByAddress into the Take the Lead / Top 10 buttons onclick functions
-    // We avoid making another call to the contract when the user clicks one of those buttons, saving 400ms and making the UI more responsive.
-    document.getElementById("ten-preset").onclick = () => setTenPreset(contributionsByAddress);
-    document.getElementById("leader-preset").onclick = () => setLeaderPreset(contributionsByAddress);
+  // Inject the contributionsByAddress into the Take the Lead / Top 10 buttons onclick functions
+  // We avoid making another call to the contract when the user clicks one of those buttons, saving 400ms and making the UI more responsive.
+  document.getElementById('ten-preset').onclick = () => setTenPreset(contributionsByAddress);
+  document.getElementById('leader-preset').onclick = () => setLeaderPreset(contributionsByAddress);
 
-    // array, sorted by contribution amount, of arrays of [amount, address]
-    let leaders = getTopContributions(contributionsByAddress)
-    let leaderRows = getLeaderboardTableBody().getElementsByClassName("leaderboard-row");
-    const extraRowsNeeded = leaders.length - leaderRows.length;
+  // array, sorted by contribution amount, of arrays of [amount, address]
+  let leaders = getTopContributions(contributionsByAddress);
+  let leaderRows = getLeaderboardTableBody().getElementsByClassName('leaderboard-row');
+  const extraRowsNeeded = leaders.length - leaderRows.length;
 
-    // Loop extraRowsNeeded times, adding a new row each time
-    for (let i = 0; i < extraRowsNeeded; i++) {
-        const leaderNumber = i + 11  // We have ten rows by default, so we start adding at the 11th.
-        let row = document.createElement("tr");
-        row.className = "leaderboard-row collapse otherBidders";
-        row.innerHTML = '<th scope="row">' + leaderNumber
-            + '</th><td></td><td></td><td></td>';
-        getLeaderboardTableBody().appendChild(row);
+  // Loop extraRowsNeeded times, adding a new row each time
+  for (let i = 0; i < extraRowsNeeded; i++) {
+    const leaderNumber = i + 11;  // We have ten rows by default, so we start adding at the 11th.
+    let row = document.createElement('tr');
+    row.className = 'leaderboard-row collapse otherBidders';
+    row.innerHTML = '<th scope="row">' + leaderNumber
+      + '</th><td></td><td></td><td></td>';
+    getLeaderboardTableBody().appendChild(row);
+  }
+
+  leaderRows = getLeaderboardTableBody().getElementsByClassName('leaderboard-row');
+  console.log('There are now ' + leaderRows.length + ' rows in the leaderboard table.');
+
+  // Loop through the contributors and append a row for each
+  for (let i = 0; i < leaderRows.length; i++) {
+    let row = leaderRows[i];
+    let thisLeader = leaders[i];
+
+    if (thisLeader == undefined) {
+      console.log('Not enough leaders to fill the rows.');
+      break;
     }
 
-    leaderRows = getLeaderboardTableBody().getElementsByClassName("leaderboard-row");
-    console.log("There are now " + leaderRows.length + " rows in the leaderboard table.");
-
-    // Loop through the contributors and append a row for each
-    for (let i = 0; i < leaderRows.length; i++) {
-        let row = leaderRows[i];
-        let thisLeader = leaders[i];
-
-        if (thisLeader == undefined) {
-            console.log("Not enough leaders to fill the rows.")
-            break;
-        }
-
-        let bidSlot = row.getElementsByTagName('td')[1];
-        if (bidSlot == undefined) {
-            console.log("bidSlot is undefined");
-            break;
-        }
-        let addressSlot = row.getElementsByTagName('td')[2];
-
-        let amountInWei = thisLeader[0];
-        bidSlot.innerHTML = formatEther(amountInWei) + " ETH";
-
-
-        let ensName = await fetchEnsName({address: thisLeader[1], chainId: 1});
-        if (ensName == undefined) {
-            ensName = thisLeader[1];
-        }
-
-        const etherscanBaseUrl = "https://etherscan.io/address/";
-        addressSlot.innerHTML = " <a href='" + etherscanBaseUrl + thisLeader[1] + "' target='_blank'>" + ensName + "</a>";
+    let bidSlot = row.getElementsByTagName('td')[1];
+    if (bidSlot == undefined) {
+      console.log('bidSlot is undefined');
+      break;
     }
-    ;
+    let addressSlot = row.getElementsByTagName('td')[2];
 
-    updateCombineContributionToggleVisibility(contributionsByAddress);
+    let amountInWei = thisLeader[0][0];
+    let contributionMoment = thisLeader[1];
+    bidSlot.innerHTML = formatEther(amountInWei) + ' ETH';
+
+
+    let ensName = await fetchEnsName({ address: thisLeader[1], chainId: 1 });
+    if (ensName == undefined) {
+      ensName = thisLeader[1];
+    }
+
+    const etherscanBaseUrl = 'https://etherscan.io/address/';
+    addressSlot.innerHTML = ' <a href=\'' + etherscanBaseUrl + thisLeader[1] + '\' target=\'_blank\'>' + ensName + '</a>';
+  }
+  ;
+
+  updateCombineContributionToggleVisibility(contributionsByAddress);
 }
 
 
 function updateCombineContributionToggleVisibility(contributionsByAddress) {
-    // If the user already contributed, show the toggle
-    if (!isWalletConnected()) {
-        document.getElementById("combine-contribution-div").style.display = "none";
-        return;
+  // If the user already contributed, show the toggle
+  if (!isWalletConnected()) {
+    document.getElementById('combine-contribution-div').style.display = 'none';
+    return;
+  }
+
+  let userAddress = ethereumClient.getAccount()['address'];
+
+  for (let address in contributionsByAddress) {
+    address = address.toLowerCase();
+    userAddress = userAddress.toLowerCase();
+
+    if (address === userAddress) {
+      document.getElementById('combine-contribution-div').style.display = 'block';
+      return;
     }
+  }
 
-    let userAddress = ethereumClient.getAccount()['address'];
-
-    for (let address in contributionsByAddress) {
-        address = address.toLowerCase();
-        userAddress = userAddress.toLowerCase();
-
-        if (address === userAddress) {
-            document.getElementById("combine-contribution-div").style.display = "block";
-            return;
-        }
-    }
-
-    document.getElementById("combine-contribution-div").style.display = "none";
+  document.getElementById('combine-contribution-div').style.display = 'none';
 }
