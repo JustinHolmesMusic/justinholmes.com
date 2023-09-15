@@ -1,45 +1,46 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
-var AES = require('crypto-js/aes');
-const CryptoJS = require("crypto-js");
-import {Toast} from 'bootstrap';
+import { Toast } from 'bootstrap';
 import 'popper.js';
-import 'tippy.js'
-import 'tippy.js/dist/tippy.css'
+import 'tippy.js';
+import 'tippy.js/dist/tippy.css';
 import $ from 'jquery';
 import 'spotlight.js';
-import {decode} from "@msgpack/msgpack";
-import {switchNetwork} from '@wagmi/core';
-import {sendTransaction} from '@wagmi/core';
-
-import contractABI from './contributionABI.js'
-import '../styles/style.css';
+import { decode } from '@msgpack/msgpack';
 import {
-    configureChains,
-    createConfig,
-    fetchBalance,
-    fetchEnsName,
-    readContract,
-    waitForTransaction,
-    writeContract
-} from '@wagmi/core'
-import {EthereumClient, w3mConnectors} from '@web3modal/ethereum'
-import {Web3Modal} from '@web3modal/html'
-import {goerli, mainnet} from '@wagmi/core/chains'
-import {formatEther, parseEther} from "viem";
+  configureChains,
+  createConfig,
+  fetchBalance,
+  fetchEnsName,
+  readContract,
+  sendTransaction,
+  switchNetwork,
+  waitForTransaction,
+  writeContract,
+} from '@wagmi/core';
+
+import contractABI from './contributionABI.js';
+import '../styles/style.css';
+import { EthereumClient, w3mConnectors } from '@web3modal/ethereum';
+import { Web3Modal } from '@web3modal/html';
+import { goerli, mainnet } from '@wagmi/core/chains';
+import { formatEther, parseEther } from 'viem';
 import tippy from 'tippy.js';
 import fernet from 'fernet/fernetBrowser.js';
-import {infuraProvider} from 'wagmi/providers/infura'
+import { infuraProvider } from 'wagmi/providers/infura';
+
+var AES = require('crypto-js/aes');
+const CryptoJS = require('crypto-js');
 
 let bullshitCentralizedProvider;
 
 if (process.env.NODE_ENV === 'development') {
-    console.log("Using Infura in development.");
-    bullshitCentralizedProvider = infuraProvider({apiKey: 'adc98e27c31d4eca8ed8e4e7f7d35b8f'});
+  console.log('Using Infura in development.');
+  bullshitCentralizedProvider = infuraProvider({ apiKey: 'adc98e27c31d4eca8ed8e4e7f7d35b8f' });
 } else {
-    // Infrua seems to be working for now.
-    console.log("Using Infura in production.  Gross.");
-    bullshitCentralizedProvider = infuraProvider({apiKey: 'adc98e27c31d4eca8ed8e4e7f7d35b8f'});
+  // Infrua seems to be working for now.
+  console.log('Using Infura in production.  Gross.');
+  bullshitCentralizedProvider = infuraProvider({ apiKey: 'adc98e27c31d4eca8ed8e4e7f7d35b8f' });
 }
 
 require.context('../images', false, /\.(png|jpe?g|gif|svg|avif)$/);
@@ -48,8 +49,8 @@ require.context('../audio', false, /\.(mp3|flac)$/);
 
 
 // Equivalent to importing from @wagmi/core/providers
-const chains = [mainnet, goerli]
-const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
+const chains = [mainnet, goerli];
+const projectId = '3e6e7e58a5918c44fa42816d90b735a6';
 const minContributionAmount = 0.1;
 const outbidAmountEpsilon = 0.01;
 const chainId = 1;
@@ -121,20 +122,20 @@ function displayArtifactMinimumWarningIfNeeded() {
 //////////////////
 
 // Call updateFundingThreshold when DOM is loaded.
-document.addEventListener("DOMContentLoaded", () => {
-    openBooklet();
-    updateFundingThreshold();
-    hookupBootstrapLinkButtons();
-    hookupContributeButton();
-    updateCountdownDisplay();
-    updateContributorsTable();
-    document.getElementById("min-preset").onclick = setMinPreset;
-    setMinContributionAmount();
-    fetchCountdownContractData();
-    updateCountdownDisplay();
-    useSecretToDecryptMaterial();
-    // Set the onclick of the button with ID 'decrypt' to call readFilesToDecrypt
-    document.getElementById('decrypt').onclick = decodeAndReadFilesToDecrypt;
+document.addEventListener('DOMContentLoaded', () => {
+  openBooklet();
+  updateFundingThreshold();
+  hookupBootstrapLinkButtons();
+  hookupContributeButton();
+  updateCountdownDisplay();
+  updateContributorsTable();
+  document.getElementById('min-preset').onclick = setMinPreset;
+  setMinContributionAmount();
+  fetchCountdownContractData();
+  updateCountdownDisplay();
+  useSecretToDecryptMaterial();
+  // Set the onclick of the button with ID 'decrypt' to call readFilesToDecrypt
+  document.getElementById('decrypt').onclick = decodeAndReadFilesToDecrypt;
 
   // If the number in #user-amount is changed to below .1, reveal a message telling them they won't get an Artifact.
   $('#user-amount').on('keyup', function() {
@@ -237,179 +238,179 @@ let deadline;
 
 // Fetch contract data initially and every 20 seconds
 async function fetchCountdownContractData() {
-    isKeySet = await readContract({
-        address: contractAddress,
-        abi: contractABI,
-        functionName: 'isKeySet',
-        chainId: chainId,
-    });
+  isKeySet = await readContract({
+    address: contractAddress,
+    abi: contractABI,
+    functionName: 'isKeySet',
+    chainId: chainId,
+  });
 
-    materialReleaseConditionMet = await readContract({
-        address: contractAddress,
-        abi: contractABI,
-        functionName: 'materialReleaseConditionMet',
-        chainId: chainId,
-    });
+  materialReleaseConditionMet = await readContract({
+    address: contractAddress,
+    abi: contractABI,
+    functionName: 'materialReleaseConditionMet',
+    chainId: chainId,
+  });
 
-    deadline = await readContract({
-        address: contractAddress,
-        abi: contractABI,
-        functionName: 'deadline',
-        chainId: chainId,
-    });
+  deadline = await readContract({
+    address: contractAddress,
+    abi: contractABI,
+    functionName: 'deadline',
+    chainId: chainId,
+  });
 }
 
 // Update the countdown display based on the fetched data
 function updateCountdownDisplay() {
 
-    let countDownDate = Number(deadline) * 1000;
-    let now = new Date().getTime();
-    let distance = countDownDate - now;
+  let countDownDate = Number(deadline) * 1000;
+  let now = new Date().getTime();
+  let distance = countDownDate - now;
 
-    if (deadline === undefined) {
-        // If the deadline is undefined, most likely there is some kind of network error reading the contract.
-        document.getElementById("countdown").innerHTML = "-";
-        return;
-    } else if (!isKeySet) {
-        document.getElementById("countdown").innerHTML = "Waiting for Artist to Upload Encrypted Material 🕰️";
-        return;
-    } else if (distance < 0) {
-        clearInterval(countdownInterval);
-        document.getElementById("countdown").innerHTML = "Artist Funded 🎉";
-        return;
-    }
+  if (deadline === undefined) {
+    // If the deadline is undefined, most likely there is some kind of network error reading the contract.
+    document.getElementById('countdown').innerHTML = '-';
+    return;
+  } else if (!isKeySet) {
+    document.getElementById('countdown').innerHTML = 'Waiting for Artist to Upload Encrypted Material 🕰️';
+    return;
+  } else if (distance < 0) {
+    clearInterval(countdownInterval);
+    document.getElementById('countdown').innerHTML = 'Artist Funded 🎉';
+    return;
+  }
 
-    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m";
+  document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm';
 
-    tippy('#countdown', {
-        content: "If no one bids before this timer expires, the contract will be closed and the funding will end. If you contribute, the countdown will reset.",
-        placement: "bottom"
-    });
+  tippy('#countdown', {
+    content: 'If no one bids before this timer expires, the contract will be closed and the funding will end. If you contribute, the countdown will reset.',
+    placement: 'bottom',
+  });
 }
 
 function unpackFromDecoded(decoded) {
-    const ciphertext = decoded['bulk_ciphertext'];
-    const ciphertextString = uInt8ArrayToString(ciphertext);
-    const decrypted = window.token.decode(ciphertextString);
-    const base64String = CryptoJS.enc.Base64.stringify(decrypted);
-    const decodedAndDecrypted = atob(base64String);
-    const finallyBytes = new Uint8Array([...decodedAndDecrypted].map(ch => ch.charCodeAt(0)));
+  const ciphertext = decoded['bulk_ciphertext'];
+  const ciphertextString = uInt8ArrayToString(ciphertext);
+  const decrypted = window.token.decode(ciphertextString);
+  const base64String = CryptoJS.enc.Base64.stringify(decrypted);
+  const decodedAndDecrypted = atob(base64String);
+  const finallyBytes = new Uint8Array([...decodedAndDecrypted].map(ch => ch.charCodeAt(0)));
 
-    const unpacked = decode(finallyBytes);
-    return unpacked;
+  const unpacked = decode(finallyBytes);
+  return unpacked;
 }
 
 function readFileAsArrayBuffer(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
 
-        reader.onerror = (error) => {
-            console.log(new Error("File reading failed: " + error));
-            reject(new Error("Error reading file: " + error));
-        };
-        reader.onload = (event) => {
-            const decoded = decode(event.target.result);
-            const unpacked = unpackFromDecoded(decoded);
+    reader.onerror = (error) => {
+      console.log(new Error('File reading failed: ' + error));
+      reject(new Error('Error reading file: ' + error));
+    };
+    reader.onload = (event) => {
+      const decoded = decode(event.target.result);
+      const unpacked = unpackFromDecoded(decoded);
 
-            const metadata = unpacked['metadata'];
-            const fileContent = unpacked['file_content'];
+      const metadata = unpacked['metadata'];
+      const fileContent = unpacked['file_content'];
 
-            const filename = metadata.filename;
-            const extension = filename.split('.').slice(-1)[0];
-            console.log("Extension: " + extension);
+      const filename = metadata.filename;
+      const extension = filename.split('.').slice(-1)[0];
+      console.log('Extension: ' + extension);
 
 
-            if (extension === 'png') {
-                console.log("This is an image.  Let's display it.")
+      if (extension === 'png') {
+        console.log('This is an image.  Let\'s display it.');
 
-                // Write that to a file and let the user download it
-                const blob = new Blob([fileContent], {type: 'image/png'});
-                const objectURL = URL.createObjectURL(blob);
-                // const a = document.createElement('a');
+        // Write that to a file and let the user download it
+        const blob = new Blob([fileContent], { type: 'image/png' });
+        const objectURL = URL.createObjectURL(blob);
+        // const a = document.createElement('a');
 
-                let imgElement = document.createElement('img');
-                imgElement.src = objectURL;
-                const decryptModal = document.getElementById('decrypt-modal');
-                const modalBody = decryptModal.getElementsByClassName('modal-content')[0];
-                modalBody.appendChild(imgElement);
-            } else if (extension === 'flac') {
-                console.log("It's a flac.  Blobbing and embedding.")
-                const audioBlob = new Blob([fileContent], {type: 'audio/flac'});
-                const objectURL = URL.createObjectURL(audioBlob);
-                let trackNumberAndNAme = filename.split("Justin Holmes - Vowel Sounds - ")[1]
-                let trackNumber = trackNumberAndNAme.split(" ")[0]
+        let imgElement = document.createElement('img');
+        imgElement.src = objectURL;
+        const decryptModal = document.getElementById('decrypt-modal');
+        const modalBody = decryptModal.getElementsByClassName('modal-content')[0];
+        modalBody.appendChild(imgElement);
+      } else if (extension === 'flac') {
+        console.log('It\'s a flac.  Blobbing and embedding.');
+        const audioBlob = new Blob([fileContent], { type: 'audio/flac' });
+        const objectURL = URL.createObjectURL(audioBlob);
+        let trackNumberAndNAme = filename.split('Justin Holmes - Vowel Sounds - ')[1];
+        let trackNumber = trackNumberAndNAme.split(' ')[0];
 
-                let decryptedTrackDiv = document.getElementById('decrypted-track-' + trackNumber);
+        let decryptedTrackDiv = document.getElementById('decrypted-track-' + trackNumber);
 
-                let songTitleElement = decryptedTrackDiv.getElementsByClassName('actual-track-title')[0];
-                songTitleElement.innerHTML = trackNumberAndNAme;
+        let songTitleElement = decryptedTrackDiv.getElementsByClassName('actual-track-title')[0];
+        songTitleElement.innerHTML = trackNumberAndNAme;
 
-                let audioElement = decryptedTrackDiv.getElementsByTagName('audio')[0];
-                audioElement.src = objectURL;
-                audioElement.controls = true;
-                audioElement.type = 'audio/flac';
-                audioElement.innerHTML = "Your browser does not support the audio element.";
+        let audioElement = decryptedTrackDiv.getElementsByTagName('audio')[0];
+        audioElement.src = objectURL;
+        audioElement.controls = true;
+        audioElement.type = 'audio/flac';
+        audioElement.innerHTML = 'Your browser does not support the audio element.';
 
-                let downloadLink = decryptedTrackDiv.getElementsByTagName('a')[0];
-                downloadLink.href = objectURL;
-                downloadLink.download = filename; // Set your desired filename and extension here
+        let downloadLink = decryptedTrackDiv.getElementsByTagName('a')[0];
+        downloadLink.href = objectURL;
+        downloadLink.download = filename; // Set your desired filename and extension here
 
-                // Display the decrypted tracks area.
-                document.getElementById('decrypted-tracks-area').style.display = 'block';
+        // Display the decrypted tracks area.
+        document.getElementById('decrypted-tracks-area').style.display = 'block';
 
-                // Display this track's div.
-                decryptedTrackDiv.style.display = 'block';
+        // Display this track's div.
+        decryptedTrackDiv.style.display = 'block';
 
-            } else {
-                console.log("This is not a png or flac.")
-            }
-            resolve(event.target.result);
-        }
-        // Put the filename in whatAreWeDecrypting
-        const filenameToDecrypt = file.name;
-        document.getElementById('whatAreWeDecrypting').innerHTML = filenameToDecrypt;
-        reader.readAsArrayBuffer(file);
-    });
+      } else {
+        console.log('This is not a png or flac.');
+      }
+      resolve(event.target.result);
+    };
+    // Put the filename in whatAreWeDecrypting
+    const filenameToDecrypt = file.name;
+    document.getElementById('whatAreWeDecrypting').innerHTML = filenameToDecrypt;
+    reader.readAsArrayBuffer(file);
+  });
 }
 
 async function processFiles(files) {
-    const results = await Promise.allSettled(files.map(file => readFileAsArrayBuffer(file)));
+  const results = await Promise.allSettled(files.map(file => readFileAsArrayBuffer(file)));
 
-    const report = results.map((result, index) => {
-        if (result.status === "fulfilled") {
-            return {
-                file: files[index].name,
-                status: "success",
-                data: result.value
-            };
-        } else {
-            return {
-                file: files[index].name,
-                status: "error",
-                error: result.reason
-            };
-        }
-    });
+  const report = results.map((result, index) => {
+    if (result.status === 'fulfilled') {
+      return {
+        file: files[index].name,
+        status: 'success',
+        data: result.value,
+      };
+    } else {
+      return {
+        file: files[index].name,
+        status: 'error',
+        error: result.reason,
+      };
+    }
+  });
 
-    return report;
+  return report;
 }
 
 
 function decodeAndReadFilesToDecrypt() {
-    // Show the overlay.
-    document.getElementById('decrypting-overlay').style.display = 'block';
-    const filesList = document.getElementById('formFileMultiple').files;
-    const files = [...filesList]
-    processFiles(files).then(report => {
-        console.log(report);
-        document.getElementById('decrypting-overlay').style.display = 'none';
+  // Show the overlay.
+  document.getElementById('decrypting-overlay').style.display = 'block';
+  const filesList = document.getElementById('formFileMultiple').files;
+  const files = [...filesList];
+  processFiles(files).then(report => {
+    console.log(report);
+    document.getElementById('decrypting-overlay').style.display = 'none';
 
-    });
+  });
 }
 
 
@@ -418,233 +419,233 @@ let countdownInterval = setInterval(updateCountdownDisplay, 1000);
 
 
 function setMinPreset() {
-    document.getElementById("user-amount").value = minContributionAmount;
-    displayArtifactMinimumWarningIfNeeded();
+  document.getElementById('user-amount').value = minContributionAmount;
+  displayArtifactMinimumWarningIfNeeded();
 }
 
 function isUserInTopN(topContributions, address, n) {
-    for (let i = 0; i < Math.min(n, topContributions.length); i++) {
-        if (topContributions[i][1] === address) {
-            return true;
-        }
+  for (let i = 0; i < Math.min(n, topContributions.length); i++) {
+    if (topContributions[i][1] === address) {
+      return true;
     }
-
-    return false;
+  }
+  return false;
 }
 
 
 function amountOfEthToGetIntoTopN(contributionsByAddress, userAddress, combine, n) {
   let topContributions = getTopContributions(contributionsByAddress);
+
+  let nthContributionAmount = topContributions[n - 1][0][0];
+  nthContributionAmount = Number(formatEther(nthContributionAmount));
+
+
   if (combine) {
+    // If their intention is to combine their current contribution, we need to check if they're already in the top N.
     if (isUserInTopN(topContributions, userAddress, n)) {
       return 0;
     }
+  } else {
+    // ...and if they're not combining, the math is quite simple.
+    return nthContributionAmount + outbidAmountEpsilon;
   }
 
-    let nthContributionAmount = topContributions[n - 1][0];
-    nthContributionAmount = Number(formatEther(nthContributionAmount));
+  // If the user hasn't contributed yet
+  if (contributionsByAddress[userAddress] == undefined) {
+    return nthContributionAmount + outbidAmountEpsilon;
+  }
 
-    if (!combine) {
-        return nthContributionAmount + outbidAmountEpsilon;
-    }
-
-    // If the user hasn't contributed yet
-    if (contributionsByAddress[userAddress] == undefined) {
-        return nthContributionAmount + outbidAmountEpsilon;
-    }
-
-
-    let alreadyContributed = Number(formatEther(contributionsByAddress[userAddress][0]));
-    return nthContributionAmount - alreadyContributed + outbidAmountEpsilon;
+  let alreadyContributed = Number(formatEther(contributionsByAddress[userAddress][0][0]));
+  return nthContributionAmount - alreadyContributed + outbidAmountEpsilon;
 }
 
 function setTenPreset(contributionsByAddress) {
-    if (!isWalletConnected()) {
-        showWalletNotConnectedError();
-        return;
-    }
+  if (!isWalletConnected()) {
+    showWalletNotConnectedError();
+    return;
+  }
 
-    // contributionsByAddress is a dictionary of address -> [amount, amount, amount, ...]
-    let combine = document.getElementById("combine-contribution-toggle").checked;
-    let userAmountElement = document.getElementById("user-amount");
-    let userAddress = ethereumClient.getAccount()["address"];
-    let amountToGetIntoTopTen = amountOfEthToGetIntoTopN(contributionsByAddress, userAddress, combine, 10);
+  // contributionsByAddress is a dictionary of address -> [amount, amount, amount, ...]
+  let combine = document.getElementById('combine-contribution-toggle').checked;
+  let userAmountElement = document.getElementById('user-amount');
+  let userAddress = ethereumClient.getAccount()['address'];
+  let amountToGetIntoTopTen = amountOfEthToGetIntoTopN(contributionsByAddress, userAddress, combine, 10);
 
-    // Round to 5 decimal places
-    amountToGetIntoTopTen = Math.ceil(amountToGetIntoTopTen * 100000) / 100000;
+  // Round to 5 decimal places
+  amountToGetIntoTopTen = Math.ceil(amountToGetIntoTopTen * 100000) / 100000;
 
-    if (amountToGetIntoTopTen == 0) {
-        showError("You're already in the top 10");
-        return;
-    }
+  if (amountToGetIntoTopTen == 0) {
+    showError('You\'re already in the top 10');
+    return;
+  }
 
-    userAmountElement.value = amountToGetIntoTopTen;
-    displayArtifactMinimumWarningIfNeeded();
+  userAmountElement.value = amountToGetIntoTopTen;
+  displayArtifactMinimumWarningIfNeeded();
 }
 
 function setLeaderPreset(contributionsByAddress) {
-    if (!isWalletConnected()) {
-        showWalletNotConnectedError();
-        return;
-    }
+  if (!isWalletConnected()) {
+    showWalletNotConnectedError();
+    return;
+  }
 
-    // TODO: Network change (prolly oughta be done when they open the modal)
+  // TODO: Network change (prolly oughta be done when they open the modal)
 
-    let combine = document.getElementById("combine-contribution-toggle").checked;
-    let userAmountElement = document.getElementById("user-amount");
-    let userAddress = ethereumClient.getAccount()['address'];
-    let amountToGetIntoTopTen = amountOfEthToGetIntoTopN(contributionsByAddress, userAddress, combine, 1);
+  let combine = document.getElementById('combine-contribution-toggle').checked;
+  let userAmountElement = document.getElementById('user-amount');
+  let userAddress = ethereumClient.getAccount()['address'];
+  let amountToGetIntoTopTen = amountOfEthToGetIntoTopN(contributionsByAddress, userAddress, combine, 1);
 
-    // Round to 5 decimal places
-    amountToGetIntoTopTen = Math.ceil(amountToGetIntoTopTen * 100000) / 100000;
+  // Round to 5 decimal places
+  amountToGetIntoTopTen = Math.ceil(amountToGetIntoTopTen * 100000) / 100000;
 
-    if (amountToGetIntoTopTen == 0) {
-        showError("You're already in the leader spot");
-        return;
-    }
+  if (amountToGetIntoTopTen == 0) {
+    showError('You\'re already in the leader spot');
+    return;
+  }
 
-    userAmountElement.value = amountToGetIntoTopTen;
-    displayArtifactMinimumWarningIfNeeded();
+  userAmountElement.value = amountToGetIntoTopTen;
+  displayArtifactMinimumWarningIfNeeded();
 }
 
 function hookupBootstrapLinkButtons() {
-    const btnLinks = document.querySelectorAll('.button-link');
-    btnLinks.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            const href = this.getAttribute('data-href');
-            window.open(href, '_blank');
-        });
+  const btnLinks = document.querySelectorAll('.button-link');
+  btnLinks.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const href = this.getAttribute('data-href');
+      window.open(href, '_blank');
     });
+  });
 }
 
 function hookupContributeButton() {
-    const contributeButton = document.getElementById('pay');
-    const inputElement = document.getElementById('user-amount');
+  const contributeButton = document.getElementById('pay');
+  const inputElement = document.getElementById('user-amount');
 
-    contributeButton.addEventListener('click', async function (event) {
-        if (event.target !== inputElement) {
-            await contribute();
-        }
-    });
+  contributeButton.addEventListener('click', async function(event) {
+    if (event.target !== inputElement) {
+      await contribute();
+    }
+  });
 }
 
 function showError(text) {
-    var alertDiv = document.createElement("div");
-    alertDiv.className = "alert alert-danger position-fixed top-0 start-50 translate-middle-x";
-    alertDiv.style.marginTop = "50px";
-    alertDiv.style.zIndex = "1100"; // higher than the bootstrap modal
-    alertDiv.role = "alert";
-    alertDiv.innerHTML = `<strong>Error:</strong> ${text}`;
+  var alertDiv = document.createElement('div');
+  alertDiv.className = 'alert alert-danger position-fixed top-0 start-50 translate-middle-x';
+  alertDiv.style.marginTop = '50px';
+  alertDiv.style.zIndex = '1100'; // higher than the bootstrap modal
+  alertDiv.role = 'alert';
+  alertDiv.innerHTML = `<strong>Error:</strong> ${text}`;
 
-    document.body.appendChild(alertDiv);
+  document.body.appendChild(alertDiv);
 
-    setTimeout(function () {
-        $(alertDiv).fadeOut(1000, function () {
-                alertDiv.remove();
-            }
-        )
-    }, 2000);
+  setTimeout(function() {
+    $(alertDiv).fadeOut(1000, function() {
+        alertDiv.remove();
+      },
+    );
+  }, 2000);
 }
 
 function showWalletNotConnectedError() {
-    showError("Please connect a wallet first");
+  showError('Please connect a wallet first');
 }
 
 async function contribute() {
-    if (!isWalletConnected()) {
-        showWalletNotConnectedError();
-        return;
+  if (!isWalletConnected()) {
+    showWalletNotConnectedError();
+    return;
+  }
+
+  // Check user is using correct network
+  let chainIdToNetworkName = {
+    1: 'Ethereum Mainnet',
+    5: 'Goerli Testnet',
+  };
+
+  if (ethereumClient.getNetwork().chain.id !== chainId) {
+    const changingNetwork = switchNetwork({
+      chainId: chainId,
+    });
+
+    changingNetwork.catch((err) => {
+      console.log('Error switching network - probably unsupported by wallet: ' + err);
+    });
+
+    await changingNetwork;
+  }
+
+  if (ethereumClient.getNetwork().chain.id !== chainId) {
+    showError('Please switch to the ' + chainIdToNetworkName[chainId] + ' network');
+    return;
+  }
+  let combine = document.getElementById('combine-contribution-toggle').checked;
+
+  let userEnteredAmount = document.getElementById('user-amount').value;
+
+  let receiptPromise;
+
+  if (userEnteredAmount < minContributionAmount) {
+    if (combine) {
+      let epsilonWarningToast = new Toast(document.getElementById('below-epsilon-toast'));
+      epsilonWarningToast.show();
+      return;
     }
+    console.log('User amount is ' + userEnteredAmount + ', which is less than Artifact amount - sending as tx.');
+    receiptPromise = sendTransaction({
+      to: contractAddress,
+      value: parseEther(userEnteredAmount),
+    });
+  } else {
+    console.log('User amount is ' + userEnteredAmount + ', which is greater than Artifact amount - sending as contract call.');
 
-    // Check user is using correct network
-    let chainIdToNetworkName = {
-        1: "Ethereum Mainnet",
-        5: "Goerli Testnet",
-    }
+    // if `combine` is true, we need to call contributeAndCombine, otherwise we call contribute
+    let functionToCall = combine ? 'contributeAndCombine' : 'contribute';
 
-    if (ethereumClient.getNetwork().chain.id !== chainId) {
-        const changingNetwork = switchNetwork({
-            chainId: chainId,
-        });
+    receiptPromise = writeContract({
+      address: contractAddress,
+      abi: contractABI,
+      functionName: functionToCall,
+      value: parseEther(userEnteredAmount),
+      chainId: chainId,
+    });
+  }
 
-        changingNetwork.catch((err) => {
-            console.log("Error switching network - probably unsupported by wallet: " + err);
-        });
+  receiptPromise.then(async function _showThings(receipt) {
 
-        await changingNetwork;
-    }
+      // show bootstrap toast "Waiting for transaction to be accepted"
+      let toast = document.getElementById('pending-transaction-toast');
+      let bsToast = new Toast(toast);
+      bsToast.show();
 
-    if (ethereumClient.getNetwork().chain.id !== chainId) {
-        showError("Please switch to the " + chainIdToNetworkName[chainId] + " network");
-        return;
-    }
-    let combine = document.getElementById("combine-contribution-toggle").checked;
+      const hash = receipt['hash'];
 
-    let userEnteredAmount = document.getElementById("user-amount").value;
+      await waitForTransaction({ hash, chainId });
 
-    let receiptPromise;
+      let toastConfirmed = document.getElementById('transaction-confirmed-toast');
+      let bsToastConfirmed = new Toast(toastConfirmed);
+      bsToastConfirmed.show();
 
-    if (userEnteredAmount < minContributionAmount) {
-        if (combine) {
-            let epsilonWarningToast = new Toast(document.getElementById('below-epsilon-toast'));
-            epsilonWarningToast.show();
-            return
-        }
-        console.log("User amount is " + userEnteredAmount + ", which is less than Artifact amount - sending as tx.");
-        receiptPromise = sendTransaction({
-            to: contractAddress,
-            value: parseEther(userEnteredAmount),
-        })
-    } else {
-        console.log("User amount is " + userEnteredAmount + ", which is greater than Artifact amount - sending as contract call.")
+      // hide toast
+      bsToast.hide();
 
-        // if `combine` is true, we need to call contributeAndCombine, otherwise we call contribute
-        let functionToCall = combine ? 'contributeAndCombine' : 'contribute';
-
-        receiptPromise = writeContract({
-            address: contractAddress,
-            abi: contractABI,
-            functionName: functionToCall,
-            value: parseEther(userEnteredAmount),
-            chainId: chainId,
-        });
-    }
-
-    receiptPromise.then(async function _showThings(receipt) {
-
-            // show bootstrap toast "Waiting for transaction to be accepted"
-            let toast = document.getElementById('pending-transaction-toast');
-            let bsToast = new Toast(toast);
-            bsToast.show();
-
-            const hash = receipt['hash'];
-
-            await waitForTransaction({hash, chainId});
-
-            let toastConfirmed = document.getElementById('transaction-confirmed-toast');
-            let bsToastConfirmed = new Toast(toastConfirmed);
-            bsToastConfirmed.show();
-
-            // hide toast
-            bsToast.hide();
-
-            // Update the funding threshold display
-            updateContributorsTable();
-            updateFundingThreshold();
-        }
-    ).catch(
-        (err) => {
-            // Show the error in #txErrorMessage
-            document.getElementById("txErrorMessage").innerHTML = err;
-            // Show the toast.
-            let errorToast = new Toast(document.getElementById('error-toast'));
-            errorToast.show();
-        }
-    )
+      // Update the funding threshold display
+      updateContributorsTable();
+      updateFundingThreshold();
+    },
+  ).catch(
+    (err) => {
+      // Show the error in #txErrorMessage
+      document.getElementById('txErrorMessage').innerHTML = err;
+      // Show the toast.
+      let errorToast = new Toast(document.getElementById('error-toast'));
+      errorToast.show();
+    },
+  );
 }
 
-var x = setInterval(function () {
-    updateFundingThreshold();
+var x = setInterval(function() {
+  updateFundingThreshold();
 }, 20000);
 
 
@@ -771,26 +772,26 @@ async function useSecretToDecryptMaterial() {
   document.getElementById('revealer').style.display = 'flex';
   document.getElementById('key-plaintext').innerHTML = keyPlaintextBytes;
 
-    // Slice keyPlaintextBytes to remove the leading 0x
-    let keyPlaintextBytesSliced = keyPlaintextBytes.slice(2);
-    const bytesOfKeyPlaintext = hexToBytes(keyPlaintextBytesSliced);
-    const base64StringOfKeyPlaintext = uInt8ArrayToString(bytesOfKeyPlaintext);
-    const openSecret = new fernet.Secret(base64StringOfKeyPlaintext);
-    window.token = new fernet.Token({secret: openSecret, ttl: 0})
+  // Slice keyPlaintextBytes to remove the leading 0x
+  let keyPlaintextBytesSliced = keyPlaintextBytes.slice(2);
+  const bytesOfKeyPlaintext = hexToBytes(keyPlaintextBytesSliced);
+  const base64StringOfKeyPlaintext = uInt8ArrayToString(bytesOfKeyPlaintext);
+  const openSecret = new fernet.Secret(base64StringOfKeyPlaintext);
+  window.token = new fernet.Token({ secret: openSecret, ttl: 0 });
 
-    fernet.decryptMessage = function (cipherText, encryptionKey, iv) {
-        console.log("Decrypting and not presuming UTF-8.")
-        var encrypted = {};
-        encrypted.key = encryptionKey;
-        encrypted.iv = iv;
-        encrypted.ciphertext = cipherText;
-        var decrypted = AES.decrypt(encrypted, encryptionKey, {iv: iv});
-        // UTF-8 nonsense is here in parent version.
+  fernet.decryptMessage = function(cipherText, encryptionKey, iv) {
+    console.log('Decrypting and not presuming UTF-8.');
+    var encrypted = {};
+    encrypted.key = encryptionKey;
+    encrypted.iv = iv;
+    encrypted.ciphertext = cipherText;
+    var decrypted = AES.decrypt(encrypted, encryptionKey, { iv: iv });
+    // UTF-8 nonsense is here in parent version.
 
-        return decrypted
-    }
+    return decrypted;
+  };
 
-    console.log(base64StringOfKeyPlaintext);
+  console.log(base64StringOfKeyPlaintext);
 }
 
 async function updateContributorsTable() {
