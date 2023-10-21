@@ -31,48 +31,6 @@
 
 <main>
     <div id="intro-and-contributions">
-
-        <div class="toast-container position-fixed top-5 end-0 p-3">
-            <div id="pending-transaction-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"
-                 data-bs-autohide="false">
-                <div class="toast-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    Waiting for transaction to confirm...
-                </div>
-            </div>
-
-            <div id="transaction-confirmed-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    Transaction confirmed!
-                </div>
-            </div>
-
-            <div id="error-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"
-                 data-bs-autohide="false">
-                <div class="toast-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    Problem.
-                    <div id="txErrorMessage"></div>
-                </div>
-            </div>
-
-            <div id="below-epsilon-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    The minimum increase for an existing bid is 0.1 eth.
-                </div>
-            </div>
-        </div>
-
         <div id="album-container">
             <div id="album-art">
                 <img id="album-letter-image" alt="album-cover" src="images/vowel-sounds-cover-art-400.png"/>
