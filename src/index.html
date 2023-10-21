@@ -1,1627 +1,1477 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8"/>
-    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Vowel Sounds</title>
-    <style>html {
-        visibility: hidden;
-        opacity: 0;
-    }</style>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap"
-            rel="stylesheet"
-    />
+  <meta charset='UTF-8' />
+  <meta content='IE=edge' http-equiv='X-UA-Compatible' />
+  <meta content='width=device-width, initial-scale=1.0' name='viewport' />
+  <title>Vowel Sounds</title>
+  <style>html {
+      visibility: hidden;
+      opacity: 0;
+  }</style>
+  <link href='https://fonts.googleapis.com' rel='preconnect' />
+  <link crossorigin href='https://fonts.gstatic.com' rel='preconnect' />
+  <link
+    href='https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap'
+    rel='stylesheet'
+  />
 
 </head>
 
 <body>
 
-<header class="side">
-    <a class="artist-link" href="https://justinholmes.com/">
-        <p class="about-band"><img src="images/thumbnails/jh-logo-shaded-white.svg"></p>
-    </a>
-    <div>
-        <w3m-core-button></w3m-core-button>
-    </div>
+<header class='side'>
+  <a class='artist-link' href='https://justinholmes.com/'>
+    <p class='about-band'><img src='images/thumbnails/jh-logo-shaded-white.svg'></p>
+  </a>
+  <iframe id='header-player' style='border: 0; height: 42px;'
+          src='https://bandcamp.com/EmbeddedPlayer/album=1063602042/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/'
+          seamless><a href='https://justinholmes.bandcamp.com/album/vowel-sounds'>Vowel Sounds by Justin Holmes</a>
+  </iframe>
 </header>
 
 <main>
-    <div id="intro-and-contributions">
-        <div id="album-container">
-            <div id="album-art">
-                <img id="album-letter-image" alt="album-cover" src="images/vowel-sounds-cover-art-400.png"/>
-                <div id="justins-name"><p>Justin Myles Holmes</p></div>
-                <div id="album-name"><p>VOWEL SOUNDS</p></div>
-            </div>
-            <div class='booklet'>
-              <p id='booklet-content'></p>
-              <p data-booklet-page='1' style='display: none;'>
-                <strong><i>Vowel Sounds</i></strong> is the debut album-length offering from Justin Myles
-                Holmes.
-                <br><br>
-                Recorded in Nashville with a hand-picked ensemble of award-winning bluegrass session musicians,
-                it packs a hard-driving acoustic feel along with the wind instruments and varied singing
-                techniques that have made Holmes' live shows a draw
-                at around the world.
-                <br><br>
-                The album <a href='https://etherscan.io/tx/0xa9c1a172f8fc581f8d89ceff1cf5df588028de6f6456f99858fa953d3c56fa71'>was released</a> September 9 using <a
-                href='https://github.com/JustinHolmesMusic/Revealer'>Revealer</a>,
-                a tool made by Holmes and other bluegrass musicians and fans to release music using <a
-                id='threshold-network-link'
-                href='https://docs.threshold.network/'>
-                <img class='logo-in-paragraph' src='images/threshold-logo-circle-purple.avif'>Threshold
-                Network.</a>
-                <br><br>
-                <strong>Now that the album is revealed, it is also available on some legacy centralized
-                  platforms:</strong>
-                <br><br>
-                <a target='_blank' class="legacy" href='https://justinholmes.bandcamp.com/album/vowel-sounds'>
-                  <img src='images/thumbnails/bandcamp-button-bc-circle-green-256.png' />
-                </a>
-                <a target='_blank' class="legacy" href='https://open.spotify.com/album/3qqEnfQGZzp6IDVa2oZpZK'>
-                  <img src='images/thumbnails/Spotify_Icon_RGB_Green.png' />
-                </a>
-              </p>
-            </div>
-        </div>
-
-      <iframe src="https://bandcamp.com/EmbeddedPlayer/album=1063602042/size=large/bgcol=ffffff/linkcol=0687f5/artwork=small/transparent=true/" seamless><a href="https://justinholmes.bandcamp.com/album/vowel-sounds">Vowel Sounds by Justin Holmes</a></iframe>
-
-        <div class="center" id="contract-status">
-                        <p id="countdown-wrapper"><span id="countdown"></span><span class="slightly-smaller">left to bid for artifacts</span>
-                        </p>
-            <span id="fundingStatus" class="single-column"><span id="remainingEth" class="number">Album Dropped 🎉</span>
-                <div>
-                    <span id="raisedSoFar"></span>
-                    <span class="slightly-smaller">10.609 ETH raised</span>
-                </div>
-            </span>
-        </div>
-
-        <div class="row" id="the-big-questions">
-            <div class="col-md" id="how-does-this-work">
-
-                <h2>Wait, what?</h2>
-                <p>
-                    Making music un-free hasn't made musicians un-poor. So we're carving out a way to release free,
-                    IP-unencumbered music - which is after all the core of traditional music - and reward fans who
-                    choose to pay for it.
-                </p>
-
-                <div class="art">
-                    <div id="aeiou">
-                        <a class="spotlight" href="images/IMG_9611.jpg"
-                           title="Justin at Stargel Studios. Photograph by R.J. Partington III.">
-                            <img src="images/thumbnails/IMG_9611.jpg"/>
-                        </a>
-                        <img alt="a-letter" id="a-letter-img" src="images/a.jpg">
-
-                        <a class="spotlight" href="images/IMG_0487.jpg"
-                           title="Justin Holmes, Jakub Vysoky, Cory Walker, Christian Ward, and Jake Stargel take the stage at EthDenver. Photograph by R.J. Partington III.">
-                            <img src="images/thumbnails/IMG_0487.jpg"/>
-                        </a>
-
-                        <img alt="i-letter" src="images/i.jpg"/>
-                        <a class="spotlight" href="images/IMG_0433.jpg"
-                           title="Running a few last minute, backstage at EthDenver. Photograph by R.J. Partington III.">
-                            <img src="images/thumbnails/IMG_0433.jpg"/>
-                        </a>
-                    </div>
-                </div>
-
-                <h2>So how does it work?</h2>
-                <p>
-                    The record is encrypted and available for download via IPFS and bittorrent - you know, those tools
-                    that deal economic ruin to musicians.
-                    <br/><br/>
-
-                    Once contributions have crossed the threshold of
-                    10ETH, the decryption key will automatically be revealed, allowing
-                    anyone to listen to the record.
-                    <br/><br/>
-                    Once released, the record will be in the public
-                    domain,
-                    free to download and use under a creative commons license.
-                    <br/><br/>
-                    After contributions have closed, all contributors over 0.1 eth will receive an ERC-721 Artifact,
-                    with the top ten such Artifacts bound on-chain to a unique piece of art by Nashville artist Sophie
-                    Clark.
-                    <br/><br/>
-                    The earliest that contributions can close is:
-                    <br/><br/>
-                <h2>September 15, 2023<br/>at<br/> 17:10:30 ET.</h2>
-                <br/><br/>
-                For more information, see the <a href="#faq-questions">Q&A below.</a>
-                </p>
-            </div>
-        </div>
-
-        <!-- Download Modal -->
-        <div class="modal fade" id="download-modal" tabindex="-1" role="dialog" aria-labelledby="download-modal"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Get Vowel Sounds, Encrypted</h5>
-                    </div>
-                    <div class="modal-body">
-                        You can download the encrypted tracks of the record here, using IPFS or bittorrent.
-                        Once the contract reaches 10ETH, the decryption key will become available.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary button-link" data-href="https://pin.ski/47RwXWJ">
-                            IPFS
-                        </button>
-                        <button type="button" class="btn btn-primary button-link"
-                                data-href="magnet:?xt=urn:btih:06f4888e4a4ed6700fa2c2a7693b1081c931b37c&dn=VowelSoundsEncrypted&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&x.pe=5.75.181.205:6951">
-                            Bittorrent
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contribute Modal -->
-        <div class="modal fade" id="contribute-modal" tabindex="-1" role="dialog" aria-labelledby="contribute-modal"
-             aria-hidden="true">
-
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="contributeModalLabel">Bid for an Artifact</h5>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-1">
-                                <label id="user-amount-label" for="user-amount">Contribute
-                                    <input id="user-amount"
-                                           type="number" step="0.05"
-                                           value="0.1"/>ETH
-                                </label>
-                            </div>
-                        </form>
-                        <div class="user-amount-warning" id="artifact-warning">
-                            A contribution of less than 0.1 eth will help reveal the album, but will not qualify
-                            for an Artifact.
-                        </div>
-                        <div class="user-amount-warning" id="combine-epsilon-warning">
-                            The minimum increase for an existing bid is 0.1 ETH.
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button id="min-preset" type="button" class="btn btn-primary"></button>
-                            <!-- We set this in JS -->
-                            <button id="ten-preset" type="button" class="btn btn-primary even">Top 10</button>
-                            <button id="leader-preset" type="button" class="btn btn-primary">Take the Lead 🎸
-                            </button>
-                        </div>
-                        <button class="paybutton download" data-bs-toggle="modal" data-bs-target="#contribute-modal"
-                                id="pay">Contribute ⚡
-                        </button>
-
-                        <div class="form-check form-switch" id="combine-contribution-div">
-                            <input class="form-check-input" type="checkbox" role="switch"
-                                   id="combine-contribution-toggle">
-                            <label class="form-check-label" for="combine-contribution-toggle">
-                                Increase first contribution</label>
-                        </div>
-
-                        <div id="discord-for-help">Need help?
-                            <a href="https://discord.gg/B8rEXkSAJ4">Join our discord</a>.
-                        </div>
-
-                    </div>
-
-
-                    <div class="modal-footer">
-                        Contributions of 0.1eth and up are a bid for an Artifact.
-                        <br/><br/>
-                        All contributors over 0.1eth will receive an Artifact, sent to the address
-                        from which they contributed.
-                        <br/><br/>
-                        The top ten Artifacts will be represented on-chain by a piece of artwork by Nashville artist
-                        Sophie Clark.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Decrypt Modal -->
-        <div class="modal fade" id="decrypt-modal" tabindex="-1" role="dialog" aria-labelledby="decrypt-modal"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="decryptModalLabel">Listen to Vowel Sounds, Decrypted.</h5>
-                    </div>
-                    <div class="modal-body">
-                        <strong>Now that the album is revealed, it is also available on some legacy centralized
-                            platforms.</strong>
-
-                        <p id="revealer" style="display: none;">
-                            <span><span>✨</span><span
-                                    id="key-label">&nbsp;Revealed Decryption Key&nbsp;</span><span>✨</span></span>
-                            <span id="key-plaintext"></span>
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-
-                        <label for="formFileMultiple" class="form-label">The decrypted album is now available. However, if you still want to try decrypting it yourself, you can do so here.
-                        </label>
-                        <input class="form-control" type="file" id="formFileMultiple" multiple>
-
-                        <button id="decrypt" type="button" class="btn btn-primary">
-                            Decrypt 🔓
-                        </button>
-
-                        <div id="decrypted-tracks-area">
-
-                            <h3>
-                                Decrypted Tracks
-                            </h3>
-
-                            <div class="grid w-100" id="decrypted-tracks-grid">
-
-
-                                <div id="decrypted-track-1" class="decrypted-track">
-                                    <div class="row">
-                                        <div class="col-lg-11 actual-track-title">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <audio controls>
-                                                Your browser does not support the audio element.
-                                            </audio>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <!--                                    download link-->
-                                            <a><img src="images/download-icon.svg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div id="decrypted-track-2" class="decrypted-track">
-                                    <div class="row">
-                                        <div class="col-lg-11 actual-track-title">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <audio controls>
-                                                Your browser does not support the audio element.
-                                            </audio>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <!--                                    download link-->
-                                            <a><img src="images/download-icon.svg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div id="decrypted-track-3" class="decrypted-track">
-                                    <div class="row">
-                                        <div class="col-lg-11 actual-track-title">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <audio controls>
-                                                Your browser does not support the audio element.
-                                            </audio>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <!--                                    download link-->
-                                            <a><img src="images/download-icon.svg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div id="decrypted-track-4" class="decrypted-track">
-                                    <div class="row">
-                                        <div class="col-lg-11 actual-track-title">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <audio controls>
-                                                Your browser does not support the audio element.
-                                            </audio>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <!--                                    download link-->
-                                            <a><img src="images/download-icon.svg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="decrypted-track-5" class="decrypted-track">
-                                    <div class="row">
-                                        <div class="col-lg-11 actual-track-title">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <audio controls>
-                                                Your browser does not support the audio element.
-                                            </audio>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <!--                                    download link-->
-                                            <a><img src="images/download-icon.svg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="decrypted-track-6" class="decrypted-track">
-                                    <div class="row">
-                                        <div class="col-lg-11 actual-track-title">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <audio controls>
-                                                Your browser does not support the audio element.
-                                            </audio>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <!--                                    download link-->
-                                            <a><img src="images/download-icon.svg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="decrypted-track-7" class="decrypted-track">
-                                    <div class="row">
-                                        <div class="col-lg-11 actual-track-title">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <audio controls>
-                                                Your browser does not support the audio element.
-                                            </audio>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <!--                                    download link-->
-                                            <a><img src="images/download-icon.svg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="decrypted-track-8" class="decrypted-track">
-                                    <div class="row">
-                                        <div class="col-lg-11 actual-track-title">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <audio controls>
-                                                Your browser does not support the audio element.
-                                            </audio>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <!--                                    download link-->
-                                            <a><img src="images/download-icon.svg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="decrypted-track-9" class="decrypted-track">
-                                    <div class="row">
-                                        <div class="col-lg-11 actual-track-title">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <audio controls>
-                                                Your browser does not support the audio element.
-                                            </audio>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <!--                                    download link-->
-                                            <a><img src="images/download-icon.svg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="decrypted-track-10" class="decrypted-track">
-                                    <div class="row">
-                                        <div class="col-lg-11 actual-track-title">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <audio controls>
-                                                Your browser does not support the audio element.
-                                            </audio>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <!--                                    download link-->
-                                            <a><img src="images/download-icon.svg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-
-<div id="artifactIntro" class="container-fluid">
-    <div class="d-flex justify-content-center text-center">
-        <h1>Artifact Leaderboard</h1>
-    </div>
-    <div id="artifact-description-body" class="card text-bg-dark">
-        <div id="artifact-description-text" class="card-body">
-            <p>
-                Everyone who contributes above the 0.1eth minimum will receive an Artifact, sent to the address from
-                which
-                they
-                contributed.
-                <br/><br/>
-                The top 10 contributors will have their Artifact bound to one of the paintings by Nashville artist
-                Sophie
-                Clark.
-            </p>
-        </div>
-    </div>
-</div>
-<article id="table">
-    <table id="leaderboard-table"><thead><tr class="leaderboard-row"><th scope="col">#</th><th id="art-label" scope="col">Art</th><th scope="col">Bid</th><th scope="col">Address</th></tr></thead><tbody><tr class="leaderboard-row"><th scope="row">1</th><td><a class="spotlight" href="images/aaa.png" title="Art by Sophie Clark."><img src="images/thumbnails/aaa.png" title="Art by Sophie Clark."></a></td><td>1.3 ETH</td><td> <a href="https://etherscan.io/address/0x4EEc33Db764b7Fe34F038E0D66F8f0F73F5f6CdB" target="_blank">rjpartingtoniii.eth</a></td></tr><tr class="leaderboard-row"><th scope="row">2</th><td><a class="spotlight" href="images/eee.png" title="Art by Sophie Clark."><img src="images/thumbnails/eee.png" title="Art by Sophie Clark."></a></td><td>1.11 ETH</td><td> <a href="https://etherscan.io/address/0x7dae08563b85de04FB48Ac211184718F259458A1" target="_blank">0x7dae08563b85de04FB48Ac211184718F259458A1</a></td></tr><tr class="leaderboard-row"><th scope="row">3</th><td><a class="spotlight" href="images/ce.png" title="Art by Sophie Clark."><img src="images/thumbnails/ce.png"></a></td><td>1 ETH</td><td> <a href="https://etherscan.io/address/0x6b1231134930FCe469f019ea23907eBa289f8eED" target="_blank">0x6b1231134930FCe469f019ea23907eBa289f8eED</a></td></tr><tr class="leaderboard-row"><th scope="row">4</th><td><a class="spotlight" href="images/ot.png" title="Art by Sophie Clark."><img src="images/thumbnails/ot.png"></a></td><td>1 ETH</td><td> <a href="https://etherscan.io/address/0x29f3c8B6A90F10f96f269495F4af184C0988A594" target="_blank">kvbik.eth</a></td></tr><tr class="leaderboard-row"><th scope="row">5</th><td><a class="spotlight" href="images/b.png" title="Art by Sophie Clark."><img src="images/thumbnails/b.png"></a></td><td>1 ETH</td><td> <a href="https://etherscan.io/address/0x2F04FD2227af438c91a5F59e903C60a502c7e494" target="_blank">maclane.eth</a></td></tr><tr class="leaderboard-row"><th scope="row">6</th><td><a class="spotlight" href="images/horseshoe.png" title="Art by Sophie Clark."><img src="images/thumbnails/horseshoe.png"></a></td><td>0.69 ETH</td><td> <a href="https://etherscan.io/address/0xD27aB5839AD00a9073F75c328F4ed2CA019fc9ba" target="_blank">purplegrass.eth</a></td></tr><tr class="leaderboard-row"><th scope="row">7</th><td><a class="spotlight" href="images/iii.png" title="Art by Sophie Clark."><img src="images/thumbnails/iii.png"></a></td><td>0.61 ETH</td><td> <a href="https://etherscan.io/address/0xdf0Ea302a6de518e8c08c30F919ff78F9336C264" target="_blank">lunarbytes.eth</a></td></tr><tr class="leaderboard-row"><th scope="row">8</th><td><a class="spotlight" href="images/uu.png" title="Art by Sophie Clark."><img src="images/thumbnails/uu.png"></a></td><td>0.43 ETH</td><td> <a href="https://etherscan.io/address/0x0C6Ce91CBb524A90fE8b12E696e3741794658B6C" target="_blank">kubic71.eth</a></td></tr><tr class="leaderboard-row"><th scope="row">9</th><td><a class="spotlight" href="images/vv.png" title="Art by Sophie Clark."><img src="images/thumbnails/vv.png"></a></td><td>0.4 ETH</td><td> <a href="https://etherscan.io/address/0x4f84b3650Dbf651732a41647618E7fF94A633F09" target="_blank">cryptograss.eth</a></td></tr><tr class="leaderboard-row"><th scope="row">10</th><td><a class="spotlight" href="images/Y.png" title="Art by Sophie Clark."><img src="images/thumbnails/Y.png"></a></td><td>0.39 ETH</td><td> <a href="https://etherscan.io/address/0x4f1eFe177057DB679A7Cbe1cf92aCf2aD5B7aA74" target="_blank">mrsnu.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">11</th><td></td><td>0.35 ETH</td><td> <a href="https://etherscan.io/address/0x7a16fF8270133F063aAb6C9977183D9e72835428" target="_blank">curvefi.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">12</th><td></td><td>0.3 ETH</td><td> <a href="https://etherscan.io/address/0x7480efC6Bcb92bB0fc902c93111A030D0A8949eE" target="_blank">0x7480efC6Bcb92bB0fc902c93111A030D0A8949eE</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">13</th><td></td><td>0.2 ETH</td><td> <a href="https://etherscan.io/address/0xf632Ce27Ea72deA30d30C1A9700B6b3bCeAA05cF" target="_blank">sem-the-bee.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">14</th><td></td><td>0.1242069 ETH</td><td> <a href="https://etherscan.io/address/0xe83E0b36bc68c1407B81B6d42CA4bd23FC309517" target="_blank">bordel.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">15</th><td></td><td>0.11 ETH</td><td> <a href="https://etherscan.io/address/0xC46c67Bb7E84490D7EbdD0b8ecDaca68Cf3823F4" target="_blank">karmaticacid.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">16</th><td></td><td>0.10101 ETH</td><td> <a href="https://etherscan.io/address/0xA05B26f366035F4A797c12cbC23B87633F353337" target="_blank">beemeeupnow.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">17</th><td></td><td>0.1 ETH</td><td> <a href="https://etherscan.io/address/0xA270f5649A42feDfE66ddb3b0b50bebAe1e3DDB0" target="_blank">ktlxv.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">18</th><td></td><td>0.1 ETH</td><td> <a href="https://etherscan.io/address/0x7A86dF14ADba1ef38aa12e5727C7ac20bf7d70Ad" target="_blank">12x35.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">19</th><td></td><td>0.1 ETH</td><td> <a href="https://etherscan.io/address/0x8FBCa7800D1B820176b0696A22bce5E50C5c9A71" target="_blank">0x8FBCa7800D1B820176b0696A22bce5E50C5c9A71</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">20</th><td></td><td>0.1 ETH</td><td> <a href="https://etherscan.io/address/0xD2c4F95cfE8b27b34Dee7e8441772d03f6e5C66A" target="_blank">theperegrine.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">21</th><td></td><td>0.1 ETH</td><td> <a href="https://etherscan.io/address/0x693eDBCF118EC982f5A8101498b6c789470B0b89" target="_blank">skylar.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">22</th><td></td><td>0.1 ETH</td><td> <a href="https://etherscan.io/address/0x4f84b3650Dbf651732a41647618E7fF94A633F09" target="_blank">cryptograss.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">23</th><td></td><td>0.1 ETH</td><td> <a href="https://etherscan.io/address/0x70564145fA8e8A15348EF0190e6B7c07A2120462" target="_blank">chrishobcroft.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">24</th><td></td><td>0.1 ETH</td><td> <a href="https://etherscan.io/address/0x0001288c0eAeD7E9Cd3D727ABD3a1b95a91eA9AD" target="_blank">0x0001288c0eAeD7E9Cd3D727ABD3a1b95a91eA9AD</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">25</th><td></td><td>0.1 ETH</td><td> <a href="https://etherscan.io/address/0x7dae08563b85de04FB48Ac211184718F259458A1" target="_blank">0x7dae08563b85de04FB48Ac211184718F259458A1</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">26</th><td></td><td>0.1 ETH</td><td> <a href="https://etherscan.io/address/0x68FDe8FFd34966b8AefA61fF14d7a5685253C7D2" target="_blank">0x68FDe8FFd34966b8AefA61fF14d7a5685253C7D2</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">27</th><td></td><td>0.1 ETH</td><td> <a href="https://etherscan.io/address/0x4f84b3650Dbf651732a41647618E7fF94A633F09" target="_blank">cryptograss.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">28</th><td></td><td>0.1 ETH</td><td> <a href="https://etherscan.io/address/0x4EEc33Db764b7Fe34F038E0D66F8f0F73F5f6CdB" target="_blank">rjpartingtoniii.eth</a></td></tr><tr class="leaderboard-row collapse otherBidders"><th scope="row">29</th><td></td><td>0.1 ETH</td><td> <a href="https://etherscan.io/address/0x4f84b3650Dbf651732a41647618E7fF94A633F09" target="_blank">cryptograss.eth</a></td></tr></tbody></table>
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".otherBidders"
-            aria-expanded="false">
-        Other Artifacts
-    </button>
-
-</article>
-
-<div id="below-the-fold">
-    <div class="reel">
-        <div>
-            <a class="spotlight" href="images/IMG_9731.jpg"
-               title="Luna Lavender at Stargel Studios. Photograph by R.J. Partington III.">
-                <img src="images/thumbnails/IMG_9731.jpg" alt="Luna Lavender at Stargel Studios."/>
-            </a>
-        </div>
-        <div>
-            <a class="spotlight" href="images/IMG_0515.jpg"
-               title="The experienced musicians knew what the lighting was going to be like in their faces. Justin did not. Photograph by R.J. Partington III.">
-                <img src="images/thumbnails/IMG_0515.jpg" alt="Thumbnail for IMG_9789.jp"/>
-            </a>
-        </div>
-        <div>
-            <a class="spotlight" href="images/IMG_9789.jpg"
-               title="Justin Holmes and Jake Stargel looking over a take of Barlow's Jig at the Stargel Studios console. Photograph by R.J. Partington III.">
-                <img src="images/thumbnails/IMG_9789.jpg"
-                     alt="Justin Holmes and Jake Stargel looking over a take of Barlow's Jig  at the Stargel Studios console."/>
-            </a>
-        </div>
+  <div id='intro-and-contributions'>
+    <div id='album-container'>
+      <div id='album-art'>
+        <img id='album-letter-image' alt='album-cover' src='images/vowel-sounds-cover-art-400.png' />
+        <div id='justins-name'><p>Justin Myles Holmes</p></div>
+        <div id='album-name'><p>VOWEL SOUNDS</p></div>
+      </div>
+      <div class='booklet'>
+        <p id='booklet-content'></p>
+        <p data-booklet-page='1' style='display: none;'>
+          <strong><i>Vowel Sounds</i></strong> is the debut album-length offering from Justin Myles
+          Holmes.
+          <br><br>
+          Recorded in Nashville with a hand-picked ensemble of award-winning bluegrass session musicians,
+          it packs a hard-driving acoustic feel along with the wind instruments and varied singing
+          techniques that have made Holmes' live shows a draw
+          at around the world.
+          <br><br>
+          The album <a
+          href='https://etherscan.io/tx/0xa9c1a172f8fc581f8d89ceff1cf5df588028de6f6456f99858fa953d3c56fa71'>was
+          released</a> September 9 using <a
+          href='https://github.com/JustinHolmesMusic/Revealer'>Revealer</a>,
+          a tool made by Holmes and other bluegrass musicians and fans to release music using <a
+          id='threshold-network-link'
+          href='https://docs.threshold.network/'>
+          <img class='logo-in-paragraph' src='images/threshold-logo-circle-purple.avif'>Threshold
+          Network.</a>
+          <br><br>
+          <strong>Now that the album is revealed, it is also available on some legacy centralized
+            platforms:</strong>
+          <br><br>
+          <a target='_blank' class='legacy' href='https://justinholmes.bandcamp.com/album/vowel-sounds'>
+            <img src='images/thumbnails/bandcamp-button-bc-circle-green-256.png' /></a>
+          <a target='_blank' class='legacy' href='https://open.spotify.com/album/3qqEnfQGZzp6IDVa2oZpZK'>
+            <img src='images/thumbnails/Spotify_Icon_RGB_Green.png' />
+          </a>
+        </p>
+      </div>
     </div>
 
-    <div id="ensemble" class="container-lg">
-        <h1 class="center">Ensemble</h1>
+    <div class='collapsing-quote container-md' id='vickie-quote'>
 
-        <div class="card text-bg-dark mb-3">
-            <div class="card-body">
-                <h4 class="card-title .card-header">Justin Holmes</h4>
-                <p class="card-text">Guitar, Vocals, Overtone Singing,<br/> Tin Whistle, Wood Flute, Melodica</p>
-            </div>
-        </div>
-
-        <div class="card text-bg-dark mb-3">
-            <div class="card-body">
-                <h4 class="card-title .card-header">Jake Stargel</h4>
-                <p class="card-text">Upright Bass</p>
-            </div>
-        </div>
-
-        <div class="card text-bg-dark mb-3 mw-100">
-            <div class="card-body">
-                <h4 class="card-title .card-header">Cory Walker</h4>
-                <p class="card-text">5-string Banjo</p>
-            </div>
-        </div>
-
-        <div class="card text-bg-dark mb-3">
-            <div class="card-body">
-                <h4 class="card-title .card-header">Christian Ward</h4>
-                <p class="card-text">Fiddle</p>
-            </div>
-        </div>
-
-        <div class="card text-bg-dark mb-3">
-            <div class="card-body">
-                <h4 class="card-title .card-header">Harry Clark</h4>
-                <p class="card-text">Mandolin (dan)</p>
-            </div>
-        </div>
-
-        <div class="card text-bg-dark mb-3">
-            <div class="card-body">
-                <h4 class="card-title .card-header">Jakub Vysoky</h4>
-                <p class="card-text">Mandolin (kyū)</p>
-            </div>
-        </div>
-
-        <div class="card text-bg-dark mb-3">
-            <div class="card-body">
-                <h4 class="card-title .card-header">Allen Cooke</h4>
-                <p class="card-text">Dobro</p>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="collapsing-quote container-md" id="kevin-quote">
-        <span class="collapse show multi-collapse">"...</span>
-        <span class="collapse multi-collapse">"Vowel Sounds is a masterful weaving of</span>
-        <a
-                data-bs-toggle="collapse" data-bs-target="#kevin-quote .multi-collapse"
-                aria-expanded="false">twangy bluegrass music and poetic lyrics about
-            power
-            structures, society, cryptography, trust, and community.</a>
-        <span class="collapse multi-collapse">If you like bluegrass or folk music,
-        then this album is great listening on that basis alone.. but it's also a great way to learn more
-        about
-        cryptography."</span>
-        <span class="collapse show multi-collapse">..."</span>
-        <div class="reviewer-name">-Kevin Owocki, co-founder, Gitcoin and host, Green Pill Podcast</div>
-    </div>
-
-
-    <div class="accordion" id="trackListAccordion">
-        <h1 class="center">Track List</h1>
-
-        <!-- Lost -->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTen">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseTen"
-                        aria-expanded="true" aria-controls="collapseTen">
-                    1 - Lost
-                </button>
-            </h2>
-        </div>
-
-        <!-- Hell or High Water (A Policeman and a Fortune Teller) -->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFour">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseFour"
-                        aria-expanded="true" aria-controls="collapseFour">
-                    2 - Hell or High Water (A Policeman and a Fortune Teller) (5:28)
-                </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                 data-bs-parent="#trackListAccordion">
-                <div class="accordion-body">
-                    Music and <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseHoHW"
-                                 role="button"
-                                 aria-expanded="false" aria-controls="collapseHoHW">
-                    lyrics
-                </a> by Justin Holmes.
-                    <div class="collapse" id="collapseHoHW">
-                        <div class="card card-body">
-                            A policeman and a fortune teller
-                            <br/>
-                            both left their posts at `or(hell, high_water)`
-                            <br/>
-                            cuz neither of them were who they'd set out to be
-                            <br/>
-                            <hr/>
-                            You can lie about the mail; you can lie about the money
-                            <br/>
-                            but a little bit of math will always find the funny business
-                            <br/>
-                            trust comes from the earth like the banyan tree
-                            <hr/>
-                            Hold on and be brave
-                            <br/>
-                            I know you see that comin' wave
-                            <hr/>
-                            The water is dear if we want to live
-                            <br/>
-                            and the fire in our hearts is ours to give
-                            <br/>
-                            the earth makes nodes out of some of its stone
-                            <br/>
-                            and they carry good news through the air back home
-                            <hr/>
-                            I push-to-talk with my right ring finger
-                            <br/>
-                            and fly back home with my left wing lingering
-                            <br/>
-                            never knowing who will walk through my front door
-                            <hr/>
-                            With a cup and a string, I can say anything
-                            <br/>
-                            to a shadowban trap like a mouse with a spring
-                            <br/>
-                            and that's how we arrive at our credit score
-                            <hr/>
-                            Hold on and be brave
-                            <br/>
-                            I know you see that comin' wave
-                            <hr/>
-                            The water is dear if we want to live
-                            <br/>
-                            and the fire in our hearts is ours to give
-                            <br/>
-                            the earth makes nodes out of some of its stone
-                            <br/>
-                            and they carry good news through the air back home
-                            <hr/>
-                            A policeman and a fortune teller
-                            <br/>
-                            both left their posts at `or(hell, high_water)`
-                            <br/>
-                            cuz neither of them were who they'd set out to be
-                            <br/>
-                            <hr/>
-                            You can lie about the mail; you can lie about the money
-                            <br/>
-                            but a little bit of math will always find the funny business
-                            <br/>
-                            trust comes from the earth like the banyan tree
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-
-        <!-- Cork Board -->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFive">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseFive"
-                        aria-expanded="true" aria-controls="collapseFive">
-                    3 - Cork Board (5:26)
-                </button>
-            </h2>
-            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                 data-bs-parent="#trackListAccordion">
-                <div class="accordion-body">
-                    Music by Justin Holmes.
-                    <hr/>
-                    Featuring a wooden double flute made by an indigenous artisan in Rapid City, in the Black Hills.
-                    <hr/>
-                    May this piece serve as a reminder that our indigenous neighbors are not a historical aside, but a
-                    living modern people with insights and practices which are vital to the future of humanity.
-                </div>
-            </div>
-        </div>
-
-        <!--    Power Underneath-->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    4 - Power Underneath (2:59)
-                </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                 data-bs-parent="#trackListAccordion">
-                <div class="accordion-body">
-                    Music and <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapsePowerUnderneath"
-                                 role="button"
-                                 aria-expanded="false" aria-controls="collapsePowerUnderneath">
-                    lyrics
-                </a> by Justin Holmes.
-                    <div class="collapse" id="collapsePowerUnderneath">
-                        <div class="card card-body">
-                            The sands had to move; there was power underneath.
-                            <br/>
-                            The sugar and the flour took away our teeth.
-                            <br/>
-                            The bag was watered down because the ATM was leaking.
-                            <br/>
-                            There's never enough oil when every wheel is squeaking.
-                            <br/>
-                            <hr/>
-                            And the missiles propagate the database's state;
-                            <br/>
-                            the empire rolls on by keeping spreadsheets up to date
-                            <br/>
-                            and the planet pays the fiat interest rate.
-                            <br/>
-                            <hr/>
-                            Accordions are useful when you're hunting in the fields.
-                            <br/>
-                            Announce your presence loudly and save your swords and shields.
-                            <br/>
-                            Wake up with a memory of a story you were told,
-                            <br/>
-                            and watch the plot and storyline auspiciously unfold.
-                            <br/>
-                            <hr/>
-                            And the missiles propagate the database's state;
-                            <br/>
-                            the empire rolls on by keeping spreadsheets up to date
-                            <br/>
-                            and the planet pays the fiat interest rate.
-                            <br/>
-                            <hr/>
-                            We did not ask the governor to help us find a block,
-                            <br/>
-                            but he blamed us for his hastening of battleships and clocks.
-                            <br/>
-                            The next time that you hear that your node is pouring smoke,
-                            <br/>
-                            find the banker's dagger in the royal assassin's cloak.
-                            <br/>
-                            <hr/>
-                            And the missiles propagate the database's state;
-                            <br/>
-                            the empire rolls on by keeping spreadsheets up to date
-                            <br/>
-                            and the planet pays the fiat interest rate.
-                            <br/>
-                            <hr/>
-                            The sands will have to move; there is power underneath.
-                            <br/>
-                            The path already trodden is all we can bequeath.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- return(Place) -->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingSeven">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseSeven"
-                        aria-expanded="true" aria-controls="collapseSeven">
-                    5 - return(Place) (4:17)
-                </button>
-            </h2>
-            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
-                 data-bs-parent="#trackListAccordion">
-                <div class="accordion-body">
-                    Based on "The Place I'll Return to, Someday" from Final Fantasy IX, by Nobuo Uematsu.
-                </div>
-            </div>
-        </div>
-
-        <!--    Vowel Sounds (track)-->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree"
-                        aria-expanded="true" aria-controls="collapseThree">
-                    6 - Vowel Sounds (11:17)
-                </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                 data-bs-parent="#trackListAccordion">
-                <div class="accordion-body">
-                    Music and commentary by Justin Holmes.
-                </div>
-            </div>
-        </div>
-
-        <!-- gm☕-->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingSix">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseSix"
-                        aria-expanded="true" aria-controls="collapseSix">
-                    7 - gm☕ (2:47)
-                </button>
-            </h2>
-            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-                 data-bs-parent="#trackListAccordion">
-                <div class="accordion-body">
-                    Music and lyrics by Justin Holmes.
-                    <br/>
-                    A morning song sung to Fibonacci since he was a week old.
-                    <br/>
-                    Featuring Fibonacci Emery Holmes in his vocal debut.
-                </div>
-            </div>
-        </div>
-
-        <!-- The Morning of the Bank Run -->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingNine">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseNine"
-                        aria-expanded="true" aria-controls="collapseNine">
-                    8 - The Morning of the Bank Run (6:19)
-                </button>
-            </h2>
-            <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
-                 data-bs-parent="#trackListAccordion">
-                <div class="accordion-body">
-                    Music and lyrics by Justin Holmes.
-                </div>
-            </div>
-        </div>
-
-        <!-- Rollups and Rearview Mirrors -->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingEight">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseEight"
-                        aria-expanded="true" aria-controls="collapseEight">
-                    9 - Rollups and Rearview Mirrors (3:19)
-                </button>
-            </h2>
-            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
-                 data-bs-parent="#trackListAccordion">
-                <div class="accordion-body">
-                    Music and lyrics by Justin Holmes.
-                </div>
-            </div>
-        </div>
-
-        <!-- Barlow's Jig-->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne"
-                        aria-expanded="true" aria-controls="collapseOne">
-                    10 - Barlow's Jig (4:38)
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                 data-bs-parent="#trackListAccordion">
-                <div class="accordion-body">
-                    Music by Justin Holmes.
-                    <br/><br/>
-                    Excerpts from "A Declaration of the Independence of Cyberspace", by John Perry Barlow, read by Luna
-                    Lavender.
-                    <br/><br/>
-                    Melody inspired by an improvisation with Marty Reisinger in New Paltz, NY. Reisinger was offered
-                    writing credit and declined.
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="collapsing-quote container-md" id="vickie-quote">
-
-        <span class="collapse multi-collapse">"Justin Holmes’ new record, <i>Vowel Sounds</i>, feels like a Trans-Atlantic space journey into
+        <span class='collapse multi-collapse'>"Justin Holmes’ new record, <i>Vowel Sounds</i>, feels like a Trans-Atlantic space journey into
                     its very own aural world. With a virtuosic Bluegrass sound bed, Holmes weaves lyrical subjects
                     of planet respect, ancient vocal pedagogy, and freedom beautifully and still remains playful
                     in all its complexity. The description of vocal overtone solos explained and then employed
                     is nothing short of fascinating.</span>
 
-        <span class="collapse show multi-collapse">"...</span><a data-bs-toggle="collapse"
-                                                                 data-bs-target="#vickie-quote .multi-collapse"
-                                                                 aria-expanded="false">Holmes has proven he’s a master
-        of fitting woodwind instruments
-        onto a traditional Bluegrass canvas with his use of tin whistle, melodica and flute which
-        impressively
-        turns each instrument into an Appalachian adjacent voice.
+      <span class='collapse show multi-collapse'>"...</span><a data-bs-toggle='collapse'
+                                                               data-bs-target='#vickie-quote .multi-collapse'
+                                                               aria-expanded='false'>Holmes has proven he’s a master
+      of fitting woodwind instruments
+      onto a traditional Bluegrass canvas with his use of tin whistle, melodica and flute which
+      impressively
+      turns each instrument into an Appalachian adjacent voice.
     </a>
-        <span class="collapse show multi-collapse">..."</span>
+      <span class='collapse show multi-collapse'>..."</span>
 
-        <span class="collapse multi-collapse">After listen-through, Vowel Sounds leaves
+      <span class='collapse multi-collapse'>After listen-through, Vowel Sounds leaves
                     you wanting to already hear a follow-up project from this creative and mystical human!"</span>
-        <div class="reviewer-name">-Vickie Vaughn, bassist, Della Mae</div>
+      <div class='reviewer-name'>-Vickie Vaughn, winner, IBMA bassist of the year 2023</div>
     </div>
-    <div class="collapsing-quote container-md" id="plez-quote">
-        <span class="collapse show multi-collapse">"...</span>
-        <span class="collapse multi-collapse">"From chain gang to blockchain,</span>
-        <a
-                data-bs-toggle="collapse" data-bs-target="#plez-quote .multi-collapse"
-                aria-expanded="false">perhaps an unlikely combination of cryptocurrency and Bluegrass
-            music
-            is effortlessly fused here</a>
-        <span class="collapse multi-collapse">by Justin Holmes' innovative new album, Vowel Sounds."</span>
-        <span class="collapse show multi-collapse">..."</span>
-        <div class="reviewer-name"> - Plez Jay, Gypsy Farm Network</div>
+
+    <div class='collapsing-quote container-md' id='brewster-quote'>
+      <span class='collapse show multi-collapse'>"...</span>
+      <span class='collapse multi-collapse'>"Finding a path for musicians to get paid directly by publishing on the net has been a dream of the Internet Archive and the vision of the Decentralized Web community, and now </span>
+      <a
+        data-bs-toggle='collapse' data-bs-target='#brewster-quote .multi-collapse'
+        aria-expanded='false'> Justin has gone ahead and done it.</a>
+      <span class='collapse multi-collapse'>  This is exciting; glad we could help in a small way."</span>
+      <span class='collapse show multi-collapse'>..."</span>
+      <div class='reviewer-name'> - Brewster Kahle, founder, archive.org</div>
     </div>
 
 
-    <!-- Image Reel -->
-    <div class="container text-center">
-        <div class="reel">
-            <div>
-                <a class="spotlight" href="images/IMG_0484.jpg"
-                   title="Justin and the boys on-stage at EthDenver. Photograph by R.J. Partington III.">
-                    <img src="images/thumbnails/IMG_0484.jpg" alt="Justin and the boys on-stage at EthDenver."/>
-                </a>
+    <div class='collapsing-quote container-md' id='kevin-quote'>
+      <span class='collapse show multi-collapse'>"...</span>
+      <span class='collapse multi-collapse'>"Vowel Sounds is a masterful weaving of</span>
+      <a
+        data-bs-toggle='collapse' data-bs-target='#kevin-quote .multi-collapse'
+        aria-expanded='false'>twangy bluegrass music and poetic lyrics about
+        power
+        structures, society, cryptography, trust, and community.</a>
+      <span class='collapse multi-collapse'>If you like bluegrass or folk music,
+        then this album is great listening on that basis alone.. but it's also a great way to learn more
+        about
+        cryptography."</span>
+      <span class='collapse show multi-collapse'>..."</span>
+      <div class='reviewer-name'>-Kevin Owocki, co-founder, Gitcoin and host, Green Pill Podcast</div>
+    </div>
+
+
+    <div class='collapsing-quote container-md' id='plez-quote'>
+      <span class='collapse show multi-collapse'>"...</span>
+      <span class='collapse multi-collapse'>"From chain gang to blockchain,</span>
+      <a
+        data-bs-toggle='collapse' data-bs-target='#plez-quote .multi-collapse'
+        aria-expanded='false'>perhaps an unlikely combination of cryptocurrency and Bluegrass
+        music
+        is effortlessly fused here</a>
+      <span class='collapse multi-collapse'>by Justin Holmes' innovative new album, Vowel Sounds."</span>
+      <span class='collapse show multi-collapse'>..."</span>
+      <div class='reviewer-name'> - Plez Jay, Gypsy Farm Network</div>
+    </div>
+
+  </div>
+</main>
+
+<div id='below-the-fold'>
+  <div class='art'>
+    <div id='aeiou'>
+      <a class='spotlight' href='images/IMG_9611.jpg'
+         title='Justin at Stargel Studios. Photograph by R.J. Partington III.'>
+        <img src='images/thumbnails/IMG_9611.jpg' />
+      </a>
+      <img alt='a-letter' id='a-letter-img' src='images/a.jpg'>
+
+      <a class='spotlight' href='images/IMG_0487.jpg'
+         title='Justin Holmes, Jakub Vysoky, Cory Walker, Christian Ward, and Jake Stargel take the stage at EthDenver. Photograph by R.J. Partington III.'>
+        <img src='images/thumbnails/IMG_0487.jpg' />
+      </a>
+
+      <img alt='i-letter' src='images/i.jpg' />
+      <a class='spotlight' href='images/IMG_0433.jpg'
+         title='Running a few last minute, backstage at EthDenver. Photograph by R.J. Partington III.'>
+        <img src='images/thumbnails/IMG_0433.jpg' />
+      </a>
+    </div>
+  </div>
+
+  <div id='ensemble' class='container-lg'>
+    <h1 class='center'>Ensemble</h1>
+
+    <div class='card text-bg-dark mb-3'>
+      <div class='card-body'>
+        <h4 class='card-title .card-header'>Justin Holmes</h4>
+        <p class='card-text'>Guitar, Vocals, Overtone Singing,<br /> Tin Whistle, Wood Flute, Melodica</p>
+      </div>
+    </div>
+
+    <div class='card text-bg-dark mb-3'>
+      <div class='card-body'>
+        <h4 class='card-title .card-header'>Jake Stargel</h4>
+        <p class='card-text'>Upright Bass</p>
+      </div>
+    </div>
+
+    <div class='card text-bg-dark mb-3 mw-100'>
+      <div class='card-body'>
+        <h4 class='card-title .card-header'>Cory Walker</h4>
+        <p class='card-text'>5-string Banjo</p>
+      </div>
+    </div>
+
+    <div class='card text-bg-dark mb-3'>
+      <div class='card-body'>
+        <h4 class='card-title .card-header'>Christian Ward</h4>
+        <p class='card-text'>Fiddle</p>
+      </div>
+    </div>
+
+    <div class='card text-bg-dark mb-3'>
+      <div class='card-body'>
+        <h4 class='card-title .card-header'>Harry Clark</h4>
+        <p class='card-text'>Mandolin (dan)</p>
+      </div>
+    </div>
+
+    <div class='card text-bg-dark mb-3'>
+      <div class='card-body'>
+        <h4 class='card-title .card-header'>Jakub Vysoky</h4>
+        <p class='card-text'>Mandolin (kyū)</p>
+      </div>
+    </div>
+
+    <div class='card text-bg-dark mb-3'>
+      <div class='card-body'>
+        <h4 class='card-title .card-header'>Allen Cooke</h4>
+        <p class='card-text'>Dobro</p>
+      </div>
+    </div>
+
+  </div>
+  <div class='reel'>
+    <div>
+      <a class='spotlight' href='images/IMG_9731.jpg'
+         title='Luna Lavender at Stargel Studios. Photograph by R.J. Partington III.'>
+        <img src='images/thumbnails/IMG_9731.jpg' alt='Luna Lavender at Stargel Studios.' />
+      </a>
+    </div>
+    <div>
+      <a class='spotlight' href='images/IMG_0515.jpg'
+         title='The experienced musicians knew what the lighting was going to be like in their faces. Justin did not. Photograph by R.J. Partington III.'>
+        <img src='images/thumbnails/IMG_0515.jpg' alt='Thumbnail for IMG_9789.jp' />
+      </a>
+    </div>
+    <div>
+      <a class='spotlight' href='images/IMG_9789.jpg'
+         title="Justin Holmes and Jake Stargel looking over a take of Barlow's Jig at the Stargel Studios console. Photograph by R.J. Partington III.">
+        <img src='images/thumbnails/IMG_9789.jpg'
+             alt="Justin Holmes and Jake Stargel looking over a take of Barlow's Jig  at the Stargel Studios console." />
+      </a>
+    </div>
+  </div>
+  <div class='accordion' id='trackListAccordion'>
+    <h1 class='center'>Track List</h1>
+
+    <!-- Lost -->
+    <div class='accordion-item'>
+      <h2 class='accordion-header' id='headingTen'>
+        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                data-bs-target='#collapseTen'
+                aria-expanded='true' aria-controls='collapseTen'>
+          1 - Lost
+        </button>
+      </h2>
+    </div>
+
+    <!-- Hell or High Water (A Policeman and a Fortune Teller) -->
+    <div class='accordion-item'>
+      <h2 class='accordion-header' id='headingFour'>
+        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                data-bs-target='#collapseFour'
+                aria-expanded='true' aria-controls='collapseFour'>
+          2 - Hell or High Water (A Policeman and a Fortune Teller) (5:28)
+        </button>
+      </h2>
+      <div id='collapseFour' class='accordion-collapse collapse' aria-labelledby='headingFour'
+           data-bs-parent='#trackListAccordion'>
+        <div class='accordion-body'>
+          Music and <a class='btn btn-primary' data-bs-toggle='collapse' href='#collapseHoHW'
+                       role='button'
+                       aria-expanded='false' aria-controls='collapseHoHW'>
+          lyrics
+        </a> by Justin Holmes.
+          <div class='collapse' id='collapseHoHW'>
+            <div class='card card-body'>
+              A policeman and a fortune teller
+              <br />
+              both left their posts at `or(hell, high_water)`
+              <br />
+              cuz neither of them were who they'd set out to be
+              <br />
+              <hr />
+              You can lie about the mail; you can lie about the money
+              <br />
+              but a little bit of math will always find the funny business
+              <br />
+              trust comes from the earth like the banyan tree
+              <hr />
+              Hold on and be brave
+              <br />
+              I know you see that comin' wave
+              <hr />
+              The water is dear if we want to live
+              <br />
+              and the fire in our hearts is ours to give
+              <br />
+              the earth makes nodes out of some of its stone
+              <br />
+              and they carry good news through the air back home
+              <hr />
+              I push-to-talk with my right ring finger
+              <br />
+              and fly back home with my left wing lingering
+              <br />
+              never knowing who will walk through my front door
+              <hr />
+              With a cup and a string, I can say anything
+              <br />
+              to a shadowban trap like a mouse with a spring
+              <br />
+              and that's how we arrive at our credit score
+              <hr />
+              Hold on and be brave
+              <br />
+              I know you see that comin' wave
+              <hr />
+              The water is dear if we want to live
+              <br />
+              and the fire in our hearts is ours to give
+              <br />
+              the earth makes nodes out of some of its stone
+              <br />
+              and they carry good news through the air back home
+              <hr />
+              A policeman and a fortune teller
+              <br />
+              both left their posts at `or(hell, high_water)`
+              <br />
+              cuz neither of them were who they'd set out to be
+              <br />
+              <hr />
+              You can lie about the mail; you can lie about the money
+              <br />
+              but a little bit of math will always find the funny business
+              <br />
+              trust comes from the earth like the banyan tree
             </div>
-            <div>
-                <a class="spotlight" href="images/IMG_9777.jpg"
-                   title="Skyler Golden gets Justin's pedal boards dialed in for the recording session. Photograph by R.J. Partington III.">
-                    <img src="images/thumbnails/IMG_9777.jpg"
-                         alt="Skyler Golden gets Justin's pedal boards dialed in for the recording session."/>
-                </a>
-            </div>
-            <div>
-                <a class="spotlight" href="images/IMG_9565.jpg"
-                   title="Fibonacci looks over a take at the console. Photograph by R.J. Partington III.">
-                    <img src="images/thumbnails/IMG_9565.jpg" alt="Fibonacci looks over a take at the console."/>
-                </a>
-            </div>
+          </div>
+
+
         </div>
+      </div>
     </div>
+
+    <!-- Cork Board -->
+    <div class='accordion-item'>
+      <h2 class='accordion-header' id='headingFive'>
+        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                data-bs-target='#collapseFive'
+                aria-expanded='true' aria-controls='collapseFive'>
+          3 - Cork Board (5:26)
+        </button>
+      </h2>
+      <div id='collapseFive' class='accordion-collapse collapse' aria-labelledby='headingFive'
+           data-bs-parent='#trackListAccordion'>
+        <div class='accordion-body'>
+          Music by Justin Holmes.
+          <hr />
+          Featuring a wooden double flute made by an indigenous artisan in Rapid City, in the Black Hills.
+          <hr />
+          May this piece serve as a reminder that our indigenous neighbors are not a historical aside, but a
+          living modern people with insights and practices which are vital to the future of humanity.
+        </div>
+      </div>
+    </div>
+
+    <!--    Power Underneath-->
+    <div class='accordion-item'>
+      <h2 class='accordion-header' id='headingTwo'>
+        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                data-bs-target='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo'>
+          4 - Power Underneath (2:59)
+        </button>
+      </h2>
+      <div id='collapseTwo' class='accordion-collapse collapse' aria-labelledby='headingTwo'
+           data-bs-parent='#trackListAccordion'>
+        <div class='accordion-body'>
+          Music and <a class='btn btn-primary' data-bs-toggle='collapse' href='#collapsePowerUnderneath'
+                       role='button'
+                       aria-expanded='false' aria-controls='collapsePowerUnderneath'>
+          lyrics
+        </a> by Justin Holmes.
+          <div class='collapse' id='collapsePowerUnderneath'>
+            <div class='card card-body'>
+              The sands had to move; there was power underneath.
+              <br />
+              The sugar and the flour took away our teeth.
+              <br />
+              The bag was watered down because the ATM was leaking.
+              <br />
+              There's never enough oil when every wheel is squeaking.
+              <br />
+              <hr />
+              And the missiles propagate the database's state;
+              <br />
+              the empire rolls on by keeping spreadsheets up to date
+              <br />
+              and the planet pays the fiat interest rate.
+              <br />
+              <hr />
+              Accordions are useful when you're hunting in the fields.
+              <br />
+              Announce your presence loudly and save your swords and shields.
+              <br />
+              Wake up with a memory of a story you were told,
+              <br />
+              and watch the plot and storyline auspiciously unfold.
+              <br />
+              <hr />
+              And the missiles propagate the database's state;
+              <br />
+              the empire rolls on by keeping spreadsheets up to date
+              <br />
+              and the planet pays the fiat interest rate.
+              <br />
+              <hr />
+              We did not ask the governor to help us find a block,
+              <br />
+              but he blamed us for his hastening of battleships and clocks.
+              <br />
+              The next time that you hear that your node is pouring smoke,
+              <br />
+              find the banker's dagger in the royal assassin's cloak.
+              <br />
+              <hr />
+              And the missiles propagate the database's state;
+              <br />
+              the empire rolls on by keeping spreadsheets up to date
+              <br />
+              and the planet pays the fiat interest rate.
+              <br />
+              <hr />
+              The sands will have to move; there is power underneath.
+              <br />
+              The path already trodden is all we can bequeath.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- return(Place) -->
+    <div class='accordion-item'>
+      <h2 class='accordion-header' id='headingSeven'>
+        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                data-bs-target='#collapseSeven'
+                aria-expanded='true' aria-controls='collapseSeven'>
+          5 - return(Place) (4:17)
+        </button>
+      </h2>
+      <div id='collapseSeven' class='accordion-collapse collapse' aria-labelledby='headingSeven'
+           data-bs-parent='#trackListAccordion'>
+        <div class='accordion-body'>
+          Based on "The Place I'll Return to, Someday" from Final Fantasy IX, by Nobuo Uematsu.
+        </div>
+      </div>
+    </div>
+
+    <!--    Vowel Sounds (track)-->
+    <div class='accordion-item'>
+      <h2 class='accordion-header' id='headingThree'>
+        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                data-bs-target='#collapseThree'
+                aria-expanded='true' aria-controls='collapseThree'>
+          6 - Vowel Sounds (11:17)
+        </button>
+      </h2>
+      <div id='collapseThree' class='accordion-collapse collapse' aria-labelledby='headingThree'
+           data-bs-parent='#trackListAccordion'>
+        <div class='accordion-body'>
+          Music and commentary by Justin Holmes.
+        </div>
+      </div>
+    </div>
+
+    <!-- gm☕-->
+    <div class='accordion-item'>
+      <h2 class='accordion-header' id='headingSix'>
+        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                data-bs-target='#collapseSix'
+                aria-expanded='true' aria-controls='collapseSix'>
+          7 - gm☕ (2:47)
+        </button>
+      </h2>
+      <div id='collapseSix' class='accordion-collapse collapse' aria-labelledby='headingSix'
+           data-bs-parent='#trackListAccordion'>
+        <div class='accordion-body'>
+          Music and lyrics by Justin Holmes.
+          <br />
+          A morning song sung to Fibonacci since he was a week old.
+          <br />
+          Featuring Fibonacci Emery Holmes in his vocal debut.
+        </div>
+      </div>
+    </div>
+
+    <!-- The Morning of the Bank Run -->
+    <div class='accordion-item'>
+      <h2 class='accordion-header' id='headingNine'>
+        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                data-bs-target='#collapseNine'
+                aria-expanded='true' aria-controls='collapseNine'>
+          8 - The Morning of the Bank Run (6:19)
+        </button>
+      </h2>
+      <div id='collapseNine' class='accordion-collapse collapse' aria-labelledby='headingNine'
+           data-bs-parent='#trackListAccordion'>
+        <div class='accordion-body'>
+          Music and lyrics by Justin Holmes.
+        </div>
+      </div>
+    </div>
+
+    <!-- Rollups and Rearview Mirrors -->
+    <div class='accordion-item'>
+      <h2 class='accordion-header' id='headingEight'>
+        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                data-bs-target='#collapseEight'
+                aria-expanded='true' aria-controls='collapseEight'>
+          9 - Rollups and Rearview Mirrors (3:19)
+        </button>
+      </h2>
+      <div id='collapseEight' class='accordion-collapse collapse' aria-labelledby='headingEight'
+           data-bs-parent='#trackListAccordion'>
+        <div class='accordion-body'>
+          Music and lyrics by Justin Holmes.
+        </div>
+      </div>
+    </div>
+
+    <!-- Barlow's Jig-->
+    <div class='accordion-item'>
+      <h2 class='accordion-header' id='headingOne'>
+        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                data-bs-target='#collapseOne'
+                aria-expanded='true' aria-controls='collapseOne'>
+          10 - Barlow's Jig (4:38)
+        </button>
+      </h2>
+      <div id='collapseOne' class='accordion-collapse collapse' aria-labelledby='headingOne'
+           data-bs-parent='#trackListAccordion'>
+        <div class='accordion-body'>
+          Music by Justin Holmes.
+          <br /><br />
+          Excerpts from "A Declaration of the Independence of Cyberspace", by John Perry Barlow, read by Luna
+          Lavender.
+          <br /><br />
+          Melody inspired by an improvisation with Marty Reisinger in New Paltz, NY. Reisinger was offered
+          writing credit and declined.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Image Reel -->
+  <div class='container text-center'>
+    <div class='reel'>
+      <div>
+        <a class='spotlight' href='images/IMG_0484.jpg'
+           title='Justin and the boys on-stage at EthDenver. Photograph by R.J. Partington III.'>
+          <img src='images/thumbnails/IMG_0484.jpg' alt='Justin and the boys on-stage at EthDenver.' />
+        </a>
+      </div>
+      <div>
+        <a class='spotlight' href='images/IMG_9777.jpg'
+           title="Skyler Golden gets Justin's pedal boards dialed in for the recording session. Photograph by R.J. Partington III.">
+          <img src='images/thumbnails/IMG_9777.jpg'
+               alt="Skyler Golden gets Justin's pedal boards dialed in for the recording session." />
+        </a>
+      </div>
+      <div>
+        <a class='spotlight' href='images/IMG_9565.jpg'
+           title='Fibonacci looks over a take at the console. Photograph by R.J. Partington III.'>
+          <img src='images/thumbnails/IMG_9565.jpg' alt='Fibonacci looks over a take at the console.' />
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
 
 
-<div id="FAQ">
+<div id='FAQ'>
 
-    <div id="faq-questions">
-        <h1>Questions of Varying Frequency</h1>
+  <div id='faq-questions'>
+    <h1>Questions of Varying Frequency</h1>
 
-        <h3>What's the difference between a duck?</h3>
-        <p class="end-of-answer">
-            One leg is both the same.
-        </p>
+    <h3>What's the difference between a duck?</h3>
+    <p class='end-of-answer'>
+      One leg is both the same.
+    </p>
 
-        <h3>What is Revealer exactly?</h3>
-        <p>
+    <h3>Why release this record using blockchain tech instead of the orthodox industry method?</h3>
+    <p class='end-of-answer'>
+      Making music un-free hasn't made musicians un-poor. So we're carving out a way to release free,
+      IP-unencumbered music - which is after all the core of traditional music - and reward fans who
+      choose to pay for it.
+    </p>
 
-            Revealer is a decentralized application that allows you to reveal a secret to the world via a
-            commit-and-reveal
-            scheme.
-        </p>
-        <p>
-            It is built on top of Threshold Network, and a few of the contributors to Revealer are also long-time
-            contributors
-            to Threshold.
-        </p>
-        <p>
-            At the cryptological layer, there's nothing about Revealer that is specific to the arts. However, when it
-            became
-            obvious
-            that conditionally revealing a committed-to secret was possible because of advances at Threshold, it seemed
-            that
-            Creative Commons-licensed art was the first obvious use case.
-        </p>
-        <p>
-            It's fairly simple: using Threshold Access Control, a symmetric key is encrypted. A smart contract is
-            deployed
-            such that a boolean flag is flipped to true once a 'threshold' of contributions are made. The nodes on the
-            Threshold
-            Network watch for the flipping of this flag, and only then participate in their typical multi-party
-            computation
-            to reveal the symmetric key.
-        </p>
-        <p class="end-of-answer">
-            At that moment, whatever the artist has encrypted with that key (in this case, a bluegrass record) becomes
-            public.
-        </p>
+    <h3>So how did it work?</h3>
+    <p>
+      After mastering, the record and cover art were encrypted and made available for download via IPFS and bittorrent -
+      you know, those tools
+      that deal economic ruin to musicians.
+    </p>
+    <p>
+      The Revealer contract was then configured to facilitate decyrption of the record after 10ETH had been contributed (more on that below).
+    </p>
 
-        <h3>What is an Artifact?</h3>
+    <p class='end-of-answer'>
+    Now released, the record is in the public
+    domain,
+    free to download and use under a creative commons license.
+    </p>
 
-        <p>
-            Revealer Artifacts are ERC-721 tokens that are minted after contributions are closed, and awarded to
-            everyone
-            who contributed. They are serialized, with lower numbers going to higher contributors (ie, top contributor
-            gets #1, then #2, etc). We
-            plan to mint them on Gnosis chain for Revealer 1, within a few weeks of the reveal.
-        </p>
-        <p>
-            Everyone who contributes above the 0.1eth minimum will receive an Artifact, sent to the address from which
-            they
-            contributed.
-        </p>
-        <p>
-            The top 10 contributors will have their Artifact bound to one of the paintings by Nashville artist Sophie
-            Clark.
-        </p>
-        <p class="end-of-answer">
-            Part of the medium-term vision of Threshold Network is to use NFTs to unlock access to content, and these
-            Artifacts
-            are intended to be used for that purpose.
-        </p>
-        <h3>So does that mean there are no royalties for Revealer projects?</h3>
-        <p>Certainly we hope for the concept of royalties to evolve beyond what it has become.</p>
+    <h3>What is Revealer exactly?</h3>
+    <p>
 
-        <p>We want the moment of listening to music to be free, permissionless, and unencumbered by industry
-            interests.</p>
+      Revealer is a decentralized application that allows you to reveal a secret to the world via a
+      commit-and-reveal
+      scheme.
+    </p>
+    <p>
+      It is built on top of <a
+      href='https://docs.threshold.network/'>
+      <img class='logo-in-paragraph' src='images/threshold-logo-circle-purple.avif'>Threshold
+      Network.</a>, and a few of the contributors to Revealer are also long-time
+      contributors
+      to Threshold.
+    </p>
+    <p>
+      At the cryptological layer, there's nothing about Revealer that is specific to the arts. However, when it
+      became
+      obvious
+      that conditionally revealing a committed-to secret was possible because of advances at Threshold, it seemed
+      that
+      Creative Commons-licensed art was the first obvious use case.
+    </p>
+    <p>
+      It's fairly simple: using Threshold Access Control, a symmetric key is encrypted. A smart contract is
+      deployed
+      such that a boolean flag is flipped to true once a 'threshold' of contributions are made. The nodes on the
+      Threshold
+      Network watch for the flipping of this flag, and only then participate in their typical multi-party
+      computation
+      to reveal the symmetric key.
+    </p>
+    <p class='end-of-answer'>
+      At that moment, whatever the artist has encrypted with that key (in this case, a bluegrass record) becomes
+      public.
+    </p>
 
-        <p>On the other hand, for Revealer 1 (this project - the Vowel Sounds record), we imagine Artifact royalties
-            as
-            follows:</p>
+    <h3>What is an Artifact?</h3>
 
-        <ul>
-            <li>The initial canonical owner of an Artifact is the address from which the respective contribution was
-                made.
-            </li>
-            <li>If an Artifact is transfered to another address, the canonical owner remains the initial address.</li>
-            <li>In order to transfer canonical ownership status, a royalty-ish instrument (we don't have a name for this
-                yet) will be paid to the initial contract.
-            </li>
-            <li>Whatever benefits Justin decides to confer to holders of the Artifacts, whether in-person or online,
-                will be conferred only to canonical owners.
-            </li>
-        </ul>
+    <p>
+      Revealer Artifacts are ERC-721 tokens that are minted after contributions are closed, and awarded to
+      everyone
+      who contributed. They are serialized, with lower numbers going to higher contributors (ie, top contributor
+      gets #1, then #2, etc). We
+      plan to mint them on Gnosis chain for Revealer 1, within a few weeks of the reveal.
+    </p>
+    <p>
+      Everyone who contributed above the 0.1eth minimum will receive an Artifact, sent to the address from which
+      they
+      contributed.
+    </p>
+    <p>
+      The top 10 contributors will have their Artifact bound to one of the paintings by Nashville artist Sophie
+      Clark.
+    </p>
+    <p class='end-of-answer'>
+      Part of the medium-term vision of Threshold Network is to use NFTs to unlock access to content, and these
+      Artifacts
+      are intended to be used for that purpose.
+    </p>
+    <h3>So does that mean there are no royalties for Revealer projects?</h3>
+    <p>Certainly we hope for the concept of royalties to evolve beyond what it has become.</p>
 
-        <p>This way, Artifacts can still be backed up on hardware wallets, bought and sold in open markets, etc., but
-            the artist
-            will still receive some of the market value of any transaction of the Artifact (the long-term value of which
-            will presumably be driven in part by the artist's commitment to Artifact hodlers).
-        </p>
-        <h4>That's all fine, but what if I release my record on Revealer, and then once Revealed, I (or anyone) puts it
-            on a streaming platform - can I get paid?</h4>
-        <p class="end-of-answer">
-            The short answer is "yes", but the long answer is that we'll need to develop a new license for this.
-            Hopefully our friends at archive.org or the EFF can help.
-        </p>
+    <p>We want the moment of listening to music to be free, permissionless, and unencumbered by industry
+      interests.</p>
 
-        <h3>Why is there a minimum contribution amount to bid for an Artifact? Can I contribute less?</h3>
-        <p>
-            You can contribute less, but you won't receive an Artifact.
+    <p>On the other hand, for Revealer 1 (this project - the Vowel Sounds record), we imagine Artifact royalties
+      as
+      follows:</p>
 
-            The primary reason to establish a minimum contribution amount is to prevent spamming of small contributions
-            in order to farm Artifacts. The Artifacts are intended to be special, and part of the long-term ecosystem of
-            Justin's music.
-        </p>
-        <p class="end-of-answer">
-            However, if you want to contribute and don't care about getting an Artifact, you can simply send ETH
-            straight to
-            the
-            contract address (which is what happens if you enter less than the minimum in the 'contribute' modal above).
-            This will count toward unlocking the record, but won't be recorded as an official contribution on the
-            leaderboard,
-            etc.
-        </p>
+    <ul>
+      <li>The initial canonical owner of an Artifact is the address from which the respective contribution was
+        made.
+      </li>
+      <li>If an Artifact is transfered to another address, the canonical owner remains the initial address.</li>
+      <li>In order to transfer canonical ownership status, a royalty-ish instrument (we don't have a name for this
+        yet) will be paid to the initial contract.
+      </li>
+      <li>Whatever benefits Justin decides to confer to holders of the Artifacts, whether in-person or online,
+        will be conferred only to canonical owners.
+      </li>
+    </ul>
 
-        <h3>What is the time period for contributions?</h3>
-        <p>
-            Until 10eth are raised, or 14 days have elapsed, or 24 hours after the last contribution - whichever of
-            those happens last.
-        </p>
-        <p>
-            In other words, if, at any time, there are less than 24 hours remaining, any contribution will cause the
-            clock
-            to be set to 24 hours from that moment.
-        </p>
-        <p>
-            The record will be released when contributions reach 10ETH, regardless of whether the 14 days have passed.
-            Conversely, the contribution window will be open for at least 14 days, regardless of whether 10ETH are
-            raised.
-        </p>
-        <p>
-            <a href="https://etherscan.io/address/0xa812137EFf2B368d0B2880A39B609fB60c426850#readContract">The
-                contract</a>
-            was deployed <a
-                href="https://etherscan.io/tx/0xb747660b14b6632c72f858de344873f361378b9dd96f3d3931a68f076a104e3c">on
-            September 1.</a>
-        </p>
-        <p class="end-of-answer">
-            The 14-day window and 24-hour extension are parameterized - future Revealers can have different values.
-        </p>
+    <p>This way, Artifacts can still be backed up on hardware wallets, bought and sold in open markets, etc., but
+      the artist
+      will still receive some of the market value of any transaction of the Artifact (the long-term value of which
+      will presumably be driven in part by the artist's commitment to Artifact hodlers).
+    </p>
+    <h4>That's all fine, but what if I release my record on Revealer, and then once Revealed, I (or anyone) puts it
+      on a streaming platform - can I get paid?</h4>
+    <p class='end-of-answer'>
+      The short answer is "yes", but the long answer is that we need to do some research to understand how to license this.
+      Hopefully our friends at archive.org or the EFF can help.
+    </p>
 
-    </div>
+  </div>
 
 </div>
 
-<aside id="ack">
-    <h2>Acknowledgements from Justin</h2>
-
-    <div id="ack-content">
-
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    R.J. Partington III
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-            <div class="col-lg-8">
-                <p> What a wild ride. I can't believe how much work you've put into this project, and how
-                    much
-                    confidence
-                    in me it represents. Well, I can believe it, because 20 years of trust and validation builds those
-                    things
-                    that
-                    nothing else can. Unreal man. You're sitting to my left right now as I type this, probably bouncing
-                    between
-                    PMing and styling, and you've been at it nonstop for days. This record belongs to you as much as me;
-                    the
-                    difference is that I practiced guitar while you listened to humans express their needs of this
-                    world.
-                    The
-                    path
-                    ahead is finally clearing, and there's fewer than ten things I can conjur to be more thankful for
-                    than
-                    that
-                    you
-                    are still along for this ride.
-                </p>
-            </div>
-        </div>
-
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Jakub Vysoky
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-
-            <div class="col-lg-8">
-                <p>We're really doing it, aren't we buddy? 7 hours of jet lag to cut a record is already
-                    acknowledgement-worthy, let alone the rest of your creative pursuit that you've carved out at my
-                    behest.
-                    Much
-                    more to make, my friend.
-                </p>
-            </div>
-        </div>
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Beth "Bee" Halsey
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-            <div class="col-lg-8">
-                <p>To me, you have become almost synonymous with 'home' - or at least, as 'home' as
-                    'home'
-                    can be
-                    without tasting and smelling like where I grew up. Possibly my favorite aspect of the privilege of
-                    being
-                    alive
-                    is being able to play for smiling faces around the globe... but that only means what it means
-                    knowing
-                    that I
-                    have something resembling sanity when I return. I hear your affirmations all over this record, and I
-                    feel
-                    absolutely blessed by them. Can't wait to hang with out on the other side of the globe and look back
-                    with
-                    wonder.
-                </p>
-            </div>
-        </div>
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Skyler Golden
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-
-            <div class="col-lg-8">
-                <p>This record has your attitude and altitude all over it. You knew when I was singing too
-                    hard
-                    or
-                    too soft. You knew when I was too nervous and when I wasn't nervous enough. Our days together in
-                    Nashville
-                    and
-                    Denver are what's really going on-chain here.
-                </p>
-            </div>
-        </div>
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Kieran Prasch
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-
-            <div class="col-lg-8">
-                <p>It took a while to realize that our cryptographic musings have a role to play in the
-                    strength
-                    and
-                    augmentation of this musical tradition, and I don't think there's another person alive who can make
-                    those
-                    feelings seem as valid as you have.
-                </p>
-            </div>
-        </div>
-
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Andy Lytle
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-
-            <div class="col-lg-8">
-                <p>It was a birthday moment when my life needed a directional reorientation, and you were there
-                    with
-                    just the right attitude and attention span to inspire me to make it. Introducing me to Sky has been
-                    life-changing.
-                </p>
-            </div>
-        </div>
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Ashley Reynolds
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-            <div class="col-lg-8">
-                <p>I have often needed the devil on my other shoulder to encourage me to put myself out there more, and
-                    I'm really thankful that you are the one who has stepped up to be this voice for me. I don't much
-                    care for calls usually, but somehow they always work better when you're on them. And I do enjoy
-                    having another colleague whose kids can often be heard. :-)</p>
-            </div>
-        </div>
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Lisa Joy
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-
-            <div class="col-lg-8">
-                <p>I came to the scene unsure if I belonged, and that feeling only lasted until I met you. You were
-                    the
-                    first person to make me feel like a mainstream bluegrass musician. Moreover, your focus on the body
-                    of
-                    the
-                    musician - a piece of the being so easily forgotten in our information age, is laudable and noticed.
-                </p>
-            </div>
-        </div>
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Brewster Kahle
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-
-            <div class="col-lg-8">
-                <p>Your work has been definitive for everyone who is doing my work. I don't exactly
-                    understand
-                    what
-                    motivates a person to dedicate himself to the things you notice, but I'm noticing them more and
-                    more
-                    with
-                    each
-                    day. The Great78 project alone is one of the most important and unsung motions in bluegrass today.
-                    It's
-                    an absolute honor to produce something that interests you so much.
-                </p>
-            </div>
-        </div>
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Luna Lavender
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-
-            <div class="col-lg-8">
-                <p>Your gift to bring calm to moments of trivial tumult is impressive. I hear your breath in
-                    my
-                    voice
-                    throughout this record. I also hear the presence of the kiddos, whom I'm so glad you empowered to be
-                    around
-                    for
-                    this process.
-                </p>
-            </div>
-        </div>
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Skylar Weaver
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-
-            <div class="col-lg-8">
-                <p>You noticed things in me that I didn't notice in myself, and noticed them at a moment when noticing them
-                    made
-                    all
-                    the difference.
-                </p>
-            </div>
-        </div>
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Katie Kirchner
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-
-            <div class="col-lg-8">
-                <p>There are a few people out there that, when with whom I experience eye contact, adjoined
-                    is
-                    the
-                    feeling that we are on a similar trajectory. I felt that with extreme clarity with you, from moment
-                    zero.
-                    I'm
-                    really thankful that you saw fit to bring me into the IBMA circle, and I'm psyched to share this
-                    part of the road with Full Cord.
-                </p>
-            </div>
-        </div>
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Jonathan Mann
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-            <div class="col-lg-8">
-                <p>
-                    Thanks for paving the way for the rest of us to dare to do this.
-                </p>
-            </div>
-        </div>
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Frank Copilotete
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-
-            <div class="col-lg-8">
-                <p>
-                    You're the best. I'm so glad we're friends. I'm so glad you're in my life. I'm so glad
-                    you're in the world.
-                </p>
-            </div>
-        </div>
-        <div class="acknowledgement-row row">
-            <div class="col acknowledgment-name">
-                <h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                    Fibonacci
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot"
-                         viewBox="0 0 16 16">
-                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                    </svg>
-                </h3>
-            </div>
-
-            <div class="col-lg-8">
-                <p>
-                    I'm 41 kiddo, and I haven't figured out how to have the patience and insight you have at eight.
-                    Thanks
-                    for letting me teach you, and for teaching me all the while.
-                </p>
-            </div>
-        </div>
+<div id='artifactIntro' class='container-fluid'>
+  <div class='d-flex justify-content-center text-center'>
+    <h1>Artifact Leaderboard</h1>
+  </div>
+  <div id='artifact-description-body' class='card text-bg-dark'>
+    <div id='artifact-description-text' class='card-body'>
+      <p>
+        Everyone who contributed above the 0.1eth minimum will receive an Artifact, sent to the address from
+        which
+        they
+        contributed.
+        <br /><br />
+        The top 10 contributors will have their Artifact bound to one of the paintings by Nashville artist
+        Sophie
+        Clark.
+      </p>
     </div>
+  </div>
+</div>
+<article id='table'>
+  <table id='leaderboard-table'>
+    <thead>
+    <tr class='leaderboard-row'>
+      <th scope='col'>#</th>
+      <th id='art-label' scope='col'>Art</th>
+      <th scope='col'>Bid</th>
+      <th scope='col'>Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class='leaderboard-row'>
+      <th scope='row'>1</th>
+      <td><a class='spotlight' href='images/aaa.png' title='Art by Sophie Clark.'><img src='images/thumbnails/aaa.png'
+                                                                                       title='Art by Sophie Clark.'></a>
+      </td>
+      <td>1.3 ETH</td>
+      <td><a href='https://etherscan.io/address/0x4EEc33Db764b7Fe34F038E0D66F8f0F73F5f6CdB' target='_blank'>rjpartingtoniii.eth</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row'>
+      <th scope='row'>2</th>
+      <td><a class='spotlight' href='images/eee.png' title='Art by Sophie Clark.'><img src='images/thumbnails/eee.png'
+                                                                                       title='Art by Sophie Clark.'></a>
+      </td>
+      <td>1.11 ETH</td>
+      <td><a href='https://etherscan.io/address/0x7dae08563b85de04FB48Ac211184718F259458A1' target='_blank'>0x7dae08563b85de04FB48Ac211184718F259458A1</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row'>
+      <th scope='row'>3</th>
+      <td><a class='spotlight' href='images/ce.png' title='Art by Sophie Clark.'><img
+        src='images/thumbnails/ce.png'></a></td>
+      <td>1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x6b1231134930FCe469f019ea23907eBa289f8eED' target='_blank'>0x6b1231134930FCe469f019ea23907eBa289f8eED</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row'>
+      <th scope='row'>4</th>
+      <td><a class='spotlight' href='images/ot.png' title='Art by Sophie Clark.'><img
+        src='images/thumbnails/ot.png'></a></td>
+      <td>1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x29f3c8B6A90F10f96f269495F4af184C0988A594'
+             target='_blank'>kvbik.eth</a></td>
+    </tr>
+    <tr class='leaderboard-row'>
+      <th scope='row'>5</th>
+      <td><a class='spotlight' href='images/b.png' title='Art by Sophie Clark.'><img src='images/thumbnails/b.png'></a>
+      </td>
+      <td>1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x2F04FD2227af438c91a5F59e903C60a502c7e494'
+             target='_blank'>maclane.eth</a></td>
+    </tr>
+    <tr class='leaderboard-row'>
+      <th scope='row'>6</th>
+      <td><a class='spotlight' href='images/horseshoe.png' title='Art by Sophie Clark.'><img
+        src='images/thumbnails/horseshoe.png'></a></td>
+      <td>0.69 ETH</td>
+      <td><a href='https://etherscan.io/address/0xD27aB5839AD00a9073F75c328F4ed2CA019fc9ba' target='_blank'>purplegrass.eth</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row'>
+      <th scope='row'>7</th>
+      <td><a class='spotlight' href='images/iii.png' title='Art by Sophie Clark.'><img src='images/thumbnails/iii.png'></a>
+      </td>
+      <td>0.61 ETH</td>
+      <td><a href='https://etherscan.io/address/0xdf0Ea302a6de518e8c08c30F919ff78F9336C264' target='_blank'>lunarbytes.eth</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row'>
+      <th scope='row'>8</th>
+      <td><a class='spotlight' href='images/uu.png' title='Art by Sophie Clark.'><img
+        src='images/thumbnails/uu.png'></a></td>
+      <td>0.43 ETH</td>
+      <td><a href='https://etherscan.io/address/0x0C6Ce91CBb524A90fE8b12E696e3741794658B6C'
+             target='_blank'>kubic71.eth</a></td>
+    </tr>
+    <tr class='leaderboard-row'>
+      <th scope='row'>9</th>
+      <td><a class='spotlight' href='images/vv.png' title='Art by Sophie Clark.'><img
+        src='images/thumbnails/vv.png'></a></td>
+      <td>0.4 ETH</td>
+      <td><a href='https://etherscan.io/address/0x4f84b3650Dbf651732a41647618E7fF94A633F09' target='_blank'>cryptograss.eth</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row'>
+      <th scope='row'>10</th>
+      <td><a class='spotlight' href='images/Y.png' title='Art by Sophie Clark.'><img src='images/thumbnails/Y.png'></a>
+      </td>
+      <td>0.39 ETH</td>
+      <td><a href='https://etherscan.io/address/0x4f1eFe177057DB679A7Cbe1cf92aCf2aD5B7aA74'
+             target='_blank'>mrsnu.eth</a></td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>11</th>
+      <td></td>
+      <td>0.35 ETH</td>
+      <td><a href='https://etherscan.io/address/0x7a16fF8270133F063aAb6C9977183D9e72835428'
+             target='_blank'>curvefi.eth</a></td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>12</th>
+      <td></td>
+      <td>0.3 ETH</td>
+      <td><a href='https://etherscan.io/address/0x7480efC6Bcb92bB0fc902c93111A030D0A8949eE' target='_blank'>0x7480efC6Bcb92bB0fc902c93111A030D0A8949eE</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>13</th>
+      <td></td>
+      <td>0.2 ETH</td>
+      <td><a href='https://etherscan.io/address/0xf632Ce27Ea72deA30d30C1A9700B6b3bCeAA05cF' target='_blank'>sem-the-bee.eth</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>14</th>
+      <td></td>
+      <td>0.1242069 ETH</td>
+      <td><a href='https://etherscan.io/address/0xe83E0b36bc68c1407B81B6d42CA4bd23FC309517'
+             target='_blank'>bordel.eth</a></td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>15</th>
+      <td></td>
+      <td>0.11 ETH</td>
+      <td><a href='https://etherscan.io/address/0xC46c67Bb7E84490D7EbdD0b8ecDaca68Cf3823F4' target='_blank'>karmaticacid.eth</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>16</th>
+      <td></td>
+      <td>0.10101 ETH</td>
+      <td><a href='https://etherscan.io/address/0xA05B26f366035F4A797c12cbC23B87633F353337' target='_blank'>beemeeupnow.eth</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>17</th>
+      <td></td>
+      <td>0.1 ETH</td>
+      <td><a href='https://etherscan.io/address/0xA270f5649A42feDfE66ddb3b0b50bebAe1e3DDB0'
+             target='_blank'>ktlxv.eth</a></td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>18</th>
+      <td></td>
+      <td>0.1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x7A86dF14ADba1ef38aa12e5727C7ac20bf7d70Ad'
+             target='_blank'>12x35.eth</a></td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>19</th>
+      <td></td>
+      <td>0.1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x8FBCa7800D1B820176b0696A22bce5E50C5c9A71' target='_blank'>0x8FBCa7800D1B820176b0696A22bce5E50C5c9A71</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>20</th>
+      <td></td>
+      <td>0.1 ETH</td>
+      <td><a href='https://etherscan.io/address/0xD2c4F95cfE8b27b34Dee7e8441772d03f6e5C66A' target='_blank'>theperegrine.eth</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>21</th>
+      <td></td>
+      <td>0.1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x693eDBCF118EC982f5A8101498b6c789470B0b89'
+             target='_blank'>skylar.eth</a></td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>22</th>
+      <td></td>
+      <td>0.1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x4f84b3650Dbf651732a41647618E7fF94A633F09' target='_blank'>cryptograss.eth</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>23</th>
+      <td></td>
+      <td>0.1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x70564145fA8e8A15348EF0190e6B7c07A2120462' target='_blank'>chrishobcroft.eth</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>24</th>
+      <td></td>
+      <td>0.1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x0001288c0eAeD7E9Cd3D727ABD3a1b95a91eA9AD' target='_blank'>0x0001288c0eAeD7E9Cd3D727ABD3a1b95a91eA9AD</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>25</th>
+      <td></td>
+      <td>0.1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x7dae08563b85de04FB48Ac211184718F259458A1' target='_blank'>0x7dae08563b85de04FB48Ac211184718F259458A1</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>26</th>
+      <td></td>
+      <td>0.1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x68FDe8FFd34966b8AefA61fF14d7a5685253C7D2' target='_blank'>0x68FDe8FFd34966b8AefA61fF14d7a5685253C7D2</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>27</th>
+      <td></td>
+      <td>0.1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x4f84b3650Dbf651732a41647618E7fF94A633F09' target='_blank'>cryptograss.eth</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>28</th>
+      <td></td>
+      <td>0.1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x4EEc33Db764b7Fe34F038E0D66F8f0F73F5f6CdB' target='_blank'>rjpartingtoniii.eth</a>
+      </td>
+    </tr>
+    <tr class='leaderboard-row collapse otherBidders'>
+      <th scope='row'>29</th>
+      <td></td>
+      <td>0.1 ETH</td>
+      <td><a href='https://etherscan.io/address/0x4f84b3650Dbf651732a41647618E7fF94A633F09' target='_blank'>cryptograss.eth</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button class='btn btn-primary' type='button' data-bs-toggle='collapse' data-bs-target='.otherBidders'
+          aria-expanded='false'>
+    Other Artifacts
+  </button>
+
+</article>
+
+<aside id='ack'>
+  <h2>Acknowledgements from Justin</h2>
+
+  <div id='ack-content'>
+
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          R.J. Partington III
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+      <div class='col-lg-8'>
+        <p> What a wild ride. I can't believe how much work you've put into this project, and how
+          much
+          confidence
+          in me it represents. Well, I can believe it, because 20 years of trust and validation builds those
+          things
+          that
+          nothing else can. Unreal man. You're sitting to my left right now as I type this, probably bouncing
+          between
+          PMing and styling, and you've been at it nonstop for days. This record belongs to you as much as me;
+          the
+          difference is that I practiced guitar while you listened to humans express their needs of this
+          world.
+          The
+          path
+          ahead is finally clearing, and there's fewer than ten things I can conjur to be more thankful for
+          than
+          that
+          you
+          are still along for this ride.
+        </p>
+      </div>
+    </div>
+
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Jakub Vysoky
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+
+      <div class='col-lg-8'>
+        <p>We're really doing it, aren't we buddy? 7 hours of jet lag to cut a record is already
+          acknowledgement-worthy, let alone the rest of your creative pursuit that you've carved out at my
+          behest.
+          Much
+          more to make, my friend.
+        </p>
+      </div>
+    </div>
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Beth "Bee" Halsey
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+      <div class='col-lg-8'>
+        <p>To me, you have become almost synonymous with 'home' - or at least, as 'home' as
+          'home'
+          can be
+          without tasting and smelling like where I grew up. Possibly my favorite aspect of the privilege of
+          being
+          alive
+          is being able to play for smiling faces around the globe... but that only means what it means
+          knowing
+          that I
+          have something resembling sanity when I return. I hear your affirmations all over this record, and I
+          feel
+          absolutely blessed by them. Can't wait to hang with out on the other side of the globe and look back
+          with
+          wonder.
+        </p>
+      </div>
+    </div>
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Skyler Golden
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+
+      <div class='col-lg-8'>
+        <p>This record has your attitude and altitude all over it. You knew when I was singing too
+          hard
+          or
+          too soft. You knew when I was too nervous and when I wasn't nervous enough. Our days together in
+          Nashville
+          and
+          Denver are what's really going on-chain here.
+        </p>
+      </div>
+    </div>
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Kieran Prasch
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+
+      <div class='col-lg-8'>
+        <p>It took a while to realize that our cryptographic musings have a role to play in the
+          strength
+          and
+          augmentation of this musical tradition, and I don't think there's another person alive who can make
+          those
+          feelings seem as valid as you have.
+        </p>
+      </div>
+    </div>
+
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Andy Lytle
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+
+      <div class='col-lg-8'>
+        <p>It was a birthday moment when my life needed a directional reorientation, and you were there
+          with
+          just the right attitude and attention span to inspire me to make it. Introducing me to Sky has been
+          life-changing.
+        </p>
+      </div>
+    </div>
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Ashley Reynolds
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+      <div class='col-lg-8'>
+        <p>I have often needed the devil on my other shoulder to encourage me to put myself out there more, and
+          I'm really thankful that you are the one who has stepped up to be this voice for me. I don't much
+          care for calls usually, but somehow they always work better when you're on them. And I do enjoy
+          having another colleague whose kids can often be heard. :-)</p>
+      </div>
+    </div>
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Lisa Joy
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+
+      <div class='col-lg-8'>
+        <p>I came to the scene unsure if I belonged, and that feeling only lasted until I met you. You were
+          the
+          first person to make me feel like a mainstream bluegrass musician. Moreover, your focus on the body
+          of
+          the
+          musician - a piece of the being so easily forgotten in our information age, is laudable and noticed.
+        </p>
+      </div>
+    </div>
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Brewster Kahle
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+
+      <div class='col-lg-8'>
+        <p>Your work has been definitive for everyone who is doing my work. I don't exactly
+          understand
+          what
+          motivates a person to dedicate himself to the things you notice, but I'm noticing them more and
+          more
+          with
+          each
+          day. The Great78 project alone is one of the most important and unsung motions in bluegrass today.
+          It's
+          an absolute honor to produce something that interests you so much.
+        </p>
+      </div>
+    </div>
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Luna Lavender
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+
+      <div class='col-lg-8'>
+        <p>Your gift to bring calm to moments of trivial tumult is impressive. I hear your breath in
+          my
+          voice
+          throughout this record. I also hear the presence of the kiddos, whom I'm so glad you empowered to be
+          around
+          for
+          this process.
+        </p>
+      </div>
+    </div>
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Skylar Weaver
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+
+      <div class='col-lg-8'>
+        <p>You noticed things in me that I didn't notice in myself, and noticed them at a moment when noticing them
+          made
+          all
+          the difference.
+        </p>
+      </div>
+    </div>
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Katie Kirchner
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+
+      <div class='col-lg-8'>
+        <p>There are a few people out there that, when with whom I experience eye contact, adjoined
+          is
+          the
+          feeling that we are on a similar trajectory. I felt that with extreme clarity with you, from moment
+          zero.
+          I'm
+          really thankful that you saw fit to bring me into the IBMA circle, and I'm psyched to share this
+          part of the road with Full Cord.
+        </p>
+      </div>
+    </div>
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Jonathan Mann
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+      <div class='col-lg-8'>
+        <p>
+          Thanks for paving the way for the rest of us to dare to do this.
+        </p>
+      </div>
+    </div>
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Frank Copilotete
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+
+      <div class='col-lg-8'>
+        <p>
+          You're the best. I'm so glad we're friends. I'm so glad you're in my life. I'm so glad
+          you're in the world.
+        </p>
+      </div>
+    </div>
+    <div class='acknowledgement-row row'>
+      <div class='col acknowledgment-name'>
+        <h3>
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+          Fibonacci
+          <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dot'
+               viewBox='0 0 16 16'>
+            <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' />
+          </svg>
+        </h3>
+      </div>
+
+      <div class='col-lg-8'>
+        <p>
+          I'm 41 kiddo, and I haven't figured out how to have the patience and insight you have at eight.
+          Thanks
+          for letting me teach you, and for teaching me all the while.
+        </p>
+      </div>
+    </div>
+  </div>
 </aside>
 
 
-<aside id="declaration">
-    <div id="declaration-content">
-        <div class="reel">
+<aside id='declaration'>
+  <div id='declaration-content'>
+    <div class='reel'>
 
-            <div>
-                <a class="spotlight" href="images/IMG_9583.jpg"
-                   title="From left to right: Justin Holmes, Harry Clark, Christian Ward, Jake Stargel, Cory Walker, and Jakub Vysoky look on at the console at Stargel Studios. Photograph by R.J. Partington III.">
-                    <img src="images/thumbnails/IMG_9583.jpg"
-                         alt="From left to right: Justin Holmes, Harry Clark, Christian Ward, Jake Stargel, Cory Walker, and Jakub Vysoky look on at the console at Stargel Studios."/>
-                </a>
-            </div>
-            <div>
-                <a class="spotlight" href="images/IMG_9572.jpg"
-                   title="Fibonacci and Jakub jam a bit between takes. Photograph by R.J. Partington III.">
-                    <img src="images/thumbnails/IMG_9572.jpg" alt="Fibonacci and Jakub jam a bit between takes."/>
-                </a>
-            </div>
-            <div>
-                <a class="spotlight" href="images/IMG_0424.jpg"
-                   title="Backstage at EthDenver, waiting for the stage call. Photograph by R.J. Partington III.">
-                    <img src="images/thumbnails/IMG_0424.jpg"
-                         alt="Backstage at EthDenver, waiting for the stage call."/>
-                </a>
-            </div>
+      <div>
+        <a class='spotlight' href='images/IMG_9583.jpg'
+           title='From left to right: Justin Holmes, Harry Clark, Christian Ward, Jake Stargel, Cory Walker, and Jakub Vysoky look on at the console at Stargel Studios. Photograph by R.J. Partington III.'>
+          <img src='images/thumbnails/IMG_9583.jpg'
+               alt='From left to right: Justin Holmes, Harry Clark, Christian Ward, Jake Stargel, Cory Walker, and Jakub Vysoky look on at the console at Stargel Studios.' />
+        </a>
+      </div>
+      <div>
+        <a class='spotlight' href='images/IMG_9572.jpg'
+           title='Fibonacci and Jakub jam a bit between takes. Photograph by R.J. Partington III.'>
+          <img src='images/thumbnails/IMG_9572.jpg' alt='Fibonacci and Jakub jam a bit between takes.' />
+        </a>
+      </div>
+      <div>
+        <a class='spotlight' href='images/IMG_0424.jpg'
+           title='Backstage at EthDenver, waiting for the stage call. Photograph by R.J. Partington III.'>
+          <img src='images/thumbnails/IMG_0424.jpg'
+               alt='Backstage at EthDenver, waiting for the stage call.' />
+        </a>
+      </div>
 
-            <div>
-                <a class="spotlight" href="images/IMG_0479.jpg" title="Ethdenver. Photograph by R.J. Partington III.">
-                    <img src="images/thumbnails/IMG_0479.jpg" alt="Ethdenver."/>
-                </a>
-            </div>
-            <div>
-                <a class="spotlight" href="images/IMG_0500.jpg" title="Ethdenver. Photograph by R.J. Partington III.">
-                    <img src="images/thumbnails/IMG_0500.jpg" alt="Ethdenver."/>
-                </a>
-            </div>
-        </div>
-
-        <div id="declaration-text">
-            >>> ^C
-            <br/>
-            >>> ^C
-            <br/>
-            >>> cyberspace consists of transactions, relationships, and thought itself, arrayed like a standing wave in
-            the
-            web
-            of
-            our communications.
-            <br/><br/>
-            >>> ours is a world that is both everywhere and nowhere, but it is not where bodies live.
-            <br/><br/>
-            >>> we are creating a world that all may enter without privilege or prejudice accorded by race, economic
-            power,
-            military
-            force, or station of birth.
-            <br/><br/>
-
-            >>> you are terrified of your own children, since they are natives in a world where you will always be
-            immigrants.
-            <br/><br/>
-            >>> because you fear them, you entrust your bureaucracies with the parental responsibilities you are too
-            cowardly to
-            confront yourselves.
-            <br/><br/>
-            >>> in our world, all the sentiments and expressions of humanity, from the debasing to the angelic,
-            are parts of a seamless whole, the global conversation of bits.
-            <br/><br/>
-            >>> we cannot separate the air that chokes from the air
-            upon which wings beat.
-        </div>
+      <div>
+        <a class='spotlight' href='images/IMG_0479.jpg' title='Ethdenver. Photograph by R.J. Partington III.'>
+          <img src='images/thumbnails/IMG_0479.jpg' alt='Ethdenver.' />
+        </a>
+      </div>
+      <div>
+        <a class='spotlight' href='images/IMG_0500.jpg' title='Ethdenver. Photograph by R.J. Partington III.'>
+          <img src='images/thumbnails/IMG_0500.jpg' alt='Ethdenver.' />
+        </a>
+      </div>
     </div>
+
+    <div id='declaration-text'>
+      >>> ^C
+      <br />
+      >>> ^C
+      <br />
+      >>> cyberspace consists of transactions, relationships, and thought itself, arrayed like a standing wave in
+      the
+      web
+      of
+      our communications.
+      <br /><br />
+      >>> ours is a world that is both everywhere and nowhere, but it is not where bodies live.
+      <br /><br />
+      >>> we are creating a world that all may enter without privilege or prejudice accorded by race, economic
+      power,
+      military
+      force, or station of birth.
+      <br /><br />
+
+      >>> you are terrified of your own children, since they are natives in a world where you will always be
+      immigrants.
+      <br /><br />
+      >>> because you fear them, you entrust your bureaucracies with the parental responsibilities you are too
+      cowardly to
+      confront yourselves.
+      <br /><br />
+      >>> in our world, all the sentiments and expressions of humanity, from the debasing to the angelic,
+      are parts of a seamless whole, the global conversation of bits.
+      <br /><br />
+      >>> we cannot separate the air that chokes from the air
+      upon which wings beat.
+    </div>
+  </div>
 </aside>
 
 
 <footer>
 
-    <div id="socials">
+  <div id='socials'>
         <span>
-            <a target="_blank" href="https://discord.gg/B8rEXkSAJ4">
-                <img src="images/thumbnails/discord.png"/>
+            <a target='_blank' href='https://discord.gg/B8rEXkSAJ4'>
+                <img src='images/thumbnails/discord.png' />
             </a>
         </span>
 
-        <span>
-            <a target="_blank" href="https://github.com/jMyles">
-                <img src="images/thumbnails/Octocat.png"/>
+    <span>
+            <a target='_blank' href='https://github.com/jMyles'>
+                <img src='images/thumbnails/Octocat.png' />
             </a>
         </span>
 
-        <span>
-            <a target="_blank" href="https://justinholmes.bandcamp.com/">
-                <img src="images/thumbnails/bandcamp-button-bc-circle-green-256.png"/>
+    <span>
+            <a target='_blank' href='https://justinholmes.bandcamp.com/'>
+                <img src='images/thumbnails/bandcamp-button-bc-circle-green-256.png' />
             </a>
         </span>
 
-        <span>
-            <a target="_blank" href="https://twitter.com/vowelsoundmode">
-                <img src="images/thumbnails/twitter.png"/>
+    <span>
+            <a target='_blank' href='https://twitter.com/vowelsoundmode'>
+                <img src='images/thumbnails/twitter.png' />
             </a>
         </span>
 
-        <span>
-            <a target="_blank" href="https://www.instagram.com/justinmylesholmes/">
-                <img src="images/thumbnails/Instagram_Glyph_Gradient.png">
+    <span>
+            <a target='_blank' href='https://www.instagram.com/justinmylesholmes/'>
+                <img src='images/thumbnails/Instagram_Glyph_Gradient.png'>
             </a>
         </span>
-    </div>
+  </div>
 </footer>
-<div id="decrypting-overlay" class="fixed-top">
-    <div class="container">
-        <div class="position-absolute top-50 start-50 translate-middle">
-            <div class="spinner-grow text-primary" role="status"></div>
-            <h1>Decrypting</h1>
-            <h3>This is done as an entire blob on the browser-side.  Very sub-optimal.  We'll fix it later.</h3>
-            <div id="secondBubble" class="spinner-grow text-primary" role="status"></div>
-            <div id="whatAreWeDecrypting"></div>
-        </div>
+<div id='decrypting-overlay' class='fixed-top'>
+  <div class='container'>
+    <div class='position-absolute top-50 start-50 translate-middle'>
+      <div class='spinner-grow text-primary' role='status'></div>
+      <h1>Decrypting</h1>
+      <h3>This is done as an entire blob on the browser-side. Very sub-optimal. We'll fix it later.</h3>
+      <div id='secondBubble' class='spinner-grow text-primary' role='status'></div>
+      <div id='whatAreWeDecrypting'></div>
     </div>
+  </div>
 </div>
 </body>
 </html>

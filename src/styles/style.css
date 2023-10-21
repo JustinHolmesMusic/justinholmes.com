@@ -720,6 +720,15 @@ header {
     top: 0;
 }
 
+#header-player {
+    width: 360px;
+}
+
+#nonartarea {
+    background-color: orange;
+    font-size: 1000px;
+}
+
 #description {
     border-left: 2px solid black;
     margin-left: 1em;
@@ -823,8 +832,11 @@ td > a {
     margin-top: 2em;
     border: 2px solid white;
     padding: 2em;
-    background-color: #50499f1a;
+    background-color: #00000069;
     text-shadow: #8a2be287 0 0 5em;
+    color: white;
+    text-align: center;
+    font-size: 19px;
 }
 
 .collapsing-quote a, .collapsing-quote a:not([href]):not([class]) {
@@ -1015,7 +1027,6 @@ p {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    margin-bottom: 5em;
     justify-content: center;
     align-items: center;
 }
