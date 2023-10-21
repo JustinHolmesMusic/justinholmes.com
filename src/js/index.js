@@ -5,6 +5,3 @@ import '../styles/style.css';
 
 require.context('../images', false, /\.(png|jpe?g|gif|svg|avif)$/);
 require.context('../images/thumbnails', false, /\.(png|jpe?g|gif|svg)$/);
-require.context('../audio', false, /\.(mp3|flac)$/);
-
-
