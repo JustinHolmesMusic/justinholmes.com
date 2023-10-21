@@ -223,10 +223,13 @@ nav span a img {
     font-family: monospace;
     text-transform: full-size-kana;
     border-radius: 0 5px 5px 0;
-    margin-left: 0;
     border-left: 1px dashed #94aab2;
     font-size: 12px;
-    padding: 30px 30px 30px 25px;
+    padding: 20px;
+}
+
+#booklet-content .legacy {
+    margin-left: 75px;
 }
 
 #booklet-content a {
