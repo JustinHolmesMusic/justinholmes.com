@@ -115,7 +115,6 @@ nav span a img {
     background-color: blueviolet;
     border: 1px solid white;
     transition: 0.5s;
-    /*padding: 19px 35px;*/
 }
 
 .paybutton:hover {
@@ -241,8 +240,8 @@ nav span a img {
 }
 
 #discord-for-help {
-	font-size: 14px;
-	padding: 8px;
+    font-size: 14px;
+    padding: 8px;
 }
 
 #discord-for-help a {
@@ -375,9 +374,9 @@ nav span a img {
 }
 
 #ensemble {
-	width: 70%;
-	display: flex;
-	flex-wrap: wrap;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #ensemble h1 {
@@ -390,11 +389,11 @@ nav span a img {
 }
 
 #ensemble .card {
-	border-left: 1px solid blueviolet;
-	min-width: 20em;
-	/*width: fit-content;*/
-	margin: auto;
-	width: 33%;
+    border-left: 1px solid blueviolet;
+    min-width: 20em;
+    /*width: fit-content;*/
+    margin: auto;
+    width: 33%;
 }
 
 #ensemble .card-text {
@@ -781,17 +780,17 @@ td > a {
 
 
 .user-amount-warning {
-	display: none;
-	border: 1px solid black;
-	/*background-color: rgb(166, 199, 213);*/
-	background: transparent;
+    display: none;
+    border: 1px solid black;
+    /*background-color: rgb(166, 199, 213);*/
+    background: transparent;
     color: black;
-	margin-bottom: 0.5em;
-	font-size: 13px;
-	width: 40em;
-	text-align: center;
-	padding: 1em;
-	border-radius: 5px;
+    margin-bottom: 0.5em;
+    font-size: 13px;
+    width: 40em;
+    text-align: center;
+    padding: 1em;
+    border-radius: 5px;
     /*font-style: italic;*/
 }
 
@@ -1185,20 +1184,20 @@ p {
 
 
 #user-amount-label {
-	font-family: monospace;
-	font-size: 18px;
-	font-weight: bold;
-	color: #d9d8d8;
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: bold;
+    color: #d9d8d8;
 }
 
 #user-amount {
-	width: 5em;
-	font-size: 18px;
-	text-align: center;
-	background: transparent;
-	border: none;
-	border-bottom: 2px solid black;
-	color: #fff;
+    width: 5em;
+    font-size: 18px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid black;
+    color: #fff;
     margin: 0.5em 0.5em 0.5em -3px;
 }
 
@@ -1317,6 +1316,14 @@ footer {
     background-color: black;
     border-top: 1px solid #32383e;
     padding-bottom: 1em;
+}
+
+#license {
+    color: rgb(166, 199, 213);
+    text-align: center;
+    font-size: 12px;
+    width: 50%;
+    font-family: Courier, larissa;
 }
 
 footer span {
