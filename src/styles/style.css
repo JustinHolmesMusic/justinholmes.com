@@ -828,6 +828,7 @@ td > a {
 }
 
 .collapsing-quote {
+    margin: auto;
     margin-top: 1em;
     margin-bottom: 1em;
     border: 2px solid white;
@@ -837,7 +838,6 @@ td > a {
     color: white;
     text-align: center;
     font-size: 19px;
-    width: 900px;
 }
 
 .collapsing-quote a, .collapsing-quote a:not([href]):not([class]) {
