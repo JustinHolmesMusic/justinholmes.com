@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "A Revealer-compliant frontend for Vowel Sounds.",
   "scripts": {
-    "devserver": "webpack serve --client-progress --config webpack.dev.js",
-    "build": "webpack --mode production --config webpack.prod.js"
+    "prebuild": "node pre-build-script.js",
+    "devserver": "npm run prebuild && webpack serve --client-progress --config webpack.dev.js",
+    "build": "npm run prebuild && webpack --mode production --config webpack.prod.js"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +14,10 @@
     "bootstrap": "^5.3.1",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
+    "handlebars": "^4.7.8",
+    "handlebars-loader": "^1.7.3",
     "html-webpack-plugin": "^5.5.3",
+    "mini-css-extract-plugin": "^2.8.0",
     "style-loader": "^3.3.3",
     "terser-webpack-plugin": "^5.3.9",
     "webpack": "^5.88.2",
@@ -26,6 +30,7 @@
     "@web3modal/ethereum": "^2.7.1",
     "@web3modal/html": "^2.7.1",
     "fernet": "^0.4.0",
+    "glob": "^10.3.10",
     "howler": "^2.2.3",
     "jquery": "^3.7.0",
     "popper.js": "^1.16.1",

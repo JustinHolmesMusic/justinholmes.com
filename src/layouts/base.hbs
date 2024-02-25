@@ -1,0 +1,75 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    {{!--     <link rel="stylesheet" href="/css/styles.css?version={{data_checksum}}"> --}}
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+<!--    <link href="/main.[contentHash].css" rel="stylesheet">-->
+<!--    <link href="/styles/" rel="stylesheet">-->
+    <meta charset="utf-8">
+
+    <title>{{ page_title }} | Justin Holmes</title>
+
+    <meta name="description" content="{{#if
+            meta_description }}{{ meta_description }}{{ else }}Justin Holmes: blockchain bluegrass and video game music{{/if}}">
+
+    <meta name="author" content="Justin Myles Holmes">
+    {{ web3_head_inclusion }}
+
+</head>
+
+<body>
+{{{main_block}}}
+
+
+<div id="footer-spacer"></div>
+<div id="footer">
+    <nav>
+        <span>
+            <a target="_blank" href="https://discord.gg/B8rEXkSAJ4">
+                <img src="/images/discord.png"/>
+            </a>
+        </span>
+
+        <span>
+            <a target="_blank" href="https://github.com/jMyles">
+                <img src="/images/Octocat.png"/>
+            </a>
+        </span>
+
+        <span>
+            <a target="_blank" href="https://justinholmes.bandcamp.com/">
+                <img src="/images/bandcamp-button-bc-circle-green-256.png"/>
+            </a>
+        </span>
+
+        <span>
+            <a target="_blank" href="https://open.spotify.com/artist/2ThESMbZDNeAi02dpZZncE">
+                <img src="/images/Spotify_Icon_RGB_Green.png"/>
+            </a>
+        </span>
+
+        <span>
+            <a target="_blank" href="https://twitter.com/vowelsoundmode">
+                <img src="/images/twitter.png"/>
+            </a>
+        </span>
+
+        <span>
+            <a target="_blank" href="https://www.instagram.com/justinmylesholmes/">
+                <img src="/images/Instagram_Glyph_Gradient.png"/>
+            </a>
+        </span>
+
+    </nav>
+    {{#if build_hashes }}
+        <ul class="verySmall">
+            <li>Build Time: {{ build_time }}</li>
+            <li>App: {{ build_hashes.app }}</li>
+            <li>Data: {{ build_hashes.data }}</li>
+        </ul>
+    {{/if}}
+</div>
+
+</body>
