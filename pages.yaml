@@ -1,0 +1,16 @@
+index:
+  template: index.hbs
+  context:
+    page_title: "Future-proofing Bluegrass"
+
+music:
+  template: music.hbs
+  context:
+    page_title: "Music"
+    llamas: "of course there are llamas"
+    compact: true
+
+vowel-sounds:
+  context:
+    page_title: Vowel Sounds Album
+  template: "music/vowel-sounds/index.hbs"

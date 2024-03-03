@@ -2,10 +2,14 @@ const Handlebars = require('handlebars');
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
+const yaml = require('js-yaml');
+
+pageyamlFile = fs.readFileSync("pages.yaml");
+pageyaml = yaml.load(pageyamlFile);
 
 
-Handlebars.registerHelper('isActive', function(currentPage, expectedPage, options) {
-  return currentPage === expectedPage ? 'active' : '';
+Handlebars.registerHelper('isActive', function (currentPage, expectedPage, options) {
+    return currentPage === expectedPage ? 'active' : '';
 });
 
 // Make sure target directory exists
