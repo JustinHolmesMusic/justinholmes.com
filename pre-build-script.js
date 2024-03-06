@@ -1,11 +1,27 @@
-const Handlebars = require('handlebars');
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const yaml = require('js-yaml');
+import Handlebars from 'handlebars';
+import fs from 'fs';
+import * as glob from 'glob';
+import {fileURLToPath} from 'url';
+import yaml from 'js-yaml';
+import path from 'path';
+import gatherAssets from './prebuild-assets.js';
 
-pageyamlFile = fs.readFileSync("pages.yaml");
-pageyaml = yaml.load(pageyamlFile);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+let pageyamlFile = fs.readFileSync("pages.yaml");
+let pageyaml = yaml.load(pageyamlFile);
+
+gatherAssets();
+
+function getImageMapping() {
+    const mappingFilePath = path.join(__dirname, 'src/assets/imageMapping.json');
+    const jsonData = fs.readFileSync(mappingFilePath, {encoding: 'utf8'});
+    return JSON.parse(jsonData);
+}
+
+// When preparing context for Handlebars
+const imageMapping = getImageMapping();
 
 
 Handlebars.registerHelper('isActive', function (currentPage, expectedPage, options) {
@@ -55,7 +71,6 @@ const baseTemplate = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'sr
 // Page iteration
 //////////////////
 Object.keys(pageyaml).forEach(page => {
-    console.log(`Key: ${page}, Value: ${pageyaml[page]}`);
     let pageInfo = pageyaml[page];
     let templateName = pageInfo["template"];
     let hbsTemplate = path.join(pageBaseDir, templateName);
@@ -71,11 +86,15 @@ Object.keys(pageyaml).forEach(page => {
     const templateSource = fs.readFileSync(hbsTemplate, 'utf8');
     const template = Handlebars.compile(templateSource);
 
-    let context = pageInfo['context']
+    const context = {
+        ...pageInfo['context'],
+        imageMapping,
+    };
+
     // Render the template with context (implement getContextForTemplate as needed)
     const mainBlockContent = template(context);
 
-    rendered_page = baseTemplate({...context, main_block: mainBlockContent})
+    let rendered_page = baseTemplate({...context, main_block: mainBlockContent})
 
     // Write the rendered HTML to the output file path
     fs.writeFileSync(outputFilePath, rendered_page);

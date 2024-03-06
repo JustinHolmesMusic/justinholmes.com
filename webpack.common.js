@@ -33,12 +33,19 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
 });
 
 
-module.exports = {
+const common = {
     plugins: [
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, '_prebuild_output/assets/images'),
+                    to: path.resolve(__dirname, 'dist/assets/images')
+                    }
+            ]
+        }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
         }),
-        new CleanWebpackPlugin(),
         ...htmlPluginInstances, // Spread the HtmlWebpackPlugin instances here
     ],
     entry: {
@@ -52,17 +59,15 @@ module.exports = {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
-            {
-                test: /\.(png|jpe?g|gif|avif|svg|mp3)$/,
-                type: 'asset/resource',
-                generator: {
-                    filename: (pathData) => {
-                        // Remove the 'src/' prefix
-                        const newPath = pathData.filename.replace('src/', '');
-                        return newPath;
-                    }
-                }
-            }
+            // {
+            //     test: /\.(png|jpe?g|gif|svg)$/,
+            //     type: 'asset/resource',
+            //     generator: {
+            //         filename: 'static/[hash][ext][query]' // Configure hashed filenames for images
+            //     }
+            // },
         ]
     },
 };
+
+export default common;
