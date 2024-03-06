@@ -1,8 +1,8 @@
 <div id="slice">
     <span class="as-slice" id="top-title" class="orange-glow">
         <a class="logo-link" href="/">
-            <img class="logo" src="/apps/shared/img/jh-logo-shaded-white.svg"
-                 onerror="this.src='/apps/shared/img/jh-logo-shaded.png'">
+            <img class="logo" src="{{resolveImage 'jh-logo-shaded-white.svg'}}"
+                 onerror="this.src='{{resolveImage "jh-logo-shaded.png"}}'">
         </a>
     {{> nav}}
     </span>

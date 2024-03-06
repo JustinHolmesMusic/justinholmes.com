@@ -1,9 +1,9 @@
-const webpack = require('webpack');
-const {merge} = require('webpack-merge');
-const common = require('./webpack.common.js');
+import common from './webpack.common.js';
+import webpack from 'webpack';
+import {merge} from 'webpack-merge';
 
 
-module.exports = merge(common, {
+const devExport = merge(common, {
     mode: 'development',
     devtool: 'eval-source-map',
     plugins: [
@@ -12,3 +12,5 @@ module.exports = merge(common, {
         }),
     ]
 });
+
+export default devExport;

@@ -1,8 +1,15 @@
-const glob = require('glob');
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import {glob} from 'glob';
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+// import {CleanWebpackPlugin} from 'clean-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import {fileURLToPath} from "url";
+
+// TODO: these names can be dehydrated to at most once for all the runtimey stuff
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 // Base directory with index, etc.
 const preBuildOutputDirectory = path.resolve(__dirname, './_prebuild_output');
@@ -19,9 +26,9 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
     const relativePath = path.relative(preBuildOutputDirectory, templatePath);
 
     if (relativePath.startsWith('music/vowel-sounds')) {
-        chunkName = 'vowel_sounds';
+        var chunkName = 'vowel_sounds';
     } else {
-        chunkName = 'main';
+        var chunkName = 'main';
     }
 
     return new HtmlWebpackPlugin({
