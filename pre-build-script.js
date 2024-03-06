@@ -4,7 +4,7 @@ import * as glob from 'glob';
 import {fileURLToPath} from 'url';
 import yaml from 'js-yaml';
 import path from 'path';
-import gatherAssets from './prebuild-assets.js';
+import {gatherAssets, unusedImages} from './prebuild-assets.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,7 +15,7 @@ let pageyaml = yaml.load(pageyamlFile);
 gatherAssets();
 
 function getImageMapping() {
-    const mappingFilePath = path.join(__dirname, 'src/assets/imageMapping.json');
+    const mappingFilePath = path.join(__dirname, '_prebuild_output/imageMapping.json');
     const jsonData = fs.readFileSync(mappingFilePath, {encoding: 'utf8'});
     return JSON.parse(jsonData);
 }
@@ -100,27 +100,7 @@ Object.keys(pageyaml).forEach(page => {
     fs.writeFileSync(outputFilePath, rendered_page);
 });
 
-// pageFiles.forEach(templatePath => {
-//     // Compute the relative path from the input base directory
-//     const relativePath = path.relative(pageBaseDir, templatePath);
-//     // Replace the file extension from .hbs to .html
-//     const outputFilePath = path.join(outputBaseDir, relativePath).replace(/\.hbs$/, '.html');
-//     // Ensure the output directory exists
-//     const outputDir = path.dirname(outputFilePath);
-//     if (!fs.existsSync(outputDir)) {
-//         fs.mkdirSync(outputDir, {recursive: true});
-//     }
-//
-//     // Load and compile the template
-//     const templateSource = fs.readFileSync(templatePath, 'utf8');
-//     const template = Handlebars.compile(templateSource);
-//
-//
-//     // Render the template with context (implement getContextForTemplate as needed)
-//     const mainBlockContent = template(context);
-//
-//     rendered_page = baseTemplate({...context, main_block: mainBlockContent})
-//
-//     // Write the rendered HTML to the output file path
-//     fs.writeFileSync(outputFilePath, rendered_page);
-// });
+// Warn about each unused image.
+unusedImages.forEach(image => {
+    console.warn(`Image not used: ${image}`);
+});
