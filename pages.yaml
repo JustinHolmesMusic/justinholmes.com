@@ -10,6 +10,13 @@ music:
     llamas: "of course there are llamas"
     compact: true
 
+bazaar:
+  template: bazaar.hbs
+  context:
+    page_title: "Bazaar - Justin Holmes merch on the blockchain"
+    llamas: "of course there are llamas"
+    compact: true
+
 vowel-sounds:
   context:
     page_title: Vowel Sounds Album
