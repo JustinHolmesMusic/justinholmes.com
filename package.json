@@ -5,7 +5,7 @@
   "scripts": {
     "prebuild": "node pre-build-script.js",
     "devserver": "npm run prebuild && webpack serve --client-progress --config webpack.dev.js",
-    "build": "webpack --mode production --config webpack.prod.js"
+    "build": "npm run prebuild && webpack --mode production --config webpack.prod.js"
   },
   "type": "module",
   "keywords": [],
