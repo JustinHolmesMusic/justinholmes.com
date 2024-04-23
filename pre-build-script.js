@@ -5,6 +5,7 @@ import {fileURLToPath} from 'url';
 import yaml from 'js-yaml';
 import path from 'path';
 import {gatherAssets, unusedImages} from './prebuild-assets.js';
+import {blueRailroads} from './populate_trophy_cases.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,6 +14,7 @@ let pageyamlFile = fs.readFileSync("pages.yaml");
 let pageyaml = yaml.load(pageyamlFile);
 
 gatherAssets();
+
 
 function getImageMapping() {
     const mappingFilePath = path.join(__dirname, '_prebuild_output/imageMapping.json');
