@@ -26,16 +26,18 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
     const relativePath = path.relative(preBuildOutputDirectory, templatePath);
 
     if (relativePath.startsWith('music/vowel-sounds')) {
-        var chunkName = 'vowel_sounds';
+        var chunks = ['vowel_sounds'];
+    } else if (relativePath.startsWith('sign')) {
+        var chunks = ['main', 'signing'];
     } else {
-        var chunkName = 'main';
+        var chunks = ['main'];
     }
 
     return new HtmlWebpackPlugin({
         template: templatePath, // Path to the source template
         filename: relativePath, // Preserve the directory structure in the output
         inject: true,
-        chunks: [chunkName], // Only include the chunk for this template
+        chunks: chunks, // Only include the chunk for this template
     });
 });
 
@@ -47,7 +49,7 @@ const common = {
                 {
                     from: path.resolve(__dirname, '_prebuild_output/assets/images'),
                     to: path.resolve(__dirname, 'dist/assets/images')
-                    }
+                }
             ]
         }),
         new MiniCssExtractPlugin({
@@ -59,6 +61,7 @@ const common = {
         main: './src/js/index.js',
         vowel_sounds: './src/js/vowel_sounds.js',
         help: './src/js/help.js',
+        signing: './src/js/jhmusic_signing.js',
     },
     module: {
         rules: [
@@ -66,13 +69,6 @@ const common = {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
-            // {
-            //     test: /\.(png|jpe?g|gif|svg)$/,
-            //     type: 'asset/resource',
-            //     generator: {
-            //         filename: 'static/[hash][ext][query]' // Configure hashed filenames for images
-            //     }
-            // },
         ]
     },
 };

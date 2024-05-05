@@ -3,73 +3,79 @@
 <html lang="en">
 <head>
     <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
-    {{!--     <link rel="stylesheet" href="/css/styles.css?version={{data_checksum}}"> --}}
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
-<!--    <link href="/main.[contentHash].css" rel="stylesheet">-->
-<!--    <link href="/styles/" rel="stylesheet">-->
     <meta charset="utf-8">
 
     <title>{{ page_title }} | Justin Holmes</title>
 
     <meta name="description" content="{{#if
-            meta_description }}{{ meta_description }}{{ else }}Justin Holmes: blockchain bluegrass and video game music{{/if}}">
+            meta_description }}{{ meta_description }}{{ else }}Justin Holmes: future-proofing old-timey music{{/if}}">
 
     <meta name="author" content="Justin Myles Holmes">
-    {{ web3_head_inclusion }}
-
 </head>
 
 <body>
-{{{main_block}}}
+
+<video autoplay muted loop class="bg">
+    <source src="{{resolveImage 'nsf-background.mp4'}}" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+
+<div class="bg tiles"></div>
 
 
-<div id="footer-spacer"></div>
-<div id="footer">
-    <nav>
+<div class="contentOnTopOfVideo">
+
+    {{{main_block}}}
+
+
+    <div id="footer-spacer"></div>
+    <div id="footer">
+        <nav>
         <span>
             <a target="_blank" href="https://discord.gg/B8rEXkSAJ4">
                 <img src="{{resolveImage 'social-logos/discord.png'}}"/>
             </a>
         </span>
 
-        <span>
+            <span>
             <a target="_blank" href="https://github.com/jMyles">
                 <img src="{{resolveImage 'social-logos/Octocat.png'}}"/>
             </a>
         </span>
 
-        <span>
+            <span>
             <a target="_blank" href="https://justinholmes.bandcamp.com/">
                 <img src="{{resolveImage 'social-logos/bandcamp-button-bc-circle-green-256.png'}}"/>
             </a>
         </span>
 
-        <span>
+            <span>
             <a target="_blank" href="https://open.spotify.com/artist/2ThESMbZDNeAi02dpZZncE">
                 <img src="{{resolveImage 'social-logos/Spotify_Icon_RGB_Green.png'}}"/>
             </a>
         </span>
 
-        <span>
+            <span>
             <a target="_blank" href="https://twitter.com/vowelsoundmode">
                 <img src="{{resolveImage 'social-logos/x-white.png'}}"/>
             </a>
         </span>
 
-        <span>
+            <span>
             <a target="_blank" href="https://www.instagram.com/justinmylesholmes/">
                 <img src="{{resolveImage 'social-logos/Instagram_Glyph_Gradient.png' }}"/>
             </a>
         </span>
 
-    </nav>
-    {{#if build_hashes }}
-        <ul class="verySmall">
-            <li>Build Time: {{ build_time }}</li>
-            <li>App: {{ build_hashes.app }}</li>
-            <li>Data: {{ build_hashes.data }}</li>
-        </ul>
-    {{/if}}
+        </nav>
+        {{#if build_hashes }}
+            <ul class="verySmall">
+                <li>Build Time: {{ build_time }}</li>
+                <li>App: {{ build_hashes.app }}</li>
+                <li>Data: {{ build_hashes.data }}</li>
+            </ul>
+        {{/if}}
+    </div>
 </div>
-
 </body>
