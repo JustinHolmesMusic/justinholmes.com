@@ -28,9 +28,9 @@
   },
   "dependencies": {
     "@msgpack/msgpack": "^3.0.0-beta2",
-    "@wagmi/core": "^1.4.13",
-    "@web3modal/ethereum": "^2.7.1",
-    "@web3modal/html": "^2.7.1",
+    "@wagmi/connectors": "^4.2.0",
+    "@wagmi/core": "^2.7.0",
+    "@web3modal/wagmi": "^4.1.11",
     "fernet": "^0.4.0",
     "glob": "^10.3.10",
     "howler": "^2.2.3",
@@ -39,8 +39,7 @@
     "popper.js": "^1.16.1",
     "spotlight.js": "^0.7.8",
     "tippy.js": "^6.3.7",
-    "viem": "^1.21.4",
-    "wagmi": "^1.4.13",
+    "viem": "^2.9.28",
     "webpack-merge": "^5.10.0"
   }
 }
