@@ -1,7 +1,9 @@
 body {
-    background-color: #ededed;
+    background-image: url("background.png");
+
     font-family: 'Kreon';
-    background-image: url("brick-back.jpg");
+    height: 100%;
+    margin: 0;
 }
 
 * {
@@ -16,7 +18,7 @@ h1 {
     font-family: 'larissa';
     font-size: 4em;
     margin: 0;
-    line-height: 60px;
+    line-height: 1em;
 }
 
 h2 {
@@ -43,27 +45,6 @@ blockquote {
 hr {
     width: 75%;
     color: #db7b46;
-}
-
-#slice {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-    margin-top: 10px;
-}
-
-#slice nav {
-	margin-left: 222px;
-	margin-top: 88px;
-}
-
-#slice span {
-    display: flex;
-}
-
-#slice h2 {
-    margin-top: -25px;
 }
 
 #top-title {
@@ -116,6 +97,7 @@ hr {
     background-color: rgba(16, 0, 0, 0.59);
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
 }
 
@@ -129,27 +111,19 @@ hr {
     color: #db7b46;
 }
 
-
-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#top-nav {
+    border-top: 1px solid #383b67;
+    border-bottom: 1px solid #383b67;
 }
 
-nav span {
-    margin: 6%;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-nav span a {
+#top-nav a {
     font-family: cabin;
     font-size: 2em;
     color: #99c9ff;
     text-shadow: 0px 0px 1px black, 0px 0px 3px #1f0432, 0px 0px 2px #2f17ce;
 }
 
-nav span a:hover {
+#top-nav a:hover {
     text-shadow: 0px 0px 2px red, 0px 0px 9px #6a95cc, 0 0 20px #714400;
     color: white;
 }
@@ -177,18 +151,18 @@ nav a img {
 }
 
 .event .description {
-	font-family: ll-pixel;
-	background-color: #0000008a;
-	font-size: 1.3em;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	color: #ffc78b;
-    float:none;
+    font-family: ll-pixel;
+    background-color: #0000008a;
+    font-size: 1.3em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #ffc78b;
+    float: none;
     width: 80%;
 }
 
 .event .description a {
-    color:#8f8fff;
+    color: #8f8fff;
 }
 
 .event .media {
@@ -253,7 +227,11 @@ nav a img {
 }
 
 .top.center {
-    margin-top: 25px;
+    margin-top: 9px;
+}
+
+.top-title {
+    margin-bottom: -7px;
 }
 
 .center {
@@ -273,7 +251,7 @@ nav a img {
 }
 
 .deep-stroke, .deep-stroke a {
-    text-shadow: #000 1px 2px 3px, #000 -1px -2px 3px;
+    text-shadow: #000 1px 2px 1px, #000 -2px -1px 1px;
 }
 
 .bright {
@@ -353,12 +331,12 @@ nav a img {
 }
 
 .very-bottom {
-	position: fixed;
-	bottom: 58px;
-	width: 100%;
-	background: #9390b7;
-	font-size: 20px;
-	text-align: center;
+    position: fixed;
+    bottom: 58px;
+    width: 100%;
+    background: #9390b7;
+    font-size: 20px;
+    text-align: center;
 }
 
 /*Mostrly Music and POAP stuff below*/
@@ -472,13 +450,13 @@ nav a img {
 }
 
 .box-to-the-right {
-	height: 405px;
-	padding: 15px;
-	background: #908d86a3;
-	float: left;
-	width: 585px;
-	margin-left: 75px;
-	border: 1px solid white;
+    height: 405px;
+    padding: 15px;
+    background: #908d86a3;
+    float: left;
+    width: 585px;
+    margin-left: 75px;
+    border: 1px solid white;
 }
 
 #poap-check-dialog .button {
@@ -507,48 +485,81 @@ nav a img {
 #found-poaps {
     opacity: 0;
     margin-left: 70px;
-    display:none;
+    display: none;
 }
 
 .tracklist {
     font-family: ll-pixel;
     font-size: 16px;
     width: 400px;
-    margin-bottom:15px;
+    margin-bottom: 15px;
 }
 
 #ursa-minor-actual-album {
     width: 100%;
-	background: #592929d9;
-	padding: 30px;
-	border: 2px solid black;
+    background: #592929d9;
+    padding: 30px;
+    border: 2px solid black;
     height: 0;
     opacity: 0;
     display: none;
 }
 
 #ursa-minor-actual-album iframe {
-    float:left;
-    clear:left;
+    float: left;
+    clear: left;
 }
 
-#actual-download-link{
+#actual-download-link {
     color: #7a76fb;
 }
 
 .top-title .logo, logo-link {
-	position: absolute;
-	width: 53px;
-	top: 4px;
-	margin-left: 4px;
+    position: absolute;
+    width: 53px;
+    top: 4px;
+    margin-left: 4px;
 }
 
 .as-slice {
-    height:100px;
+    height: 100px;
 }
 
 .as-slice .logo {
-    position:fixed;
+    position: fixed;
     height: 150px;
     width: 150px;
+}
+
+.chainDataList td {
+    color: white;
+    border-collapse: collapse;
+    border: 3px solid purple;
+}
+
+.showTextResult {
+    background-color: white;
+    font-size: 12px;
+}
+
+/* For video background */
+
+
+.bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100vw;
+    min-height: 100vh;
+    width: auto;
+    height: auto;
+    background-size: cover;
+}
+
+.contentOnTopOfVideo {
+    position: relative;
+    z-index: 200;
+    padding: 20px;
+    /* Your content styling here */
 }

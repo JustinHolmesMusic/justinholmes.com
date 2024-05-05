@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const imagesSourceDir = path.join(__dirname, 'src/images');
-const imageDirPattern = `${imagesSourceDir}/**/*.{png,jpg,jpeg,gif,avif,svg,webp}`
+const imageDirPattern = `${imagesSourceDir}/**/*.{png,jpg,jpeg,gif,avif,svg,webp,mp4}`
 const outputDir = path.join(__dirname, '_prebuild_output/assets/images');
 const mappingFilePath = path.join(__dirname, '_prebuild_output/imageMapping.json');
 

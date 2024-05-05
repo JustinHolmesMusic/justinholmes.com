@@ -1,9 +1,11 @@
-<div id="slice">
-    <span class="as-slice" id="top-title" class="orange-glow">
+<div id="slice" class="container-md float-start">
+    <span class="col as-slice" id="top-title" class="orange-glow">
         <a class="logo-link" href="/">
             <img class="logo" src="{{resolveImage 'jh-logo-shaded-white.svg'}}"
                  onerror="this.src='{{resolveImage "jh-logo-shaded.png"}}'">
         </a>
-    {{> nav}}
+        <span class="col-6">
+            {{> nav}}
+        </span>
     </span>
 </div>
