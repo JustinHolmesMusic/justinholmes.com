@@ -21,3 +21,8 @@ vowel-sounds:
   context:
     page_title: Vowel Sounds Album
   template: "music/vowel-sounds/index.hbs"
+
+sign-things:
+  template: sign-things.hbs
+  context:
+    page_title: "Sign things if you want!"

@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 
 
 // Base directory with index, etc.
-const preBuildOutputDirectory = path.resolve(__dirname, './_prebuild_output');
+const preBuildOutputDirectory = path.resolve(__dirname, '../../_prebuild_output');
 
 // Pattern to match all HTML files recursively within the prebuilt directory
 const templatesPattern = path.join(preBuildOutputDirectory, '**/*.html');
@@ -47,8 +47,8 @@ const common = {
         new CopyPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, '_prebuild_output/assets/images'),
-                    to: path.resolve(__dirname, 'dist/assets/images')
+                    from: path.resolve(__dirname, '../../_prebuild_output/assets/images'),
+                    to: path.resolve(__dirname, '../../dist/assets/images')
                 }
             ]
         }),

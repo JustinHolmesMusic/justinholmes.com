@@ -1,0 +1,20 @@
+{{#if compact}}
+    {{> slicey}}
+{{else}}
+    {{> bigger-banner}}
+{{/if}}
+
+
+<div id="content">
+    <div class="detail">
+        <table class="chainDataList">
+            {{#each chainData.blueRailroads}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{owner}}</td>
+                    <td><a href="{{uri}}">video</a></td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>

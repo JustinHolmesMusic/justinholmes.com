@@ -706,5 +706,3 @@ export const brABI = [
     "type": "function"
   }
 ]
-
-export default brABI;

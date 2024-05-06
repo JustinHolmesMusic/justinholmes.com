@@ -5,19 +5,22 @@ import {fileURLToPath} from 'url';
 import yaml from 'js-yaml';
 import path from 'path';
 import {gatherAssets, unusedImages} from './prebuild-assets.js';
-import {blueRailroads} from './populate_trophy_cases.js';
+import {chainData} from './populate_trophy_cases.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-let pageyamlFile = fs.readFileSync("pages.yaml");
+const templateDir = path.resolve(__dirname, '../templates');
+
+
+let pageyamlFile = fs.readFileSync("src/data/pages.yaml");
 let pageyaml = yaml.load(pageyamlFile);
 
 gatherAssets();
 
 
 function getImageMapping() {
-    const mappingFilePath = path.join(__dirname, '_prebuild_output/imageMapping.json');
+    const mappingFilePath = path.join(__dirname, '../../_prebuild_output/imageMapping.json');
     const jsonData = fs.readFileSync(mappingFilePath, {encoding: 'utf8'});
     return JSON.parse(jsonData);
 }
@@ -31,7 +34,7 @@ Handlebars.registerHelper('isActive', function (currentPage, expectedPage, optio
 });
 
 // Make sure target directory exists
-const targetDir = path.resolve(__dirname, '_prebuild_output');
+const targetDir = path.resolve(__dirname, '../../_prebuild_output');
 
 // Check if the directory exists, if not, create it
 if (!fs.existsSync(targetDir)) {
@@ -39,7 +42,7 @@ if (!fs.existsSync(targetDir)) {
 }
 
 // Register Partials
-const partialsDir = path.resolve(__dirname, 'src/templates/partials');
+const partialsDir = path.resolve(templateDir, 'partials');
 const partialFiles = glob.sync(`${partialsDir}/*.hbs`);
 partialFiles.forEach(partialPath => {
     const partialName = path.relative(partialsDir, partialPath).replace(/\.hbs$/, '');
@@ -59,14 +62,14 @@ Handlebars.registerHelper('link', (text, url) => {
 //////////////////
 
 // Define your base directories
-const pageBaseDir = path.resolve(__dirname, 'src/pages');
-const outputBaseDir = path.resolve(__dirname, '_prebuild_output');
+const pageBaseDir = path.resolve(templateDir, 'pages');
+const outputBaseDir = path.resolve(__dirname, '../../_prebuild_output');
 
 // Use glob to find all .hbs files under the input directory
 const pageFiles = glob.sync(`${pageBaseDir}/**/*.hbs`);
 
 // For use in some, but perhaps not all pages (esp. if I resume a blog, etc).
-const baseTemplate = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'src/layouts/base.hbs'), 'utf8'));
+const baseTemplate = Handlebars.compile(fs.readFileSync(path.join(templateDir, 'layouts/base.hbs'), 'utf8'));
 
 
 /////////////////
@@ -91,6 +94,7 @@ Object.keys(pageyaml).forEach(page => {
     const context = {
         ...pageInfo['context'],
         imageMapping,
+        chainData,
     };
 
     // Render the template with context (implement getContextForTemplate as needed)
