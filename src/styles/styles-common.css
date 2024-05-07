@@ -47,16 +47,18 @@ hr {
     color: #db7b46;
 }
 
-#top-title {
-    margin-right: 40px;
+.pixel-font {
+    font-family: 'll-pixel' !important;
 }
 
-#between {
-    font-family: cabin, sans-serif;
-    font-size: 1.9em;
-    text-align: center;
-    width: 75%;
-    margin: auto;
+#ensemble-intro {
+background: linear-gradient(180deg, rgba(77, 83, 84, 0.8) 0%, rgba(77, 83, 84,.5) 100%);
+}
+
+#cryptograss-nav-link {
+    color: white !important;
+    margin-top: 2px;
+    font-size: 1.6em;
 }
 
 .half-page {
@@ -70,22 +72,6 @@ hr {
     padding: 5px;
     font-family: 'Kreon', serif;
     font-size: .7em;
-}
-
-
-#content {
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    margin: auto;
-    font-size: 1.2em;
-}
-
-#content.underSlice {
-    margin-top: 30px;
-    border-left: 3px dotted #99c9ff;
-    padding-left: 50px;
-
 }
 
 #footer-spacer {
@@ -116,7 +102,7 @@ hr {
     border-bottom: 1px solid #383b67;
 }
 
-#top-nav a {
+.nav li a {
     font-family: cabin;
     font-size: 2em;
     color: #99c9ff;
@@ -420,25 +406,6 @@ nav a img {
     border-color: black;
 }
 
-#productionText {
-    opacity: 0;
-}
-
-#ensembleText {
-    opacity: 0;
-}
-
-.opactiyZero {
-    opacity: 0;
-}
-
-.displayNone {
-    display: none;
-}
-
-.displayBlock {
-    display: block !important;
-}
 
 .purpleBox {
     background: rgba(90, 0, 131, 0.49) !important;
@@ -529,17 +496,13 @@ nav a img {
     position: fixed;
     height: 150px;
     width: 150px;
+    top: 0;
+    filter: drop-shadow(2px 3px 2px rgb(0 0 0 / 1));
+
 }
 
-.chainDataList td {
-    color: white;
-    border-collapse: collapse;
-    border: 3px solid purple;
-}
-
-.showTextResult {
-    background-color: white;
-    font-size: 12px;
+.as-slice .logo:hover{
+    filter: drop-shadow(2px 1px 12px rgb(0 0 0 / 1));
 }
 
 /* For video background */

@@ -11,7 +11,7 @@ $(document).ready(function() {
 
     $(window).on('scroll', function() {
         var scrollTop = $(this).scrollTop();  // Get current scroll position
-        var opacity = 1 - (scrollTop / height);  // Calculate new opacity (fades out at the height of one screen)
+        var opacity = 1 - ((scrollTop * 1.5) / height);  // Calculate new opacity (fades out at the height of one screen)
         video.css('opacity', opacity);  // Set the new opacity of the video
     });
 });

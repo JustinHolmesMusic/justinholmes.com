@@ -1,7 +1,6 @@
 import tippy from 'tippy.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("Firing DOM Content Loaded");
 
     tippy('#user-amount', {
         triggerTarget: document.getElementById('min-preset'),

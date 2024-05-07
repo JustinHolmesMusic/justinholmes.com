@@ -3,7 +3,6 @@ import 'bootstrap';
 import 'spotlight.js';
 import '../styles/fonts.css';
 import '../styles/styles-vs.css';
-// import '../styles/styles-common.css';
 
 
 require.context('../images', false, /\.(png|jpe?g|gif|svg|avif)$/);

@@ -1,11 +1,15 @@
-<div id="slice" class="container-md float-start">
-    <span class="col as-slice" id="top-title" class="orange-glow">
-        <a class="logo-link" href="/">
-            <img class="logo" src="{{resolveImage 'jh-logo-shaded-white.svg'}}"
-                 onerror="this.src='{{resolveImage "jh-logo-shaded.png"}}'">
-        </a>
-        <span class="col-6">
-            {{> nav}}
-        </span>
+<div id="slice">
+    <span class="container-md as-slice" id="top-title">
+        <div class="row">
+            <span class="col-1">
+                <a class="logo-link" href="/">
+                    <img class="logo" src="{{resolveImage 'jh-logo-shaded-white.svg'}}"
+                         onerror="this.src='{{resolveImage "jh-logo-shaded.png"}}'"/>
+                </a>
+            </span>
+            <span class="col-6">
+                {{> nav}}
+            </span>
+        </div>
     </span>
 </div>
