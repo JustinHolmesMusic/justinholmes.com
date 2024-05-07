@@ -4,95 +4,123 @@
     {{> bigger-banner}}
 {{/if}}
 
-
-<div id="content">
-    <div class="detail">
-        <div class="media-item" id="vowel-sounds">
-            <h2 class="bright">Vowel Sounds {{llamas}}</h2>
-            <h3 class="bright larissa">Justin's debut album-length offering</h3>
-            <a href="/music/vowel-sounds/index.html">
-                <img style="width:600px;" src="{{resolveImage 'albums/vowel-sounds-cover-art-800.png'}}"/>
-            </a>
-        </div>
-
-        <div class="media-item" id="ursa-minor">
-            <h2 class="bright">Ursa Minor: live from the ether 2022</h2>
-            <h3 class="bright larissa">Songs from Amsterdam, Barcelona, Berlin, and Bogota</h3>
-            <a href="/music/ursa-minor.html">
-                <img style="width:600px;" src="{{resolveImage 'albums/ursa-minor/ursa-minor.jpeg'}}"/>
-            </a>
-        </div>
-
-        <div class="media-item" id="video-game-music">
-            <div class="detail-bright-back">
-                <h4>Here for the video game music?</h4>
-                <small>
-                    Get started with <a target="_blank" href="https://www.youtube.com/watch?v=CIPOWFna9Wg&t=1564s">this
-                    rendition
-                    of
-                    <strong>"Song
-                        of Storms"</strong></a> featuring <strong>David Flores Pradillas</strong> on fiddle or <a
-                        target="_blank" href="https://www.youtube.com/watch?v=UCuDk18gGRc"><strong>Frog's
-                    Theme</strong> from Chrono Trigger</a> featuring <strong>Cory Walker</strong> on banjo.
-                </small>
-            </div>
-        </div>
-        <div class="media-item" id="nanny-state-fiddler">
-            {% include "shared/nanny-state-fiddler-share.html" %}
-            <span class="small-credit">produced by Skyler Golden</span>
-        </div>
-        <div class="media-item" id="see-each-other">
-            <h2 class="bright">"See Each Other" Session</h2>
-            <h3 class="bright larissa">(feat. Cory Walker and Dani Jaye)</h3>
-            <small class="bright">A single-take session in front of a tiny audience of friends and colleagues in St.
-                Pete.</small>
-            <iframe width="600" height="335" src="https://www.youtube.com/embed/l2ptKjqV4BA"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-            <div class="media-share">
-                <a target="_blank"
-                   href="https://justinholmes.bandcamp.com/album/windows-where-we-can-see-each-other-live-from-zen-recording">
-                    <img src="{{resolveImage 'social-logos/bandcamp-logotype-dark-128.png'}}"/>
-                </a>
-                <a target="_blank"
-                   href="https://music.apple.com/us/album/windows-where-we-can-see-each-other-live-from-zen-recording/1637787224">
-                    <img src="{{resolveImage 'social-logos/apple.svg'}}"/>
-                </a>
-                <a target="_blank" href="https://open.spotify.com/album/6iLCIJ6Lejs0kq5X7pI797">
-                    <img src="{{resolveImage 'social-logos/Spotify_Icon_RGB_Green.png'}}"/>
-                </a>
-                <a target="_blank" href="https://www.deezer.com/us/album/343253327?deferredFl=1">
-                    <img src="{{resolveImage 'social-logos/Deezer_logo.svg'}}"/>
-                </a>
-            </div>
-            <span class="small-credit">produced by Skyler Golden</span>
-        </div>
-        <div class="media-item" id="ethbcn-2022">
-            <h2 class="bright">EthBarcelona 2022</h2>
-            <h3 class="bright">Live from the Centre Convencions International Barcelona, July 8, 2022.</h3>
-            <small class="small-credit">with Jakub Vysoky, Shaka Lei Kaumaka, and David Flores Pradillas</small>
-            <iframe width="600" height="335" src="https://www.youtube.com/embed/CIPOWFna9Wg"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-        </div>
-        <div class="media-item" id="hoe corn">
-            <h3 class="bright">Here for the Tuvan overtone singing?</h3>
-            <h4 class="bright">Here's a solo acpella version of "The Boy Who Wouldn't Hoe Corn" from the quarry caves of
-                Rosdendale, NY</h4>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Bexwh5_pYb4"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Studio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sessions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Live</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="detail-bright-back">
-        <small>
-            All original music is released as Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA
-            4.0). Feel free to distribute, remix, and do whatever pleases you with this music, as long as you
-            attribute the creators.<br/><br/>All other rights reserved. Copyright {% now 'Y' %} Justin Holmes.
-        </small>
-    </div>
+
 </div>
-<img class="sorta-background" src="{{resolveImage 'justin-black-and-white-guitar.webp'}}"/>
+
+<iframe style="border: 0; width: 380px; height: 816px;"
+        src="https://bandcamp.com/EmbeddedPlayer/album=1063602042/size=large/bgcol=ffffff/linkcol=0687f5/transparent=true/"
+        seamless><a href="https://justinholmes.bandcamp.com/album/vowel-sounds">Vowel Sounds by Justin Holmes</a>
+</iframe>
+
+
+<!--<div id="content">-->
+<!--    <div class="detail">-->
+<!--        <div class="media-item" id="vowel-sounds">-->
+<!--            <h2 class="bright">Vowel Sounds {{llamas}}</h2>-->
+<!--            <h3 class="bright larissa">Justin's debut album-length offering</h3>-->
+<!--            <a href="/music/vowel-sounds/index.html">-->
+<!--                <img style="width:600px;" src="{{resolveImage 'albums/vowel-sounds-cover-art-800.png'}}"/>-->
+<!--            </a>-->
+<!--        </div>-->
+
+<!--        <div class="media-item" id="ursa-minor">-->
+<!--            <h2 class="bright">Ursa Minor: live from the ether 2022</h2>-->
+<!--            <h3 class="bright larissa">Songs from Amsterdam, Barcelona, Berlin, and Bogota</h3>-->
+<!--            <a href="/music/ursa-minor.html">-->
+<!--                <img style="width:600px;" src="{{resolveImage 'albums/ursa-minor/ursa-minor.jpeg'}}"/>-->
+<!--            </a>-->
+<!--        </div>-->
+
+<!--        <div class="media-item" id="video-game-music">-->
+<!--            <div class="detail-bright-back">-->
+<!--                <h4>Here for the video game music?</h4>-->
+<!--                <small>-->
+<!--                    Get started with <a target="_blank" href="https://www.youtube.com/watch?v=CIPOWFna9Wg&t=1564s">this-->
+<!--                    rendition-->
+<!--                    of-->
+<!--                    <strong>"Song-->
+<!--                        of Storms"</strong></a> featuring <strong>David Flores Pradillas</strong> on fiddle or <a-->
+<!--                        target="_blank" href="https://www.youtube.com/watch?v=UCuDk18gGRc"><strong>Frog's-->
+<!--                    Theme</strong> from Chrono Trigger</a> featuring <strong>Cory Walker</strong> on banjo.-->
+<!--                </small>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="media-item" id="nanny-state-fiddler">-->
+<!--            {% include "shared/nanny-state-fiddler-share.html" %}-->
+<!--            <span class="small-credit">produced by Skyler Golden</span>-->
+<!--        </div>-->
+<!--        <div class="media-item" id="see-each-other">-->
+<!--            <h2 class="bright">"See Each Other" Session</h2>-->
+<!--            <h3 class="bright larissa">(feat. Cory Walker and Dani Jaye)</h3>-->
+<!--            <small class="bright">A single-take session in front of a tiny audience of friends and colleagues in St.-->
+<!--                Pete.</small>-->
+<!--            <iframe width="600" height="335" src="https://www.youtube.com/embed/l2ptKjqV4BA"-->
+<!--                    title="YouTube video player" frameborder="0"-->
+<!--                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+<!--                    allowfullscreen></iframe>-->
+<!--            <div class="media-share">-->
+<!--                <a target="_blank"-->
+<!--                   href="https://justinholmes.bandcamp.com/album/windows-where-we-can-see-each-other-live-from-zen-recording">-->
+<!--                    <img src="{{resolveImage 'social-logos/bandcamp-logotype-dark-128.png'}}"/>-->
+<!--                </a>-->
+<!--                <a target="_blank"-->
+<!--                   href="https://music.apple.com/us/album/windows-where-we-can-see-each-other-live-from-zen-recording/1637787224">-->
+<!--                    <img src="{{resolveImage 'social-logos/apple.svg'}}"/>-->
+<!--                </a>-->
+<!--                <a target="_blank" href="https://open.spotify.com/album/6iLCIJ6Lejs0kq5X7pI797">-->
+<!--                    <img src="{{resolveImage 'social-logos/Spotify_Icon_RGB_Green.png'}}"/>-->
+<!--                </a>-->
+<!--                <a target="_blank" href="https://www.deezer.com/us/album/343253327?deferredFl=1">-->
+<!--                    <img src="{{resolveImage 'social-logos/Deezer_logo.svg'}}"/>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <span class="small-credit">produced by Skyler Golden</span>-->
+<!--        </div>-->
+<!--        <div class="media-item" id="ethbcn-2022">-->
+<!--            <h2 class="bright">EthBarcelona 2022</h2>-->
+<!--            <h3 class="bright">Live from the Centre Convencions International Barcelona, July 8, 2022.</h3>-->
+<!--            <small class="small-credit">with Jakub Vysoky, Shaka Lei Kaumaka, and David Flores Pradillas</small>-->
+<!--            <iframe width="600" height="335" src="https://www.youtube.com/embed/CIPOWFna9Wg"-->
+<!--                    title="YouTube video player" frameborder="0"-->
+<!--                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+<!--                    allowfullscreen></iframe>-->
+<!--        </div>-->
+<!--        <div class="media-item" id="hoe corn">-->
+<!--            <h3 class="bright">Here for the Tuvan overtone singing?</h3>-->
+<!--            <h4 class="bright">Here's a solo acpella version of "The Boy Who Wouldn't Hoe Corn" from the quarry caves of-->
+<!--                Rosdendale, NY</h4>-->
+<!--            <iframe width="560" height="315" src="https://www.youtube.com/embed/Bexwh5_pYb4"-->
+<!--                    title="YouTube video player" frameborder="0"-->
+<!--                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+<!--                    allowfullscreen></iframe>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="detail-bright-back">-->
+<!--        <small>-->
+<!--            All original music is released as Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA-->
+<!--            4.0). Feel free to distribute, remix, and do whatever pleases you with this music, as long as you-->
+<!--            attribute the creators.<br/><br/>All other rights reserved. Copyright {% now 'Y' %} Justin Holmes.-->
+<!--        </small>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<img class="sorta-background" src="{{resolveImage 'justin-black-and-white-guitar.webp'}}"/>-->
