@@ -16,6 +16,11 @@ const templateDir = path.resolve(__dirname, '../templates');
 let pageyamlFile = fs.readFileSync("src/data/pages.yaml");
 let pageyaml = yaml.load(pageyamlFile);
 
+let collaboratorsyamlFile = fs.readFileSync("src/data/collaborators.yaml");
+let collaboratorsyaml = yaml.load(collaboratorsyamlFile);
+
+
+
 gatherAssets();
 
 
@@ -31,6 +36,10 @@ const imageMapping = getImageMapping();
 
 Handlebars.registerHelper('isActive', function (currentPage, expectedPage, options) {
     return currentPage === expectedPage ? 'active' : '';
+});
+
+Handlebars.registerHelper('isEven', function(index, options) {
+  return (index % 2 === 0);
 });
 
 // Make sure target directory exists
@@ -91,8 +100,19 @@ Object.keys(pageyaml).forEach(page => {
     const templateSource = fs.readFileSync(hbsTemplate, 'utf8');
     const template = Handlebars.compile(templateSource);
 
+    let specified_context;
+
+    if (pageInfo['context_from_yaml'] == true) {
+        // Load specified context from yaml
+        let yaml_for_this_page = fs.readFileSync(`src/data/${page}.yaml`);
+        specified_context = {[page]: yaml.load(yaml_for_this_page)};
+    } else {
+        specified_context = pageInfo['context'];
+    }
+
+
     const context = {
-        ...pageInfo['context'],
+        ...specified_context,
         imageMapping,
         chainData,
     };

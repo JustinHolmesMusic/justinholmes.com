@@ -26,3 +26,7 @@ sign-things:
   template: sign-things.hbs
   context:
     page_title: "Sign things if you want!"
+
+collaborators:
+  template: collaborators.hbs
+  context_from_yaml: true
