@@ -4,34 +4,83 @@
     {{> bigger-banner}}
 {{/if}}
 
-<div class="container-fluid mt-3">
+<div class="container mt-3">
+    <h1 class="text-light pixel-font text-center">Listen</h1>
     <div class="row">
         <div class="col-1"></div>
         <div class="col-10">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Studio</a>
+                    <a class="nav-link active" id="nav-button-studio" href="#">Studio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sessions</a>
+                    <a class="nav-link" id="nav-button-sessions" href="#">Sessions</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Live</a>
+                    <a class="nav-link" id="nav-button-live" href="#">Live</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-link" id="nav-button-live" href="#">Talks</a>
                 </li>
             </ul>
         </div>
     </div>
 
+    <div id="studio" class="music-listen-section">
+        <div class="row">
+            <div class="col-1"></div>
+            <div id="vowel-sounds" class="col-4">
+                <h4 class="text-white text-center">Vowel Sounds (Album)</h4>
+                <h5 class="text-white text-center">Released September 2023</h5>
+
+                <iframe style="width: 100%; height: 472px;"
+                        src="https://bandcamp.com/EmbeddedPlayer/album=1063602042/size=large/bgcol=ffffff/linkcol=0687f5/artwork=small/transparent=true/"
+                        seamless><a href="https://justinholmes.bandcamp.com/album/vowel-sounds">Vowel Sounds by Justin
+                    Holmes</a></iframe>
+            </div>
+            <div class="col-2"></div>
+            <div id="nanny-state-fiddler" class="col-4">
+                <h4 class="text-white text-center">Nanny State
+                    Fiddler (single)</h4>
+                <h5 class="text-white text-center">Released July 2022</h5>
+                <iframe style="border: 0; width: 100%; height: 470px;"
+                        src="https://bandcamp.com/EmbeddedPlayer/album=2958184754/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/track=3837192687/transparent=true/"
+                        seamless><a href="https://justinholmes.bandcamp.com/album/nanny-state-fiddler-single">Nanny
+                    State
+                    Fiddler (single) by Justin Holmes</a></iframe>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+
+    <div id="sessions" class="music-listen-section" style="display: none;">
+        <h3>Intimate recordings at studios or homes, with live audiences of 10 or less.</h3>
+    </div>
+
+    <div id="live" class="music-listen-section" style="display: none;">
+        <h3>Recordings from live performances at venues, festivals, and events.</h3>
+        <h4>I've been blessed to play my music and relay my hopes for the future of the internet all over the world,
+            from Nashville to Cape Town to Osaka to Prague.</h4>
+    </div>
+
+    <div id="ensemble-intro" class="fs-4 text-start">
+        <p><em>
+            "After we're done with the music, it's gone. Why shouldn't they take it home with them?" - Jerry Garcia
+        </em>
+        </p>
+        <p>
+            All of my music is released under a Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+            license. Feel free to distribute, remix, and do whatever pleases you with this music, as long as you
+            attribute the creators.
+
+            You can listen to it via legacy platforms like spotify and bandcamp (and, at your discretion, purchase my
+            albums from various platforms if you want to support me in this way).
+
+            I also encourage listeners to share my music via bit torrent, IPFS, or their censorship-resistant file
+            sharing platform of choice.
+        </p>
+    </div>
 </div>
-
-<iframe style="border: 0; width: 380px; height: 816px;"
-        src="https://bandcamp.com/EmbeddedPlayer/album=1063602042/size=large/bgcol=ffffff/linkcol=0687f5/transparent=true/"
-        seamless><a href="https://justinholmes.bandcamp.com/album/vowel-sounds">Vowel Sounds by Justin Holmes</a>
-</iframe>
-
 
 <!--<div id="content">-->
 <!--    <div class="detail">-->

@@ -5,13 +5,28 @@ import '../styles/fonts.css';
 import '../styles/styles-common.css';
 import $ from 'jquery';
 
-$(document).ready(function() {
+$(document).ready(function () {
     var video = $('video.bg');  // Get the video element
     var height = $(window).height();  // Get the window height
 
-    $(window).on('scroll', function() {
+    $(window).on('scroll', function () {
         var scrollTop = $(this).scrollTop();  // Get current scroll position
         var opacity = 1 - ((scrollTop * 1.5) / height);  // Calculate new opacity (fades out at the height of one screen)
         video.css('opacity', opacity);  // Set the new opacity of the video
+    });
+
+    $('#nav-button-studio').on('click', function () {
+        $('.music-listen-section').hide();
+        $('#studio').show();
+    });
+
+    $('#nav-button-sessions').on('click', function () {
+        $('.music-listen-section').hide();
+        $('#sessions').show();
+    });
+
+    $('#nav-button-live').on('click', function () {
+        $('.music-listen-section').hide();
+        $('#live').show();
     });
 });

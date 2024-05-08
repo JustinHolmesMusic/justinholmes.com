@@ -15,11 +15,13 @@
 </head>
 
 <body>
-
-<video autoplay muted loop class="bg">
-    <source src="{{resolveImage 'nsf-background.mp4'}}" type="video/mp4">
-    Your browser does not support HTML5 video.
-</video>
+{{#if no_video_bg}}
+{{else}}
+    <video autoplay muted loop class="bg">
+        <source src="{{resolveImage 'nsf-background.mp4'}}" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+{{/if}}
 
 <div class="bg tiles"></div>
 

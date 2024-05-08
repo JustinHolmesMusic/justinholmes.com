@@ -51,8 +51,12 @@ hr {
     font-family: 'll-pixel' !important;
 }
 
-#ensemble-intro {
-background: linear-gradient(180deg, rgba(77, 83, 84, 0.8) 0%, rgba(77, 83, 84,.5) 100%);
+.cabin {
+    font-family: "Cabin Sketch";
+}
+
+#ensemble-intro, #top-nav {
+    background: linear-gradient(180deg, rgba(77, 83, 84, 0.7) 0%, rgba(77, 83, 84, .2) 100%);
 }
 
 #cryptograss-nav-link {
@@ -61,22 +65,12 @@ background: linear-gradient(180deg, rgba(77, 83, 84, 0.8) 0%, rgba(77, 83, 84,.5
     font-size: 1.6em;
 }
 
-.half-page {
-    width: 50%;
-    margin: auto;
-}
-
 .aside1 {
     margin-top: 20px;
     background-color: antiquewhite;
     padding: 5px;
     font-family: 'Kreon', serif;
     font-size: .7em;
-}
-
-#footer-spacer {
-    margin-top: 100px;
-    width: 100%;
 }
 
 #footer {
@@ -89,12 +83,6 @@ background: linear-gradient(180deg, rgba(77, 83, 84, 0.8) 0%, rgba(77, 83, 84,.5
 
 #footer nav a img {
     margin-bottom: 5px;
-}
-
-
-#this-page a {
-    text-shadow: black 1px 1px 0px;
-    color: #db7b46;
 }
 
 #top-nav {
@@ -210,26 +198,6 @@ nav a img {
 .detail h1 {
     margin: 0;
     font-size: 1.5em;
-}
-
-.top.center {
-    margin-top: 9px;
-}
-
-.top-title {
-    margin-bottom: -7px;
-}
-
-.center {
-    text-align: center;
-}
-
-.text-right {
-    text-align: right;
-}
-
-.cabin {
-    font-family: "Cabin Sketch";
 }
 
 .orange-glow, .orange-glow a {
@@ -406,7 +374,6 @@ nav a img {
     border-color: black;
 }
 
-
 .purpleBox {
     background: rgba(90, 0, 131, 0.49) !important;
     color: white;
@@ -484,8 +451,8 @@ nav a img {
 .top-title .logo, logo-link {
     position: absolute;
     width: 53px;
-    top: 4px;
-    margin-left: 4px;
+    top: -22px;
+    margin-left: 5px;
 }
 
 .as-slice {
@@ -501,7 +468,7 @@ nav a img {
 
 }
 
-.as-slice .logo:hover{
+.as-slice .logo:hover {
     filter: drop-shadow(2px 1px 12px rgb(0 0 0 / 1));
 }
 
@@ -523,6 +490,4 @@ nav a img {
 .contentOnTopOfVideo {
     position: relative;
     z-index: 200;
-    padding: 20px;
-    /* Your content styling here */
 }

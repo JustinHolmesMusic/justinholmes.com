@@ -7,8 +7,7 @@ music:
   template: music.hbs
   context:
     page_title: "Music"
-    llamas: "of course there are llamas"
-    compact: true
+    no_video_bg: true
 
 bazaar:
   template: bazaar.hbs
