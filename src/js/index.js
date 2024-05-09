@@ -17,16 +17,22 @@ $(document).ready(function () {
 
     $('#nav-button-studio').on('click', function () {
         $('.music-listen-section').hide();
+        $('.nav-link').removeClass('active');
         $('#studio').show();
+        $('#nav-button-studio').addClass('active');
     });
 
     $('#nav-button-sessions').on('click', function () {
         $('.music-listen-section').hide();
+        $('.nav-link').removeClass('active');
         $('#sessions').show();
+        $('#nav-button-sessions').addClass('active');
     });
 
     $('#nav-button-live').on('click', function () {
         $('.music-listen-section').hide();
+        $('.nav-link').removeClass('active');
+        $('#nav-button-live').addClass('active');
         $('#live').show();
     });
 });
