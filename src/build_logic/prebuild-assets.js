@@ -50,8 +50,15 @@ function gatherAssets() {
 
 
 Handlebars.registerHelper('resolveImage', function (originalPath) {
-    // Assuming `this` is the root context where `imageMapping` is defined
-    let foundImage = this.imageMapping[originalPath];
+
+    let foundImage;
+    try {
+        foundImage = imageMapping[originalPath];
+    } catch (e) {
+        throw new Error(`Image not found: ${originalPath}`);
+    }
+
+
     if (!foundImage) {
         // Raise an error if the image is not found
         throw new Error(`Image not found: ${originalPath}`);
