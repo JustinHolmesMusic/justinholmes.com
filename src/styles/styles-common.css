@@ -55,8 +55,26 @@ hr {
     font-family: "Cabin Sketch";
 }
 
-#ensemble-intro, #top-nav {
+#ensemble-intro, #about-text, #top-nav {
     background: linear-gradient(180deg, rgba(77, 83, 84, 0.7) 0%, rgba(77, 83, 84, .2) 100%);
+}
+
+#vowel-sounds a {
+    color: #83d0ff;
+}
+
+#vowel-sounds a:hover {
+    color: black;
+}
+
+.person-bio, .bio-caption, .bio-title, h1, #about-text  {
+    text-shadow: 2px 2px 2px black, 0px 0px 10px black;
+}
+
+.person-info img {
+    max-height: 300px;
+    object-fit: contain;
+    max-width: 100%;
 }
 
 #cryptograss-nav-link {
