@@ -16,8 +16,9 @@ const templateDir = path.resolve(__dirname, '../templates');
 let pageyamlFile = fs.readFileSync("src/data/pages.yaml");
 let pageyaml = yaml.load(pageyamlFile);
 
-let collaboratorsyamlFile = fs.readFileSync("src/data/collaborators.yaml");
-let collaboratorsyaml = yaml.load(collaboratorsyamlFile);
+// TODO: Generalize this to be able to handle multiple yaml files
+let ensembleyamlFile = fs.readFileSync("src/data/ensemble.yaml");
+let ensembleyaml = yaml.load(ensembleyamlFile);
 
 
 
@@ -59,16 +60,11 @@ partialFiles.forEach(partialPath => {
     Handlebars.registerPartial(partialName, partialTemplate);
 });
 
-// Register Helpers
-// Example: A simple link helper
 Handlebars.registerHelper('link', (text, url) => {
     text = Handlebars.escapeExpression(text);
     url = Handlebars.escapeExpression(url);
     return new Handlebars.SafeString(`<a href="${url}">${text}</a>`);
 });
-
-//////////////////
-//////////////////
 
 // Define your base directories
 const pageBaseDir = path.resolve(templateDir, 'pages');

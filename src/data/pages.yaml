@@ -3,29 +3,34 @@ index:
   context:
     page_title: "Future-proofing Bluegrass"
 
-music:
-  template: music.hbs
+listen:
+  template: listen.hbs
   context:
-    page_title: "Music"
+    page_title: "Listen"
     no_video_bg: true
 
-bazaar:
-  template: bazaar.hbs
+cryptograss.eth:
+  template: cryptograss.hbs
   context:
     page_title: "Bazaar - Justin Holmes merch on the blockchain"
-    llamas: "of course there are llamas"
     compact: true
+
+about:
+  template: about.hbs
+
 
 vowel-sounds:
   context:
     page_title: Vowel Sounds Album
+    no_video_bg: true
   template: "music/vowel-sounds/index.hbs"
+
 
 sign-things:
   template: sign-things.hbs
   context:
     page_title: "Sign things if you want!"
 
-collaborators:
-  template: collaborators.hbs
+ensemble:
+  template: ensemble.hbs
   context_from_yaml: true

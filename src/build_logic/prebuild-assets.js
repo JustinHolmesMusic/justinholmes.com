@@ -61,6 +61,10 @@ Handlebars.registerHelper('resolveImage', function (originalPath) {
     return foundImage
 });
 
+Handlebars.registerHelper('safeHTML', function(content) {
+    return new Handlebars.SafeString(content);
+});
+
 export default gatherAssets;
 export {gatherAssets};
 export {unusedImages};

@@ -1,0 +1,99 @@
+{{#if compact}}
+    {{> slicey}}
+{{else}}
+    {{> bigger-banner}}
+{{/if}}
+
+
+<div id="content" class="container text-light">
+    <h1 class="text-light pixel-font text-center m-5">Meet the Musicians</h1>
+    <div id="ensemble-intro" class="fs-4 text-start">
+        <h4>Note from Justin:</h4>
+        <p>
+            I'm frequently asked if I'm going to form "a band". And maybe I will, at some point.
+        </p>
+        <p>
+            For now: I place a high premium on working with, and learning from, a wide variety of musicians. It's
+            particularly
+            important to feature musicians who are local to the venues where I'm performing, especially at technology
+            and
+            crypto events - after all, putting new money into the hands of artists is one of the primary goals of the
+            crypto
+            movement.
+        </p>
+        <p>
+            I've had the blessing to work with musicians who are not only excellent players, but who are also excellent
+            people. I think it's fair to say that my music features some of the best bluegrass musicians in the world,
+            and
+            I'm grateful for the friendships that have come out of those collaborations.
+        </p>
+    </div>
+    {{#each ensemble}}
+        <div class="person-info row border-top border-2 border-black mt-2 pt-2">
+            {{#if (isEven @index)}}
+                <div class="row">
+                    <h2 class="fs-1 bio-title">{{@key}}</h2>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        <img src="{{resolveImage Photo }}"/>
+                        <figcaption class="figure-caption text-white fs-5 bio-caption">{{Caption}}</figcaption>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-6 fs-4 person-bio">
+                        {{safeHTML Description}}
+                        {{Address}}
+                    </div>
+                </div>
+            {{else}}
+                <div class="row">
+                    <div class="col-11">
+                        <h2 class="fs-1 text-right bio-title">{{@key}}</h2>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-6 fs-4 person-bio">
+                        {{safeHTML Description}}
+                        {{Address}}
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-5 text-center">
+                        <img class="w-100" src="{{resolveImage Photo }}"/>
+                        <figcaption class="figure-caption text-white fs-5 bio-caption">{{Caption}}</figcaption>
+                        <div class="col-1"></div>
+
+                    </div>
+                </div>
+            {{/if}}
+
+        </div>
+    {{/each}}
+    <hr>
+    <h2>Bios to come:        </h2>
+<ul>
+<li>    Viv Ford</li>
+
+<li>Kuba Hejhal</li>
+
+<li>Jake Stargel</li>
+
+<li>Jeff Fehlauer</li>
+
+<li>Christian Ward</li>
+
+<li>Dani Jaye</li>
+
+<li>Shaka Lei Kaumaka</li>
+
+<li>David Flores Pradillas</li>
+
+<li>Allen Cooke</li>
+
+<li>Yarda Vysoky</li>
+
+    <li>And More...</li>
+
+</ul>
+
+</div>
