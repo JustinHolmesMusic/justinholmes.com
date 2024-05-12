@@ -31,47 +31,39 @@
 
     {{{main_block}}}
 
-
-    <div id="footer-spacer"></div>
-    <div id="footer">
-        <nav>
-        <span>
+    <div id="footer" class="row">
+        <div class="col-3"></div>
+        <div class="col-1">
             <a target="_blank" href="https://discord.gg/B8rEXkSAJ4">
                 <img src="{{resolveImage 'social-logos/discord.png'}}"/>
             </a>
-        </span>
-
-            <span>
+        </div>
+        <div class="col-1">
             <a target="_blank" href="https://github.com/jMyles">
                 <img src="{{resolveImage 'social-logos/Octocat.png'}}"/>
             </a>
-        </span>
-
-            <span>
+        </div>
+        <div class="col-1">
             <a target="_blank" href="https://justinholmes.bandcamp.com/">
                 <img src="{{resolveImage 'social-logos/bandcamp-button-bc-circle-green-256.png'}}"/>
             </a>
-        </span>
-
-            <span>
+        </div>
+        <div class="col-1">
             <a target="_blank" href="https://open.spotify.com/artist/2ThESMbZDNeAi02dpZZncE">
                 <img src="{{resolveImage 'social-logos/Spotify_Icon_RGB_Green.png'}}"/>
             </a>
-        </span>
-
-            <span>
+        </div>
+        <div class="col-1">
             <a target="_blank" href="https://twitter.com/vowelsoundmode">
                 <img src="{{resolveImage 'social-logos/x-white.png'}}"/>
             </a>
-        </span>
-
-            <span>
+        </div>
+        <div class="col-1">
             <a target="_blank" href="https://www.instagram.com/justinmylesholmes/">
                 <img src="{{resolveImage 'social-logos/Instagram_Glyph_Gradient.png' }}"/>
             </a>
-        </span>
+        </div>
 
-        </nav>
         {{#if build_hashes }}
             <ul class="verySmall">
                 <li>Build Time: {{ build_time }}</li>
@@ -80,5 +72,6 @@
             </ul>
         {{/if}}
     </div>
+</div>
 </div>
 </body>
