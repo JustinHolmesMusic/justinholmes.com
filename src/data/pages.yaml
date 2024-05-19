@@ -18,6 +18,11 @@ cryptograss.eth:
 about:
   template: about.hbs
 
+contact:
+  template: contact.hbs
+  context:
+    page_title: "Contact the JH Production about booking, hacking, or whatever"
+    compact: true
 
 vowel-sounds:
   context:

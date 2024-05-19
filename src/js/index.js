@@ -35,4 +35,11 @@ $(document).ready(function () {
         $('#nav-button-live').addClass('active');
         $('#live').show();
     });
+
+    $('#nav-button-talks').on('click', function () {
+        $('.music-listen-section').hide();
+        $('.nav-link').removeClass('active');
+        $('#nav-button-talks').addClass('active');
+        $('#talks').show();
+    });
 });
