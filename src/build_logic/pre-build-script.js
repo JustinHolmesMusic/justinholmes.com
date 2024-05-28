@@ -17,11 +17,13 @@ const templateDir = path.resolve(__dirname, '../templates');
 let pageyamlFile = fs.readFileSync("src/data/pages.yaml");
 let pageyaml = yaml.load(pageyamlFile);
 
+let auxDataFile = fs.readFileSync("src/data/aux_data.yaml");
+let auxData = yaml.load(auxDataFile);
+let slogans = auxData["slogans"];
+
 // TODO: Generalize this to be able to handle multiple yaml files
 let ensembleyamlFile = fs.readFileSync("src/data/ensemble.yaml");
 let ensembleyaml = yaml.load(ensembleyamlFile);
-
-
 
 gatherAssets();
 
