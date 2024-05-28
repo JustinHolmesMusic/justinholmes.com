@@ -4,6 +4,7 @@ import * as glob from 'glob';
 import {fileURLToPath} from 'url';
 import yaml from 'js-yaml';
 import path from 'path';
+import {marked} from 'marked';
 import {gatherAssets, unusedImages} from './prebuild-assets.js';
 import {chainData} from './populate_trophy_cases.js';
 
@@ -80,11 +81,30 @@ const baseTemplate = Handlebars.compile(fs.readFileSync(path.join(templateDir, '
 /////////////////
 // Page iteration
 //////////////////
+
+let contextFromPageSpecificFiles = {};
 Object.keys(pageyaml).forEach(page => {
     let pageInfo = pageyaml[page];
     let templateName = pageInfo["template"];
     let hbsTemplate = path.join(pageBaseDir, templateName);
     const outputFilePath = path.join(outputBaseDir, templateName).replace(/\.hbs$/, '.html');
+
+    // See if there is a directory in data/page_specifc for this page.
+    const pageSpecificDataPath = `src/data/page_specific/${page}`;
+    if (fs.existsSync(pageSpecificDataPath)) {
+        // Add an entry to the context for this page.
+        contextFromPageSpecificFiles[page] = {};
+
+        // Iterate through files in this directory.
+        // TODO: This assumes they are md - might be useful to allow others.
+        const pageSpecificFiles = fs.readdirSync(pageSpecificDataPath);
+
+        pageSpecificFiles.forEach(file => {
+            const fileContents = fs.readFileSync(path.join(pageSpecificDataPath, file), 'utf8');
+            // Assume markdown for the moment.
+            contextFromPageSpecificFiles[page][file.replace(/\.md$/, '')] = marked(fileContents);
+        });
+    }
 
     // Ensure the output directory exists
     const outputDir = path.dirname(outputFilePath);
@@ -107,11 +127,17 @@ Object.keys(pageyaml).forEach(page => {
     }
 
 
-    const context = {
+    let context = {
         ...specified_context,
+        slogans: slogans,
         imageMapping,
         chainData,
     };
+
+
+    if (contextFromPageSpecificFiles[page]) {
+        context = Object.assign({}, context, contextFromPageSpecificFiles[page])
+    }
 
     // Render the template with context (implement getContextForTemplate as needed)
     const mainBlockContent = template(context);
@@ -126,3 +152,5 @@ Object.keys(pageyaml).forEach(page => {
 unusedImages.forEach(image => {
     console.warn(`Image not used: ${image}`);
 });
+
+export {auxData};

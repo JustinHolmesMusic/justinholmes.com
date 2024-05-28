@@ -2,7 +2,6 @@ import {glob} from 'glob';
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
-// import {CleanWebpackPlugin} from 'clean-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import {fileURLToPath} from "url";
 
