@@ -12,8 +12,9 @@ listen:
 cryptograss.eth:
   template: cryptograss.hbs
   context:
-    page_title: "Bazaar - Justin Holmes merch on the blockchain"
-    compact: true
+    page_title: "Cryptograss.eth | The Metadata is The Merch"
+    no_video_bg: true
+
 
 about:
   template: about.hbs
