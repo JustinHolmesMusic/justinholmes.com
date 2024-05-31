@@ -46,8 +46,8 @@ const common = {
         new CopyPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, '../../_prebuild_output/assets/images'),
-                    to: path.resolve(__dirname, '../../dist/assets/images')
+                    from: path.resolve(__dirname, '../../_prebuild_output/assets'),
+                    to: path.resolve(__dirname, '../../dist/assets')
                 }
             ]
         }),

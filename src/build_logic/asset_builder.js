@@ -4,34 +4,34 @@ import crypto from 'crypto';
 import {globSync} from 'glob';
 import {fileURLToPath} from 'url';
 import Handlebars from 'handlebars';
+import yaml from "js-yaml";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const imagesSourceDir = path.join(__dirname, '../images');
 const imageDirPattern = `${imagesSourceDir}/**/*.{png,jpg,jpeg,gif,avif,svg,webp,mp4}`
-const outputDir = path.join(__dirname, '../../_prebuild_output/assets/images');
+const outputDir = path.join(__dirname, '../../_prebuild_output/assets');
+const imageOutputDir = path.join(outputDir, 'images');
 const mappingFilePath = path.join(__dirname, '../../_prebuild_output/imageMapping.json');
 
 // Ensure the output directory exists
-if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, {recursive: true});
+if (!fs.existsSync(imageOutputDir)) {
+    fs.mkdirSync(imageOutputDir, {recursive: true});
 }
 
 let imageMapping = {};
 var unusedImages = new Set();
 
 function gatherAssets() {
-
     let imageFiles = globSync(imageDirPattern);
-
 
     imageFiles.forEach(file => {
         const buffer = fs.readFileSync(file);
         const hash = crypto.createHash('sha256').update(buffer).digest('hex');
         const ext = path.extname(file);
         const hashedFilename = `${hash}${ext}`;
-        const outputPath = path.join(outputDir, hashedFilename);
+        const outputPath = path.join(imageOutputDir, hashedFilename);
 
         // Optional: Process images with sharp here if needed
 
@@ -71,6 +71,14 @@ Handlebars.registerHelper('resolveImage', function (originalPath) {
 Handlebars.registerHelper('safeHTML', function(content) {
     return new Handlebars.SafeString(content);
 });
+
+let auxDataFile = fs.readFileSync("src/data/aux_data.yaml");
+let auxData = yaml.load(auxDataFile);
+let slogans = auxData["slogans"];
+
+// Write slogans to a JSON file for use in the frontend
+fs.writeFileSync(path.join(outputDir, "slogans.json"), JSON.stringify(slogans));
+
 
 export default gatherAssets;
 export {gatherAssets};

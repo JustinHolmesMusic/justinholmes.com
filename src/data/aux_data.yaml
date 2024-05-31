@@ -1,7 +1,21 @@
 slogans:
-  - "blockchain bluegrass and video game traditionals"
-  - "future-proofing old-timey music"
-  - "bluegrass songs about internet peace and freedom"
-  - "old-time pickin', with unit tests"
-  - "appalachian old-time zelda covers"
-  - "live software demos with fiddles and banjos"
+  5:
+    - "blockchain bluegrass and video game traditionals"
+    - "future-proofing old-timey music"
+    - "bluegrass songs about internet peace and freedom"
+    - "appalachian old-time zelda covers and such"
+    - "live software demos with fiddles and banjos and whatnot"
+    - "pickin' strings, UTF-8 strings, and other string things"
+    - "guitar pickin' and git commitin'"
+  4:
+    - "WAGMI: We All Get Musical Instruments"
+  3:
+    - "old-time pickin', with unit tests"
+    - "hash functions and hootenannies"
+    - "A Part on the mandolin, B Part on the blockchain"
+    - "somewhere between ginseng sullivan and byzantine fault tolerance"
+  1:
+    - "super(AcousticBluegrass, TrippyCryptography).__init__()"
+    - "Manzanita, meet Merkle Tree"
+    - "appalachian old-time, with a side of API design"
+    - "if you thought the banjo was a complex instrument, wait until you see our smart contracts"

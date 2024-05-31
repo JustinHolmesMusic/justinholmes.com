@@ -5,7 +5,7 @@ import {fileURLToPath} from 'url';
 import yaml from 'js-yaml';
 import path from 'path';
 import {marked} from 'marked';
-import {gatherAssets, unusedImages} from './prebuild-assets.js';
+import {gatherAssets, unusedImages} from './asset_builder.js';
 import {chainData} from './populate_trophy_cases.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -17,9 +17,6 @@ const templateDir = path.resolve(__dirname, '../templates');
 let pageyamlFile = fs.readFileSync("src/data/pages.yaml");
 let pageyaml = yaml.load(pageyamlFile);
 
-let auxDataFile = fs.readFileSync("src/data/aux_data.yaml");
-let auxData = yaml.load(auxDataFile);
-let slogans = auxData["slogans"];
 
 // TODO: Generalize this to be able to handle multiple yaml files
 let ensembleyamlFile = fs.readFileSync("src/data/ensemble.yaml");
@@ -42,8 +39,8 @@ Handlebars.registerHelper('isActive', function (currentPage, expectedPage, optio
     return currentPage === expectedPage ? 'active' : '';
 });
 
-Handlebars.registerHelper('isEven', function(index, options) {
-  return (index % 2 === 0);
+Handlebars.registerHelper('isEven', function (index, options) {
+    return (index % 2 === 0);
 });
 
 // Make sure target directory exists
@@ -128,10 +125,8 @@ Object.keys(pageyaml).forEach(page => {
         specified_context = pageInfo['context'];
     }
 
-
     let context = {
         ...specified_context,
-        slogans: slogans,
         imageMapping,
         chainData,
     };
@@ -154,5 +149,3 @@ Object.keys(pageyaml).forEach(page => {
 unusedImages.forEach(image => {
     console.warn(`Image not used: ${image}`);
 });
-
-export {auxData};
