@@ -67,7 +67,7 @@ hr {
     color: black;
 }
 
-.person-bio, .bio-caption, .bio-title, h1, #about-text  {
+.person-bio, .bio-caption, .bio-title, h1, #about-text {
     text-shadow: 2px 2px 2px black, 0px 0px 10px black;
 }
 
@@ -103,7 +103,7 @@ hr {
 #footer a img {
     margin-bottom: 10px;
     margin-top: 5px;
-    width:30px;
+    width: 30px;
 }
 
 #top-nav {
@@ -111,11 +111,12 @@ hr {
     border-bottom: 1px solid #383b67;
 }
 
-.nav li a {
+nav a.nav-link {
     font-family: cabin;
     font-size: 2em;
     color: #99c9ff;
     text-shadow: 0px 0px 1px black, 0px 0px 3px #1f0432, 0px 0px 2px #2f17ce;
+    text-align: center;
 }
 
 #top-nav a:hover {
@@ -467,13 +468,6 @@ nav a img {
 
 #actual-download-link {
     color: #7a76fb;
-}
-
-.top-title .logo, logo-link {
-    position: absolute;
-    width: 53px;
-    top: -22px;
-    margin-left: 5px;
 }
 
 .as-slice {
