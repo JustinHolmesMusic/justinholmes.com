@@ -1,17 +1,20 @@
-<div class="container-lg">
+<div class="container-lg text-center">
+    <a id="home-link-at-top" href="/">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <img id="main-logo-at-top" class="img-fluid" src="{{resolveImage 'name-with-log.png'}}">
+            </div>
+        </div>
+        <div class="row mt-2">
+            <p id="immutable-string-band" class="p-0 w-100 text-nowrap bright mb-0 display-6 curly">and the immutable string band</p>
+        </div>
+    </a>
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-md-4">
-            <a href="/">
-                <img class="img-fluid" src="{{resolveImage 'name-with-log.png'}}">
-            </a>
-        </div>
-        <div class="col-4"></div>
-    </div>
-    <div class="row mt-2">
         <div class="top-title text-center">
-            <h4 id="slogan" class="bright">{{slogans.[1]}}</h4>
+            <h4 id="slogan" class="bright pixel-font">{{slogans.[1]}}</h4>
         </div>
     </div>
+
+
     {{> nav }}
 </div>
