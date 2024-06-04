@@ -31,47 +31,41 @@
 
     {{{main_block}}}
 
-    <div id="footer" class="row">
-        <div class="col-3"></div>
-        <div class="col-1">
-            <a target="_blank" href="https://discord.gg/B8rEXkSAJ4">
-                <img src="{{resolveImage 'social-logos/discord.png'}}"/>
-            </a>
-        </div>
-        <div class="col-1">
-            <a target="_blank" href="https://github.com/jMyles">
-                <img src="{{resolveImage 'social-logos/Octocat.png'}}"/>
-            </a>
-        </div>
-        <div class="col-1">
-            <a target="_blank" href="https://justinholmes.bandcamp.com/">
-                <img src="{{resolveImage 'social-logos/bandcamp-button-bc-circle-green-256.png'}}"/>
-            </a>
-        </div>
-        <div class="col-1">
-            <a target="_blank" href="https://open.spotify.com/artist/2ThESMbZDNeAi02dpZZncE">
-                <img src="{{resolveImage 'social-logos/Spotify_Icon_RGB_Green.png'}}"/>
-            </a>
-        </div>
-        <div class="col-1">
-            <a target="_blank" href="https://twitter.com/vowelsoundmode">
-                <img src="{{resolveImage 'social-logos/x-white.png'}}"/>
-            </a>
-        </div>
-        <div class="col-1">
-            <a target="_blank" href="https://www.instagram.com/justinmylesholmes/">
-                <img src="{{resolveImage 'social-logos/Instagram_Glyph_Gradient.png' }}"/>
-            </a>
-        </div>
+    <nav id="footer" class="mt-3 nav nav-fill justify-content-center flex-column flex-sm-row">
 
-        {{#if build_hashes }}
-            <ul class="verySmall">
-                <li>Build Time: {{ build_time }}</li>
-                <li>App: {{ build_hashes.app }}</li>
-                <li>Data: {{ build_hashes.data }}</li>
-            </ul>
-        {{/if}}
-    </div>
+        <a class="p-0 nav-link" target="_blank" href="https://discord.gg/B8rEXkSAJ4">
+            <img class="mt-2" src="{{resolveImage 'social-logos/discord.png'}}"/>
+        </a>
+
+        <a class="p-0 nav-link" target="_blank" href="https://github.com/jMyles">
+            <img src="{{resolveImage 'social-logos/Octocat.png'}}"/>
+        </a>
+
+        <a class="p-0 nav-link" target="_blank" href="https://justinholmes.bandcamp.com/">
+            <img src="{{resolveImage 'social-logos/bandcamp-button-bc-circle-green-256.png'}}"/>
+        </a>
+
+        <a class="p-0 nav-link" target="_blank" href="https://open.spotify.com/artist/2ThESMbZDNeAi02dpZZncE">
+            <img src="{{resolveImage 'social-logos/Spotify_Icon_RGB_Green.png'}}"/>
+        </a>
+
+        <a class="p-0 nav-link" target="_blank" href="https://twitter.com/vowelsoundmode">
+            <img src="{{resolveImage 'social-logos/x-white.png'}}"/>
+        </a>
+
+        <a class="p-0 nav-link" target="_blank" href="https://www.instagram.com/justinmylesholmes/">
+            <img src="{{resolveImage 'social-logos/Instagram_Glyph_Gradient.png' }}"/>
+        </a>
+        <a class="p-0 nav-link" target="_blank" href="https://www.youtube.com/@vowelsoundmode">
+            <img class="mt-2" src="{{resolveImage 'social-logos/youtube_social_icon_red.png' }}"/>
+        </a>
+    </nav>
 </div>
-</div>
+{{#if build_hashes }}
+    <ul class="verySmall">
+        <li>Build Time: {{ build_time }}</li>
+        <li>App: {{ build_hashes.app }}</li>
+        <li>Data: {{ build_hashes.data }}</li>
+    </ul>
+{{/if}}
 </body>
