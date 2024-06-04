@@ -9,13 +9,12 @@ slogans:
     - "guitar pickin' and git commitin'"
   4:
     - "WAGMI: We All Get Musical Instruments"
+    - "somewhere between ginseng sullivan and byzantine fault tolerance"
   3:
     - "old-time pickin', with unit tests"
     - "hash functions and hootenannies"
     - "A Part on the mandolin, B Part on the blockchain"
-    - "somewhere between ginseng sullivan and byzantine fault tolerance"
   1:
-    - "super(AcousticBluegrass, TrippyCryptography).__init__()"
+    - "super(AcousticBluegrass, TrippyCryptography)"
     - "Manzanita, meet Merkle Tree"
-    - "appalachian old-time, with a side of API design"
-    - "if you thought the banjo was a complex instrument, wait until you see our smart contracts"
+    - "if you thought smart contracts were complicated, wait 'til you see our banjo guy"
