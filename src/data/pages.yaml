@@ -15,22 +15,21 @@ cryptograss.eth:
     page_title: "Cryptograss.eth | The Metadata is The Merch"
     no_video_bg: true
 
-
 about:
   template: about.hbs
+  context:
+    page_title: "About the JH Production"
 
 contact:
   template: contact.hbs
   context:
     page_title: "Contact the JH Production about booking, hacking, or whatever"
-    compact: true
 
 vowel-sounds:
   context:
     page_title: Vowel Sounds Album
     no_video_bg: true
   template: "music/vowel-sounds/index.hbs"
-
 
 sign-things:
   template: sign-things.hbs
@@ -40,3 +39,5 @@ sign-things:
 ensemble:
   template: ensemble.hbs
   context_from_yaml: true
+  context:
+    page_title: "The Immutable String Band"
