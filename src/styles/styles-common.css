@@ -1,61 +1,28 @@
+html {
+    --font-scale: 1;
+}
+
 body {
     background-image: url("background.png");
-
-    font-family: 'Kreon';
     height: 100%;
     margin: 0;
-}
-
-* {
-    z-index: 100;
-}
-
-h2, h3, h4 {
-    font-family: 'll-pixel';
-}
-
-h1 {
-    font-family: 'larissa';
-    font-size: 4em;
-    margin: 0;
-    line-height: 1em;
-}
-
-h2 {
-    font-size: 2em;
+    font-family: fell serif;
+    color: white;
 }
 
 a {
     text-decoration: none;
-    color: #9a9a9a;
+    color: #99c9ff;
     text-shadow: #000 1px 1px 2px;
 }
 
 a:hover {
     color: #8e845d;
     text-shadow: black 1px 1px 1px;
+    text-decoration: underline;
 }
 
-blockquote {
-    border-left: 3px dotted #db7b46;
-    padding-left: 40px;
-    margin-left: 0px;
-}
-
-hr {
-    width: 75%;
-    color: #db7b46;
-}
-
-.pixel-font {
-    font-family: 'll-pixel' !important;
-}
-
-.cabin {
-    font-family: "Cabin Sketch";
-}
-
-#ensemble-intro, #about-text, #top-nav {
+#ensemble-intro, #about-text, #top-nav, .gradient-transparent-bg {
     background: linear-gradient(180deg, rgba(77, 83, 84, 0.7) 0%, rgba(77, 83, 84, .2) 100%);
 }
 
@@ -78,9 +45,7 @@ hr {
 }
 
 #cryptograss-nav-link {
-    color: white !important;
-    margin-top: 2px;
-    font-size: 1.6em;
+    margin-top: -2px;
 }
 
 .aside1 {
@@ -111,12 +76,37 @@ hr {
     border-bottom: 1px solid #383b67;
 }
 
-nav a.nav-link {
-    font-family: cabin;
-    font-size: 2em;
+#slogan {
+    font-size: calc(1rem + .6vw);
+    color: black;
+    -webkit-text-stroke: 1px #424032;
+    text-shadow: white -1px -1px 0px, white 1px 1px 0px, white 1px -1px 0px, white -1px 1px 0px;
+    min-height: 32px;
+}
+
+nav#top-nav a.nav-link {
+    font-size: 1.4em;
     color: #99c9ff;
     text-shadow: 0px 0px 1px black, 0px 0px 3px #1f0432, 0px 0px 2px #2f17ce;
     text-align: center;
+}
+
+nav#top-nav a.nav-link:hover {
+    color: white;
+}
+
+nav#top-nav a.nav-link.active {
+    color: #ccd2f9;
+}
+
+/*These are the arrows*/
+nav#top-nav a.nav-link span {
+    display: none;
+    color: #f2c6ae;
+}
+
+nav#top-nav a.nav-link.active span {
+    display: inline;
 }
 
 #top-nav a:hover {
@@ -128,42 +118,14 @@ nav a img {
     max-height: 40px;
 }
 
-.event {
-    margin: auto;
-    padding: 30px;
-    margin-bottom: 20px;
-    border-bottom: 5px dotted #0089fe;
-}
+/*Looking for a way to implement this without the entire row triggering the hover.*/
+/*#home-link-at-top:hover {*/
+/*    filter: invert(100%) drop-shadow(1px 1px 1px white);*/
+/*    color: black;*/
+/*}*/
 
-.event img {
-    max-width: 600px;
-    float: left;
-    clear: left;
-}
-
-.event div {
-    float: left;
-    clear: left;
-}
-
-.event .description {
-    font-family: ll-pixel;
-    background-color: #0000008a;
-    font-size: 1.3em;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    color: #ffc78b;
-    float: none;
-    width: 80%;
-}
-
-.event .description a {
-    color: #8f8fff;
-}
-
-.event .media {
-    width: 100%;
-    text-align: center;
+#immutable-string-band {
+    text-shadow: none;
 }
 
 .timeframe {
@@ -287,10 +249,6 @@ nav a img {
     color: white;
     font-size: 15px;
     font-family: larissa;
-}
-
-.larissa {
-    font-family: "larissa";
 }
 
 .lower-photo {
