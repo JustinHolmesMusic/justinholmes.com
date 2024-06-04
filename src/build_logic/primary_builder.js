@@ -122,10 +122,12 @@ Object.keys(pageyaml).forEach(page => {
         let yaml_for_this_page = fs.readFileSync(`src/data/${page}.yaml`);
         specified_context = {[page]: yaml.load(yaml_for_this_page)};
     } else {
-        specified_context = pageInfo['context'];
+        specified_context = {};
     }
 
     let context = {
+        page_name: page,
+        ...pageInfo['context'],
         ...specified_context,
         imageMapping,
         chainData,
