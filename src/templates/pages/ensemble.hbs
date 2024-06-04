@@ -46,7 +46,11 @@
                 </div>
                 <div class="row">
                     <div class="col-5">
-                        <img src="{{resolveImage Photo }}"/>
+                        <a class='spotlight'
+                           href="{{resolveImage Photo }}"
+                           title="{{Caption}}">
+                            <img src="{{resolveImage Photo }}"/>
+                        </a>
                         <figcaption class="figure-caption text-white fs-5 bio-caption">{{Caption}}</figcaption>
                     </div>
                     <div class="col-1"></div>
@@ -69,7 +73,11 @@
                     </div>
                     <div class="col-1"></div>
                     <div class="col-5 text-center">
-                        <img class="w-100" src="{{resolveImage Photo }}"/>
+                        <a class='spotlight'
+                           href="{{resolveImage Photo }}"
+                           title="{{Caption}}">
+                            <img class="w-100" src="{{resolveImage Photo }}"/>
+                        </a>
                         <figcaption class="figure-caption text-white fs-5 bio-caption">{{Caption}}</figcaption>
                         <div class="col-1"></div>
 
