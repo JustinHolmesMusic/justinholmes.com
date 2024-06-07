@@ -30,31 +30,21 @@ $(document).ready(function () {
         video.css('opacity', opacity);  // Set the new opacity of the video
     });
 
-    $('#nav-button-studio').on('click', function () {
-        $('.music-listen-section').hide();
-        $('.nav-link').removeClass('active');
-        $('#studio').show();
-        $('#nav-button-studio').addClass('active');
-    });
+    $('.nav-link.exclusive').on('click', function () {
+        let group_name = $(this).data('group');
+        let group_element = $('.' + group_name);
 
-    $('#nav-button-sessions').on('click', function () {
-        $('.music-listen-section').hide();
-        $('.nav-link').removeClass('active');
-        $('#sessions').show();
-        $('#nav-button-sessions').addClass('active');
-    });
+        let group_links = $('.nav-link.exclusive[data-group=' + group_name + ']');
 
-    $('#nav-button-live').on('click', function () {
-        $('.music-listen-section').hide();
-        $('.nav-link').removeClass('active');
-        $('#nav-button-live').addClass('active');
-        $('#live').show();
-    });
+        group_links.removeClass('active');
+        $(this).addClass('active');
 
-    $('#nav-button-talks').on('click', function () {
-        $('.music-listen-section').hide();
-        $('.nav-link').removeClass('active');
-        $('#nav-button-talks').addClass('active');
-        $('#talks').show();
+        let target_name = $(this).data('show');
+        let target_element = $('#' + target_name);
+
+        // Hide members whose class names match the group variable.
+        group_element.hide(0, function() {
+            target_element.show();
+        });
     });
 });
