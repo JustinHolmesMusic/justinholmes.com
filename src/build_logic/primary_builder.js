@@ -157,7 +157,6 @@ Object.keys(pageyaml).forEach(page => {
         chainData,
     };
 
-
     if (contextFromPageSpecificFiles[page]) {
         context = Object.assign({}, context, contextFromPageSpecificFiles[page])
     }

@@ -35,7 +35,7 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
     return new HtmlWebpackPlugin({
         template: templatePath, // Path to the source template
         filename: relativePath, // Preserve the directory structure in the output
-        inject: true,
+        inject: "body",
         chunks: chunks, // Only include the chunk for this template
     });
 });
@@ -54,7 +54,7 @@ const common = {
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
         }),
-        ...htmlPluginInstances, // Spread the HtmlWebpackPlugin instances here
+        ...htmlPluginInstances,
     ],
     entry: {
         main: './src/js/index.js',
