@@ -4,25 +4,50 @@
     {{> bigger-banner}}
 {{/if}}
 
-<div class="container mt-3">
+<div id="cryptograss-content" class="container mt-3">
     <h1 class="text-light pixel-font text-center mb-3">cryptograss.eth</h1>
-    <h2 class="text-light pixel-font text-center">Cryptological apps written by bluegrassers</h2>
-    <h2 class="text-light pixel-font text-center">Bluegrass written by cryptographers</h2>
+    <hr/>
+    <p class="h5 text-light pixel-font text-center">Decentralized apps written by bluegrassers</p>
+    <p class="h3 text-light curly text-center">Bluegrass written by cryptographers</p>
 
-    <h3 class="text-white">
-        Blue Railroad Train Squats
-    </h3>
-    <h4 class="text-white">
-        You can earn one by taking a video of yourself doing squats with "Blue Railroad Train", from Tony Rice's
-        Manzanita album, to the Justin Holmes discord.
-    </h4>
-    <table class="chainDataList">
-        {{#each chainData.blueRailroads}}
-            <tr>
-                <td>{{id}}</td>
-                <td>{{owner}}</td>
-                <td><a href="{{uri}}">video</a></td>
-            </tr>
-        {{/each}}
-    </table>
+    <div class="row">  {{!-- cryptograss nav --}}
+        <div class="col-12">
+            <ul class="nav subnav nav-tabs pixel-font">
+                <li class="nav-item pi">
+                    <button data-group="cryptograss-nav" data-show="bazaar" class="nav-link exclusive active">onchain
+                        bazaar</button>
+                </li>
+                <li class="nav-item">
+                    <button data-group="cryptograss-nav" data-show="faq" class="nav-link exclusive">FAQs</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="bazaar" class="cryptograss-nav">
+
+        <h3 class="text-white">
+            Blue Railroad Train Squats
+        </h3>
+        <h4 class="text-white">
+            You can earn one by taking a video of yourself doing squats with "Blue Railroad Train", from Tony Rice's
+            Manzanita album, to the Justin Holmes discord.
+        </h4>
+        <table class="chainDataList">
+            {{#each chainData.blueRailroads}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{owner}}</td>
+                    <td><a href="{{uri}}">video</a></td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div id="faq" class="col-sm-8 cryptograss-nav" style="display: none;">
+            {{safeHTML faq}}
+        </div>
+        <div class="col-2"></div>
+    </div>
 </div>
