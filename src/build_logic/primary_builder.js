@@ -111,13 +111,21 @@ Object.keys(pageyaml).forEach(page => {
         contextFromPageSpecificFiles[page] = {};
 
         // Iterate through files in this directory.
-        // TODO: This assumes they are md - might be useful to allow others.
         const pageSpecificFiles = fs.readdirSync(pageSpecificDataPath);
 
         pageSpecificFiles.forEach(file => {
             const fileContents = fs.readFileSync(path.join(pageSpecificDataPath, file), 'utf8');
-            // Assume markdown for the moment.
-            contextFromPageSpecificFiles[page][file.replace(/\.md$/, '')] = marked(fileContents);
+
+            // If it's markdown, render it with marked.
+            if (file.endsWith('.md')) {
+                contextFromPageSpecificFiles[page][file.replace(/\.md$/, '')] = marked(fileContents);
+            }
+            // If it's yaml, load it as yaml.
+            if (file.endsWith('.yaml')) {
+                contextFromPageSpecificFiles[page][file.replace(/\.yaml$/, '')] = yaml.load(fileContents);
+            }
+            // TODO: Handle failure case if there are two files with the same name but different extensions.
+
         });
     }
 
