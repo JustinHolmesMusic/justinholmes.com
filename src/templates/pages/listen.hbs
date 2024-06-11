@@ -4,16 +4,25 @@
     {{> bigger-banner}}
 {{/if}}
 
-<div class="container mt-3">
+<div id="listen-container" class="container mt-3">
     <h1 class="text-light pixel-font text-center">Listen</h1>
     <div class="row">
         <div class="col-12">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a data-group="music-listen-section" data-show="studio" class="nav-link exclusive active" href="#">Studio</a>
+            <ul class="nav subnav nav-tabs pixel-font">
+                <li class="nav-item pi">
+                    <button data-group="music-listen-section" data-show="studio" class="nav-link exclusive active">
+                        Studio
+                    </button>
                 </li>
                 <li class="nav-item">
-                    <a data-group="music-listen-section" data-show="sessions" class="nav-link exclusive" href="#">Sessions</a>
+                    <button data-group="music-listen-section" data-show="sessions" class="nav-link exclusive">Sessions
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button data-group="music-listen-section" data-show="live" class="nav-link exclusive">Live</button>
+                </li>
+                <li class="nav-item">
+                    <button data-group="music-listen-section" data-show="talks" class="nav-link exclusive">Talks</button>
                 </li>
             </ul>
         </div>
@@ -21,27 +30,37 @@
 
     <div id="studio" class="music-listen-section">
         <div class="row">
-            <div id="vowel-sounds" class="col-5">
+            <div id="vowel-sounds" class="col-md-5">
                 <h3 class="text-white text-center"><a href="/music/vowel-sounds">Vowel Sounds</a> (Album)</h3>
                 <h3 class="text-white text-center"><a href="/music/vowel-sounds">(more info)</a></h3>
                 <h5 class="text-white text-center">Released September 2023</h5>
-
-                <iframe style="width: 100%; height: 472px;"
-                        src="https://bandcamp.com/EmbeddedPlayer/album=1063602042/size=large/bgcol=ffffff/linkcol=0687f5/artwork=small/transparent=true/"
-                        seamless><a href="https://justinholmes.bandcamp.com/album/vowel-sounds">Vowel Sounds by Justin
-                    Holmes</a></iframe>
             </div>
             <div class="col-2"></div>
-            <div id="nanny-state-fiddler" class="col-5">
+            <div id="nanny-state-fiddler" class="col-md-5">
                 <h4 class="text-white text-center">Nanny State
                     Fiddler</h4>
                 <h4 class="text-white text-center">(single)</h4>
                 <h5 class="text-white text-center">Released July 2022</h5>
-                <iframe style="border: 0; width: 100%; height: 470px;"
-                        src="https://bandcamp.com/EmbeddedPlayer/album=2958184754/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/track=3837192687/transparent=true/"
-                        seamless><a href="https://justinholmes.bandcamp.com/album/nanny-state-fiddler-single">Nanny
-                    State
-                    Fiddler (single) by Justin Holmes</a></iframe>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-5">
+
+                    <iframe style="width: 100%; height: 472px;"
+                            src="https://bandcamp.com/EmbeddedPlayer/album=1063602042/size=large/bgcol=ffffff/linkcol=0687f5/artwork=small/transparent=true/"
+                            seamless><a href="https://justinholmes.bandcamp.com/album/vowel-sounds">Vowel Sounds by
+                        Justin
+                        Holmes</a></iframe>
+                </div>
+                <div class="col-2"></div>
+                <div class="col-md-5">
+                    <iframe style="border: 0; width: 100%; height: 470px;"
+                            src="https://bandcamp.com/EmbeddedPlayer/album=2958184754/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/track=3837192687/transparent=true/"
+                            seamless><a href="https://justinholmes.bandcamp.com/album/nanny-state-fiddler-single">Nanny
+                        State
+                        Fiddler (single) by Justin Holmes</a></iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -49,46 +68,79 @@
     <div id="sessions" class="music-listen-section" style="display: none;">
         <div class="row">
             <div class="col-1"></div>
-            <div class="col-8">
-                <h3>Intimate recordings at studios or homes, with live audiences of 10 or less.</h3>
+            <div class="col-11">
+                <h3 class="section-heading">Intimate recordings at studios or homes, with live audiences of 10 or
+                    less.</h3>
             </div>
         </div>
+        {{#each sessions}}
+            {{#if (isEven @index)}}
+            <div class="row mt-3">
+            {{/if}}
+            <div class="col-sm-5 live-video index-{{fourCycle @index}}">
+                <div class="row media-metadata-above-video" style="min-height: 100px">
+                    {{> media-metadata this}}
+                </div>
+                <div class="row">
+                    {{> youtube this}}
+                </div>
+            </div>
+            {{#if (isEven @index)}}
+                <div class="col-2"></div>
+            {{else}}
+            </div>
+            {{/if}}
+        {{/each}}
 
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-4">
-                <h4 class="text-white text-center">Drowsy Maggie w/ David Grier</h4>
-                <h5 class="text-white text-center">April 2, 2024</h5>
-                <h5 class="text-white text-center">Nashville, TN</h5>
-                <iframe class="w-100" height="315" src="https://www.youtube.com/embed/yTI1HoFYbE0?si=FXMUSny_Q3Hc3KO-"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-            <div class="col-2"></div>
-            <div class="col-4">
-                <h4 class="text-white text-center">"See Each Other"</h4>
-                <h5 class="text-white text-center">June 15, 20224</h5>
-                <h5 class="text-white text-center">St. Pete, FLN</h5>
-                <iframe class="w-100" height="315" src="https://www.youtube.com/embed/l2ptKjqV4BA?si=Y5SPjyHwREZTAKZV"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-        </div>
     </div>
 
-    <div id="live" class="music-listen-section" style="display: none;">
-        <h3>Recordings from live performances at venues, festivals, and events.</h3>
-        <h4>I've been blessed to play my music and relay my hopes for the future of the internet all over the world,
+    <div id="live" class="music-listen-section">
+        <h3 class="section-heading">Recordings from live performances at venues, festivals, and events.</h3>
+        <h4 class="section-heading pixel-font">I've been blessed to play music and relay my hopes for the future of
+            the internet all over the world,
             from Nashville to Cape Town to Osaka to Prague.</h4>
-    </div>
 
-    <div id="talks" class="music-listen-section" style="display: none;">
-        <iframe class="w-50" src="https://www.youtube.com/embed/Y3s9Fu4yu7o?si=DGFffVz2oaKCYH-7"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        {{#each live}}
+            {{#if (isEven @index)}}
+            <div class="row mt-3">
+            {{/if}}
+            <div class="col-sm-5 live-video index-{{fourCycle @index}}">
+                <div class="row media-metadata-above-video" style="min-height: 100px">
+                    {{> media-metadata this}}
+                </div>
+                <div class="row">
+                    {{> youtube this}}
+                </div>
+            </div>
+            {{#if (isEven @index)}}
+                <div class="col-2"></div>
+            {{else}}
+            </div>
+            {{/if}}
+        {{/each}}
+
+    </div>
+    <div id="talks" class="music-listen-section">
+        <h3 class="section-heading">Recordings that may or may not have music, but where the focus is talking about (and perhaps performing a live demo of) compelling innovations.</h3>
+
+        {{#each talks}}
+            {{#if (isEven @index)}}
+            <div class="row mt-3">
+            {{/if}}
+            <div class="col-sm-5 live-video index-{{fourCycle @index}}">
+                <div class="row media-metadata-above-video" style="min-height: 100px">
+                    {{> media-metadata this}}
+                </div>
+                <div class="row">
+                    {{> youtube this}}
+                </div>
+            </div>
+            {{#if (isEven @index)}}
+                <div class="col-2"></div>
+            {{else}}
+            </div>
+            {{/if}}
+        {{/each}}
 
     </div>
 
@@ -103,7 +155,8 @@
             license. Feel free to distribute, remix, and do whatever pleases you with this music, as long as you
             attribute the creators.
 
-            You can listen to it via legacy platforms like spotify and bandcamp (and, at your discretion, purchase my
+            You can listen to it via legacy platforms like spotify and bandcamp (and, at your discretion, purchase
+            my
             albums from various platforms if you want to support me in this way).
 
             Please share via bittorrent, IPFS, or a censorship-resistant mechanism of your choice.

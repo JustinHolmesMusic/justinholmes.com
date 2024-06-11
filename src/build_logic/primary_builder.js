@@ -34,6 +34,8 @@ function getImageMapping() {
 // When preparing context for Handlebars
 const imageMapping = getImageMapping();
 
+///// Helpers
+/////////////
 
 Handlebars.registerHelper('isActive', function (currentPage, expectedPage, options) {
     return currentPage === expectedPage ? 'active' : '';
@@ -41,6 +43,20 @@ Handlebars.registerHelper('isActive', function (currentPage, expectedPage, optio
 
 Handlebars.registerHelper('isEven', function (index, options) {
     return (index % 2 === 0);
+});
+
+Handlebars.registerHelper('fourCycle', function (index, options) {
+    return index % 4;
+});
+
+// Register a custom helper to iterate two items at a time
+Handlebars.registerHelper('eachPair', function(context, options) {
+  let result = '';
+  for (let i = 0; i < context.length; i += 2) {
+    const pair = [context[i], context[i + 1]];
+    result += options.fn(pair);
+  }
+  return result;
 });
 
 // Make sure target directory exists
