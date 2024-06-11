@@ -48,6 +48,15 @@ a:hover {
     margin-top: -2px;
 }
 
+#cryptograss-content blockquote {
+	font-family: 'Cabin', sans-serif;
+	font-style: italic;
+	color: #f2c6ae;
+	text-shadow: 1px 1px 0px black;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
 .aside1 {
     margin-top: 20px;
     background-color: antiquewhite;
@@ -85,10 +94,19 @@ a:hover {
 }
 
 nav#top-nav a.nav-link {
-    font-size: 1.4em;
+    font-size: 1.2em;
     color: #99c9ff;
     text-shadow: 0px 0px 1px black, 0px 0px 3px #1f0432, 0px 0px 2px #2f17ce;
     text-align: center;
+}
+
+.subnav button.nav-link {
+    color: white;
+    font-size: 1.2em;
+}
+
+.subnav button.nav-link:hover {
+    color: #99c9ff;
 }
 
 nav#top-nav a.nav-link:hover {
@@ -96,7 +114,7 @@ nav#top-nav a.nav-link:hover {
 }
 
 nav#top-nav a.nav-link.active {
-    color: #ccd2f9;
+    color: #bd86ff;
 }
 
 /*These are the arrows*/
@@ -126,6 +144,16 @@ nav a img {
 
 #immutable-string-band {
     text-shadow: none;
+}
+
+#listen-container iframe {
+    width:100%;
+    min-height: 240px;
+}
+
+.section-heading {
+    color: #c7c0f6;
+    text-shadow: 1px 1px 0px #323232, 0px 0px 3px #343434
 }
 
 .timeframe {
@@ -463,4 +491,25 @@ nav a img {
 .contentOnTopOfVideo {
     position: relative;
     z-index: 200;
+    margin-bottom: 100px;
+}
+
+.media-metadata-above-video {
+    height: 200px;
+}
+
+.index-0 {
+    background-color: rgba(162, 198, 243, 0.18);
+}
+
+.index-1 {
+    background-color: rgba(106, 97, 113, 0.22);
+}
+
+.index-2 {
+    background-color: rgba(106, 97, 113, 0.22);
+}
+
+.index-3 {
+    background-color: rgba(162, 198, 243, 0.18);
 }
