@@ -41,10 +41,29 @@ $(document).ready(function () {
 
         let target_name = $(this).data('show');
         let target_element = $('#' + target_name);
+        window.location.hash = target_name;
 
         // Hide members whose class names match the group variable.
-        group_element.hide(0, function() {
+        group_element.hide(0, function () {
             target_element.show();
         });
     });
+
+    // URL hashes
+    var hash = window.location.hash;
+    if (hash) {
+        let section = hash.substring(1);
+        let target_button = $('.nav-link.exclusive[data-show=' + section + ']');
+        let group_name = target_button.data('group');
+        let group_element = $('.' + group_name);
+        group_element.hide();
+
+        let group_links = $('.nav-link.exclusive[data-group=' + group_name + ']');
+        group_links.removeClass('active');
+        target_button.addClass('active');
+
+        var target_element = $('#' + hash.substring(1));
+        target_element.show();
+
+    }
 });
