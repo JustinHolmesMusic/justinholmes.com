@@ -152,7 +152,7 @@ nav a img {
 }
 
 .section-heading {
-    color: #c7c0f6;
+    color: #f2c6ae;
     text-shadow: 1px 1px 0px #323232, 0px 0px 3px #343434
 }
 
@@ -498,18 +498,14 @@ nav a img {
     height: 200px;
 }
 
-.index-0 {
+.index-0, .index-3 {
     background-color: rgba(162, 198, 243, 0.18);
+    padding:25px;
+    border: 1px solid rgb(162, 198, 243);
 }
 
-.index-1 {
-    background-color: rgba(106, 97, 113, 0.22);
-}
-
-.index-2 {
-    background-color: rgba(106, 97, 113, 0.22);
-}
-
-.index-3 {
-    background-color: rgba(162, 198, 243, 0.18);
+.index-1, .index-2 {
+    background-color: rgba(106, 88, 119, 0.33);
+    padding:25px;
+    border: 1px solid rgb(58, 34, 75);
 }
