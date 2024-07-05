@@ -48,7 +48,12 @@ const common = {
                 {
                     from: path.resolve(__dirname, '../../_prebuild_output/assets'),
                     to: path.resolve(__dirname, '../../dist/assets')
-                }
+                },
+
+                {
+                    from: path.resolve(__dirname, '../../src/audio'),
+                    to: path.resolve(__dirname, '../../dist/audio')
+                },
             ]
         }),
         new MiniCssExtractPlugin({
