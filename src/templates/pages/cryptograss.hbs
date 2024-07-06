@@ -31,6 +31,8 @@
         </div>
         <div class="progress-bar">
             <progress value="0" max="100"></progress>
+            <span class="time" id="current-time">00:00</span>
+            <span class="time" id="current-time">00:00</span>
         </div>
     </div>
 
@@ -163,13 +165,23 @@ loadSong(currentSongIndex);
 
 function nextSong() {
     currentSongIndex = (currentSongIndex + 1) % playlist.length;
+    var is_playing = !audioPlayer.paused;
+
     loadSong(currentSongIndex);
-    audioPlayer.play();
+
+    if(is_playing) {
+        audioPlayer.play();
+    }
 }
 
 function previousSong() {
     currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+    var is_playing = !audioPlayer.paused;
     loadSong(currentSongIndex);
+
+    if(is_playing) {
+        audioPlayer.play();
+    }
 }
 
 function playPause() {
