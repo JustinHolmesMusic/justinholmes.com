@@ -4,6 +4,8 @@ import 'spotlight.js';
 import '../styles/fonts.css';
 import '../styles/styles-common.css';
 import $ from 'jquery';
+import Web3 from 'web3';
+const web3 = new Web3();
 
 $(document).ready(function () {
     // load assets/slogans.json
@@ -66,4 +68,26 @@ $(document).ready(function () {
         target_element.show();
 
     }
+});
+
+
+// ------ MAGIC HAT ------
+function keccak256(value) {
+    return web3.utils.soliditySha3(value);
+}
+
+function verifyRabbit() {
+    const secretRabbit = document.getElementById("secretRabbit");
+    // compute the keccak256 hash of the secretRabbit.value
+    const hash = keccak256(secretRabbit.value);
+    // check if the hash is in the valid_rabbit_hashes array
+    if (valid_rabbit_hashes.includes(hash)) {
+        document.getElementById("verifyResult").innerHTML = "Valid rabbit";
+    } else {
+        document.getElementById("verifyResult").innerHTML = "Invalid rabbit";
+    }
+}
+
+$(document).ready(function () {
+    window.verifyRabbit = verifyRabbit;
 });

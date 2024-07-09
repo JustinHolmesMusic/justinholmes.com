@@ -1,0 +1,61 @@
+{{#if compact}}
+    {{> slicey}}
+{{else}}
+    {{> bigger-banner}}
+{{/if}}
+
+<div id="cryptograss-content" class="container mt-3">
+    <h1 class="text-light pixel-font text-center mb-3">Magic hat</h1>
+    <hr/>
+    <p class="h3 text-light curly text-center">TBD</p>
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div id="faq" class="col-sm-8 cryptograss-nav" style="display: none;">
+            This is my id
+        </div>
+        <div class="col-2"></div>
+    </div>
+
+    <input id="secretRabbit" type="text" class="form-control" placeholder="Enter your secret rabbit">
+    <p id="verifyResult" class="text-light"></p>
+    <button id="verify" class="btn btn-primary" onclick="verifyRabbit()">Verify</button>
+
+    {{#each rabbit_hashes}}
+        <div class="col-2">
+            {{this}}
+        </div>
+    {{/each}}
+
+
+
+</div>
+
+<script>
+
+// take the valid hashes out from the rabbit_hashes array
+// and put them into a new array
+const valid_rabbit_hashes = [
+{{#each rabbit_hashes}}
+    "{{this}}",
+{{/each}}
+]
+
+
+function getUrlParameters() {
+    const params = new URLSearchParams(window.location.search);
+    let paramObj = {};
+    for (const [key, value] of params.entries()) {
+        paramObj[key] = value;
+    }
+    return paramObj;
+}
+
+// on page load
+document.addEventListener("DOMContentLoaded", function() {
+    const secretRabbit = document.getElementById("secretRabbit");
+    url_params = getUrlParameters();
+    secretRabbit.value = url_params.rabbit;
+});
+
+</script>

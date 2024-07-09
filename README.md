@@ -1,5 +1,4 @@
-
-### Vowel Sounds for Revealer 1
+### Justin Holmes website, immutable string band and Vowel Sounds for Revealer 1
 
 This repo contains the logic and frontend to release Justin Holmes' 'blockchain bluegrass' album, "Vowel Sounds", using Revealer, a distribution-publishing toolchain build on Threshold Network.
 
@@ -14,8 +13,4 @@ To build for production:
 
 `npm run build`
 
-
-[![Ape Framework](https://img.shields.io/badge/Built%20with-Ape%20Framework-brightgreen.svg)](https://apeworx.io)
-[![Ape Academy](https://img.shields.io/badge/Ape%20Academy-ERC721%20template-yellow.svg)](https://github.com/ApeAcademy/ERC721)
-https://github.com/JustinHolmesMusic/VowelSoundsAlbumDrop/pull/46
-<!-- Your Description Goes Here -->
+To add a new page, include it in the `src/data/pages.yaml`
