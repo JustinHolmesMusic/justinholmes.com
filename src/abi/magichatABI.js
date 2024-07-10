@@ -63,6 +63,13 @@ export const mhABI = [
     },
     {
       "type": "function",
+      "name": "owner",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
       "name": "payments",
       "inputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
       "outputs": [
@@ -78,6 +85,13 @@ export const mhABI = [
       "inputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
       "outputs": [{ "name": "", "type": "bytes32", "internalType": "bytes32" }],
       "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "withdraw",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
     },
     {
       "type": "event",
@@ -104,4 +118,4 @@ export const mhABI = [
       ],
       "anonymous": false
     }
-];
+  ]

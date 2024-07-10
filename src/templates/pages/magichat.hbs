@@ -17,18 +17,51 @@
         <div class="col-2"></div>
     </div>
 
-    <input id="secretRabbit" type="text" class="form-control" placeholder="Enter your secret rabbit">
-    <p id="verifyResult" class="text-light"></p>
-    <input id="amount" type="number" class="form-control" placeholder="Enter the amount">
-    <button id="verify" class="btn btn-primary" onclick="verifyRabbit()">Verify</button>
-    <button id="makePayment" class="btn btn-primary" onclick="makePayment()">Make Payment</button>
-    <w3m-button></w3m-button>
+    <input id="secretRabbit" type="text" class="form-control" placeholder="Enter your secret rabbit", style="display: none;"
+    <p id="verifyResult" class="text-light" style="display: none;"></p>
+    <p id="invalidRabbitErrorMessage" class="text-light" style="display: none; color: red;">Invalid secret rabbit</p>
+    <div id="donationModalContainer" style="display: flex; justify-content: center; width: 100%;">
+        <div id="donationModal" style="display: flex; flex-direction: column; align-items: center; width: 50%;">
+            <span class="curly"><h2>Contribute</h2></span>
+            <div style="display: flex; justify-content: space-between; width: 100%; padding: 10px;">
+                    <button class="btn btn-primary">0.1 ETH</button>
+                    <button class="btn btn-primary">0.2 ETH</button>
+                    <button class="btn btn-primary">0.3 ETH</button>
+            </div>
+            <div class="input-group" style="width: 100%; padding: 10px;">
+                <input id="amount" type="number" class="form-control" placeholder="Enter the amount">
+                <span class="input-group-addon">ETH</span>
+            </div>
+            {{!-- <button id="verify" class="btn btn-primary" onclick="verifyRabbit()">Verify</button> --}}
+            <div style="display: flex; justify-content: space-between; width: 100%; padding: 10px;">
+                <button id="makePayment" class="btn btn-primary" style="padding: 10px;" onclick="makePayment()">Make Payment</button>
+                <w3m-button></w3m-button>
+            </div>
+        </div>
+    </div>
+    {{!-- <style>
+    #amount {
+        padding: 10px;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        text-align: left;
+    }
+    .input-group-addon {
+        position: absolute;
+        right: 10px;
+        font-size: 16px;
+        color: #666;
+    }
+    </style> --}}
 
-    {{#each rabbit_hashes}}
+
+    {{!-- {{#each rabbit_hashes}}
         <div class="col-2">
             {{this}}
         </div>
-    {{/each}}
+    {{/each}} --}}
 
 
 
@@ -45,20 +78,5 @@ const valid_rabbit_hashes = [
 ]
 
 
-function getUrlParameters() {
-    const params = new URLSearchParams(window.location.search);
-    let paramObj = {};
-    for (const [key, value] of params.entries()) {
-        paramObj[key] = value;
-    }
-    return paramObj;
-}
-
-// on page load
-document.addEventListener("DOMContentLoaded", function() {
-    const secretRabbit = document.getElementById("secretRabbit");
-    url_params = getUrlParameters();
-    secretRabbit.value = url_params.rabbit;
-});
 
 </script>
