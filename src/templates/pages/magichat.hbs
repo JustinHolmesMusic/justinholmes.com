@@ -19,7 +19,10 @@
 
     <input id="secretRabbit" type="text" class="form-control" placeholder="Enter your secret rabbit">
     <p id="verifyResult" class="text-light"></p>
+    <input id="amount" type="number" class="form-control" placeholder="Enter the amount">
     <button id="verify" class="btn btn-primary" onclick="verifyRabbit()">Verify</button>
+    <button id="makePayment" class="btn btn-primary" onclick="makePayment()">Make Payment</button>
+    <w3m-button></w3m-button>
 
     {{#each rabbit_hashes}}
         <div class="col-2">

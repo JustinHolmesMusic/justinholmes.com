@@ -28,6 +28,8 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
         var chunks = ['vowel_sounds'];
     } else if (relativePath.startsWith('sign')) {
         var chunks = ['main', 'signing'];
+    } else if (relativePath.startsWith('magichat')) {
+        var chunks = ['main', 'magic_hat'];
     } else {
         var chunks = ['main'];
     }
@@ -61,6 +63,7 @@ const common = {
         vowel_sounds: './src/js/vowel_sounds.js',
         help: './src/js/help.js',
         signing: './src/js/jhmusic_signing.js',
+        magic_hat: './src/js/magic_hat.js',
     },
     module: {
         rules: [
