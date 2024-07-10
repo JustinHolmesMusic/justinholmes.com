@@ -42,6 +42,10 @@ ensemble:
   context:
     page_title: "The Immutable String Band"
 
+tour:
+    template: tour.hbs
+    context_from_yaml: true
+
 magic-hat:
   template: magichat.hbs
   context:
