@@ -81,6 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.makePayment = makePayment;
     verifyRabbit();
+
+    window.setDonationAmount = setDonationAmount;
 });
+
+function setDonationAmount(amount) {
+    document.getElementById("amount").value = amount;
+}
 
 console.log("magic hat loaded");

@@ -7,7 +7,7 @@
 <div id="cryptograss-content" class="container mt-3">
     <h1 class="text-light pixel-font text-center mb-3">Magic hat</h1>
     <hr/>
-    <p class="h3 text-light curly text-center">TBD</p>
+    <p class="h3 text-light curly text-center"></p>
 
     <div class="row">
         <div class="col-2"></div>
@@ -21,22 +21,31 @@
     <p id="verifyResult" class="text-light" style="display: none;"></p>
     <p id="invalidRabbitErrorMessage" class="text-light" style="display: none; color: red;">Invalid secret rabbit</p>
     <div id="donationModalContainer" style="display: flex; justify-content: center; width: 100%;">
-        <div id="donationModal" style="display: flex; flex-direction: column; align-items: center; width: 50%;">
+        <div id="donationModal" style="display: flex; flex-direction: column; align-items: center; width: 75%;">
             <span class="curly"><h2>Contribute</h2></span>
+            <!-- Countdown Timer -->
+            <div id="countdown" class="text-light pixel-font text-center mb-3" style="font-size: 3em;"></div>
+
+            {{!-- 
             <div style="display: flex; justify-content: space-between; width: 100%; padding: 10px;">
-                    <button class="btn btn-primary">0.1 ETH</button>
-                    <button class="btn btn-primary">0.2 ETH</button>
-                    <button class="btn btn-primary">0.3 ETH</button>
+                    <button onclick="setDonationAmount(0.05)" class="btn btn-primary">0.05 ETH</button>
+                    <button onclick="setDonationAmount(0.1)" class="btn btn-primary">0.1 ETH</button>
+                    <button onclick="setDonationAmount(0.3)" class="btn btn-primary">0.3 ETH</button>
             </div>
             <div class="input-group" style="width: 100%; padding: 10px;">
                 <input id="amount" type="number" class="form-control" placeholder="Enter the amount">
                 <span class="input-group-addon">ETH</span>
             </div>
-            {{!-- <button id="verify" class="btn btn-primary" onclick="verifyRabbit()">Verify</button> --}}
+            <button id="verify" class="btn btn-primary" onclick="verifyRabbit()">Verify</button> --}}
+
+            {{!-- 
             <div style="display: flex; justify-content: space-between; width: 100%; padding: 10px;">
                 <button id="makePayment" class="btn btn-primary" style="padding: 10px;" onclick="makePayment()">Make Payment</button>
                 <w3m-button></w3m-button>
             </div>
+            --}}
+
+
         </div>
     </div>
     {{!-- <style>
@@ -64,7 +73,6 @@
     {{/each}} --}}
 
 
-
 </div>
 
 <script>
@@ -77,6 +85,28 @@ const valid_rabbit_hashes = [
 {{/each}}
 ]
 
+// Countdown Timer Script
+const countdownElement = document.getElementById('countdown');
+const targetDate = new Date('July 12, 2024 22:00:00').getTime();
 
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+        countdownElement.innerHTML = "EXPIRED";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    console.log(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+}
+
+setInterval(updateCountdown, 1000);
 
 </script>
