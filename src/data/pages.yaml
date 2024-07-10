@@ -45,6 +45,8 @@ ensemble:
 tour:
     template: tour.hbs
     context_from_yaml: true
+    context:
+      page_title: "Tour dates"
 
 magic-hat:
   template: magichat.hbs
