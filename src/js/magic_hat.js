@@ -18,6 +18,7 @@ const web3 = new Web3();
 const contractAddress = '0xBcf07C8a9Fc60B6C173c113Fa7CFDC97C846Dcad';
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
 import {mhABI as contractABI} from "../abi/magichatABI.js";
+import { show } from 'spotlight.js';
 
 
 function keccak256(value) {
@@ -71,6 +72,16 @@ async function makePayment() {
 
 }
 
+function showHash() {
+    const secretRabbit = document.getElementById("secretRabbit");
+    const url_params = getUrlParameters();
+    secretRabbit.value = url_params.rabbit;
+
+    // compute the keccak256 hash of the secretRabbit.value
+    const hash = keccak256(secretRabbit.value);
+    document.getElementById("rabbithash").innerHTML = hash;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const modal = createWeb3Modal({
@@ -83,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     verifyRabbit();
 
     window.setDonationAmount = setDonationAmount;
+    showHash();
 });
 
 function setDonationAmount(amount) {
