@@ -71,6 +71,21 @@ async function makePayment() {
 
 }
 
+function showHash() {
+    const secretRabbit = document.getElementById("secretRabbit");
+    const url_params = getUrlParameters();
+    secretRabbit.value = url_params.rabbit;
+
+    // compute the keccak256 hash of the secretRabbit.value
+    const hash = keccak256(secretRabbit.value);
+    document.getElementById("rabbithash").innerHTML = hash;
+}
+
+function setAmount(amount) {
+    document.getElementById("amount").value = amount;
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const modal = createWeb3Modal({
@@ -80,7 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Modal created");
 
     window.makePayment = makePayment;
+    window.setAmount = setAmount;
     verifyRabbit();
+    showHash();
 });
 
 console.log("magic hat loaded");
+

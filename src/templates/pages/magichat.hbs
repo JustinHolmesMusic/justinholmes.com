@@ -4,29 +4,66 @@
     {{> bigger-banner}}
 {{/if}}
 
+    <style>
+        #donationModalContainer {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            align-items: center;
+        }
+
+        #donationModal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50%;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid #6c63ff;
+            border-radius: 15px;
+            box-shadow: 0 10px 16px rgba(0, 0, 0, 0.7);
+            padding: 20px;
+        }
+
+
+        .input-group {
+            display: flex;
+            width: 100%;
+            padding: 10px;
+            align-items: center;
+        }
+
+        #amount {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px 0 0 10px;
+            border: 1px solid #ccc;
+        }
+
+        .input-group-addon {
+            background-color: #6c63ff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+    </style>
+
 <div id="cryptograss-content" class="container mt-3">
     <h1 class="text-light pixel-font text-center mb-3">Magic hat</h1>
     <hr/>
-    <p class="h3 text-light curly text-center">TBD</p>
 
-    <div class="row">
-        <div class="col-2"></div>
-        <div id="faq" class="col-sm-8 cryptograss-nav" style="display: none;">
-            This is my id
-        </div>
-        <div class="col-2"></div>
-    </div>
 
-    <input id="secretRabbit" type="text" class="form-control" placeholder="Enter your secret rabbit", style="display: none;"
+    <input id="secretRabbit" type="text" class="form-control" placeholder="Enter your secret rabbit", style="display: none;">
     <p id="verifyResult" class="text-light" style="display: none;"></p>
-    <p id="invalidRabbitErrorMessage" class="text-light" style="display: none; color: red;">Invalid secret rabbit</p>
+    <p id="invalidRabbitErrorMessage" style="display: none; color: red;">Invalid secret rabbit</p>
     <div id="donationModalContainer" style="display: flex; justify-content: center; width: 100%;">
-        <div id="donationModal" style="display: flex; flex-direction: column; align-items: center; width: 50%;">
-            <span class="curly"><h2>Contribute</h2></span>
+        <div id="donationModal" style="display: flex; flex-direction: column; align-items: center; width: 50%; min-width: 300px">
+            <span class="curly" style="color: black;"><h2>Contribute</h2></span>
             <div style="display: flex; justify-content: space-between; width: 100%; padding: 10px;">
-                    <button class="btn btn-primary">0.1 ETH</button>
-                    <button class="btn btn-primary">0.2 ETH</button>
-                    <button class="btn btn-primary">0.3 ETH</button>
+                    <button class="btn btn-primary" onclick="setAmount(0.05)">0.05</button>
+                    <button class="btn btn-primary" onclick="setAmount(0.1)">0.1</button>
+                    <button class="btn btn-primary" onclick="setAmount(0.3)">0.3</button>
             </div>
             <div class="input-group" style="width: 100%; padding: 10px;">
                 <input id="amount" type="number" class="form-control" placeholder="Enter the amount">
@@ -39,32 +76,9 @@
             </div>
         </div>
     </div>
-    {{!-- <style>
-    #amount {
-        padding: 10px;
-        width: 100%;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-        text-align: left;
-    }
-    .input-group-addon {
-        position: absolute;
-        right: 10px;
-        font-size: 16px;
-        color: #666;
-    }
-    </style> --}}
 
-
-    {{!-- {{#each rabbit_hashes}}
-        <div class="col-2">
-            {{this}}
-        </div>
-    {{/each}} --}}
-
-
-
+    <h3>Rabbit Hash:</h3>
+    <h2 id="rabbithash"></h2>
 </div>
 
 <script>
@@ -76,7 +90,5 @@ const valid_rabbit_hashes = [
     "{{this}}",
 {{/each}}
 ]
-
-
 
 </script>
