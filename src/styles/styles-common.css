@@ -22,6 +22,10 @@ a:hover {
     text-decoration: underline;
 }
 
+#page-build-metadata {
+    font-size: 5px;
+}
+
 #ensemble-intro, #about-text, #top-nav, .gradient-transparent-bg {
     background: linear-gradient(180deg, rgba(77, 83, 84, 0.7) 0%, rgba(77, 83, 84, .2) 100%);
 }

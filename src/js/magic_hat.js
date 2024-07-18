@@ -19,6 +19,7 @@ const web3 = new Web3();
 const contractAddress = '0xBcf07C8a9Fc60B6C173c113Fa7CFDC97C846Dcad';
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
 import {mhABI as contractABI} from "../abi/magichatABI.js";
+import { show } from 'spotlight.js';
 
 
 function keccak256(value) {
