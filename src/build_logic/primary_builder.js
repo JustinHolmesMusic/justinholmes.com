@@ -7,6 +7,7 @@ import path from 'path';
 import {marked} from 'marked';
 import {gatherAssets, unusedImages} from './asset_builder.js';
 import {chainData} from './populate_trophy_cases.js';
+import {execSync} from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,7 +17,6 @@ const templateDir = path.resolve(__dirname, '../templates');
 
 let pageyamlFile = fs.readFileSync("src/data/pages.yaml");
 let pageyaml = yaml.load(pageyamlFile);
-
 
 // TODO: Generalize this to be able to handle multiple yaml files
 let ensembleyamlFile = fs.readFileSync("src/data/ensemble.yaml");
@@ -160,6 +160,9 @@ Object.keys(pageyaml).forEach(page => {
     if (contextFromPageSpecificFiles[page]) {
         context = Object.assign({}, context, contextFromPageSpecificFiles[page])
     }
+
+    // Add latest git commit to context.
+    context['_latest_git_commit'] = execSync('git rev-parse HEAD').toString().trim();
 
     // Render the template with context (implement getContextForTemplate as needed)
     const mainBlockContent = template(context);

@@ -1,6 +1,6 @@
 // import {w3mConnectors} from '@web3modal/ethereum';
 // Import ./blueRailroadABI.json as JSON
-import {createConfig, http, readContract} from '@wagmi/core';
+import {createConfig, http, readContract, fetchBlockNumber} from '@wagmi/core';
 import {mainnet, optimism} from '@wagmi/core/chains';
 import {brABI as abi} from "../abi/blueRailroadABI.js";
 
@@ -75,5 +75,15 @@ for (let i = 0; i < blueRailroadCount; i++) {
     };
 
 }
-export const chainData = {blueRailroads: blueRailroads}
-// export {blueRailroads};
+
+
+// And the current block number.
+const mainnetBlockNumber = await fetchBlockNumber(config, {chainId: mainnet.id});
+const optimismBlockNumber = await fetchBlockNumber(config, {chainId: optimism.id});
+
+export const chainData = {
+    blueRailroads: blueRailroads,
+    mainnetBlockNumber: mainnetBlockNumber,
+    optimismBlockNumber: optimismBlockNumber
+}
+
