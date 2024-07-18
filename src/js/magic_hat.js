@@ -1,7 +1,6 @@
 import { createConfig, http, readContract, writeContract } from '@wagmi/core';
 import { optimismSepolia } from '@wagmi/core/chains';
 import Web3 from 'web3';
-import $ from 'jquery';
 import {createWeb3Modal} from '@web3modal/wagmi'
 import tippy from 'tippy.js';
 import jazzicon from 'jazzicon';
@@ -19,7 +18,6 @@ const web3 = new Web3();
 const contractAddress = '0xBcf07C8a9Fc60B6C173c113Fa7CFDC97C846Dcad';
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
 import {mhABI as contractABI} from "../abi/magichatABI.js";
-import { show } from 'spotlight.js';
 
 
 function keccak256(value) {
@@ -69,6 +67,7 @@ async function makePayment() {
         chainId: optimismSepolia.id,
         args: [secretRabbit],
         value: web3.utils.toWei(amount, 'ether'),
+
     });
 
 }

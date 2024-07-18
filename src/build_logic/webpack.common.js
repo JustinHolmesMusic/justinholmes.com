@@ -30,6 +30,8 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
         var chunks = ['main', 'signing'];
     } else if (relativePath.startsWith('magichat')) {
         var chunks = ['main', 'magic_hat'];
+    } else if (relativePath.startsWith('add-live-set')) {
+        var chunks = ['main', 'add_live_set'];
     } else {
         var chunks = ['main'];
     }
@@ -64,6 +66,7 @@ const common = {
         help: './src/js/help.js',
         signing: './src/js/jhmusic_signing.js',
         magic_hat: './src/js/magic_hat.js',
+        add_live_set: './src/js/add_live_set.js'
     },
     module: {
         rules: [

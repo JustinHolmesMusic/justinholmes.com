@@ -1,0 +1,52 @@
+{{#if compact}}
+    {{> slicey}}
+{{else}}
+    {{> bigger-banner}}
+{{/if}}
+
+<div class="container mb-5">
+    <div class="gradient-transparent-bg p-4">
+        <h1 class="pixel-font">Add a live set</h1>
+        <p class="lead">Commit a new live set to the LiveSet contract</p>
+
+        <!-- Input for artist_id -->
+        <div class="form-group">
+            <label for="artist_id">Artist ID</label>
+            <input type="number" class="form-control" id="artist_id" name="artist_id" required>
+        </div>
+
+        <!-- Input for blockheight -->
+        <div class="form-group">
+            <label for="blockheight">Blockheight</label>
+            <input type="number" class="form-control" id="blockheight" name="blockheight" required>
+        </div>
+
+        <!-- Input for shape -->
+        <div class="form-group">
+            <label for="shape">Shape</label>
+            <input type="number" class="form-control" id="shape" name="shape" required>
+        </div>
+
+        <!-- Input for order -->
+        <div class="form-group">
+            <label for="order">Order</label>
+            <input type="number" class="form-control" id="order" name="order" required>
+        </div>
+
+        <!-- Textarea for rabbitHashes -->
+        <div class="form-group">
+            <label for="rabbitSecrets">Rabbit Secrets (newline separated)</label>
+            <textarea class="form-control" id="rabbitSecrets" name="rabbitSecrets" rows="5" required></textarea>
+        </div>
+
+        <!-- Input for stonePriceWei -->
+        <div class="form-group">
+            <label for="stonePriceWei">Stone Price (ETH)</label>
+            <input type="number" class="form-control" id="stonePriceEth" name="stonePriceWei" required>
+        </div>
+
+        <!-- Submit button -->
+        <w3m-button></w3m-button>
+        <button type="submit" class="btn btn-primary" onclick="addLiveSet()">Add live set</button>
+    </div>
+</div>

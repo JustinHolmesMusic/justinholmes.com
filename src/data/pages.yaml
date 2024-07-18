@@ -153,3 +153,9 @@ magic-hat:
       - "0xab7995578a33a17b0e1744f6c8c7f7c576312407c15b5b9653721411f9f9dd88"
       - "0xe06366e0cbecf85ba98789909125d97036d2629508dc8315b1a6a846a87dce9b"
       - "0xd0fa80d30be50a293f1205baf976c3b1d35ce0e39f2acdbfd3f65253b2144c5b"
+
+
+add-live-set:
+  template: add-live-set.hbs
+  context:
+    page_title: "Add a live set"
