@@ -4,6 +4,7 @@ import Web3 from 'web3';
 import $ from 'jquery';
 import {createWeb3Modal} from '@web3modal/wagmi'
 import tippy from 'tippy.js';
+import jazzicon from 'jazzicon';
 
 export const config = createConfig({
     chains: [optimismSepolia],
@@ -79,6 +80,10 @@ function showHash() {
     // compute the keccak256 hash of the secretRabbit.value
     const hash = keccak256(secretRabbit.value);
     document.getElementById("rabbithash").innerHTML = hash;
+
+    // show the jazzicon
+    var el = jazzicon(48, hash);
+    document.getElementById("rabbitHashIcon").appendChild(el);
 }
 
 function setAmount(amount) {

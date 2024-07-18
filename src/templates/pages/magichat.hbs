@@ -57,9 +57,16 @@
     <input id="secretRabbit" type="text" class="form-control" placeholder="Enter your secret rabbit", style="display: none;">
     <p id="verifyResult" class="text-light" style="display: none;"></p>
     <p id="invalidRabbitErrorMessage" style="display: none; color: red;">Invalid secret rabbit</p>
-    <div id="donationModalContainer" style="display: flex; justify-content: center; width: 100%;">
+    <div id="donationModalContainer">
         <div id="donationModal" style="display: flex; flex-direction: column; align-items: center; width: 50%; min-width: 300px">
-            <span class="curly" style="color: black;"><h2>Contribute</h2></span>
+            <span class="pixel-font" style="color: black;"><h2>Contribute</h2></span>
+
+            <div id="rabbitHashIconContainer" style="display: flex; flex-direction: row; align-items: center;">
+                <div id="rabbitHashIcon" style="padding-right: 10px;"></div>
+                <h3>Secret Rabbit Hash:</h3>
+            </div>
+
+            <h3 id="rabbithash" style="font-family: 'Courier New', Courier, monospace; word-break: break-all;"></h2>
             <div style="display: flex; justify-content: space-between; width: 100%; padding: 10px;">
                     <button class="btn btn-primary" onclick="setAmount(0.05)">0.05</button>
                     <button class="btn btn-primary" onclick="setAmount(0.1)">0.1</button>
@@ -77,8 +84,6 @@
         </div>
     </div>
 
-    <h3>Rabbit Hash:</h3>
-    <h2 id="rabbithash"></h2>
 </div>
 
 <script>
