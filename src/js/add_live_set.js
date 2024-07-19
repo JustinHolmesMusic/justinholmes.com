@@ -19,7 +19,7 @@ const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
 import {liveSetABI as contractABI} from "../abi/liveSetABI.js";
 
 function keccak256(value) {
-    return web3.utils.soliditySha3(value);
+    return web3.utils.soliditySha3({ type: "string", value: value});
 }
 
 async function addLiveSet() {
