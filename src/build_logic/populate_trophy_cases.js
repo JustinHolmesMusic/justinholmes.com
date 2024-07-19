@@ -36,7 +36,7 @@ const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
 // const {publicClient} = configureChains(chains, [bullshitCentralizedProvider])
 
 
-const liveSetsInfo = await readContract(config,
+const liveShowIDs = await readContract(config,
     {
         abi: liveSetABI,
         address: liveSetContractAddress,
@@ -98,6 +98,6 @@ export const chainData = {
     mainnetBlockNumber: mainnetBlockNumber,
     optimismBlockNumber: optimismBlockNumber,
     optimismSepoliaBlockNumber: optimismSepoliaBlockNumber
-    liveSetsInfo: liveSetsInfo
+    liveShowIDs: liveShowIDs
 }
 
