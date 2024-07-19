@@ -1,5 +1,3 @@
-// import {w3mConnectors} from '@web3modal/ethereum';
-// Import ./blueRailroadABI.json as JSON
 import {createConfig, http, readContract, fetchBlockNumber} from '@wagmi/core';
 import {mainnet, optimism, optimismSepolia} from '@wagmi/core/chains';
 import {brABI as abi} from "../abi/blueRailroadABI.js";
@@ -43,6 +41,29 @@ const liveShowIDs = await readContract(config,
         functionName: 'getShowIds',
         chainId: optimismSepolia.id,
     })
+
+let showsAndTheirYAMLs = {};
+
+// Iterate through show IDs and parse the data.
+for (let i = 0; i < liveShowIDs.length; i++) {
+    let showBytes = liveShowIDs[i];
+
+// Remove the "0x" prefix
+    const cleanString = showBytes.slice(2);
+
+// Extract the two elements
+    const uint8Hex = cleanString.slice(0, 4); // First two characters represent the uint8
+    const uint64Hex = cleanString.slice(4, 20); // Next 16 characters represent the uint64
+
+// Convert hex to integers
+    const artist_id = parseInt(uint8Hex, 16);
+    const blockheight = BigInt(`0x${uint64Hex}`);
+    const likely_yaml_filename = `${artist_id}-${blockheight}.yaml`;
+    showsAndTheirYAMLs[showBytes] = likely_yaml_filename;
+}
+
+
+///////////BACK TO TONY
 
 const blueRailroadCount = await readContract(config,
     {
@@ -97,7 +118,7 @@ export const chainData = {
     blueRailroads: blueRailroads,
     mainnetBlockNumber: mainnetBlockNumber,
     optimismBlockNumber: optimismBlockNumber,
-    optimismSepoliaBlockNumber: optimismSepoliaBlockNumber
+    optimismSepoliaBlockNumber: optimismSepoliaBlockNumber,
     liveShowIDs: liveShowIDs
 }
 
