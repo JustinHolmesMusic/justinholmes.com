@@ -1,18 +1,21 @@
 // import {w3mConnectors} from '@web3modal/ethereum';
 // Import ./blueRailroadABI.json as JSON
 import {createConfig, http, readContract, fetchBlockNumber} from '@wagmi/core';
-import {mainnet, optimism} from '@wagmi/core/chains';
+import {mainnet, optimism, optimismSepolia} from '@wagmi/core/chains';
 import {brABI as abi} from "../abi/blueRailroadABI.js";
+import {liveSetABI} from "../abi/liveSetABI.js";
 
 export const config = createConfig({
-    chains: [mainnet, optimism],
+    chains: [mainnet, optimism, optimismSepolia],
     transports: {
         [mainnet.id]: http(),
         [optimism.id]: http(),
+        [optimismSepolia.id]: http(),
     },
 })
 
 const blueRailroadAddress = "0xCe09A2d0d0BDE635722D8EF31901b430E651dB52";
+const liveSetContractAddress = "0xd16B72c7453133eA4406237A83014F3f8a9d581F";
 
 let bullshitCentralizedProvider;
 
@@ -32,6 +35,14 @@ const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
 
 // const {publicClient} = configureChains(chains, [bullshitCentralizedProvider])
 
+
+const liveSetsInfo = await readContract(config,
+    {
+        abi: liveSetABI,
+        address: liveSetContractAddress,
+        functionName: 'getShowIds',
+        chainId: optimismSepolia.id,
+    })
 
 const blueRailroadCount = await readContract(config,
     {
@@ -80,10 +91,13 @@ for (let i = 0; i < blueRailroadCount; i++) {
 // And the current block number.
 const mainnetBlockNumber = await fetchBlockNumber(config, {chainId: mainnet.id});
 const optimismBlockNumber = await fetchBlockNumber(config, {chainId: optimism.id});
+const optimismSepoliaBlockNumber = await fetchBlockNumber(config, {chainId: optimismSepolia.id});
 
 export const chainData = {
     blueRailroads: blueRailroads,
     mainnetBlockNumber: mainnetBlockNumber,
-    optimismBlockNumber: optimismBlockNumber
+    optimismBlockNumber: optimismBlockNumber,
+    optimismSepoliaBlockNumber: optimismSepoliaBlockNumber
+    liveSetsInfo: liveSetsInfo
 }
 
