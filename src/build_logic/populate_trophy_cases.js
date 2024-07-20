@@ -1,5 +1,3 @@
-// import {w3mConnectors} from '@web3modal/ethereum';
-// Import ./blueRailroadABI.json as JSON
 import {createConfig, http, readContract, fetchBlockNumber} from '@wagmi/core';
 import {mainnet, optimism, optimismSepolia} from '@wagmi/core/chains';
 import {brABI as abi} from "../abi/blueRailroadABI.js";
@@ -43,6 +41,66 @@ const liveShowIDs = await readContract(config,
         functionName: 'getShowIds',
         chainId: optimismSepolia.id,
     })
+
+let showsAndTheirYAMLs = {};
+var liveSets = {};
+
+function parseShowBytes(showBytes) {
+    const cleanString = showBytes.slice(2);
+
+// Extract the two elements
+    const uint8Hex = cleanString.slice(0, 4); // First two characters represent the uint8
+    const uint64Hex = cleanString.slice(4, 20); // Next 16 characters represent the uint64
+
+// Convert hex to integers
+    const artist_id = parseInt(uint8Hex, 16);
+    const blockheight = BigInt(`0x${uint64Hex}`);
+
+    return {artist_id, blockheight};
+}
+
+async function isValidSet(showId, order) {
+    // call the contract
+
+    let result = await readContract(config, {
+        abi: liveSetABI,
+        address: liveSetContractAddress,
+        functionName: "isValidSet",
+        chainId: optimismSepolia.id,
+        args: [showId, order]
+    });
+
+    return result;
+}
+
+// Iterate through show IDs and parse the data.
+for (let i = 0; i < liveShowIDs.length; i++) {
+    let showBytes = liveShowIDs[i];
+    const { artist_id, blockheight } = parseShowBytes(showBytes);
+    const likely_yaml_filename = `${artist_id}-${blockheight}.yaml`;
+    showsAndTheirYAMLs[showBytes] = likely_yaml_filename;
+
+    // fetch sets for this show
+    for(let order = 0; order < 10; order++) {
+        if (await isValidSet(showBytes, order)) {
+            const setDetails = await readContract(config, {
+                abi: liveSetABI,
+                address: liveSetContractAddress,
+                functionName: 'getSetForShowByShowBytes',
+                chainId: optimismSepolia.id,
+                args: [showBytes, order]
+            });
+
+            liveSets[`${artist_id}-${blockheight}-${order}`] = setDetails;
+
+        } else {
+            break;
+        }
+    }
+}
+
+
+///////////BACK TO TONY
 
 const blueRailroadCount = await readContract(config,
     {
@@ -88,48 +146,16 @@ for (let i = 0; i < blueRailroadCount; i++) {
 }
 
 
-async function isValidSet(showId, order) {
-    // call the contract
 
-    let result = await readContract(config, {
-        abi: liveSetABI,
-        address: liveSetContractAddress,
-        functionName: "isValidSet",
-        chainId: optimismSepolia.id,
-        args: [showId, order]
-    });
-
-    return result;
-}
-
-// New code to iterate through liveShowIDs and fetch sets
-var liveSets = {};
-
-for (let showId of liveShowIDs) {
-    // Assuming a function isValidSet exists to check validity
-
-    for(let order = 0; order < 10; order++) {
-        if (await isValidSet(showId, order)) {
-            const setDetails = await readContract(config, {
-                abi: liveSetABI,
-                address: liveSetContractAddress,
-                functionName: 'getSetForShowByShowBytes',
-                chainId: optimismSepolia.id,
-                args: [showId, order]
-            });
-            liveSets[showId] = setDetails; // Save the set details
-        } else {
-            break;
-        }
-    }
-    
-}
+ 
 
 
 // And the current block number.
 const mainnetBlockNumber = await fetchBlockNumber(config, {chainId: mainnet.id});
 const optimismBlockNumber = await fetchBlockNumber(config, {chainId: optimism.id});
 const optimismSepoliaBlockNumber = await fetchBlockNumber(config, {chainId: optimismSepolia.id});
+
+// console.log(liveSets);
 
 export const chainData = {
     blueRailroads: blueRailroads,
