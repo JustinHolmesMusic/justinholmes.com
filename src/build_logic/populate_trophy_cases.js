@@ -88,6 +88,44 @@ for (let i = 0; i < blueRailroadCount; i++) {
 }
 
 
+async function isValidSet(showId, order) {
+    // call the contract
+
+    let result = await readContract(config, {
+        abi: liveSetABI,
+        address: liveSetContractAddress,
+        functionName: "isValidSet",
+        chainId: optimismSepolia.id,
+        args: [showId, order]
+    });
+
+    return result;
+}
+
+// New code to iterate through liveShowIDs and fetch sets
+var liveSets = {};
+
+for (let showId of liveShowIDs) {
+    // Assuming a function isValidSet exists to check validity
+
+    for(let order = 0; order < 10; order++) {
+        if (await isValidSet(showId, order)) {
+            const setDetails = await readContract(config, {
+                abi: liveSetABI,
+                address: liveSetContractAddress,
+                functionName: 'getSetForShowByShowBytes',
+                chainId: optimismSepolia.id,
+                args: [showId, order]
+            });
+            liveSets[showId] = setDetails; // Save the set details
+        } else {
+            break;
+        }
+    }
+    
+}
+
+
 // And the current block number.
 const mainnetBlockNumber = await fetchBlockNumber(config, {chainId: mainnet.id});
 const optimismBlockNumber = await fetchBlockNumber(config, {chainId: optimism.id});
@@ -97,7 +135,7 @@ export const chainData = {
     blueRailroads: blueRailroads,
     mainnetBlockNumber: mainnetBlockNumber,
     optimismBlockNumber: optimismBlockNumber,
-    optimismSepoliaBlockNumber: optimismSepoliaBlockNumber
-    liveShowIDs: liveShowIDs
+    optimismSepoliaBlockNumber: optimismSepoliaBlockNumber,
+    liveShowIDs: liveShowIDs,
+    liveSets: liveSets // Include all sets in the exported data
 }
-
