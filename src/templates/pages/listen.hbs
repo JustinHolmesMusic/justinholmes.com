@@ -22,7 +22,8 @@
                     <button data-group="music-listen-section" data-show="live" class="nav-link exclusive">Live</button>
                 </li>
                 <li class="nav-item">
-                    <button data-group="music-listen-section" data-show="talks" class="nav-link exclusive">Talks</button>
+                    <button data-group="music-listen-section" data-show="talks" class="nav-link exclusive">Talks
+                    </button>
                 </li>
             </ul>
         </div>
@@ -78,11 +79,11 @@
             <div class="row mt-3">
             {{/if}}
             <div class="col-sm-5 live-video index-{{fourCycle @index}}">
-                <div class="row media-metadata-above-video" style="min-height: 100px">
-                    {{> media-metadata this}}
-                </div>
                 <div class="row">
                     {{> youtube this}}
+                </div>
+                <div class="row media-metadata-above-video" style="min-height: 100px">
+                    {{> media-metadata this}}
                 </div>
             </div>
             {{#if (isEven @index)}}
@@ -105,11 +106,11 @@
             <div class="row mt-3">
             {{/if}}
             <div class="col-sm-5 live-video index-{{fourCycle @index}}">
-                <div class="row media-metadata-above-video" style="min-height: 100px">
-                    {{> media-metadata this}}
-                </div>
                 <div class="row">
                     {{> youtube this}}
+                </div>
+                <div class="row media-metadata-above-video" style="min-height: 100px">
+                    {{> media-metadata this}}
                 </div>
             </div>
             {{#if (isEven @index)}}
@@ -121,18 +122,19 @@
 
     </div>
     <div id="talks" class="music-listen-section">
-        <h3 class="section-heading">Recordings that may or may not have music, but where the focus is talking about (and perhaps performing a live demo of) compelling innovations.</h3>
+        <h3 class="section-heading">Recordings that may or may not have music, but where the focus is talking about (and
+            perhaps performing a live demo of) compelling innovations.</h3>
 
         {{#each talks}}
             {{#if (isEven @index)}}
             <div class="row mt-3">
             {{/if}}
             <div class="col-sm-5 live-video index-{{fourCycle @index}}">
-                <div class="row media-metadata-above-video" style="min-height: 100px">
-                    {{> media-metadata this}}
-                </div>
                 <div class="row">
                     {{> youtube this}}
+                </div>
+                <div class="row media-metadata-above-video" style="min-height: 100px">
+                    {{> media-metadata this}}
                 </div>
             </div>
             {{#if (isEven @index)}}
