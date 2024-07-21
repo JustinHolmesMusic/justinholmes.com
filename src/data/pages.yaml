@@ -31,11 +31,6 @@ vowel-sounds:
     no_video_bg: true
   template: "music/vowel-sounds/index.hbs"
 
-sign-things:
-  template: sign-things.hbs
-  context:
-    page_title: "Sign things if you want!"
-
 ensemble:
   template: ensemble.hbs
   context_from_yaml: true
@@ -154,8 +149,17 @@ magic-hat:
       - "0xe06366e0cbecf85ba98789909125d97036d2629508dc8315b1a6a846a87dce9b"
       - "0xd0fa80d30be50a293f1205baf976c3b1d35ce0e39f2acdbfd3f65253b2144c5b"
 
-
 add-live-set:
-  template: add-live-set.hbs
   context:
     page_title: "Add a live set"
+  template: "cryptograss/tools/add-live-set.hbs"
+  
+add-show-for-stone-minting:
+  context:
+    page_title: "Make SetStones available for a show."
+  template: "cryptograss/tools/add-show-for-stone-minting.hbs"
+
+sign-things:
+  template: "cryptograss/tools/sign-things.hbs"
+  context:
+    page_title: "Sign things if you want!"
