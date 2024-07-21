@@ -32,6 +32,8 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
         var chunks = ['main', 'magic_hat'];
     } else if (relativePath.startsWith('add-live-set')) {
         var chunks = ['main', 'add_live_set'];
+    } else if (relativePath.startsWith('add-show-for-stone-minting')) {
+        var chunks = ['main', 'add_show_for_stone_minting'];
     } else {
         var chunks = ['main'];
     }
@@ -66,7 +68,8 @@ const common = {
         help: './src/js/help.js',
         signing: './src/js/jhmusic_signing.js',
         magic_hat: './src/js/magic_hat.js',
-        add_live_set: './src/js/add_live_set.js'
+        add_live_set: './src/js/cryptograss/tools/add_live_set.js',
+        add_show_for_stone_minting: './src/js/cryptograss/tools/add_show_for_stone_minting.js'
     },
     module: {
         rules: [

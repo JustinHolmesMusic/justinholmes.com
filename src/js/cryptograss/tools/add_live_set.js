@@ -16,7 +16,7 @@ export const config = createConfig({
 const web3 = new Web3();
 const contractAddress = '0xd16B72c7453133eA4406237A83014F3f8a9d581F';
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
-import {liveSetABI as contractABI} from "../abi/liveSetABI.js";
+import {liveSetABI as contractABI} from "../../../abi/liveSetABI.js";
 
 function keccak256(value) {
     return web3.utils.soliditySha3({ type: "string", value: value});

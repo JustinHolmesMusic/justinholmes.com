@@ -21,12 +21,7 @@ export const config = createConfig({
 })
 
 const blueRailroadAddress = "0xCe09A2d0d0BDE635722D8EF31901b430E651dB52";
-const setStoneContractAddress = "0x07e0fe45391bf9dcc46e13d1962f18a6c5039a71";
-
-const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
-
-let showsAndTheirYAMLs = {};
-var liveSets = {};
+const setStoneContractAddress = "0xD43e38D81C083CD28AdBC41754A3850DaC62bC46";
 
 // iterate through the shows directory in data, get the YAML filenames.
 const showsDir = path.resolve(dataDir, 'shows');
@@ -116,7 +111,6 @@ const mainnetBlockNumber = await fetchBlockNumber(config, {chainId: mainnet.id})
 const optimismBlockNumber = await fetchBlockNumber(config, {chainId: optimism.id});
 const optimismSepoliaBlockNumber = await fetchBlockNumber(config, {chainId: optimismSepolia.id});
 
-// console.log(liveSets);
 
 export const chainData = {
     blueRailroads: blueRailroads,
@@ -124,5 +118,4 @@ export const chainData = {
     optimismBlockNumber: optimismBlockNumber,
     optimismSepoliaBlockNumber: optimismSepoliaBlockNumber,
     liveShowIDs: liveShowIDs,
-    liveSets: liveSets // Include all sets in the exported data
 }
