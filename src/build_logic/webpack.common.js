@@ -30,9 +30,9 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
         var chunks = ['main', 'signing'];
     } else if (relativePath.startsWith('magichat')) {
         var chunks = ['main', 'magic_hat'];
-    } else if (relativePath.startsWith('add-live-set')) {
+    } else if (relativePath.startsWith('cryptograss/tools/add-live-set')) {
         var chunks = ['main', 'add_live_set'];
-    } else if (relativePath.startsWith('add-show-for-stone-minting')) {
+    } else if (relativePath.startsWith('cryptograss/tools/add-show-for-stone-minting')) {
         var chunks = ['main', 'add_show_for_stone_minting'];
     } else {
         var chunks = ['main'];
