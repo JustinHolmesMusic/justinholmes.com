@@ -99,4 +99,5 @@ export const chainData = {
     optimismBlockNumber: optimismBlockNumber,
     optimismSepoliaBlockNumber: optimismSepoliaBlockNumber,
     liveShowIDs: liveShowIDs,
+    showSetStoneData: showSetStoneData,
 }
