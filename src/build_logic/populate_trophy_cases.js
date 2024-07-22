@@ -14,7 +14,7 @@ export const config = createConfig({
 })
 
 const blueRailroadAddress = "0xCe09A2d0d0BDE635722D8EF31901b430E651dB52";
-const setStoneContractAddress = "0xD43e38D81C083CD28AdBC41754A3850DaC62bC46";
+const setStoneContractAddress = "0x111c9369B385caF848E7F453799ACaC4d4Ced589";
 
 let showSetStoneData = {}
 
