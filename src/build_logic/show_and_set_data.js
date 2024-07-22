@@ -31,7 +31,7 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
     for (i = 0; i < Object.keys(showYAMLData['sets']).length; i++) {
         let set = showYAMLData['sets'][i];
 
-        sets_in_this_show[i] = set;
+        // sets_in_this_show[i] = set;
         let songs_in_this_set = {}
 
         // Clean the data, turning eerything into an object
@@ -41,7 +41,6 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
             if (typeof song === 'string') {
                 songObject['type'] = "normal";
                 songObject['title'] = song;
-                songs_in_this_set[s] = songObject;
             } else {
                 const song_title = Object.keys(song)[0]
                 songObject['title'] = song_title;
@@ -51,7 +50,10 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
                     }
                 }
             }
+            songs_in_this_set[s] = songObject;
         }
+
+        sets_in_this_show[i] = songs_in_this_set;
     }
     // All songs are now objects.  TODO: Just give shows an ID and persist them, etc.
     showYAMLData['sets'] = sets_in_this_show;
@@ -59,5 +61,4 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
 }
 
 
-// Export the liveShowIDs
 export {shows};
