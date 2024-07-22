@@ -3,10 +3,6 @@ import { optimismSepolia } from '@wagmi/core/chains';
 import Web3 from 'web3';
 import $ from 'jquery';
 import {createWeb3Modal} from '@web3modal/wagmi'
-import tippy from 'tippy.js';
-import jazzicon from 'jazzicon';
-
-console.log('add_show_for_stone_minting.js');
 
 export const config = createConfig({
     chains: [optimismSepolia],
@@ -16,7 +12,7 @@ export const config = createConfig({
 })
 
 const web3 = new Web3();
-const contractAddress = '0x07e0fe45391bf9dcc46e13d1962f18a6c5039a71';
+const contractAddress = '0xD43e38D81C083CD28AdBC41754A3850DaC62bC46';
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
 import {setStoneABI as contractABI} from "../../../abi/setStoneABI.js";
 
@@ -24,11 +20,17 @@ function keccak256(value) {
     return web3.utils.soliditySha3({ type: "string", value: value});
 }
 
-async function addLiveSet() {
+function parseShapes() {
+    let shapesInput = $('#shapes').val();
+    return shapesInput.split('\n').map(Number);
+}
+
+
+async function makeShowAvailableForStoneMinting() {
     let artist_id = parseInt($('#artist_id').val());
     let blockheight = parseInt($('#blockheight').val());
-    let shape = parseInt($('#shape').val());
-    let order = parseInt($('#order').val());
+    let shapes = parseShapes()
+    let numberOfSets = parseInt($('#numberOfSets').val());
     let stonePriceEth = parseInt($('#stonePriceEth').val());
     let stonePriceWei = web3.utils.toWei(stonePriceEth, 'ether');
 
@@ -42,13 +44,10 @@ async function addLiveSet() {
     const result = await writeContract(config, {
         address: contractAddress,
         abi: contractABI,
-        functionName: 'addSet',
+        functionName: "makeShowAvailableForStoneMinting",
         chainId: optimismSepolia.id,
-        args: [artist_id, blockheight, shape, order, rabbitHashes, stonePriceWei],
+        args: [artist_id, blockheight, rabbitHashes, numberOfSets, shapes, stonePriceWei],
     });
-
-
-
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         projectId,
     });
 
-    window.addLiveSet = addLiveSet;
+    window.makeShowAvailableForStoneMinting = makeShowAvailableForStoneMinting;
 
     // show the etherscan link
     document.getElementById("contractEtherscanLink").href = `https://sepolia-optimism.etherscan.io/address/${contractAddress}#code`;

@@ -154,6 +154,11 @@ add-live-set:
     page_title: "Add a live set"
   template: "cryptograss/tools/add-live-set.hbs"
 
+add-show-for-stone-minting:
+  context:
+    page_title: "Make show available for stone minting"
+  template: "cryptograss/tools/add-show-for-stone-minting.hbs"
+
 strike-set-stones:
   context:
     page_title: "Strike new SetStones"

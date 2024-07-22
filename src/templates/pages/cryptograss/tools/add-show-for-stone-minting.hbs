@@ -4,6 +4,16 @@
     {{> bigger-banner}}
 {{/if}}
 
+
+    function makeShowAvailableForStoneMinting(
+        uint16 artist_id,
+        uint64 blockheight,
+        bytes32[] memory rabbitHashes,
+        uint8 numberOfSets,
+        uint8[] memory shapes,
+        uint256 stonePrice) public {
+
+
 <div class="container mb-5">
     <div class="gradient-transparent-bg p-4">
         <h1 class="pixel-font">Make show available for stone minting</h1>
@@ -30,14 +40,14 @@
 
         <!-- Input for shape -->
         <div class="form-group">
-            <label for="shape">Shape</label>
-            <input type="number" class="form-control" id="shape" name="shape" required>
+            <label for="shape">Shapes (newline separated, length equal to number of sets)</label>
+            <textarea class="form-control" id="shapes" name="shapes" required rows="2"></textarea>
         </div>
 
         <!-- Input for order -->
         <div class="form-group">
-            <label for="order">Order</label>
-            <input type="number" class="form-control" id="order" name="order" required>
+            <label for="order">Number of sets</label>
+            <input type="number" class="form-control" id="numberOfSets" name="numberOfSets" required>
         </div>
 
         <!-- Textarea for rabbitHashes -->
@@ -54,6 +64,6 @@
 
         <!-- Submit button -->
         <w3m-button></w3m-button>
-        <button type="submit" class="btn btn-primary" onclick="addLiveSet()">Add live set</button>
+        <button type="submit" class="btn btn-primary" onclick="makeShowAvailableForStoneMinting()">Make show available for stone minting</button>
     </div>
 </div>
