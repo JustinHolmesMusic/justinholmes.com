@@ -2,10 +2,7 @@ import {createConfig, http, readContract, fetchBlockNumber} from '@wagmi/core';
 import {mainnet, optimism, optimismSepolia} from '@wagmi/core/chains';
 import {brABI as abi} from "../abi/blueRailroadABI.js";
 import {setStoneABI} from "../abi/setStoneABI.js";
-import fs from 'fs';
-import {fileURLToPath} from "url";
-import path from "path";
-import {liveShowIDs} from "./show_and_set_data.js";
+import {shows} from "./show_and_set_data.js";
 
 export const config = createConfig({
     chains: [mainnet, optimism, optimismSepolia],
@@ -19,15 +16,10 @@ export const config = createConfig({
 const blueRailroadAddress = "0xCe09A2d0d0BDE635722D8EF31901b430E651dB52";
 const setStoneContractAddress = "0xD43e38D81C083CD28AdBC41754A3850DaC62bC46";
 
-
-//////////////
-
-
-
 let showSetStoneData = {}
 
 // Iterate through show IDs and parse the data.
-for (let i = 0; i < liveShowIDs.length; i++) {
+for (let [song_title, song_data] of Object.entries(shows)) {
 
     // Split ID by "-" into artist_id and blockheight
     const showID = liveShowIDs[i];

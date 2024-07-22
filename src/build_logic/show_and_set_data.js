@@ -13,6 +13,8 @@ import fs from "fs";
 const showsDir = path.resolve(dataDir, 'shows');
 const liveShowYAMLs = fs.readdirSync(showsDir);
 
+let shows = {};
+
 // Iterate through the YAML files and get the show IDs.
 let liveShowIDs = [];
 for (let i = 0; i < liveShowYAMLs.length; i++) {
@@ -23,7 +25,6 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
     // Read the YAML file
     let showYAMLFile = fs.readFileSync(path.resolve(showsDir, showYAML));
     let showYAMLData = yaml.load(showYAMLFile);
-    console.log(showYAMLData);
 
     let sets_in_this_show = {}
 
@@ -52,8 +53,11 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
             }
         }
     }
+    // All songs are now objects.  TODO: Just give shows an ID and persist them, etc.
+    showYAMLData['sets'] = sets_in_this_show;
+    shows[showID] = showYAMLData;
 }
 
 
 // Export the liveShowIDs
-export {liveShowIDs};
+export {shows};
