@@ -153,11 +153,11 @@ add-live-set:
   context:
     page_title: "Add a live set"
   template: "cryptograss/tools/add-live-set.hbs"
-  
-add-show-for-stone-minting:
+
+strike-set-stones:
   context:
-    page_title: "Make SetStones available for a show."
-  template: "cryptograss/tools/add-show-for-stone-minting.hbs"
+    page_title: "Strike new SetStones"
+  template: "cryptograss/bazaar/strike-set-stones.hbs"
 
 sign-things:
   template: "cryptograss/tools/sign-things.hbs"
