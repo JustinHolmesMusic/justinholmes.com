@@ -5,11 +5,7 @@ import {setStoneABI} from "../abi/setStoneABI.js";
 import fs from 'fs';
 import {fileURLToPath} from "url";
 import path from "path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const dataDir = path.resolve(__dirname, '../data');
+import {liveShowIDs} from "./show_and_set_data.js";
 
 export const config = createConfig({
     chains: [mainnet, optimism, optimismSepolia],
@@ -23,17 +19,10 @@ export const config = createConfig({
 const blueRailroadAddress = "0xCe09A2d0d0BDE635722D8EF31901b430E651dB52";
 const setStoneContractAddress = "0xD43e38D81C083CD28AdBC41754A3850DaC62bC46";
 
-// iterate through the shows directory in data, get the YAML filenames.
-const showsDir = path.resolve(dataDir, 'shows');
-const liveShowYAMLs = fs.readdirSync(showsDir);
 
-// Iterate through the YAML files and get the show IDs.
-let liveShowIDs = [];
-for (let i = 0; i < liveShowYAMLs.length; i++) {
-    let showYAML = liveShowYAMLs[i];
-    let showID = showYAML.split('.')[0];
-    liveShowIDs.push(showID);
-}
+//////////////
+
+
 
 let showSetStoneData = {}
 

@@ -7,25 +7,26 @@ event_url: "https://lu.ma/jmfb5xdj"
 sets:
   0:
     - Paint Exchange
-    - Hell or High Water
-      * type: segue
+    - Hell or High Water:
+      type: segue
     - Salt Creek
-    - Hell or High Water
-      * type: reprise
+    - Hell or High Water:
+      type: reprise
     - Cicada Song
     - Lost
-    - Loser
-      * cover: Grateful Dead
-    - Song of Storms
-      * video_game: The Legend of Zelda: Ocarina of Time
+    - Loser:
+      cover: Grateful Dead
+    - Song of Storms:
+      video_game:
+        "The Legend of Zelda: Ocarina of Time"
     - Power Underneath
-    - Oh, the Dreadful Wind and Rain
-      * traditional: true
+    - Oh, the Dreadful Wind and Rain:
+      traditional: true
     - The Morning of The Bank Run
-    - Seven Bridges Road
-      * cover: Steve Young
+    - Seven Bridges Road:
+      cover: Steve Young
     - Silver .44
-    - Back Up and Push
-      * traditional: 1
+    - Back Up and Push:
+      traditional: true
     - Nanny State Fiddler
     - August
