@@ -6,8 +6,9 @@ import yaml from 'js-yaml';
 import path from 'path';
 import {marked} from 'marked';
 import {gatherAssets, unusedImages} from './asset_builder.js';
-import {chainData} from './populate_trophy_cases.js';
+import {chainData, appendChainDataToShows} from './populate_trophy_cases.js';
 import {execSync} from 'child_process';
+import {shows} from "./show_and_set_data.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -178,14 +179,14 @@ Object.keys(pageyaml).forEach(page => {
 ////////////////////////////
 
 // for every show in chainData, render a page
-console.log(chainData.showSetStoneData);
+let showsWithChainData = await appendChainDataToShows(shows);
 
-Object.entries(chainData.showSetStoneData).forEach(([show_id, show]) => {
+Object.entries(showsWithChainData).forEach(([show_id, show]) => {
     const page = `show_${show.id}`;
 
     // TODO: the URL should look like
-    // https://justinholmes.com/cryptograss/bazaar/setstone/%3Cartist_id%3E/%3Cblockheight%3E?secret_rabbit=%3Ccode%3E
-    // const outputFilePath = path.join(outputBaseDir, `cryptograss/bazaar/sestone ... 
+    // https://justinholmes.com/cryptograss/bazaar/setstone/<artist_id>-<blockheight>.html?secret_rabbit=%3Ccode%3E
+    const outputFilePath = path.join(outputBaseDir, `cryptograss/bazaar/setstones/${show_id}.html`);
 
 
     const hbsTemplate = path.join(templateDir, 'pages/cryptograss/bazaar/strike-set-stones.hbs');
@@ -219,8 +220,6 @@ Object.entries(chainData.showSetStoneData).forEach(([show_id, show]) => {
     // Write the rendered HTML to the output file path
     fs.writeFileSync(outputFilePath, rendered_page);
 });
-
-
 
 
 // Warn about each unused image.
