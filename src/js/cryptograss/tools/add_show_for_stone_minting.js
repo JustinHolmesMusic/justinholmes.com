@@ -31,7 +31,7 @@ async function makeShowAvailableForStoneMinting() {
     let blockheight = parseInt($('#blockheight').val());
     let shapes = parseShapes()
     let numberOfSets = parseInt($('#numberOfSets').val());
-    let stonePriceEth = parseInt($('#stonePriceEth').val());
+    let stonePriceEth = parseFloat($('#stonePriceEth').val());
     let stonePriceWei = web3.utils.toWei(stonePriceEth, 'ether');
 
     // parser the rabbit secrets
