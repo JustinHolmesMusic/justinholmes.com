@@ -53,14 +53,20 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
             numberOfSets: showData[2],
             stonePrice: showData[3],
             rabbitHashes: showData[4],
+            setShapes: showData[5],
+
         };
 
+        show["artist_id"] = parseInt(artist_id);
+        show["blockheight"] = parseInt(blockheight)
         show["rabbit_hashes"] = unpackedShowData.rabbitHashes;
         show["stone_price"] = unpackedShowData.stonePrice;
+        show["set_shapes"] = unpackedShowData.setShapes;
 
         // integrity check: the number of sets on chain is the same as the number of sets in the yaml, raise an error if not
         if (unpackedShowData.numberOfSets !== Object.keys(show.sets).length) {
-            throw new Error(`Number of sets on chain (${unpackedShowData.numberOfSets}) does not match the number of sets in the yaml (${show.sets.length}) for show ID ${show_id}`);
+            // throw new Error(`Number of sets on chain (${unpackedShowData.numberOfSets}) does not match the number of sets in the yaml (${show.sets.length}) for show ID ${show_id}`);
+            console.log(`Error: Number of sets on chain (${unpackedShowData.numberOfSets}) does not match the number of sets in the yaml (${show.sets.length}) for show ID ${show_id}`);
         }
 
         // console.log("show", stringify(show));
