@@ -21,7 +21,7 @@ export const config = createConfig({
 })
 
 const blueRailroadAddress = "0xCe09A2d0d0BDE635722D8EF31901b430E651dB52";
-const setStoneContractAddress = "0x111c9369B385caF848E7F453799ACaC4d4Ced589";
+const setStoneContractAddress = "0xdFa0f0633514d10Dab3FB9B2bcac17f0b883ee0a";
 
 export async function appendChainDataToShows(showsAsReadFromDisk) {
     // We expect shows to be the result of iterating through the show YAML files.

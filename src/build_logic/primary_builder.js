@@ -182,7 +182,9 @@ Object.keys(pageyaml).forEach(page => {
 let showsWithChainData = await appendChainDataToShows(shows);
 
 Object.entries(showsWithChainData).forEach(([show_id, show]) => {
-    const page = `show_${show.id}`;
+    const page = `show_${show_id}`;
+    
+
 
     // TODO: the URL should look like
     // https://justinholmes.com/cryptograss/bazaar/setstone/<artist_id>-<blockheight>.html?secret_rabbit=%3Ccode%3E
@@ -200,14 +202,16 @@ Object.entries(showsWithChainData).forEach(([show_id, show]) => {
     const templateSource = fs.readFileSync(hbsTemplate, 'utf8');
     const template = Handlebars.compile(templateSource);
 
-    let specified_context = {};
-
+    
     let context = {
         page_name: page,
+        page_title: "Mint a set stone",
         show,
         imageMapping,
         chainData,
     };
+
+    console.log(context);
 
     // Add latest git commit to context.
     context['_latest_git_commit'] = execSync('git rev-parse HEAD').toString().trim();

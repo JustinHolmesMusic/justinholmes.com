@@ -159,11 +159,6 @@ add-show-for-stone-minting:
     page_title: "Make show available for stone minting"
   template: "cryptograss/tools/add-show-for-stone-minting.hbs"
 
-strike-set-stones:
-  context:
-    page_title: "Strike new SetStones"
-  template: "cryptograss/bazaar/strike-set-stones.hbs"
-
 sign-things:
   template: "cryptograss/tools/sign-things.hbs"
   context:

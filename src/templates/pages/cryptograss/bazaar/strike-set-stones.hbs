@@ -4,6 +4,113 @@
     {{> bigger-banner}}
 {{/if}}
 
-<div class="container mt-3">
+
+    <style>
+        #donationModalContainer {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            align-items: center;
+        }
+
+        #donationModal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50%;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid #6c63ff;
+            border-radius: 15px;
+            box-shadow: 0 10px 16px rgba(0, 0, 0, 0.7);
+            padding: 20px;
+        }
+
+
+        .input-group {
+            display: flex;
+            width: 100%;
+            padding: 10px;
+            align-items: center;
+        }
+
+        #amount {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px 0 0 10px;
+            border: 1px solid #ccc;
+        }
+
+        .input-group-addon {
+            background-color: #6c63ff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+    </style>
+
+
+<div id="cryptograss-content" class="container mt-3">
+    <h1 class="text-light pixel-font text-center mb-3">Mint a set stone</h1>
+    <hr/>
+
     <div id="shapeRenderingArea"></div>
+
+    <p id="verifyResult" class="text-light" style="display: none;"></p>
+    <p id="invalidRabbitErrorMessage" style="display: none; color: red;">Invalid secret rabbit</p>
+
+    <div id="showOverview">
+        <h2>Show Overview</h2>
+        <p>Show name: {{show.title}}</p>
+        <p>Venue: {{show.venue}}</p>
+        <p>Host: {{show.host}}</p>
+        <p>Locality {{show.locality}}</p>
+        <p>Event URL: <a href="{{show.event_url}}">{{show.event_url}}</a></p>
+        <p>Time: {{show.time}}</p>
+    </div>
+
+
+
+    <div id="donationModalContainer">
+        <div id="donationModal" style="display: flex; flex-direction: column; align-items: center; width: 50%; min-width: 300px">
+            <span class="pixel-font" style="color: black;"><h2>Mint set stone for this show</h2></span>
+
+            <div id="rabbitHashIconContainer" style="display: flex; flex-direction: row; align-items: center;">
+                <div id="rabbitHashIcon" style="padding-right: 10px;"></div>
+                <h3>Secret Rabbit Hash:</h3>
+            </div>
+
+            <h3 id="rabbithash" style="font-family: 'Courier New', Courier, monospace; word-break: break-all;"></h2>
+            <div style="display: flex; justify-content: space-between; width: 100%; padding: 10px;">
+                    <button class="btn btn-primary" onclick="setAmount(0.05)">0.05</button>
+                    <button class="btn btn-primary" onclick="setAmount(0.1)">0.1</button>
+                    <button class="btn btn-primary" onclick="setAmount(0.3)">0.3</button>
+            </div>
+            <div class="input-group" style="width: 100%; padding: 10px;">
+                <input id="amount" type="number" class="form-control" placeholder="Enter the amount">
+                <span class="input-group-addon">ETH</span>
+            </div>
+            {{!-- <button id="verify" class="btn btn-primary" onclick="verifyRabbit()">Verify</button> --}}
+
+            <div style="display: flex; justify-content: space-between; width: 100%; padding: 10px;">
+                <button id="makePayment" class="btn btn-primary" style="padding: 10px;" onclick="makePayment()">Make Payment</button>
+                <w3m-button></w3m-button>
+            </div>
+
+        </div>
+    </div>
+
 </div>
+
+<script>
+
+// take the valid hashes out from the rabbit_hashes array
+// and put them into a new array
+const valid_rabbit_hashes = [
+{{#each show.rabbit_hashes}}
+    "{{this}}",
+{{/each}}
+]
+
+</script>
