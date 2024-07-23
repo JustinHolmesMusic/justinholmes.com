@@ -96,7 +96,6 @@ const baseTemplate = Handlebars.compile(fs.readFileSync(path.join(templateDir, '
 /////////////////
 // Page iteration
 //////////////////
-
 let contextFromPageSpecificFiles = {};
 Object.keys(pageyaml).forEach(page => {
     let pageInfo = pageyaml[page];
@@ -172,6 +171,57 @@ Object.keys(pageyaml).forEach(page => {
     // Write the rendered HTML to the output file path
     fs.writeFileSync(outputFilePath, rendered_page);
 });
+
+
+////////////////////////////
+/// Render SetStone pages //
+////////////////////////////
+
+// for every show in chainData, render a page
+console.log(chainData.showSetStoneData);
+
+Object.entries(chainData.showSetStoneData).forEach(([show_id, show]) => {
+    const page = `show_${show.id}`;
+
+    // TODO: the URL should look like
+    // https://justinholmes.com/cryptograss/bazaar/setstone/%3Cartist_id%3E/%3Cblockheight%3E?secret_rabbit=%3Ccode%3E
+    // const outputFilePath = path.join(outputBaseDir, `cryptograss/bazaar/sestone ... 
+
+
+    const hbsTemplate = path.join(templateDir, 'pages/cryptograss/bazaar/strike-set-stones.hbs');
+
+    const outputDir = path.dirname(outputFilePath);
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, {recursive: true});
+    }
+
+    // Load and compile the template
+    const templateSource = fs.readFileSync(hbsTemplate, 'utf8');
+    const template = Handlebars.compile(templateSource);
+
+    let specified_context = {};
+
+    let context = {
+        page_name: page,
+        show,
+        imageMapping,
+        chainData,
+    };
+
+    // Add latest git commit to context.
+    context['_latest_git_commit'] = execSync('git rev-parse HEAD').toString().trim();
+
+    // Render the template with context
+    const mainBlockContent = template(context);
+
+    let rendered_page = baseTemplate({...context, main_block: mainBlockContent})
+
+    // Write the rendered HTML to the output file path
+    fs.writeFileSync(outputFilePath, rendered_page);
+});
+
+
+
 
 // Warn about each unused image.
 unusedImages.forEach(image => {
