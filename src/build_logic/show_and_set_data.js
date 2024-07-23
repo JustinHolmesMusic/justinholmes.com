@@ -15,7 +15,9 @@ const liveShowYAMLs = fs.readdirSync(showsDir);
 
 let shows = {};
 
-// Iterate through the YAML files and get the show IDs.
+// Iterate through the YAML files.
+// We're going to get the show metadata and,
+// FOR NOW, the list of songs, which we'll turn into a plausible future format.
 let liveShowIDs = [];
 for (let i = 0; i < liveShowYAMLs.length; i++) {
     let showYAML = liveShowYAMLs[i];
@@ -26,15 +28,15 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
     let showYAMLFile = fs.readFileSync(path.resolve(showsDir, showYAML));
     let showYAMLData = yaml.load(showYAMLFile);
 
+    // This array will become an array of sets with songs formatted as we imagine they one day will be onchain.
     let sets_in_this_show = {}
 
-    for (i = 0; i < Object.keys(showYAMLData['sets']).length; i++) {
-        let set = showYAMLData['sets'][i];
-
-        // sets_in_this_show[i] = set;
+    for (let [set_number, set] of Object.entries(showYAMLData['sets'])) {
         let songs_in_this_set = {}
 
-        // Clean the data, turning eerything into an object
+        // Now we'll iterate through the songs.
+        // Some of them will just be strings, while others will be objects.
+        // For the strings, we'll set the default of type: normal.
         for (let s = 0; s < set.length; s++) {
             let song = set[s];
             let songObject = {};
@@ -46,10 +48,12 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
                 songObject['title'] = song_title;
                 for (let key in song) {
                     if (key !== song_title) {
+                        // All other keys apply (ie, traditional: true)
                         songObject[key] = song[key];
                     }
                 }
             }
+            // And put the song back into the set object.
             songs_in_this_set[s] = songObject;
         }
 
