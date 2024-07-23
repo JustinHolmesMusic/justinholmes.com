@@ -81,7 +81,8 @@ export const setStoneABI = [
         { "name": "", "type": "uint16", "internalType": "uint16" },
         { "name": "", "type": "uint8", "internalType": "uint8" },
         { "name": "", "type": "uint256", "internalType": "uint256" },
-        { "name": "", "type": "bytes32[]", "internalType": "bytes32[]" }
+        { "name": "", "type": "bytes32[]", "internalType": "bytes32[]" },
+        { "name": "", "type": "uint8[]", "internalType": "uint8[]" }
       ],
       "stateMutability": "view"
     },
