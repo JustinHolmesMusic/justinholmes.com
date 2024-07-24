@@ -2,13 +2,9 @@ import {createConfig, http, readContract, fetchBlockNumber} from '@wagmi/core';
 import {mainnet, optimism, optimismSepolia} from '@wagmi/core/chains';
 import {brABI as abi} from "../abi/blueRailroadABI.js";
 import {setStoneABI} from "../abi/setStoneABI.js";
-import {JsonRpcVersionUnsupportedError} from 'viem';
+import {shows} from "./show_and_set_data.js";
+import {serializeChainData} from "./chaindata_db.js";
 
-function stringify(obj) {
-    // Custom replacer function to handle BigInt
-    return JSON.stringify(obj, (key, value) =>
-        typeof value === 'bigint' ? value.toString() : value, 2);
-}
 
 
 export const config = createConfig({
@@ -121,15 +117,20 @@ for (let i = 0; i < blueRailroadCount; i++) {
 }
 
 
+
+
 // And the current block number.
 const mainnetBlockNumber = await fetchBlockNumber(config, {chainId: mainnet.id});
 const optimismBlockNumber = await fetchBlockNumber(config, {chainId: optimism.id});
 const optimismSepoliaBlockNumber = await fetchBlockNumber(config, {chainId: optimismSepolia.id});
-
+let showsWithChainData = await appendChainDataToShows(shows);
 
 export const chainData = {
     blueRailroads: blueRailroads,
     mainnetBlockNumber: mainnetBlockNumber,
     optimismBlockNumber: optimismBlockNumber,
     optimismSepoliaBlockNumber: optimismSepoliaBlockNumber,
+    showsWithChainData: showsWithChainData,
 }
+
+serializeChainData(chainData);

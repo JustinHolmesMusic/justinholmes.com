@@ -6,15 +6,15 @@ import yaml from 'js-yaml';
 import path from 'path';
 import {marked} from 'marked';
 import {gatherAssets, unusedImages} from './asset_builder.js';
-import {chainData, appendChainDataToShows} from './populate_trophy_cases.js';
+import {deserializeChainData} from './chaindata_db.js';
 import {execSync} from 'child_process';
-import {shows} from "./show_and_set_data.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const templateDir = path.resolve(__dirname, '../templates');
 
+const chainData = deserializeChainData();
 
 let pageyamlFile = fs.readFileSync("src/data/pages.yaml");
 let pageyaml = yaml.load(pageyamlFile);
@@ -179,9 +179,8 @@ Object.keys(pageyaml).forEach(page => {
 ////////////////////////////
 
 // for every show in chainData, render a page
-let showsWithChainData = await appendChainDataToShows(shows);
 
-Object.entries(showsWithChainData).forEach(([show_id, show]) => {
+Object.entries(chainData.showsWithChainData).forEach(([show_id, show]) => {
     const page = `show_${show_id}`;
     
 

@@ -1,4 +1,4 @@
-.build/
+gbuild/
 ape-nft-project/
 node_modules
 
@@ -136,3 +136,4 @@ dmypy.json
 .idea 
 
 _prebuild_output
+_prebuild_chain_data
