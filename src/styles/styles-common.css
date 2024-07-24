@@ -2,7 +2,7 @@ html {
     --font-scale: 1;
 }
 
-body {
+body#bodyWithBackground {
     background-image: url("background.png");
     height: 100%;
     margin: 0;

@@ -31,6 +31,13 @@ vowel-sounds:
     no_video_bg: true
   template: "music/vowel-sounds/index.hbs"
 
+vowel-sounds-album-art:
+  context:
+    page_title: Vowel Sounds Album Art
+    no_video_bg: true
+  template: "cryptograss/tools/generate_art.hbs"
+  base_template: blank.hbs
+
 ensemble:
   template: ensemble.hbs
   context_from_yaml: true

@@ -90,10 +90,6 @@ const outputBaseDir = path.resolve(__dirname, '../../_prebuild_output');
 // Use glob to find all .hbs files under the input directory
 const pageFiles = glob.sync(`${pageBaseDir}/**/*.hbs`);
 
-// For use in some, but perhaps not all pages (esp. if I resume a blog, etc).
-const baseTemplate = Handlebars.compile(fs.readFileSync(path.join(templateDir, 'layouts/base.hbs'), 'utf8'));
-
-
 /////////////////
 // Page iteration
 //////////////////
@@ -167,6 +163,12 @@ Object.keys(pageyaml).forEach(page => {
     // Render the template with context (implement getContextForTemplate as needed)
     const mainBlockContent = template(context);
 
+    let baseTemplateName = pageInfo["base_template"];
+    if (baseTemplateName === undefined) {
+        baseTemplateName = 'base.hbs';
+    }
+    const baseTemplate = Handlebars.compile(fs.readFileSync(path.join(templateDir, 'layouts', baseTemplateName), 'utf8'));
+
     let rendered_page = baseTemplate({...context, main_block: mainBlockContent})
 
     // Write the rendered HTML to the output file path
@@ -182,7 +184,6 @@ Object.keys(pageyaml).forEach(page => {
 
 Object.entries(chainData.showsWithChainData).forEach(([show_id, show]) => {
     const page = `show_${show_id}`;
-    
 
 
     // TODO: the URL should look like
@@ -201,7 +202,7 @@ Object.entries(chainData.showsWithChainData).forEach(([show_id, show]) => {
     const templateSource = fs.readFileSync(hbsTemplate, 'utf8');
     const template = Handlebars.compile(templateSource);
 
-    
+
     let context = {
         page_name: page,
         page_title: "Mint a set stone",
@@ -217,6 +218,9 @@ Object.entries(chainData.showsWithChainData).forEach(([show_id, show]) => {
 
     // Render the template with context
     const mainBlockContent = template(context);
+
+    const baseTemplate = Handlebars.compile(fs.readFileSync(path.join(templateDir, 'layouts', 'base.hbs'), 'utf8'));
+
 
     let rendered_page = baseTemplate({...context, main_block: mainBlockContent})
 
