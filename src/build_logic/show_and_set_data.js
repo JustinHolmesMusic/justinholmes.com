@@ -41,7 +41,6 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
             let song = set[s];
             let songObject = {};
             if (typeof song === 'string') {
-                songObject['type'] = "normal";
                 songObject['title'] = song;
             } else {
                 const song_title = Object.keys(song)[0]
@@ -52,6 +51,11 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
                         songObject[key] = song[key];
                     }
                 }
+            }
+                
+            // fill the default values for unspecified fields
+            if (!songObject.hasOwnProperty('type')) {
+                songObject['type'] = "normal";
             }
             // And put the song back into the set object.
             songs_in_this_set[s] = songObject;
