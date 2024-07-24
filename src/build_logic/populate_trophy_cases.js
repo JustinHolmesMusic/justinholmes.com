@@ -69,9 +69,9 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
             console.log(`Error: Number of sets on chain (${unpackedShowData.numberOfSets}) does not match the number of sets in the yaml (${show.sets.length}) for show ID ${show_id}`);
         }
 
-        // console.log("show", stringify(show));
         // showSetStoneData[showID] = showData;
     }
+    // console.log("shows", stringify(shows));
     return shows;
 }
 

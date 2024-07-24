@@ -51,7 +51,7 @@
     </style>
 
 
-<div id="cryptograss-content" class="container mt-3">
+<div id="cryptograss-content" class="container mb-5 gradient-transparent-bg p-4">
     <h1 class="text-light pixel-font text-center mb-3">Mint a set stone</h1>
     <hr/>
 
@@ -60,18 +60,36 @@
     <p id="verifyResult" class="text-light" style="display: none;"></p>
     <p id="invalidRabbitErrorMessage" style="display: none; color: red;">Invalid secret rabbit</p>
 
-    <div id="showOverview">
-        <h2>Show Overview</h2>
-        <p>Show name: {{show.title}}</p>
-        <p>Venue: {{show.venue}}</p>
-        <p>Host: {{show.host}}</p>
-        <p>Locality: {{show.locality}}</p>
-        <p>Event URL: <a href="{{show.event_url}}">{{show.event_url}}</a></p>
-        <p>Set shapes: {{show.set_shapes}}</p>
-        <p>Block height: {{show.blockheight}}</p>
-        <p>Artist ID: {{show.artist_id}}</p>
-        <p>Stone price: {{show.stone_price}}</p>
+    <div id="showOverview" class="border-bottom border-black pb-3">
+        <h1><span class="pixel-font">Show Overview</span></h1>
+        <span class="pixel-font">Show name:</span> <b>{{show.title}}</b><br>
+        <span class="pixel-font">Venue:</span> <b>{{show.venue}}</b><br>
+        <span class="pixel-font">Host:</span> <b>{{show.host}}</b><br>
+        <span class="pixel-font">Locality:</span> <b>{{show.locality}}</b><br>
+        <span class="pixel-font">Event URL:</span> <a href="{{show.event_url}}">{{show.event_url}}</a><br>
+        <span class="pixel-font">Set shapes:</span> <b>{{show.set_shapes}}</b><br>
+        <span class="pixel-font">Block height:</span> <b>{{show.blockheight}}</b><br>
+        <span class="pixel-font">Artist ID:</span> <b>{{show.artist_id}}</b><br>
+        {{!-- <span class="pixel-font">Stone price:</span> <b>{{show.stone_price}}</b><br> --}}
     </div>
+
+    <div id="setlist" class="border-bottom border-black pb-3 mt-5">
+        <h1><span class="pixel-font">Setlist</span></h1>
+
+        {{#each show.sets }}
+            <h3><span class="pixel-font">Set #{{@index}}</span></h3>
+
+            <ul>
+            {{#each this}}
+               <li><span style="font-family: 'Courier New', Courier, monospace;">{{@key}}</span>: <span class="pixel-font">{{this.title}}</span></li>
+            {{/each}}
+            </ul>
+
+        {{/each}}
+    </div>
+
+
+
 
 
 

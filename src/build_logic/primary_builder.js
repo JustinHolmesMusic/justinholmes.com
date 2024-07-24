@@ -211,7 +211,7 @@ Object.entries(showsWithChainData).forEach(([show_id, show]) => {
         chainData,
     };
 
-    console.log(context);
+    // console.log(context);
 
     // Add latest git commit to context.
     context['_latest_git_commit'] = execSync('git rev-parse HEAD').toString().trim();
