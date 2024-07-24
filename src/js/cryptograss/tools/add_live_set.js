@@ -59,5 +59,5 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addLiveSet = addLiveSet;
 
     // show the etherscan link
-    document.getElementById("contractEtherscanLink").href = `https://sepolia-optimism.etherscan.io/address/${contractAddress}#code`;
+    // document.getElementById("contractEtherscanLink").href = `https://sepolia-optimism.etherscan.io/address/${contractAddress}#code`;
 });

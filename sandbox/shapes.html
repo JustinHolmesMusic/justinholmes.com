@@ -10,10 +10,208 @@
         }
     </style>
     <script type="application/javascript">
+window.onload = function() {
+    const canvas = document.getElementById('pixelCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Define the size of each pixel and the canvas dimensions
+    const pixelSize = 3;
+    const width = canvas.width / pixelSize;
+    const height = canvas.height / pixelSize;
+
+    // NES color palette as an object
+    const nesPalette = {
+        grey: '#7C7C7C',
+        blue: '#0000FC',
+        darkBlue: '#0000BC',
+        purple: '#4428BC',
+        darkPurple: '#940084',
+        red: '#A80020',
+        orange: '#A81000',
+        brown: '#881400',
+        darkBrown: '#503000',
+        green: '#007800',
+        darkGreen: '#006800',
+        darkerGreen: '#005800',
+        teal: '#004058',
+        black: '#000000',
+        lightGrey: '#BCBCBC',
+        lightBlue: '#0078F8',
+        skyBlue: '#0058F8',
+        violet: '#6844FC',
+        pink: '#D800CC',
+        hotPink: '#E40058',
+        lightRed: '#F83800',
+        peach: '#E45C10',
+        gold: '#AC7C00',
+        lightGreen: '#00B800',
+        neonGreen: '#00A800',
+        aquaGreen: '#00A844',
+        cyan: '#008888',
+        white: '#F8F8F8',
+        lightCyan: '#3CBCFC',
+        babyBlue: '#6888FC',
+        lavender: '#9878F8',
+        magenta: '#F878F8',
+        rose: '#F85898',
+        salmon: '#F87858',
+        tangerine: '#FCA044',
+        yellow: '#F8B800',
+        lime: '#B8F818',
+        mint: '#58D854',
+        paleGreen: '#58F898',
+        turquoise: '#00E8D8',
+        greyBlue: '#787878',
+        brightWhite: '#FCFCFC',
+        powderBlue: '#A4E4FC',
+        lightLavender: '#B8B8F8',
+        pastelPurple: '#D8B8F8',
+        palePink: '#F8B8F8',
+        blush: '#F8A4C0',
+        ivory: '#F0D0B0',
+        cream: '#FCE0A8',
+        lightYellow: '#F8D878',
+        lemon: '#D8F878',
+        paleMint: '#B8F8B8',
+        softTurquoise: '#B8F8D8',
+        electricBlue: '#00FCFC',
+        lightRose: '#F8D8F8'
+    };
+
+    const numberColors = {
+        background: nesPalette.black,
+        foreground: nesPalette.white
+    };
+
+    // Pixel art for numbers 0-9 using an 8x8 grid
+    const numbers = [
+        [
+            "00111100",
+            "01000010",
+            "01000110",
+            "01001010",
+            "01010010",
+            "01100010",
+            "01000010",
+            "00111100"
+        ],
+        [
+            "00011000",
+            "00111000",
+            "00011000",
+            "00011000",
+            "00011000",
+            "00011000",
+            "00011000",
+            "00111100"
+        ],
+        [
+            "00111100",
+            "01000010",
+            "00000010",
+            "00000100",
+            "00001000",
+            "00010000",
+            "00100000",
+            "01111110"
+        ],
+        [
+            "00111100",
+            "01000010",
+            "00000010",
+            "00011100",
+            "00000010",
+            "00000010",
+            "01000010",
+            "00111100"
+        ],
+        [
+            "00000100",
+            "00001100",
+            "00010100",
+            "00100100",
+            "01000100",
+            "01111110",
+            "00000100",
+            "00000100"
+        ],
+        [
+            "01111110",
+            "01000000",
+            "01000000",
+            "01111100",
+            "00000010",
+            "00000010",
+            "01000010",
+            "00111100"
+        ],
+        [
+            "00111100",
+            "01000010",
+            "01000000",
+            "01111100",
+            "01000010",
+            "01000010",
+            "01000010",
+            "00111100"
+        ],
+        [
+            "01111110",
+            "00000010",
+            "00000100",
+            "00001000",
+            "00010000",
+            "00100000",
+            "00100000",
+            "00100000"
+        ],
+        [
+            "00111100",
+            "01000010",
+            "01000010",
+            "00111100",
+            "01000010",
+            "01000010",
+            "01000010",
+            "00111100"
+        ],
+        [
+            "00111100",
+            "01000010",
+            "01000010",
+            "00111110",
+            "00000010",
+            "00000010",
+            "01000010",
+            "00111100"
+        ]
+    ];
+
+    function drawNumber(number, startX, startY) {
+        console.log('Drawing number', number);
+        const pattern = numbers[number];
+
+        for (let y = 0; y < pattern.length; y++) {
+            for (let x = 0; x < pattern[y].length; x++) {
+                ctx.fillStyle = pattern[y][x] === '1' ? numberColors.foreground : numberColors.background;
+                ctx.fillRect((startX + x) * pixelSize, (startY + y) * pixelSize, pixelSize, pixelSize);
+            }
+        }
+    }
+
+    // Fill the background
+    ctx.fillStyle = numberColors.background;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the numbers 0-9
+    for (let i = 0; i < 9; i++) {
+        drawNumber(i, i * 9, 0);  // 9 is used to leave a gap between the numbers
+    }
+};
 
     </script>
 </head>
 <body>
-<div id="shapeRenderingArea"></div>
+    <canvas id="pixelCanvas" width="400" height="300"></canvas>
 </body>
 </html>

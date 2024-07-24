@@ -60,5 +60,5 @@ document.addEventListener('DOMContentLoaded', () => {
     window.makeShowAvailableForStoneMinting = makeShowAvailableForStoneMinting;
 
     // show the etherscan link
-    document.getElementById("contractEtherscanLink").href = `https://sepolia-optimism.etherscan.io/address/${contractAddress}#code`;
+    // document.getElementById("contractEtherscanLink").href = `https://sepolia-optimism.etherscan.io/address/${contractAddress}#code`;
 });
