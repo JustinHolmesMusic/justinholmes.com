@@ -97,9 +97,9 @@
 
 
 
-    <div id="donationModalContainer">
+    <div id="donationModalContainer" class="mt-5">
         <div id="donationModal" style="display: flex; flex-direction: column; align-items: center; width: 50%; min-width: 300px">
-            <span class="pixel-font" style="color: black;"><h2>Mint set stone for this show</h2></span>
+            <span class="pixel-font" style="color: black;"><h2>Strike set stone for this show</h2></span>
 
             <div id="rabbitHashIconContainer" style="display: flex; flex-direction: row; align-items: center;">
                 <div id="rabbitHashIcon" style="padding-right: 10px;"></div>
@@ -107,11 +107,17 @@
             </div>
 
             <h3 id="rabbithash" style="font-family: 'Courier New', Courier, monospace; word-break: break-all;"></h2>
-            <div style="display: flex; justify-content: space-between; width: 100%; padding: 10px;">
+            {{!-- <div style="display: flex; justify-content: space-between; width: 100%; padding: 10px;">
                     <button class="btn btn-primary" onclick="setAmount(0.05)">0.05</button>
                     <button class="btn btn-primary" onclick="setAmount(0.1)">0.1</button>
                     <button class="btn btn-primary" onclick="setAmount(0.3)">0.3</button>
+            </div> --}}
+
+            <div id="mintStoneDetails" style="width: 100%; align-items: left; color: black;">
+                <h4><span class="pixel-font">Stone price:</span> <span id="stonePrice" style="font-family: 'Courier New', Courier, monospace;"></span></h4>
             </div>
+
+
             <div class="input-group" style="width: 100%; padding: 10px;">
                 <input id="amount" type="number" class="form-control" placeholder="Enter the amount">
                 <span class="input-group-addon">ETH</span>
@@ -138,4 +144,5 @@ const valid_rabbit_hashes = [
 {{/each}}
 ]
 
+const stone_price_wei = {{show.stone_price}}
 </script>

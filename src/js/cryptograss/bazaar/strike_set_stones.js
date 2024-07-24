@@ -84,6 +84,13 @@ function setAmount(amount) {
     document.getElementById("amount").value = amount;
 }
 
+function showStonePrice() {
+    const stonePriceElement = document.getElementById("stonePrice");
+    // convert value of the variable stone_price_wei to ETH
+
+    const stonePriceEth = web3.utils.fromWei(stone_price_wei.toString(), 'ether');
+    stonePriceElement.innerHTML = stonePriceEth + ' ETH';
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -97,4 +104,5 @@ document.addEventListener('DOMContentLoaded', () => {
     window.setAmount = setAmount;
     verifyRabbit();
     showHash();
+    showStonePrice();
 });
