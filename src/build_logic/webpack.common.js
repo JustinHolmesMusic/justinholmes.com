@@ -36,6 +36,8 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
         var chunks = ['main', 'strike_set_stone'];
     } else if (relativePath.startsWith('cryptograss/tools/add-show-for-stone-minting')) {
         var chunks = ['main', 'add_show_for_stone_minting'];
+    } else if (relativePath.startsWith('cryptograss/tools/setstone-color-palette')) {
+        var chunks = ['main', 'setstone_color_palette'];
     } else {
         var chunks = ['main'];
     }
@@ -73,7 +75,8 @@ const common = {
         // strike_set_stone: './src/js/shapes.js',
         strike_set_stone: './src/js/cryptograss/bazaar/strike_set_stones.js',
         add_live_set: './src/js/cryptograss/tools/add_live_set.js',
-        add_show_for_stone_minting: './src/js/cryptograss/tools/add_show_for_stone_minting.js'
+        add_show_for_stone_minting: './src/js/cryptograss/tools/add_show_for_stone_minting.js',
+        setstone_color_palette: './src/js/cryptograss/tools/setstone_color_palette.js'
     },
     module: {
         rules: [

@@ -4,6 +4,7 @@ import Web3 from 'web3';
 import {createWeb3Modal} from '@web3modal/wagmi'
 import tippy from 'tippy.js';
 import jazzicon from 'jazzicon';
+import { generateDiamondPattern, nesPalette, setstoneColors } from '../../shapes.js';
 
 export const config = createConfig({
     chains: [optimismSepolia],
@@ -92,6 +93,8 @@ function showStonePrice() {
     stonePriceElement.innerHTML = stonePriceEth + ' ETH';
 }
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const modal = createWeb3Modal({
@@ -106,3 +109,4 @@ document.addEventListener('DOMContentLoaded', () => {
     showHash();
     showStonePrice();
 });
+

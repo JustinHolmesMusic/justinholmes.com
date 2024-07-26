@@ -159,6 +159,11 @@ add-show-for-stone-minting:
     page_title: "Make show available for stone minting"
   template: "cryptograss/tools/add-show-for-stone-minting.hbs"
 
+setstone-color-palette:
+  context:
+    page_title: "Setstone color palette"
+  template: "cryptograss/tools/setstone-color-palette.hbs"
+
 sign-things:
   template: "cryptograss/tools/sign-things.hbs"
   context:
