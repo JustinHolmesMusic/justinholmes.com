@@ -142,17 +142,17 @@ export function generateDiamondPattern(baseColor, shadowColor, highlightColor, b
 // generateDiamondPattern(nesPalette.teal, nesPalette.lightBlue, nesPalette.brightWhite);
 
 window.onload = function () {
-    const canvas = document.getElementById('pixelCanvas');
-    const ctx = canvas.getContext('2d');
-
-    // Define the size of each pixel and the canvas dimensions
-    const pixelSize = 3;
-    const width = canvas.width / pixelSize;
-    const height = canvas.height / pixelSize;
+    // const canvas = document.getElementById('pixelCanvas');
+    // const ctx = canvas.getContext('2d');
+    //
+    // // Define the size of each pixel and the canvas dimensions
+    // const pixelSize = 7;
+    // const width = canvas.width / pixelSize;
+    // const height = canvas.height / pixelSize;
 
     const numberColors = {
-        background: nesPalette.black,
-        foreground: nesPalette.white
+        background: nesPalette.white,
+        foreground: nesPalette.orange
     };
 
     // Pixel art for numbers 0-9 using an 8x8 grid
@@ -259,10 +259,17 @@ window.onload = function () {
         ]
     ];
 
-    function drawNumber(number, startX, startY) {
+    function drawNumber(number, canvas_on_which_to_draw) {
+
+        const pixelSize = 30;
+        // TODO: Can we nix these two lines?
+        const startY = 0;
+        const startX = 0;
+
         console.log('Drawing number', number);
         const pattern = numbers[number];
 
+        let ctx = canvas_on_which_to_draw.getContext('2d');
         for (let y = 0; y < pattern.length; y++) {
             for (let x = 0; x < pattern[y].length; x++) {
                 ctx.fillStyle = pattern[y][x] === '1' ? numberColors.foreground : numberColors.background;
@@ -270,14 +277,18 @@ window.onload = function () {
             }
         }
     }
+    //
+    // // Fill the background
+    // canvas_on_which_to_draw.fillStyle = numberColors.background;
+    // canvas_on_which_to_draw.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Fill the background
-    ctx.fillStyle = numberColors.background;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw the numbers 0-9
-    for (let i = 0; i < 9; i++) {
-        drawNumber(i, i * 9, 0);  // 9 is used to leave a gap between the numbers
-    }
+    // Find canvas elements with class "pixel-number" and draw the number indicated in their data attribute
+    const pixelNumbers = document.querySelectorAll('.pixel-number');
+    pixelNumbers.forEach((numberCanvas) => {
+        const number = parseInt(numberCanvas.dataset.number);
+        const x = parseInt(numberCanvas.dataset.x);
+        const y = parseInt(numberCanvas.dataset.y);
+        drawNumber(number, numberCanvas);
+    });
 };
 

@@ -35,6 +35,7 @@ vowel-sounds-album-art:
   context:
     page_title: Vowel Sounds Album Art
     no_video_bg: true
+    numbers_to_draw: [0, 1, 2, 3, 4, 5]
   template: "cryptograss/tools/generate_art.hbs"
   base_template: blank.hbs
 
