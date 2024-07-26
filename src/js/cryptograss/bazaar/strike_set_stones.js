@@ -93,6 +93,49 @@ function showStonePrice() {
     stonePriceElement.innerHTML = stonePriceEth + ' ETH';
 }
 
+function createColorDropdown(palette, dropdownId) {
+    const dropdown = document.getElementById(dropdownId);
+    
+    for (const [colorName, colorValue] of Object.entries(palette)) {
+        const option = document.createElement('option');
+        option.value = colorValue;
+        option.style.backgroundColor = colorValue;
+        option.innerHTML = colorName;
+        dropdown.appendChild(option);
+    }
+    dropdown.addEventListener('change', () => onColorChange(dropdownId));
+}
+
+function createColorDropdowns() {
+    createColorDropdown(nesPalette, 'colorDropdown1');
+    createColorDropdown(nesPalette, 'colorDropdown2');
+    createColorDropdown(nesPalette, 'colorDropdown3');
+    randomizeColors();
+}
+
+function onColorChange(colorDropdownId) {
+    const colorDropdown = document.getElementById(colorDropdownId);
+    const color = colorDropdown.value;
+
+    // set the current selected color as the background color of the dropdown
+    colorDropdown.style.backgroundColor = color;
+}
+
+function randomizeColors() {
+    let dropdowns = [document.getElementById('colorDropdown1'), document.getElementById('colorDropdown2'), document.getElementById('colorDropdown3')]
+
+    // randomize the selected color of each dropdown
+    // select random color from the nesPalette
+
+    dropdowns.forEach(dropdown => {
+        const randomColorIndex = Math.floor(Math.random() * Object.keys(nesPalette).length);
+        // select randomColorIndex-th option from the dropdown
+        console.log(randomColorIndex);
+        dropdown.selectedIndex = randomColorIndex;
+        onColorChange(dropdown.id);
+    });
+}
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -105,8 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.makePayment = makePayment;
     window.setAmount = setAmount;
+    window.randomizeColors = randomizeColors;
     verifyRabbit();
     showHash();
     showStonePrice();
+    createColorDropdowns();
 });
 
