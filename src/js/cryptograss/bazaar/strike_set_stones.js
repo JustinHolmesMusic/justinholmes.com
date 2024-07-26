@@ -14,7 +14,7 @@ export const config = createConfig({
 })
 
 const web3 = new Web3();
-const setStoneContractAddress = "0xdFa0f0633514d10Dab3FB9B2bcac17f0b883ee0a";
+const setStoneContractAddress = "0xEF9c5924Ef8d4431B6Dc8843762Ac3c0fE526dFC";
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6';
 import {setStoneABI } from "../../../abi/setStoneABI.js";
 

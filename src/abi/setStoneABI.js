@@ -104,7 +104,9 @@ export const setStoneABI = [
               "internalType": "bytes32"
             },
             { "name": "order", "type": "uint8", "internalType": "uint8" },
-            { "name": "color", "type": "uint16", "internalType": "uint16" },
+            { "name": "color1", "type": "uint16", "internalType": "uint16" },
+            { "name": "color2", "type": "uint16", "internalType": "uint16" },
+            { "name": "color3", "type": "uint16", "internalType": "uint16" },
             {
               "name": "crystalization",
               "type": "string",
@@ -143,7 +145,9 @@ export const setStoneABI = [
               "internalType": "bytes32"
             },
             { "name": "order", "type": "uint8", "internalType": "uint8" },
-            { "name": "color", "type": "uint16", "internalType": "uint16" },
+            { "name": "color1", "type": "uint16", "internalType": "uint16" },
+            { "name": "color2", "type": "uint16", "internalType": "uint16" },
+            { "name": "color3", "type": "uint16", "internalType": "uint16" },
             {
               "name": "crystalization",
               "type": "string",
@@ -184,7 +188,9 @@ export const setStoneABI = [
               "internalType": "bytes32"
             },
             { "name": "order", "type": "uint8", "internalType": "uint8" },
-            { "name": "color", "type": "uint16", "internalType": "uint16" },
+            { "name": "color1", "type": "uint16", "internalType": "uint16" },
+            { "name": "color2", "type": "uint16", "internalType": "uint16" },
+            { "name": "color3", "type": "uint16", "internalType": "uint16" },
             {
               "name": "crystalization",
               "type": "string",
@@ -251,7 +257,9 @@ export const setStoneABI = [
         { "name": "artistId", "type": "uint16", "internalType": "uint16" },
         { "name": "blockHeight", "type": "uint64", "internalType": "uint64" },
         { "name": "order", "type": "uint8", "internalType": "uint8" },
-        { "name": "_color", "type": "uint16", "internalType": "uint16" },
+        { "name": "_color1", "type": "uint16", "internalType": "uint16" },
+        { "name": "_color2", "type": "uint16", "internalType": "uint16" },
+        { "name": "_color3", "type": "uint16", "internalType": "uint16" },
         {
           "name": "_crystalization",
           "type": "string",
@@ -376,7 +384,9 @@ export const setStoneABI = [
       "outputs": [
         { "name": "showBytes", "type": "bytes32", "internalType": "bytes32" },
         { "name": "order", "type": "uint8", "internalType": "uint8" },
-        { "name": "color", "type": "uint16", "internalType": "uint16" },
+        { "name": "color1", "type": "uint16", "internalType": "uint16" },
+        { "name": "color2", "type": "uint16", "internalType": "uint16" },
+        { "name": "color3", "type": "uint16", "internalType": "uint16" },
         {
           "name": "crystalization",
           "type": "string",
@@ -398,7 +408,9 @@ export const setStoneABI = [
       "outputs": [
         { "name": "showBytes", "type": "bytes32", "internalType": "bytes32" },
         { "name": "order", "type": "uint8", "internalType": "uint8" },
-        { "name": "color", "type": "uint16", "internalType": "uint16" },
+        { "name": "color1", "type": "uint16", "internalType": "uint16" },
+        { "name": "color2", "type": "uint16", "internalType": "uint16" },
+        { "name": "color3", "type": "uint16", "internalType": "uint16" },
         {
           "name": "crystalization",
           "type": "string",
