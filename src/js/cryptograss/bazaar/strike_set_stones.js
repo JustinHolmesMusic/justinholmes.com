@@ -119,6 +119,20 @@ function onColorChange(colorDropdownId) {
 
     // set the current selected color as the background color of the dropdown
     colorDropdown.style.backgroundColor = color;
+    renderSetStone();
+}
+
+function renderSetStone() {
+    const stoneRenderArea = document.getElementById("stoneRenderArea");
+    // clean the stoneRenderArea
+    stoneRenderArea.innerHTML = "";
+
+    const color1 = document.getElementById('colorDropdown1').value;
+    const color2 = document.getElementById('colorDropdown2').value;
+    const color3 = document.getElementById('colorDropdown3').value;
+
+    generateDiamondPattern(color1, color2, color3, "transparent", "stoneRenderArea");
+
 }
 
 function randomizeColors() {
@@ -130,7 +144,6 @@ function randomizeColors() {
     dropdowns.forEach(dropdown => {
         const randomColorIndex = Math.floor(Math.random() * Object.keys(nesPalette).length);
         // select randomColorIndex-th option from the dropdown
-        console.log(randomColorIndex);
         dropdown.selectedIndex = randomColorIndex;
         onColorChange(dropdown.id);
     });

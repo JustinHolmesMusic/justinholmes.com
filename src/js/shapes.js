@@ -118,7 +118,9 @@ export const setstoneColors = {
 
 
 
-const backgroundColor = nesPalette.white;  // Example background color
+// const backgroundColor = nesPalette.white;  // Example background color
+// make the background color transparent
+// const backgroundColor = "transparent";  // Example background color
 
 // Convert hex color to RGB
 function hexToRgb(hex) {
@@ -137,7 +139,7 @@ function blendColors(color1, color2, blendFactor) {
 }
 
 // Generate diamond pattern
-export function generateDiamondPattern(baseColor, shadowColor, highlightColor, renderingAreaId) {
+export function generateDiamondPattern(baseColor, shadowColor, highlightColor, backgroundColor, renderingAreaId) {
     // Create a new canvas element in the shapeRenderingArea div
     // const  = nesPalette.brightWhite;
     const canvas = document.createElement('canvas');
