@@ -1,5 +1,5 @@
 // NES color palette as an object
-const nesPalette = {
+export const nesPalette = {
     grey: '#7C7C7C',
     blue: '#0000FC',
     darkBlue: '#0000BC',
@@ -76,6 +76,7 @@ window.onload = function () {
         const b = Math.round(rgb1[2] * (1 - blendFactor) + rgb2[2] * blendFactor);
         return `rgb(${r},${g},${b})`;
     }
+}
 
 // Generate diamond pattern
 export function generateDiamondPattern(baseColor, shadowColor, highlightColor, backgroundColor, renderingAreaId) {
@@ -95,10 +96,6 @@ export function generateDiamondPattern(baseColor, shadowColor, highlightColor, b
     const diamondSize = 20; // Adjust this value to change the diamond size
     const centerX = Math.floor(width / 2);
     const centerY = Math.floor(height / 2);
-        // Define the size of the diamond
-        const diamondSize = 20; // Adjust this value to change the diamond size
-        const centerX = Math.floor(width / 2);
-        const centerY = Math.floor(height / 2);
 
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
@@ -127,7 +124,6 @@ export function generateDiamondPattern(baseColor, shadowColor, highlightColor, b
         }
     }
 }
-
 
 
 // Initial generation
@@ -277,6 +273,7 @@ window.onload = function () {
             }
         }
     }
+
     //
     // // Fill the background
     // canvas_on_which_to_draw.fillStyle = numberColors.background;
@@ -291,4 +288,52 @@ window.onload = function () {
         drawNumber(number, numberCanvas);
     });
 };
+
+document.addEventListener("DOMContentLoaded", function () {
+    const rows = document.querySelectorAll('.row');
+
+    rows.forEach((row, index) => {
+        console.log("Processing row.")
+        const img = row.querySelector('img');
+        const canvas = row.querySelector('canvas');
+        const combinedCanvas = document.createElement('canvas');
+        const combinedCtx = combinedCanvas.getContext('2d');
+        const imgElement = new Image();
+        imgElement.src = img.src;
+
+        imgElement.onload = () => {
+            // Set the size of the combined canvas
+            combinedCanvas.width = imgElement.width;
+            combinedCanvas.height = imgElement.height;
+
+            // Draw the image onto the combined canvas
+            combinedCtx.drawImage(imgElement, 0, 0);
+
+            // Draw the existing canvas onto the combined canvas
+            combinedCtx.drawImage(canvas, 0, 0);
+
+            // Assuming you want to draw something on the canvas
+            // Add your canvas drawing code here
+
+            // Convert to PNG
+            const pngDataUrl = combinedCanvas.toDataURL("image/png");
+
+            // Create a link element to download the image
+            const link = document.createElement('a');
+            link.href = pngDataUrl;
+            link.id = `download-link-${index + 1}`;
+            link.download = `pair_${index + 1}.png`;
+            link.textContent = `Download pair ${index + 1} as PNG`;
+            // Create a button element for the link
+            const button = document.createElement('button');
+            button.textContent = `Download pair ${index + 1} as PNG`;
+            button.className = 'btn btn-primary';
+
+            // Append the button to the link
+            link.appendChild(button);
+
+            document.body.appendChild(link);
+        };
+    });
+});
 
