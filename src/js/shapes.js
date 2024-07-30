@@ -57,26 +57,26 @@ export const nesPalette = {
     lightRose: '#F8D8F8'
 };
 
-window.onload = function () {
-    // Example highlight color
-    const backgroundColor = nesPalette.white;  // Example background color
 
-    // Convert hex color to RGB
-    function hexToRgb(hex) {
-        const bigint = parseInt(hex.slice(1), 16);
-        return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
-    }
+// Example highlight color
+const backgroundColor = nesPalette.white;  // Example background color
 
-    // Blend two colors
-    function blendColors(color1, color2, blendFactor) {
-        const rgb1 = hexToRgb(color1);
-        const rgb2 = hexToRgb(color2);
-        const r = Math.round(rgb1[0] * (1 - blendFactor) + rgb2[0] * blendFactor);
-        const g = Math.round(rgb1[1] * (1 - blendFactor) + rgb2[1] * blendFactor);
-        const b = Math.round(rgb1[2] * (1 - blendFactor) + rgb2[2] * blendFactor);
-        return `rgb(${r},${g},${b})`;
-    }
+// Convert hex color to RGB
+function hexToRgb(hex) {
+    const bigint = parseInt(hex.slice(1), 16);
+    return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
 }
+
+// Blend two colors
+function blendColors(color1, color2, blendFactor) {
+    const rgb1 = hexToRgb(color1);
+    const rgb2 = hexToRgb(color2);
+    const r = Math.round(rgb1[0] * (1 - blendFactor) + rgb2[0] * blendFactor);
+    const g = Math.round(rgb1[1] * (1 - blendFactor) + rgb2[1] * blendFactor);
+    const b = Math.round(rgb1[2] * (1 - blendFactor) + rgb2[2] * blendFactor);
+    return `rgb(${r},${g},${b})`;
+}
+
 
 // Generate diamond pattern
 export function generateDiamondPattern(baseColor, shadowColor, highlightColor, backgroundColor, renderingAreaId) {
@@ -125,172 +125,146 @@ export function generateDiamondPattern(baseColor, shadowColor, highlightColor, b
     }
 }
 
-
-// Initial generation
-// generateDiamondPattern(nesPalette.yellow, nesPalette.cream, nesPalette.brightWhite);
-// generateDiamondPattern(nesPalette.hotPink, nesPalette.palePink, nesPalette.brightWhite);
-// generateDiamondPattern(nesPalette.green, nesPalette.brightWhite, nesPalette.cream);
-// generateDiamondPattern(nesPalette.peach, nesPalette.black, nesPalette.purple);
-// generateDiamondPattern(nesPalette.blue, nesPalette.babyBlue, nesPalette.brightWhite);
-// generateDiamondPattern(nesPalette.hotPink, nesPalette.palePink, nesPalette.lightRed);
-// generateDiamondPattern(nesPalette.red, nesPalette.orange, nesPalette.yellow);
-// generateDiamondPattern(nesPalette.purple, nesPalette.lavender, nesPalette.brightWhite);
-// generateDiamondPattern(nesPalette.teal, nesPalette.lightBlue, nesPalette.brightWhite);
-
-window.onload = function () {
-    // const canvas = document.getElementById('pixelCanvas');
-    // const ctx = canvas.getContext('2d');
-    //
-    // // Define the size of each pixel and the canvas dimensions
-    // const pixelSize = 7;
-    // const width = canvas.width / pixelSize;
-    // const height = canvas.height / pixelSize;
-
-    const numberColors = {
-        background: nesPalette.white,
-        foreground: nesPalette.orange
-    };
-
-    // Pixel art for numbers 0-9 using an 8x8 grid
-    const numbers = [
-        [
-            "00111100",
-            "01000010",
-            "01000110",
-            "01001010",
-            "01010010",
-            "01100010",
-            "01000010",
-            "00111100"
-        ],
-        [
-            "00011000",
-            "00111000",
-            "00011000",
-            "00011000",
-            "00011000",
-            "00011000",
-            "00011000",
-            "00111100"
-        ],
-        [
-            "00111100",
-            "01000010",
-            "00000010",
-            "00000100",
-            "00001000",
-            "00010000",
-            "00100000",
-            "01111110"
-        ],
-        [
-            "00111100",
-            "01000010",
-            "00000010",
-            "00011100",
-            "00000010",
-            "00000010",
-            "01000010",
-            "00111100"
-        ],
-        [
-            "00000100",
-            "00001100",
-            "00010100",
-            "00100100",
-            "01000100",
-            "01111110",
-            "00000100",
-            "00000100"
-        ],
-        [
-            "01111110",
-            "01000000",
-            "01000000",
-            "01111100",
-            "00000010",
-            "00000010",
-            "01000010",
-            "00111100"
-        ],
-        [
-            "00111100",
-            "01000010",
-            "01000000",
-            "01111100",
-            "01000010",
-            "01000010",
-            "01000010",
-            "00111100"
-        ],
-        [
-            "01111110",
-            "00000010",
-            "00000100",
-            "00001000",
-            "00010000",
-            "00100000",
-            "00100000",
-            "00100000"
-        ],
-        [
-            "00111100",
-            "01000010",
-            "01000010",
-            "00111100",
-            "01000010",
-            "01000010",
-            "01000010",
-            "00111100"
-        ],
-        [
-            "00111100",
-            "01000010",
-            "01000010",
-            "00111110",
-            "00000010",
-            "00000010",
-            "01000010",
-            "00111100"
-        ]
-    ];
-
-    function drawNumber(number, canvas_on_which_to_draw) {
-
-        const pixelSize = 30;
-        // TODO: Can we nix these two lines?
-        const startY = 0;
-        const startX = 0;
-
-        console.log('Drawing number', number);
-        const pattern = numbers[number];
-
-        let ctx = canvas_on_which_to_draw.getContext('2d');
-        for (let y = 0; y < pattern.length; y++) {
-            for (let x = 0; x < pattern[y].length; x++) {
-                ctx.fillStyle = pattern[y][x] === '1' ? numberColors.foreground : numberColors.background;
-                ctx.fillRect((startX + x) * pixelSize, (startY + y) * pixelSize, pixelSize, pixelSize);
-            }
-        }
-    }
-
-    //
-    // // Fill the background
-    // canvas_on_which_to_draw.fillStyle = numberColors.background;
-    // canvas_on_which_to_draw.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Find canvas elements with class "pixel-number" and draw the number indicated in their data attribute
-    const pixelNumbers = document.querySelectorAll('.pixel-number');
-    pixelNumbers.forEach((numberCanvas) => {
-        const number = parseInt(numberCanvas.dataset.number);
-        const x = parseInt(numberCanvas.dataset.x);
-        const y = parseInt(numberCanvas.dataset.y);
-        drawNumber(number, numberCanvas);
-    });
+const numberColors = {
+    background: nesPalette.white,
+    foreground: nesPalette.orange
 };
 
+// Pixel art for numbers 0-9 using an 8x8 grid
+const numbers = [
+    [
+        "00111100",
+        "01000010",
+        "01000110",
+        "01001010",
+        "01010010",
+        "01100010",
+        "01000010",
+        "00111100"
+    ],
+    [
+        "00011000",
+        "00111000",
+        "00011000",
+        "00011000",
+        "00011000",
+        "00011000",
+        "00011000",
+        "00111100"
+    ],
+    [
+        "00111100",
+        "01000010",
+        "00000010",
+        "00000100",
+        "00001000",
+        "00010000",
+        "00100000",
+        "01111110"
+    ],
+    [
+        "00111100",
+        "01000010",
+        "00000010",
+        "00011100",
+        "00000010",
+        "00000010",
+        "01000010",
+        "00111100"
+    ],
+    [
+        "00000100",
+        "00001100",
+        "00010100",
+        "00100100",
+        "01000100",
+        "01111110",
+        "00000100",
+        "00000100"
+    ],
+    [
+        "01111110",
+        "01000000",
+        "01000000",
+        "01111100",
+        "00000010",
+        "00000010",
+        "01000010",
+        "00111100"
+    ],
+    [
+        "00111100",
+        "01000010",
+        "01000000",
+        "01111100",
+        "01000010",
+        "01000010",
+        "01000010",
+        "00111100"
+    ],
+    [
+        "01111110",
+        "00000010",
+        "00000100",
+        "00001000",
+        "00010000",
+        "00100000",
+        "00100000",
+        "00100000"
+    ],
+    [
+        "00111100",
+        "01000010",
+        "01000010",
+        "00111100",
+        "01000010",
+        "01000010",
+        "01000010",
+        "00111100"
+    ],
+    [
+        "00111100",
+        "01000010",
+        "01000010",
+        "00111110",
+        "00000010",
+        "00000010",
+        "01000010",
+        "00111100"
+    ]
+];
+
+function drawNumber(number, canvas_on_which_to_draw) {
+
+    const pixelSize = 30;
+    // TODO: Can we nix these two lines?
+    const startY = 0;
+    const startX = 0;
+
+    console.log('Drawing number', number);
+    const pattern = numbers[number];
+
+    let ctx = canvas_on_which_to_draw.getContext('2d');
+    for (let y = 0; y < pattern.length; y++) {
+        for (let x = 0; x < pattern[y].length; x++) {
+            ctx.fillStyle = pattern[y][x] === '1' ? numberColors.foreground : numberColors.background;
+            ctx.fillRect((startX + x) * pixelSize, (startY + y) * pixelSize, pixelSize, pixelSize);
+        }
+    }
+}
+
+// Find canvas elements with class "pixel-number" and draw the number indicated in their data attribute
+const pixelNumbers = document.querySelectorAll('.pixel-number');
+pixelNumbers.forEach((numberCanvas) => {
+    const number = parseInt(numberCanvas.dataset.number);
+    const x = parseInt(numberCanvas.dataset.x);
+    const y = parseInt(numberCanvas.dataset.y);
+    drawNumber(number, numberCanvas);
+});
+
+
 document.addEventListener("DOMContentLoaded", function () {
-    const rows = document.querySelectorAll('.row');
+    const rows = document.querySelectorAll('.row.drawNumberHere');
 
     rows.forEach((row, index) => {
         console.log("Processing row.")
