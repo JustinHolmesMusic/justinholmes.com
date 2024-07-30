@@ -24,6 +24,8 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
     // Compute the output filename by maintaining the relative directory structure
     const relativePath = path.relative(preBuildOutputDirectory, templatePath);
 
+    console.log(relativePath);
+
     if (relativePath.startsWith('music/vowel-sounds')) {
         var chunks = ['vowel_sounds'];
     } else if (relativePath.startsWith('sign')) {
@@ -34,10 +36,14 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
         var chunks = ['main', 'add_live_set'];
     } else if (relativePath.startsWith('cryptograss/bazaar/setstones')) {
         var chunks = ['main', 'strike_set_stone'];
-    } else if (relativePath.startsWith('cryptograss/tools')) {
-        var chunks = ['main', 'add_show_for_stone_minting', 'shapes'];
+    } else if (relativePath.startsWith('cryptograss/tools/generate_art')) {
+        var chunks = ['main', 'shapes'];
+   } else if (relativePath.startsWith('cryptograss/tools/add-show-for-stone-minting')) {
+        var chunks = ['main', 'add_show_for_stone_minting'];
    } else if (relativePath.startsWith('cryptograss/tools/setstone-color-palette')) {
         var chunks = ['main', 'setstone_color_palette'];
+   } else if (relativePath.startsWith('cryptograss/tools/sign-things')) {
+        var chunks = ['main', 'signing'];
     } else {
         var chunks = ['main'];
     }
