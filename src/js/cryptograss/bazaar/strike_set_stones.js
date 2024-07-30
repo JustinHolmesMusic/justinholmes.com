@@ -1,10 +1,11 @@
-import { createConfig, http, writeContract } from '@wagmi/core';
+import { createConfig, http, writeContract, getAccount } from '@wagmi/core';
 import { optimismSepolia } from '@wagmi/core/chains';
 import Web3 from 'web3';
 import {createWeb3Modal} from '@web3modal/wagmi'
 import tippy from 'tippy.js';
 import jazzicon from 'jazzicon';
-import { generateDiamondPattern, nesPalette, setstoneColors } from '../../shapes.js';
+import { generateDiamondPattern } from '../../setstone_drawing.js';
+import { nesPalette } from '../../constants.js';
 
 export const config = createConfig({
     chains: [optimismSepolia],
@@ -41,7 +42,6 @@ function verifyRabbit() {
     // check if the hash is in the valid_rabbit_hashes array
     if (valid_rabbit_hashes.includes(hash)) {
         // document.getElementById("verifyResult").innerHTML = "Valid rabbit";
-        console.log("Valid rabbit");
     } else {
         tippy('verifyResult', { content: 'Invalid secret rabbit' });
         document.getElementById("donationModal").style.display = "none";
@@ -49,20 +49,49 @@ function verifyRabbit() {
     }
 }
 
-async function makePayment() {
+async function mintStone() {
+    const account = getAccount(config);
+    const address = account?.address;
     const secretRabbit = getUrlParameters().rabbit;
     const amount = document.getElementById("amount").value;
 
-    window.web3 = web3
-    console.log(web3.utils.toWei(amount, 'ether'))
+    window.web3 = web3;
+
+    if (!address) {
+        console.error("No address found. Please connect your wallet.");
+        return;
+    }
+
+    let order = 0;
+
+    // color1, color2, color3 are the indices of the colors in the nesPalette
+    const color1 = Object.values(nesPalette).indexOf(document.getElementById("colorDropdown1").value);
+    const color2 = Object.values(nesPalette).indexOf(document.getElementById("colorDropdown2").value);
+    const color3 = Object.values(nesPalette).indexOf(document.getElementById("colorDropdown3").value);
+
+
+    const crystalizationMessage = document.getElementById("crystalizationMessageText").value;
+
+    const args = [
+        address,
+        artist_id,
+        blockheight,
+        order,
+        color1,
+        color2,
+        color3,
+        crystalizationMessage,
+        secretRabbit
+    ];
+
 
     /// TODO: call the right contract
     const result = await writeContract(config, {
         address: setStoneContractAddress,
         abi: setStoneABI,
-        functionName: 'makePayment',
+        functionName: 'mintStone',
         chainId: optimismSepolia.id,
-        args: [secretRabbit],
+        args: args,
         value: web3.utils.toWei(amount, 'ether'),
 
     });
@@ -157,9 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
         wagmiConfig: config,
         projectId,
     });
-    console.log("Modal created");
 
-    window.makePayment = makePayment;
+    window.mintStone = mintStone;
     window.setAmount = setAmount;
     window.randomizeColors = randomizeColors;
     verifyRabbit();
@@ -167,4 +195,3 @@ document.addEventListener('DOMContentLoaded', () => {
     showStonePrice();
     createColorDropdowns();
 });
-

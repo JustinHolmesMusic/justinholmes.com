@@ -103,7 +103,7 @@
 
             <div id="rabbitHashIconContainer" style="display: flex; flex-direction: row; align-items: center;">
                 <div id="rabbitHashIcon" style="padding-right: 10px;"></div>
-                <h3>Secret Rabbit Hash:</h3>
+                <h3 class="pixel-font">Secret Rabbit Hash:</h3>
             </div>
 
             <h3 id="rabbithash" style="font-family: 'Courier New', Courier, monospace; word-break: break-all;"></h2>
@@ -118,13 +118,19 @@
             </div>
 
             <div id="setStoneColorPicker" style="width: 100%; align-items: left; color: black;">
-                <select id="colorDropdown1" class="form-select"></select>
-                <select id="colorDropdown2" class="form-select"></select>
-                <select id="colorDropdown3" class="form-select"></select>
-                <button id="randomizeColors" class="btn btn-primary" onclick="randomizeColors()">Randomize</button>
+                <select id="colorDropdown1" class="form-select pixel-font"></select>
+                <select id="colorDropdown2" class="form-select pixel-font"></select>
+                <select id="colorDropdown3" class="form-select pixel-font"></select>
+                <button id="randomizeColors" class="btn btn-primary mt-2 pixel-font" onclick="randomizeColors()">Randomize</button>
             </div>
 
             <div id="stoneRenderArea"></div>
+
+            <div id="crystalizationMessage">
+                <h4 class="pixel-font" style="color: black;">Crystalization message:</h4>
+                <input id="crystalizationMessageText" type="text" class="form-control" placeholder="Enter personal message">
+            </div>
+
 
 
             <div class="input-group" style="width: 100%">
@@ -134,7 +140,7 @@
             {{!-- <button id="verify" class="btn btn-primary" onclick="verifyRabbit()">Verify</button> --}}
 
             <div style="display: flex; justify-content: space-between; width: 100%">
-                <button id="makePayment" class="btn btn-primary" style="padding: 10px;" onclick="makePayment()">Make Payment</button>
+                <button id="mintStone" class="btn btn-primary pixel-font" style="padding: 10px;" onclick="mintStone()">Mint SetStone</button>
                 <w3m-button></w3m-button>
             </div>
 
@@ -154,4 +160,6 @@ const valid_rabbit_hashes = [
 ]
 
 const stone_price_wei = {{show.stone_price}}
+const artist_id = {{show.artist_id}}
+const blockheight = {{show.blockheight}}
 </script>
