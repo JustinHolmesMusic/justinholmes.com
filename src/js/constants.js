@@ -55,3 +55,7 @@ export const nesPalette = {
     electricBlue: '#00FCFC',
     lightRose: '#F8D8F8'
 };
+
+
+export const setStoneContractAddress = "0x9997a410c37865921853e10ECeFCf9078fA19874";
+export const blueRailroadContractAddress = "0xCe09A2d0d0BDE635722D8EF31901b430E651dB52";

@@ -3,6 +3,7 @@ import { optimismSepolia } from '@wagmi/core/chains';
 import Web3 from 'web3';
 import $ from 'jquery';
 import {createWeb3Modal} from '@web3modal/wagmi'
+import {setStoneContractAddress} from '../../constants.js';
 
 export const config = createConfig({
     chains: [optimismSepolia],
@@ -12,7 +13,6 @@ export const config = createConfig({
 })
 
 const web3 = new Web3();
-const contractAddress = '0xEF9c5924Ef8d4431B6Dc8843762Ac3c0fE526dFC';
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
 import {setStoneABI as contractABI} from "../../../abi/setStoneABI.js";
 
@@ -42,7 +42,7 @@ async function makeShowAvailableForStoneMinting() {
     let rabbitHashes = rabbitSecrets.map(secret => keccak256(secret));
 
     const result = await writeContract(config, {
-        address: contractAddress,
+        address: setStoneContractAddress,
         abi: contractABI,
         functionName: "makeShowAvailableForStoneMinting",
         chainId: optimismSepolia.id,

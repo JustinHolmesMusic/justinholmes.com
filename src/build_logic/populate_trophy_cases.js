@@ -4,6 +4,8 @@ import {brABI as abi} from "../abi/blueRailroadABI.js";
 import {setStoneABI} from "../abi/setStoneABI.js";
 import {shows} from "./show_and_set_data.js";
 import {serializeChainData} from "./chaindata_db.js";
+import {stringify} from "../js/utils.js";
+import {setStoneContractAddress, blueRailroadContractAddress} from "../js/constants.js";
 
 
 
@@ -16,8 +18,6 @@ export const config = createConfig({
     },
 })
 
-const blueRailroadAddress = "0xCe09A2d0d0BDE635722D8EF31901b430E651dB52";
-const setStoneContractAddress = "0xEF9c5924Ef8d4431B6Dc8843762Ac3c0fE526dFC";
 
 export async function appendChainDataToShows(showsAsReadFromDisk) {
     // We expect shows to be the result of iterating through the show YAML files.
@@ -67,7 +67,65 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
 
         // showSetStoneData[showID] = showData;
     }
-    // console.log("shows", stringify(shows));
+    // console.log(stringify(shows));
+    return shows;
+}
+
+export async function appendSetStoneDataToShows(shows) {
+    // should be called after the shows data has been appended to the shows object
+    const setStoneCount = await readContract(config,
+    {
+        abi: setStoneABI,
+        address: setStoneContractAddress,
+        functionName: 'totalSupply',
+        chainId: optimismSepolia.id,
+    })
+
+    for (let i = 0; i < setStoneCount; i++) {
+
+        let tokenId = await readContract(config, {
+            abi: setStoneABI,
+            address: setStoneContractAddress,
+            functionName: 'tokenByIndex',
+            chainId: optimismSepolia.id,
+            args: [i],
+        });
+
+        let stoneData = await readContract(config, {
+            abi: setStoneABI,
+            address: setStoneContractAddress,
+            functionName: 'getStoneByTokenId',
+            chainId: optimismSepolia.id,
+            args: [tokenId]
+        });
+
+        stoneData['tokenId'] = tokenId;
+
+        let ownerOfThisToken = await readContract(config, {
+            abi: setStoneABI,
+            address: setStoneContractAddress,
+            functionName: 'ownerOf',
+            chainId: optimismSepolia.id,
+            args: [tokenId],
+        });
+
+        stoneData['owner'] = ownerOfThisToken;
+
+        let tokenURI = await readContract(config, {
+            abi: setStoneABI,
+            address: setStoneContractAddress,
+            functionName: 'tokenURI',
+            chainId: optimismSepolia.id,
+            args: [tokenId],
+        });
+
+        stoneData['tokenURI'] = tokenURI;
+
+        let set = shows[`${stoneData["artistId"]}-${stoneData["blockHeight"]}`].sets[stoneData["order"]];
+        set.setstones = set.setstones || [];
+        set.setstones.push(stoneData);
+    }
+
     return shows;
 }
 
@@ -76,7 +134,7 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
 const blueRailroadCount = await readContract(config,
     {
         abi,
-        address: blueRailroadAddress,
+        address: blueRailroadContractAddress,
         functionName: 'totalSupply',
         chainId: optimism.id,
     })
@@ -86,7 +144,7 @@ let blueRailroads = {};
 for (let i = 0; i < blueRailroadCount; i++) {
     let tokenId = await readContract(config, {
         abi,
-        address: blueRailroadAddress,
+        address: blueRailroadContractAddress,
         functionName: 'tokenByIndex',
         chainId: optimism.id,
         args: [i],
@@ -94,7 +152,7 @@ for (let i = 0; i < blueRailroadCount; i++) {
 
     let ownerOfThisToken = await readContract(config, {
         abi,
-        address: blueRailroadAddress,
+        address: blueRailroadContractAddress,
         functionName: 'ownerOf',
         chainId: optimism.id,
         args: [tokenId],
@@ -102,7 +160,7 @@ for (let i = 0; i < blueRailroadCount; i++) {
 
     let uriOfVideo = await readContract(config, {
         abi,
-        address: blueRailroadAddress,
+        address: blueRailroadContractAddress,
         functionName: 'tokenURI',
         chainId: optimism.id,
         args: [tokenId],
@@ -124,6 +182,7 @@ const mainnetBlockNumber = await fetchBlockNumber(config, {chainId: mainnet.id})
 const optimismBlockNumber = await fetchBlockNumber(config, {chainId: optimism.id});
 const optimismSepoliaBlockNumber = await fetchBlockNumber(config, {chainId: optimismSepolia.id});
 let showsWithChainData = await appendChainDataToShows(shows);
+let showsWithSetStoneData = await appendSetStoneDataToShows(showsWithChainData);
 
 export const chainData = {
     blueRailroads: blueRailroads,

@@ -9,6 +9,7 @@ const dataDir = path.resolve(__dirname, '../data');
 // iterate through the shows directory in data, get the YAML filenames.
 import path from "path";
 import fs from "fs";
+import { stringify } from "../js/utils.js";
 
 const showsDir = path.resolve(dataDir, 'shows');
 const liveShowYAMLs = fs.readdirSync(showsDir);
@@ -32,13 +33,14 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
     let sets_in_this_show = {}
 
     for (let [set_number, set] of Object.entries(showYAMLData['sets'])) {
-        let songs_in_this_set = {}
+
+        let this_set = {"songplays": {}}
 
         // Now we'll iterate through the songs.
         // Some of them will just be strings, while others will be objects.
         // For the strings, we'll set the default of type: normal.
-        for (let s = 0; s < set.length; s++) {
-            let song = set[s];
+        for (let s = 0; s < set["songplays"].length; s++) {
+            let song = set["songplays"][s];
             let songObject = {};
             if (typeof song === 'string') {
                 songObject['title'] = song;
@@ -58,15 +60,15 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
                 songObject['type'] = "normal";
             }
             // And put the song back into the set object.
-            songs_in_this_set[s] = songObject;
+            this_set["songplays"][s] = songObject;
         }
 
-        sets_in_this_show[i] = songs_in_this_set;
+
+        sets_in_this_show[set_number] = this_set;
     }
     // All songs are now objects.  TODO: Just give shows an ID and persist them, etc.
     showYAMLData['sets'] = sets_in_this_show;
     shows[showID] = showYAMLData;
 }
-
 
 export {shows};
