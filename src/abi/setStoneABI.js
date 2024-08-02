@@ -39,6 +39,13 @@ export const setStoneABI = [
     },
     {
       "type": "function",
+      "name": "crystalizationMsgByTokenId",
+      "inputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
       "name": "generateTokenURI",
       "inputs": [
         { "name": "artistId", "type": "uint16", "internalType": "uint16" },
@@ -58,6 +65,24 @@ export const setStoneABI = [
         { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
       ],
       "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getCrystalizationMsg",
+      "inputs": [
+        { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
+      ],
+      "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getPaidAmountWei",
+      "inputs": [
+        { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
+      ],
+      "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
       "stateMutability": "view"
     },
     {
@@ -92,7 +117,6 @@ export const setStoneABI = [
       ],
       "outputs": [
         { "name": "", "type": "bytes32", "internalType": "bytes32" },
-        { "name": "", "type": "uint16", "internalType": "uint16" },
         { "name": "", "type": "uint8", "internalType": "uint8" },
         { "name": "", "type": "uint256", "internalType": "uint256" },
         { "name": "", "type": "bytes32[]", "internalType": "bytes32[]" },
@@ -102,7 +126,7 @@ export const setStoneABI = [
     },
     {
       "type": "function",
-      "name": "getStoneByTokenId",
+      "name": "getStoneColor",
       "inputs": [
         { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
       ],
@@ -110,33 +134,11 @@ export const setStoneABI = [
         {
           "name": "",
           "type": "tuple",
-          "internalType": "struct SetStone.Stone",
+          "internalType": "struct SetStone.StoneColor",
           "components": [
-            { "name": "artistId", "type": "uint16", "internalType": "uint16" },
-            {
-              "name": "blockHeight",
-              "type": "uint64",
-              "internalType": "uint64"
-            },
-            { "name": "order", "type": "uint8", "internalType": "uint8" },
             { "name": "color1", "type": "uint16", "internalType": "uint16" },
             { "name": "color2", "type": "uint16", "internalType": "uint16" },
-            { "name": "color3", "type": "uint16", "internalType": "uint16" },
-            {
-              "name": "crystalization",
-              "type": "string",
-              "internalType": "string"
-            },
-            {
-              "name": "paidAmountWei",
-              "type": "uint256",
-              "internalType": "uint256"
-            },
-            {
-              "name": "rabbitHash",
-              "type": "bytes32",
-              "internalType": "bytes32"
-            }
+            { "name": "color3", "type": "uint16", "internalType": "uint16" }
           ]
         }
       ],
@@ -151,80 +153,7 @@ export const setStoneABI = [
         { "name": "order", "type": "uint8", "internalType": "uint8" }
       ],
       "outputs": [
-        {
-          "name": "",
-          "type": "tuple[]",
-          "internalType": "struct SetStone.Stone[]",
-          "components": [
-            { "name": "artistId", "type": "uint16", "internalType": "uint16" },
-            {
-              "name": "blockHeight",
-              "type": "uint64",
-              "internalType": "uint64"
-            },
-            { "name": "order", "type": "uint8", "internalType": "uint8" },
-            { "name": "color1", "type": "uint16", "internalType": "uint16" },
-            { "name": "color2", "type": "uint16", "internalType": "uint16" },
-            { "name": "color3", "type": "uint16", "internalType": "uint16" },
-            {
-              "name": "crystalization",
-              "type": "string",
-              "internalType": "string"
-            },
-            {
-              "name": "paidAmountWei",
-              "type": "uint256",
-              "internalType": "uint256"
-            },
-            {
-              "name": "rabbitHash",
-              "type": "bytes32",
-              "internalType": "bytes32"
-            }
-          ]
-        }
-      ],
-      "stateMutability": "view"
-    },
-    {
-      "type": "function",
-      "name": "getStonesBySetIdBytes",
-      "inputs": [
-        { "name": "setId", "type": "bytes32", "internalType": "bytes32" }
-      ],
-      "outputs": [
-        {
-          "name": "",
-          "type": "tuple[]",
-          "internalType": "struct SetStone.Stone[]",
-          "components": [
-            { "name": "artistId", "type": "uint16", "internalType": "uint16" },
-            {
-              "name": "blockHeight",
-              "type": "uint64",
-              "internalType": "uint64"
-            },
-            { "name": "order", "type": "uint8", "internalType": "uint8" },
-            { "name": "color1", "type": "uint16", "internalType": "uint16" },
-            { "name": "color2", "type": "uint16", "internalType": "uint16" },
-            { "name": "color3", "type": "uint16", "internalType": "uint16" },
-            {
-              "name": "crystalization",
-              "type": "string",
-              "internalType": "string"
-            },
-            {
-              "name": "paidAmountWei",
-              "type": "uint256",
-              "internalType": "uint256"
-            },
-            {
-              "name": "rabbitHash",
-              "type": "bytes32",
-              "internalType": "bytes32"
-            }
-          ]
-        }
+        { "name": "", "type": "uint256[]", "internalType": "uint256[]" }
       ],
       "stateMutability": "view"
     },
@@ -359,6 +288,13 @@ export const setStoneABI = [
     },
     {
       "type": "function",
+      "name": "paidAmountWeiByTokenId",
+      "inputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
       "name": "rabbitHashesByShow",
       "inputs": [
         { "name": "", "type": "bytes32", "internalType": "bytes32" },
@@ -419,6 +355,17 @@ export const setStoneABI = [
     },
     {
       "type": "function",
+      "name": "stoneColorByTokenId",
+      "inputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "outputs": [
+        { "name": "color1", "type": "uint16", "internalType": "uint16" },
+        { "name": "color2", "type": "uint16", "internalType": "uint16" },
+        { "name": "color3", "type": "uint16", "internalType": "uint16" }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
       "name": "stonePriceByShow",
       "inputs": [{ "name": "", "type": "bytes32", "internalType": "bytes32" }],
       "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
@@ -431,57 +378,7 @@ export const setStoneABI = [
         { "name": "", "type": "bytes32", "internalType": "bytes32" },
         { "name": "", "type": "uint256", "internalType": "uint256" }
       ],
-      "outputs": [
-        { "name": "artistId", "type": "uint16", "internalType": "uint16" },
-        { "name": "blockHeight", "type": "uint64", "internalType": "uint64" },
-        { "name": "order", "type": "uint8", "internalType": "uint8" },
-        { "name": "color1", "type": "uint16", "internalType": "uint16" },
-        { "name": "color2", "type": "uint16", "internalType": "uint16" },
-        { "name": "color3", "type": "uint16", "internalType": "uint16" },
-        {
-          "name": "crystalization",
-          "type": "string",
-          "internalType": "string"
-        },
-        {
-          "name": "paidAmountWei",
-          "type": "uint256",
-          "internalType": "uint256"
-        },
-        { "name": "rabbitHash", "type": "bytes32", "internalType": "bytes32" }
-      ],
-      "stateMutability": "view"
-    },
-    {
-      "type": "function",
-      "name": "stonesByTokenId",
-      "inputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
-      "outputs": [
-        { "name": "artistId", "type": "uint16", "internalType": "uint16" },
-        { "name": "blockHeight", "type": "uint64", "internalType": "uint64" },
-        { "name": "order", "type": "uint8", "internalType": "uint8" },
-        { "name": "color1", "type": "uint16", "internalType": "uint16" },
-        { "name": "color2", "type": "uint16", "internalType": "uint16" },
-        { "name": "color3", "type": "uint16", "internalType": "uint16" },
-        {
-          "name": "crystalization",
-          "type": "string",
-          "internalType": "string"
-        },
-        {
-          "name": "paidAmountWei",
-          "type": "uint256",
-          "internalType": "uint256"
-        },
-        { "name": "rabbitHash", "type": "bytes32", "internalType": "bytes32" }
-      ],
-      "stateMutability": "view"
-    },
-    {
-      "type": "function",
-      "name": "stonesPossiblePerShow",
-      "inputs": [{ "name": "", "type": "bytes32", "internalType": "bytes32" }],
-      "outputs": [{ "name": "", "type": "uint16", "internalType": "uint16" }],
+      "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
       "stateMutability": "view"
     },
     {
