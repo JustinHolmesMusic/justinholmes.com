@@ -6,7 +6,7 @@ import {shows} from "./show_and_set_data.js";
 import {serializeChainData} from "./chaindata_db.js";
 import {stringify} from "../js/utils.js";
 import {setStoneContractAddress, blueRailroadContractAddress} from "../js/constants.js";
-import {updateContributorsTable} from "./revealer_utils.js";
+import { getVowelsoundContributions } from "./revealer_utils.js";
 import Web3 from 'web3';
 const web3 = new Web3();
 
@@ -179,7 +179,6 @@ export async function appendSetStoneDataToShows(shows) {
     }
     
 
-    console.log(stringify(shows));
     return shows;
 }
 
@@ -187,7 +186,7 @@ export async function appendSetStoneDataToShows(shows) {
 ///////////////////////////
 /// VowelSounds artifact
 ///////////////////////////
-updateContributorsTable();
+const vowelSoundContributions = await getVowelsoundContributions();
 
 
 ///////////BACK TO TONY
@@ -250,6 +249,8 @@ export const chainData = {
     optimismBlockNumber: optimismBlockNumber,
     optimismSepoliaBlockNumber: optimismSepoliaBlockNumber,
     showsWithChainData: showsWithSetStoneData,
+    vowelSoundContributions: vowelSoundContributions,
 }
+
 
 serializeChainData(chainData);

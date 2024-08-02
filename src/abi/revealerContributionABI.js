@@ -1,4 +1,4 @@
-export const contractABI = [{
+export const revealerContributionABI = [{
     "inputs": [{
         "internalType": "uint256",
         "name": "_countdownPeriod",
@@ -391,5 +391,3 @@ export const contractABI = [{
     "type": "receive"
 }]
 
-
-export default contractABI;
