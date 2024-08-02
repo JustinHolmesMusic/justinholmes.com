@@ -6,6 +6,9 @@ import {shows} from "./show_and_set_data.js";
 import {serializeChainData} from "./chaindata_db.js";
 import {stringify} from "../js/utils.js";
 import {setStoneContractAddress, blueRailroadContractAddress} from "../js/constants.js";
+import {updateContributorsTable} from "./revealer_utils.js";
+import Web3 from 'web3';
+const web3 = new Web3();
 
 
 
@@ -45,11 +48,10 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
         // unpack the showData
         const unpackedShowData = {
             showBytes: showData[0],  // This is actually just artist_id and blockheight again
-            stonesPossible: showData[1],
-            numberOfSets: showData[2],
-            stonePrice: showData[3],
-            rabbitHashes: showData[4],
-            setShapes: showData[5],
+            numberOfSets: showData[1],
+            stonePrice: showData[2],
+            rabbitHashes: showData[3],
+            setShapes: showData[4],
 
         };
 
@@ -57,7 +59,7 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
         show["blockheight"] = parseInt(blockheight)
         show["rabbit_hashes"] = unpackedShowData.rabbitHashes;
         show["stone_price"] = unpackedShowData.stonePrice;
-        show["set_shapes"] = unpackedShowData.setShapes;
+
 
         // integrity check: the number of sets on chain is the same as the number of sets in the yaml, raise an error if not
         if (unpackedShowData.numberOfSets !== Object.keys(show.sets).length) {
@@ -65,15 +67,103 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
             console.log(`Error: Number of sets on chain (${unpackedShowData.numberOfSets}) does not match the number of sets in the yaml (${show.sets.length}) for show ID ${show_id}`);
         }
 
-        // showSetStoneData[showID] = showData;
+        // unpack setShapes
+        for (let i = 0; i < Object.keys(show["sets"]).length; i++) {
+            show["sets"][i]["shape"] = unpackedShowData.setShapes[i];
+        }
+
     }
-    // console.log(stringify(shows));
     return shows;
 }
 
 export async function appendSetStoneDataToShows(shows) {
     // should be called after the shows data has been appended to the shows object
-    const setStoneCount = await readContract(config,
+
+    let number_of_stones_in_sets = 0;
+
+
+    for (let [show_id, show] of Object.entries(shows)) {
+        // Split ID by "-" into artist_id and blockheight
+        const [artist_id, blockheight] = show_id.split('-');
+
+        for (let [set_order, set] of Object.entries(show.sets)) {
+            set.setstones = [];
+
+            const setStoneIds = await readContract(config, {
+                abi: setStoneABI,
+                address: setStoneContractAddress,
+                functionName: 'getStonesBySetId',
+                chainId: optimismSepolia.id,
+                args: [artist_id, blockheight, set_order],
+            });
+
+
+            for (let setStoneId of setStoneIds) {
+                let setstone = {}
+                number_of_stones_in_sets++;
+
+                // call getStoneColor, getCrystalizationMsg, getPaidAmountWei to get the stone metadata
+                setstone["tokenId"] = setStoneId;
+
+                const stoneColor = await readContract(config, {
+                    abi: setStoneABI,
+                    address: setStoneContractAddress,
+                    functionName: 'getStoneColor',
+                    chainId: optimismSepolia.id,
+                    args: [setStoneId],
+                });
+
+                setstone["color"] = [stoneColor.color1, stoneColor.color2, stoneColor.color3];
+
+                const crystalizationMsg = await readContract(config, {
+                    abi: setStoneABI,
+                    address: setStoneContractAddress,
+                    functionName: 'getCrystalizationMsg',
+                    chainId: optimismSepolia.id,
+                    args: [setStoneId],
+                });
+
+                setstone["crystalizationMsg"] = crystalizationMsg;
+
+
+                const paidAmountWei = await readContract(config, {
+                    abi: setStoneABI,
+                    address: setStoneContractAddress,
+                    functionName: 'getPaidAmountWei',
+                    chainId: optimismSepolia.id,
+                    args: [setStoneId],
+                });
+
+                setstone["paidAmountWei"] = paidAmountWei;
+                setstone["paidAmountEth"] = web3.utils.fromWei(paidAmountWei, 'ether');
+
+                let ownerOfThisToken = await readContract(config, {
+                    abi: setStoneABI,
+                    address: setStoneContractAddress,
+                    functionName: 'ownerOf',
+                    chainId: optimismSepolia.id,
+                    args: [setStoneId],
+                });
+
+                setstone["owner"] = ownerOfThisToken;
+
+                let tokenURI = await readContract(config, {
+                    abi: setStoneABI,
+                    address: setStoneContractAddress,
+                    functionName: 'tokenURI',
+                    chainId: optimismSepolia.id,
+                    args: [setStoneId],
+                });
+
+                setstone["tokenURI"] = tokenURI;
+
+                set.setstones.push(setstone);
+            }
+        }
+
+    }
+
+    const setStoneCountOnChain = await readContract(config,
     {
         abi: setStoneABI,
         address: setStoneContractAddress,
@@ -81,53 +171,24 @@ export async function appendSetStoneDataToShows(shows) {
         chainId: optimismSepolia.id,
     })
 
-    for (let i = 0; i < setStoneCount; i++) {
 
-        let tokenId = await readContract(config, {
-            abi: setStoneABI,
-            address: setStoneContractAddress,
-            functionName: 'tokenByIndex',
-            chainId: optimismSepolia.id,
-            args: [i],
-        });
-
-        let stoneData = await readContract(config, {
-            abi: setStoneABI,
-            address: setStoneContractAddress,
-            functionName: 'getStoneByTokenId',
-            chainId: optimismSepolia.id,
-            args: [tokenId]
-        });
-
-        stoneData['tokenId'] = tokenId;
-
-        let ownerOfThisToken = await readContract(config, {
-            abi: setStoneABI,
-            address: setStoneContractAddress,
-            functionName: 'ownerOf',
-            chainId: optimismSepolia.id,
-            args: [tokenId],
-        });
-
-        stoneData['owner'] = ownerOfThisToken;
-
-        let tokenURI = await readContract(config, {
-            abi: setStoneABI,
-            address: setStoneContractAddress,
-            functionName: 'tokenURI',
-            chainId: optimismSepolia.id,
-            args: [tokenId],
-        });
-
-        stoneData['tokenURI'] = tokenURI;
-
-        let set = shows[`${stoneData["artistId"]}-${stoneData["blockHeight"]}`].sets[stoneData["order"]];
-        set.setstones = set.setstones || [];
-        set.setstones.push(stoneData);
+    if (number_of_stones_in_sets != setStoneCountOnChain) {
+        console.log("Error: Number of stones in sets on chain does not match the number of stones in the sets object");
+        console.log("Number of stones in sets on chain: ", setStoneCountOnChain);
+        console.log("Number of stones in sets object: ", number_of_stones_in_sets);
     }
+    
 
+    console.log(stringify(shows));
     return shows;
 }
+
+
+///////////////////////////
+/// VowelSounds artifact
+///////////////////////////
+updateContributorsTable();
+
 
 ///////////BACK TO TONY
 
@@ -176,7 +237,6 @@ for (let i = 0; i < blueRailroadCount; i++) {
 
 
 
-
 // And the current block number.
 const mainnetBlockNumber = await fetchBlockNumber(config, {chainId: mainnet.id});
 const optimismBlockNumber = await fetchBlockNumber(config, {chainId: optimism.id});
@@ -189,7 +249,7 @@ export const chainData = {
     mainnetBlockNumber: mainnetBlockNumber,
     optimismBlockNumber: optimismBlockNumber,
     optimismSepoliaBlockNumber: optimismSepoliaBlockNumber,
-    showsWithChainData: showsWithChainData,
+    showsWithChainData: showsWithSetStoneData,
 }
 
 serializeChainData(chainData);
