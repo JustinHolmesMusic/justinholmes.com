@@ -5,8 +5,15 @@ import { stringify } from "../js/utils.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// 
 const chain_data_dir = path.resolve(__dirname, '../../_prebuild_chain_data');
-const chain_data_json_path = path.resolve(__dirname, '../../_prebuild_chain_data/chainData.json');
+
+
+// If the environment variable TEST_CHAIN_DATA is set, use the testChainData.json instead
+const chain_data_json_path = process.env.TEST_CHAIN_DATA 
+    ? path.resolve(__dirname, '../../_prebuild_chain_data/testChainData.json') 
+    : path.resolve(__dirname, '../../_prebuild_chain_data/chainData.json');
 
 
 export function serializeChainData(chainData) {
