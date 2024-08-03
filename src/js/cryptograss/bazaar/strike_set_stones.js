@@ -62,7 +62,8 @@ async function mintStone() {
         return;
     }
 
-    let order = 0;
+    const order = document.getElementById("setPicker").value;
+
 
     // color1, color2, color3 are the indices of the colors in the nesPalette
     const color1 = Object.values(nesPalette).indexOf(document.getElementById("colorDropdown1").value);

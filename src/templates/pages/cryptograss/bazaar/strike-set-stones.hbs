@@ -30,7 +30,6 @@
         .input-group {
             display: flex;
             width: 100%;
-            padding: 10px;
             align-items: center;
         }
 
@@ -130,15 +129,20 @@
                 <input id="crystalizationMessageText" type="text" class="form-control" placeholder="Enter personal message">
             </div>
 
+            <select id="setPicker" class="form-select pixel-font mt-2">
+                {{#each show.sets}}
+                    <option value="{{@index}}">Set #{{@index}}</option>
+                {{/each}}
+            
+            </select>
 
-
-            <div class="input-group" style="width: 100%">
+            <div class="input-group mt-2" style="width: 100%">
                 <input id="amount" type="number" class="form-control" placeholder="Enter the amount">
                 <span class="input-group-addon">ETH</span>
             </div>
             {{!-- <button id="verify" class="btn btn-primary" onclick="verifyRabbit()">Verify</button> --}}
 
-            <div style="display: flex; justify-content: space-between; width: 100%">
+            <div class="mt-5" style="display: flex; justify-content: space-between; width: 100%">
                 <button id="mintStone" class="btn btn-primary pixel-font" style="padding: 10px;" onclick="mintStone()">Mint SetStone</button>
                 <w3m-button></w3m-button>
             </div>
