@@ -1,3 +1,5 @@
+// @ts-check
+
 import { readContract, fetchEnsName, http, createConfig} from "@wagmi/core";
 import {mainnet} from '@wagmi/core/chains';
 import { revealerContractAddress } from "../js/constants.js";

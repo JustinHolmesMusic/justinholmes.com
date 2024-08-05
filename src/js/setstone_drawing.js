@@ -1,3 +1,4 @@
+import { nesPalette } from './constants.js';
 
 // Convert hex color to RGB
 function hexToRgb(hex) {
@@ -15,15 +16,23 @@ function blendColors(color1, color2, blendFactor) {
     return `rgb(${r},${g},${b})`;
 }
 
+export function generateDiamondPatternFromNesPalette(baseColorIndex, shadowColorIndex, highlightColorIndex, backgroundColor, renderingAreaId, size = 200) {
+    const colorValues = Object.values(nesPalette);
+    const baseColor = colorValues[baseColorIndex];
+    const shadowColor = colorValues[shadowColorIndex];
+    const highlightColor = colorValues[highlightColorIndex];
+    generateDiamondPattern(baseColor, shadowColor, highlightColor, backgroundColor, renderingAreaId, size);
+}
+
 // Generate diamond pattern
-export function generateDiamondPattern(baseColor, shadowColor, highlightColor, backgroundColor, renderingAreaId) {
+export function generateDiamondPattern(baseColor, shadowColor, highlightColor, backgroundColor, renderingAreaId, size = 200) {
     // Create a new canvas element in the shapeRenderingArea div
     // const  = nesPalette.brightWhite;
     const canvas = document.createElement('canvas');
-    canvas.width = 200;
-    canvas.height = 200;
+    canvas.width = size;
+    canvas.height = size;
     // Define the size of the pixel art
-    const pixelSize = 5;
+    const pixelSize = Math.floor(size / 200 * 5);
     const width = canvas.width / pixelSize;
     const height = canvas.height / pixelSize;
     const ctx = canvas.getContext('2d');

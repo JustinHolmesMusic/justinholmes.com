@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import 'spotlight.js';
+import tippy from 'tippy.js';
 import '../styles/fonts.css';
 import '../styles/styles-common.css';
 import $ from 'jquery';

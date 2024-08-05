@@ -1,3 +1,4 @@
+// @ts-check
 import {createConfig, http, readContract, fetchBlockNumber} from '@wagmi/core';
 import {mainnet, optimism, optimismSepolia} from '@wagmi/core/chains';
 import {brABI as abi} from "../abi/blueRailroadABI.js";

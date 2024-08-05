@@ -4,7 +4,7 @@ import Web3 from 'web3';
 import {createWeb3Modal} from '@web3modal/wagmi'
 import tippy from 'tippy.js';
 import jazzicon from 'jazzicon';
-import { generateDiamondPattern } from '../../setstone_drawing.js';
+import { generateDiamondPattern, generateDiamondPatternFromNesPalette } from '../../setstone_drawing.js';
 import { nesPalette } from '../../constants.js';
 import { setStoneContractAddress } from '../../constants.js';
 
@@ -179,9 +179,11 @@ function randomizeColors() {
     });
 }
 
+window.generateDiamondPatternFromNesPalette = generateDiamondPatternFromNesPalette;
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    tippy('[data-tippy-content]');
 
     const modal = createWeb3Modal({
         wagmiConfig: config,

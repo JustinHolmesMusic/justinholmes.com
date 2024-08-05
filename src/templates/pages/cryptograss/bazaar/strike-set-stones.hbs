@@ -71,22 +71,49 @@
         {{!-- <span class="pixel-font">Stone price:</span> <b>{{show.stone_price}}</b><br> --}}
     </div>
 
-    <div id="setlist" class="border-bottom border-black pb-3 mt-5">
+    <div id="setlist" class="mt-5">
         <h1><span class="pixel-font">Setlist</span></h1>
 
-        {{#each show.sets }}
-            <h3><span class="pixel-font">Set #{{@index}}</span></h3>
+        {{#each show.sets as |this setId|}}
+        <div class="border-bottom border-black mb-3" id="setContainer{{@index}}" style="display: flex; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <h3><span class="pixel-font">Set #{{inc @index}}</span></h3>
 
-            <ul>
-            {{#each this.songplays}}
-               <li><span style="font-family: 'Courier New', Courier, monospace;">{{@key}}</span>: <span class="pixel-font">{{this.title}}</span></li>
-               <ul>
-                    <li><span style="font-family: 'Courier New', Courier, monospace;">type:</span> <span class="pixel-font">{{this.type}}</span></li>
-               </ul>
-               
-            {{/each}}
-            </ul>
-
+                <ul>
+                {{#each this.songplays}}
+                   <li><span style="font-family: 'Courier New', Courier, monospace;">{{inc @key}}</span>: <span class="pixel-font">{{this.title}}</span></li>
+                   <ul>
+                        <li><span style="font-family: 'Courier New', Courier, monospace;">type:</span> <span class="pixel-font">{{this.type}}</span></li>
+                   </ul>
+                {{/each}}
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <h3><span class="pixel-font">Set Stones</span></h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Crystallization Message</th>
+                            <th>Paid Amount (ETH)</th>
+                            <th>Owner</th>
+                            <th>Token URI</th>
+                            <th>Set Stone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{#each this.setstones as |stone stoneId|}}
+                        <tr>
+                            <td>{{stone.crystalizationMsg}}</td>
+                            <td>{{stone.paidAmountEth}}</td>
+                            <td data-tippy-content="{{stone.owner}}">{{truncate stone.owner 12}}</td>
+                            <td><a href="{{stone.tokenURI}}" target="_blank">Link</a></td>
+                            <td><div id="setstoneCanvas{{setId}}-{{stoneId}}"></div></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
         {{/each}}
     </div>
 
@@ -131,7 +158,7 @@
 
             <select id="setPicker" class="form-select pixel-font mt-2">
                 {{#each show.sets}}
-                    <option value="{{@index}}">Set #{{@index}}</option>
+                    <option value="{{@index}}">Set #{{inc @index}}</option>
                 {{/each}}
             
             </select>
@@ -165,4 +192,19 @@ const valid_rabbit_hashes = [
 const stone_price_wei = {{show.stone_price}}
 const artist_id = {{show.artist_id}}
 const blockheight = {{show.blockheight}}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    {{#each show.sets as |set setId|}}
+        {{#each set.setstones as |stone stoneId|}}
+            generateDiamondPatternFromNesPalette(
+                {{getElement stone.color 0}},
+                {{getElement stone.color 1}},
+                {{getElement stone.color 2}},
+                "rgb(240, 240, 240)",
+                "setstoneCanvas{{setId}}-{{stoneId}}",
+                100);
+        {{/each}}
+    {{/each}}
+});
 </script>

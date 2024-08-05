@@ -38,6 +38,16 @@ const imageMapping = getImageMapping();
 ///// Helpers
 /////////////
 
+Handlebars.registerHelper("inc", function(value, options)
+{
+    return parseInt(value) + 1;
+});
+
+Handlebars.registerHelper('getElement', function(array, index) {
+    return array[index];
+});
+
+
 Handlebars.registerHelper('isActive', function (currentPage, expectedPage, options) {
     return currentPage === expectedPage ? 'active' : '';
 });
@@ -58,6 +68,14 @@ Handlebars.registerHelper('eachPair', function(context, options) {
     result += options.fn(pair);
   }
   return result;
+});
+
+// New helper to truncate a string if it is longer than a threshold
+Handlebars.registerHelper('truncate', function(str, len) {
+    if (str.length > len) {
+        return str.substring(0, len) + '...';
+    }
+    return str;
 });
 
 // Make sure target directory exists
