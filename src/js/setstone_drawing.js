@@ -32,9 +32,9 @@ export function generateDiamondPattern(baseColor, shadowColor, highlightColor, b
     canvas.width = size;
     canvas.height = size;
     // Define the size of the pixel art
-    const pixelSize = Math.floor(size / 200 * 5);
-    const width = canvas.width / pixelSize;
-    const height = canvas.height / pixelSize;
+    const pixelSize = size / 200 * 5;
+    const width = Math.round(canvas.width / pixelSize);
+    const height = Math.round(canvas.height / pixelSize);
     const ctx = canvas.getContext('2d');
     document.getElementById(renderingAreaId).appendChild(canvas);
 
