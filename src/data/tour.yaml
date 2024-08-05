@@ -27,25 +27,22 @@
   region1: "Belgium"
   event_url: "https://lu.ma/jmfb5xdj"
 
-
-- title: "Regenaissance"
-  venue: "C12"
-  host: "LetsGrowDAO"
-  date: "2024-07-12"
-  locality: "Brussels"
-  region1: "Belgium"
-  event_url: "https://lu.ma/regenaissance"
+- title: "Bar Vorovka"
+  date: "2024-08-14"
+  time: 19:00:00
+  locality: "Vědomice-Roudnice"
+  street_address: "413 01 Vědomice-Roudnice nad Labem"
+  region1: "Czech Republic"
 
 - title: "MOOS Space"
-  venue: "MOOS Space"
-  host: "MOOS Space"
   date: "2024-08-17"
   locality: "Berlin"
   region1: "Germany"
-  
+
 - title: "web3summit"
   venue: "Funkhaus"
   host: "web3 foundation"
-  date: "2024-08-21"
+  date: "2024-08-20"
+  time: 18:00:00
   locality: "Berlin"
   region1: "Germany"

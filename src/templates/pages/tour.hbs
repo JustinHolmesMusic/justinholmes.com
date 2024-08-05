@@ -12,13 +12,16 @@
                 <h2 class="accordion-header">
                     <button class="accordion-button text-white bg-secondary" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapse-{{@index}}" aria-controls="collapse-{{@index}}">
-                        {{title}} - {{date}}
+                        {{locality}} - {{title}} - {{date}}
                     </button>
-                    <div id="collapse-{{@index}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="collapse-{{@index}}" class="accordion-collapse collapse"
+                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <p>{{date}}</p>
-                            <p>{{venue}}</p>
+                            <h4>{{title}}</h4>
                             <p>{{host}}</p>
+                            <p>{{date}}</p>
+                            <p>{{time}}</p>
+                            <p>{{venue}}</p>
                             <p>{{locality}}, {{region1}}</p>
                             <p><a href="{{event_url}}">{{event_url}}</a></p>
                         </div>
