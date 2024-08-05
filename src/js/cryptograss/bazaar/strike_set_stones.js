@@ -3,6 +3,7 @@ import { optimismSepolia } from '@wagmi/core/chains';
 import Web3 from 'web3';
 import {createWeb3Modal} from '@web3modal/wagmi'
 import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css'; // optional for styling
 import jazzicon from 'jazzicon';
 import { generateDiamondPattern, generateDiamondPatternFromNesPalette } from '../../setstone_drawing.js';
 import { nesPalette } from '../../constants.js';

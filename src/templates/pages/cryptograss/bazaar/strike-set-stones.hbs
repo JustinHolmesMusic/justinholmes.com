@@ -81,10 +81,12 @@
 
                 <ul>
                 {{#each this.songplays}}
-                   <li><span style="font-family: 'Courier New', Courier, monospace;">{{inc @key}}</span>: <span class="pixel-font">{{this.title}}</span></li>
+                   <li><span class="pixel-font">{{this.title}}</span></li>
+                   {{#if (not-eq this.type "normal")}}
                    <ul>
                         <li><span style="font-family: 'Courier New', Courier, monospace;">type:</span> <span class="pixel-font">{{this.type}}</span></li>
                    </ul>
+                   {{/if}}
                 {{/each}}
                 </ul>
             </div>

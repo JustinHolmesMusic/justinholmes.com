@@ -78,6 +78,11 @@ Handlebars.registerHelper('truncate', function(str, len) {
     return str;
 });
 
+// Register the not-eq helper
+Handlebars.registerHelper('not-eq', function(a, b) {
+    return a !== b;
+});
+
 // Make sure target directory exists
 const targetDir = path.resolve(__dirname, '../../_prebuild_output');
 
