@@ -1,6 +1,6 @@
 // @ts-check
-import {createConfig, http, readContract, fetchBlockNumber} from '@wagmi/core';
-import {mainnet, optimism, optimismSepolia} from '@wagmi/core/chains';
+import {createConfig, http, readContract, fetchBlockNumber, fetchEnsName} from '@wagmi/core';
+import {mainnet, optimism,  optimismSepolia} from '@wagmi/core/chains';
 import {brABI as abi} from "../abi/blueRailroadABI.js";
 import {setStoneABI} from "../abi/setStoneABI.js";
 import {shows} from "./show_and_set_data.js";
@@ -146,7 +146,13 @@ export async function appendSetStoneDataToShows(shows) {
                     args: [setStoneId],
                 });
 
-                setstone["owner"] = ownerOfThisToken;
+
+                let ensName = await fetchEnsName(config, {address: ownerOfThisToken, chainId: 1});
+                if (ensName == undefined) {
+                    ensName = ownerOfThisToken;
+        }
+
+                setstone["owner"] = ensName;
 
                 let tokenURI = await readContract(config, {
                     abi: setStoneABI,
