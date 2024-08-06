@@ -81,35 +81,32 @@
 
                 <ul style="list-style-type: none; padding-left: 0;">
                 {{#each this.songplays}}
-                   <li><span class="pixel-font" style="color: #00ff00; font-size: 1.1em;">$ {{this.title}}</span></li>
-                   {{#if (not-eq this.type "normal")}}
-                   <ul style="list-style-type: none; padding-left: 20px;">
-                        <li><span style="color: #ffff00; font-size: 1.1em;">type:</span> <span class="pixel-font" style="color: #00ff00; font-size: 1.1em;">{{this.type}}</span></li>
-                   </ul>
-                   {{/if}}
+                   <li><span {{#if (not-eq this.type "normal")}}data-tippy-content="{{this.type}}"{{/if}}
+                            class="pixel-font" style="color: #00ff00; font-size: 1.1em;"
+                                >$ {{#if (eq this.type "reprise")}}←{{/if}} {{this.title}} {{#if (eq this.type "segue")}}→{{/if}}</span></li>
                 {{/each}}
                 </ul>
             </div>
             <div style="flex: 1; min-width: 300px;" class="m-3">
                 <h3><span class="pixel-font">Set Stones</span></h3>
-                <table>
+                <table class="px-3">
                     <thead class="border-bottom border-black">
                         <tr>
-                            <th>Crystallization Message</th>
-                            <th>Paid (ETH)</th>
-                            <th>Owner</th>
-                            <th>Token URI</th>
-                            <th>Set Stone</th>
+                            <th class="text-center">Crystallization Message</th>
+                            <th class="text-center">Paid (ETH)</th>
+                            <th class="text-center">Owner</th>
+                            <th class="text-center">Token URI</th>
+                            <th class="text-center">Set Stone</th>
                         </tr>
                     </thead>
                     <tbody>
                     {{#each this.setstones as |stone stoneId|}}
                         <tr class="border-bottom border-black">
-                            <td>{{stone.crystalizationMsg}}</td>
-                            <td>{{stone.paidAmountEth}}</td>
-                            <td data-tippy-content="{{stone.owner}}">{{truncate stone.owner 12}}</td>
-                            <td><a href="{{stone.tokenURI}}" target="_blank">Link</a></td>
-                            <td><div id="setstoneCanvas{{setId}}-{{stoneId}}"></div></td>
+                            <td class="px-3">{{stone.crystalizationMsg}}</td>
+                            <td class="px-3">{{stone.paidAmountEth}}</td>
+                            <td class="px-3" data-tippy-content="{{stone.owner}}"><a href="https://etherscan.io/address/{{stone.owner}}" target="_blank">{{truncate stone.owner 12}}</a></td>
+                            <td class="px-3"><a href="{{stone.tokenURI}}" target="_blank">Link</a></td>
+                            <td class="px-3"><div id="setstoneCanvas{{setId}}-{{stoneId}}"></div></td>
                         </tr>
                         {{/each}}
                     </tbody>

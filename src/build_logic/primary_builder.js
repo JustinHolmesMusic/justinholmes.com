@@ -83,6 +83,10 @@ Handlebars.registerHelper('not-eq', function(a, b) {
     return a !== b;
 });
 
+Handlebars.registerHelper('eq', function(a, b) {
+    return a === b;
+});
+
 // Make sure target directory exists
 const targetDir = path.resolve(__dirname, '../../_prebuild_output');
 
