@@ -76,27 +76,27 @@
 
         {{#each show.sets as |this setId|}}
         <div class="border-bottom border-black mb-3" id="setContainer{{@index}}" style="display: flex; flex-wrap: wrap;">
-            <div style="flex: 1; min-width: 300px;">
-                <h3><span class="pixel-font">Set #{{inc @index}}</span></h3>
+            <div class="mb-3" style="flex: 1; min-width: 300px; max-width: 500px; background-color: #1e1e1e; color: #ffffff; padding: 15px; border-radius: 5px; font-family: 'Courier New', Courier, monospace;">
+                <h3><span class="pixel-font" style="color: #00ff00; font-size: 1.3em;">Set #{{inc @index}}</span></h3>
 
-                <ul>
+                <ul style="list-style-type: none; padding-left: 0;">
                 {{#each this.songplays}}
-                   <li><span class="pixel-font">{{this.title}}</span></li>
+                   <li><span class="pixel-font" style="color: #00ff00; font-size: 1.1em;">$ {{this.title}}</span></li>
                    {{#if (not-eq this.type "normal")}}
-                   <ul>
-                        <li><span style="font-family: 'Courier New', Courier, monospace;">type:</span> <span class="pixel-font">{{this.type}}</span></li>
+                   <ul style="list-style-type: none; padding-left: 20px;">
+                        <li><span style="color: #ffff00; font-size: 1.1em;">type:</span> <span class="pixel-font" style="color: #00ff00; font-size: 1.1em;">{{this.type}}</span></li>
                    </ul>
                    {{/if}}
                 {{/each}}
                 </ul>
             </div>
-            <div style="flex: 1; min-width: 300px;">
+            <div style="flex: 1; min-width: 300px;" class="m-3">
                 <h3><span class="pixel-font">Set Stones</span></h3>
                 <table>
-                    <thead>
+                    <thead class="border-bottom border-black">
                         <tr>
                             <th>Crystallization Message</th>
-                            <th>Paid Amount (ETH)</th>
+                            <th>Paid (ETH)</th>
                             <th>Owner</th>
                             <th>Token URI</th>
                             <th>Set Stone</th>
@@ -104,7 +104,7 @@
                     </thead>
                     <tbody>
                     {{#each this.setstones as |stone stoneId|}}
-                        <tr>
+                        <tr class="border-bottom border-black">
                             <td>{{stone.crystalizationMsg}}</td>
                             <td>{{stone.paidAmountEth}}</td>
                             <td data-tippy-content="{{stone.owner}}">{{truncate stone.owner 12}}</td>
