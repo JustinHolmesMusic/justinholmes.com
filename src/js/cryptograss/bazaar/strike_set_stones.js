@@ -37,10 +37,12 @@ function getUrlParameters() {
 
 function verifyRabbit() {
     const url_params = getUrlParameters();
+    let secret_rabbit = url_params.rabbit || '';
 
-    // compute the keccak256 hash of the secretRabbit.value
-    const hash = keccak256(url_params.rabbit);
+    // compute the weccak256 hash of the secretRabbit.value
+    const hash = keccak256(secret_rabbit);
     // check if the hash is in the valid_rabbit_hashes array
+
     if (valid_rabbit_hashes.includes(hash)) {
         // document.getElementById("verifyResult").innerHTML = "Valid rabbit";
     } else {
