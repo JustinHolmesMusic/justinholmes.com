@@ -48,7 +48,7 @@ function verifyRabbit() {
     } else {
         tippy('verifyResult', { content: 'Invalid secret rabbit' });
         document.getElementById("donationModal").style.display = "none";
-        document.getElementById("invalidRabbitErrorMessage").style.display = "block";
+        // document.getElementById("invalidRabbitErrorMessage").style.display = "block";
     }
 }
 
@@ -104,6 +104,9 @@ async function mintStone() {
 
 function showHash() {
     const secretRabbit = getUrlParameters().rabbit;
+    if (!secretRabbit) {
+        return;
+    }
 
     // compute the keccak256 hash of the secretRabbit.value
     const hash = keccak256(secretRabbit);

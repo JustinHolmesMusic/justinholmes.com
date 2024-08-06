@@ -64,6 +64,10 @@ const common = {
                 {
                     from: path.resolve(__dirname, '../../_prebuild_output/assets'),
                     to: path.resolve(__dirname, '../../dist/assets')
+                },
+                {
+                    from: path.resolve(__dirname, '../../_prebuild_output/setstones'),
+                    to: path.resolve(__dirname, '../../dist/setstones')
                 }
             ]
         }),
