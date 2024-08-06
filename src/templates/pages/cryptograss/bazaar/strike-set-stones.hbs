@@ -79,11 +79,12 @@
             <div class="mb-3" style="flex: 1; min-width: 300px; max-width: 500px; background-color: #1e1e1e; color: #ffffff; padding: 15px; border-radius: 5px; font-family: 'Courier New', Courier, monospace;">
                 <h3><span class="pixel-font" style="color: #00ff00; font-size: 1.3em;">Set #{{inc @index}}</span></h3>
 
-                <ul style="list-style-type: none; padding-left: 0;">
+                {{!-- <ul style="list-style-type: none; padding-left: 0;"> --}}
+                <ul>
                 {{#each this.songplays}}
                    <li><span {{#if (not-eq this.type "normal")}}data-tippy-content="{{this.type}}"{{/if}}
                             class="pixel-font" style="color: #00ff00; font-size: 1.1em;"
-                                >$ {{#if (eq this.type "reprise")}}←{{/if}} {{this.title}} {{#if (eq this.type "segue")}}→{{/if}}</span></li>
+                                >{{#if (eq this.type "reprise")}}<span style="color:#fff7ae"><b>⇚</b></span>{{/if}} {{this.title}}{{#if this.traditional}} <span style="color:#ffa500">(Traditional)</span>{{/if}}{{#if this.cover}} <span style="color:#8fffd4">({{this.cover}} cover)</span>{{/if}} {{#if (eq this.type "segue")}}<span style="color:#fff7ae"><b>⇛</b></span>{{/if}}</span></li>
                 {{/each}}
                 </ul>
             </div>
