@@ -46,6 +46,13 @@ export const setStoneABI = [
     },
     {
       "type": "function",
+      "name": "favoriteSongByTokenId",
+      "inputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "outputs": [{ "name": "", "type": "uint8", "internalType": "uint8" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
       "name": "getApproved",
       "inputs": [
         { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
@@ -60,6 +67,15 @@ export const setStoneABI = [
         { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
       ],
       "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getFavoriteSong",
+      "inputs": [
+        { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
+      ],
+      "outputs": [{ "name": "", "type": "uint8", "internalType": "uint8" }],
       "stateMutability": "view"
     },
     {
@@ -209,6 +225,7 @@ export const setStoneABI = [
           "type": "string",
           "internalType": "string"
         },
+        { "name": "_favoriteSong", "type": "uint8", "internalType": "uint8" },
         { "name": "_rabbit_secret", "type": "string", "internalType": "string" }
       ],
       "outputs": [],
@@ -230,6 +247,7 @@ export const setStoneABI = [
           "type": "string",
           "internalType": "string"
         },
+        { "name": "_favoriteSong", "type": "uint8", "internalType": "uint8" },
         { "name": "_rabbit_secret", "type": "string", "internalType": "string" }
       ],
       "outputs": [],

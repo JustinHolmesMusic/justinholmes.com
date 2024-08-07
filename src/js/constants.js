@@ -57,6 +57,6 @@ export const nesPalette = {
 };
 
 
-export const setStoneContractAddress = "0x77dcbc9c2fe0AA7909B6D023068E96db9aD4C836";
+export const setStoneContractAddress = "0xAE5FF95028829371F5413d2cB59c5d32dc71092c";
 export const blueRailroadContractAddress = "0xCe09A2d0d0BDE635722D8EF31901b430E651dB52";
 export const revealerContractAddress = '0xa812137EFf2B368d0B2880A39B609fB60c426850';
