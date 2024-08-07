@@ -1,4 +1,5 @@
 import { nesPalette } from './constants.js';
+import { createCanvas } from 'canvas';
 
 // Convert hex color to RGB
 function hexToRgb(hex) {
@@ -21,14 +22,24 @@ export function generateDiamondPatternFromNesPalette(baseColorIndex, shadowColor
     const baseColor = colorValues[baseColorIndex];
     const shadowColor = colorValues[shadowColorIndex];
     const highlightColor = colorValues[highlightColorIndex];
-    generateDiamondPattern(baseColor, shadowColor, highlightColor, backgroundColor, renderingAreaId, size);
+    return generateDiamondPattern(baseColor, shadowColor, highlightColor, backgroundColor, renderingAreaId, size);
 }
 
 // Generate diamond pattern
 export function generateDiamondPattern(baseColor, shadowColor, highlightColor, backgroundColor, renderingAreaId, size = 200) {
     // Create a new canvas element in the shapeRenderingArea div
     // const  = nesPalette.brightWhite;
-    const canvas = document.createElement('canvas');
+
+    let canvas = null;
+
+    // if renderingAreaId is not provided, create a new canvas element
+    if (!renderingAreaId) {
+        canvas = createCanvas(size, size);
+    } else {
+        canvas = document.createElement('canvas');
+        document.getElementById(renderingAreaId).appendChild(canvas);
+    }
+
     canvas.width = size;
     canvas.height = size;
     // Define the size of the pixel art
@@ -36,7 +47,7 @@ export function generateDiamondPattern(baseColor, shadowColor, highlightColor, b
     const width = Math.round(canvas.width / pixelSize);
     const height = Math.round(canvas.height / pixelSize);
     const ctx = canvas.getContext('2d');
-    document.getElementById(renderingAreaId).appendChild(canvas);
+
 
     // Define the size of the diamond
     const diamondSize = 20; // Adjust this value to change the diamond size
@@ -69,4 +80,6 @@ export function generateDiamondPattern(baseColor, shadowColor, highlightColor, b
             ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
         }
     }
+
+    return canvas;
 }

@@ -8,7 +8,7 @@ import {marked} from 'marked';
 import {gatherAssets, unusedImages} from './asset_builder.js';
 import {deserializeChainData} from './chaindata_db.js';
 import {execSync} from 'child_process';
-import {generateSetStoneMetadataJsons} from './setstone_utils.js';
+import {generateSetStoneMetadataJsons, renderSetStoneImages} from './setstone_utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -258,6 +258,7 @@ Object.entries(chainData.showsWithChainData).forEach(([show_id, show]) => {
 
 // Generate set stone metadata json files.
 generateSetStoneMetadataJsons(chainData.showsWithChainData, path.resolve(__dirname, '../../_prebuild_output/setstones'));
+renderSetStoneImages(chainData.showsWithChainData, path.resolve(__dirname, '../../_prebuild_output/assets/images/setstones'));
 
 
 // Warn about each unused image.
