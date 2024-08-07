@@ -59,7 +59,8 @@ export function renderSetStoneImages(showsWithChainData, outputDir) {
             set.setstones.forEach((setstone, setstoneNumber) => {
                 const canvas = generateDiamondPatternFromNesPalette(setstone.color[0], setstone.color[1], setstone.color[2], "transparent", null, 1000);
                 const buffer = canvas.toBuffer('image/png');
-                const fileName = `${set.shape}-${setstone.color[0]}-${setstone.color[1]}-${setstone.color[2]}.png`;
+                // const fileName = `${set.shape}-${setstone.color[0]}-${setstone.color[1]}-${setstone.color[2]}.png`;
+                const fileName = `${setstone.tokenId}.png`;
                 const filePath = path.join(outputDir, fileName);
                 fs.writeFileSync(filePath, buffer);
             });

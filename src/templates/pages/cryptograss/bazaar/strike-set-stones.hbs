@@ -107,7 +107,7 @@
                             <td class="px-3">{{stone.paidAmountEth}}</td>
                             <td class="px-3" data-tippy-content="{{stone.owner}}"><a href="https://etherscan.io/address/{{stone.owner}}" target="_blank">{{truncate stone.owner 12}}</a></td>
                             <td class="px-3"><a href="{{stone.tokenURI}}" target="_blank">Link</a></td>
-                            <td class="px-3"><div id="setstoneCanvas{{setId}}-{{stoneId}}"></div></td>
+                            <td class="px-3"><a href="/assets/images/setstones/{{stone.tokenId}}.png" target="_blank"><img src="/assets/images/setstones/{{stone.tokenId}}.png" style="width: 50px;"></a></td>
                         </tr>
                         {{/each}}
                     </tbody>
@@ -193,18 +193,4 @@ const stone_price_wei = {{show.stone_price}}
 const artist_id = {{show.artist_id}}
 const blockheight = {{show.blockheight}}
 
-
-document.addEventListener('DOMContentLoaded', function() {
-    {{#each show.sets as |set setId|}}
-        {{#each set.setstones as |stone stoneId|}}
-            generateDiamondPatternFromNesPalette(
-                {{getElement stone.color 0}},
-                {{getElement stone.color 1}},
-                {{getElement stone.color 2}},
-                "transparent",
-                "setstoneCanvas{{setId}}-{{stoneId}}",
-                50);
-        {{/each}}
-    {{/each}}
-});
 </script>

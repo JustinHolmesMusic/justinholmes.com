@@ -185,8 +185,6 @@ function randomizeColors() {
     });
 }
 
-window.generateDiamondPatternFromNesPalette = generateDiamondPatternFromNesPalette;
-
 
 document.addEventListener('DOMContentLoaded', () => {
     tippy('[data-tippy-content]');
