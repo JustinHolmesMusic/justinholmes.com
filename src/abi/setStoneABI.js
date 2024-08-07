@@ -46,20 +46,6 @@ export const setStoneABI = [
     },
     {
       "type": "function",
-      "name": "generateTokenURI",
-      "inputs": [
-        { "name": "artistId", "type": "uint16", "internalType": "uint16" },
-        { "name": "blockHeight", "type": "uint64", "internalType": "uint64" },
-        { "name": "order", "type": "uint8", "internalType": "uint8" },
-        { "name": "color1", "type": "uint16", "internalType": "uint16" },
-        { "name": "color2", "type": "uint16", "internalType": "uint16" },
-        { "name": "color3", "type": "uint16", "internalType": "uint16" }
-      ],
-      "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
-      "stateMutability": "pure"
-    },
-    {
-      "type": "function",
       "name": "getApproved",
       "inputs": [
         { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
