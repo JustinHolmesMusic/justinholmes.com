@@ -44,6 +44,11 @@ Handlebars.registerHelper("inc", function(value, options)
     return parseInt(value) + 1;
 });
 
+
+Handlebars.registerHelper('subtract', function(a, b) {
+    return a - b;
+});
+
 Handlebars.registerHelper('getElement', function(array, index) {
     return array[index];
 });

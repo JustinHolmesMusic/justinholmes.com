@@ -126,6 +126,15 @@ export async function appendSetStoneDataToShows(shows) {
 
                 setstone["crystalizationMsg"] = crystalizationMsg;
 
+                const favoriteSong = await readContract(config, {
+                    abi: setStoneABI,
+                    address: setStoneContractAddress,
+                    functionName: 'getFavoriteSong',
+                    chainId: optimismSepolia.id,
+                    args: [setStoneId],
+                });
+                setstone["favoriteSong"] = favoriteSong;
+
 
                 const paidAmountWei = await readContract(config, {
                     abi: setStoneABI,

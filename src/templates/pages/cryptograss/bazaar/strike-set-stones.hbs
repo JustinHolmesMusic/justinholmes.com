@@ -89,11 +89,12 @@
                 </ul>
             </div>
             <div style="flex: 1; min-width: 500px;" class="m-3">
-                <h3><span class="pixel-font">Set Stones</span></h3>
+                <h3><span class="pixel-font" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Set Stones</span></h3>
                 <table class="px-3">
                     <thead class="border-bottom border-black">
                         <tr>
                             <th class="text-center">Crystallization Message</th>
+                            <th class="text-center">Favorite Song</th>
                             <th class="text-center">Paid (ETH)</th>
                             <th class="text-center">Owner</th>
                             <th class="text-center">Token URI</th>
@@ -104,6 +105,20 @@
                     {{#each this.setstones as |stone stoneId|}}
                         <tr class="border-bottom border-black">
                             <td class="px-3">{{stone.crystalizationMsg}}</td>
+                            <td class="px-3">
+                                {{#if (eq stone.favoriteSong 0)}}
+                                    <span class="pixel-font" style="color: #00ff00;">-------</span>
+                                {{else}}
+                                    {{#with (lookup ../this.songplays (subtract stone.favoriteSong 1))}}
+                                        <span class="pixel-font" style="color: #00ff00;">
+                                            {{title}}
+                                            {{#if traditional}} <span style="color:#ffa500">(Traditional)</span>{{/if}}
+                                            {{#if cover}} <span style="color:#8fffd4">({{cover}} cover)</span>{{/if}}
+                                            {{#if video_game}} <span style="color:#ffaef8">(from {{video_game}})</span>{{/if}}
+                                        </span>
+                                    {{/with}}
+                                {{/if}}
+                            </td>
                             <td class="px-3">{{stone.paidAmountEth}}</td>
                             <td class="px-3" data-tippy-content="{{stone.owner}}"><a href="https://etherscan.io/address/{{stone.owner}}" target="_blank">{{truncate stone.owner 12}}</a></td>
                             <td class="px-3"><a href="{{stone.tokenURI}}" target="_blank">Link</a></td>
@@ -163,6 +178,10 @@
             
             </select>
 
+            <h4 class="pixel-font mt-2" style="color: black;">Favorite song:</h3>
+            <select id="favoriteSongPicker" class="form-select pixel-font mt-2">
+            </select>
+
             <div class="input-group mt-2" style="width: 100%">
                 <input id="amount" type="number" class="form-control" placeholder="Enter the amount">
                 <span class="input-group-addon">ETH</span>
@@ -192,5 +211,16 @@ const valid_rabbit_hashes = [
 const stone_price_wei = {{show.stone_price}}
 const artist_id = {{show.artist_id}}
 const blockheight = {{show.blockheight}}
+
+const setSongs = [
+{{#each show.sets}}
+    [
+    {{#each this.songplays}}
+    "{{#if (eq this.type "reprise")}}⇚ {{/if}}{{this.title}}{{#if this.traditional}} (Traditional){{/if}}{{#if this.cover}} ({{this.cover}} cover){{/if}}{{#if this.video_game}} (from {{this.video_game}}){{/if}}{{#if (eq this.type "segue")}} ⇛{{/if}}",
+    {{/each}}
+    ],
+{{/each}}
+]
+
 
 </script>

@@ -52,6 +52,30 @@ function verifyRabbit() {
     }
 }
 
+function fillInFavoriteSongPicker() {
+    // take the selected set value
+    const setPicker = document.getElementById("setPicker");
+    const selectedSet = setPicker.value;
+    const favoriteSongPicker = document.getElementById("favoriteSongPicker");
+
+    // clear the favoriteSongPicker
+    favoriteSongPicker.innerHTML = "";
+
+    const option = document.createElement('option');
+    option.value = 0;
+    option.innerHTML = " --------- ";
+    favoriteSongPicker.appendChild(option);
+
+    setSongs[selectedSet].forEach((song, index) => {
+        const option = document.createElement('option');
+        option.value = index + 1;
+        option.innerHTML = song;
+        favoriteSongPicker.appendChild(option);
+    });
+
+}
+
+
 async function mintStone() {
     const account = getAccount(config);
     const address = account?.address;
@@ -75,6 +99,7 @@ async function mintStone() {
 
 
     const crystalizationMessage = document.getElementById("crystalizationMessageText").value;
+    const favoriteSong = document.getElementById("favoriteSongPicker").value;
 
     const args = [
         address,
@@ -85,6 +110,7 @@ async function mintStone() {
         color2,
         color3,
         crystalizationMessage,
+        favoriteSong,
         secretRabbit
     ];
 
@@ -201,4 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
     showHash();
     showStonePrice();
     createColorDropdowns();
+
+
+    const setPicker = document.getElementById("setPicker");
+    setPicker.addEventListener('change', fillInFavoriteSongPicker);
+    fillInFavoriteSongPicker();
 });
