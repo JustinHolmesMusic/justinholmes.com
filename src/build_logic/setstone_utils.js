@@ -41,6 +41,7 @@ export function generateSetStoneMetadataJsons(showsWithChainData, outputDir) {
                 const fileName = `${setstone.tokenId}`;
                 const filePath = path.join(outputDir, fileName);
 
+                fs.mkdirSync(path.dirname(filePath), { recursive: true });
                 fs.writeFileSync(filePath, JSON.stringify(metadata, null, 2));
             });
         });
