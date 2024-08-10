@@ -222,5 +222,10 @@ const setSongs = [
 {{/each}}
 ]
 
+const vowelSoundContributions = [
+{{#each chainData.vowelSoundContributions}}
+    {"amount": {{this.amount}}, "address": "{{this.address}}", "rank": {{this.rank}}, "ensName": "{{this.ensName}}"},
+{{/each}}
+]
 
 </script>
