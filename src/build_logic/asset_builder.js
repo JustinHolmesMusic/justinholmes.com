@@ -27,6 +27,20 @@ function gatherAssets() {
     let imageFiles = globSync(imageDirPattern);
 
     imageFiles.forEach(file => {
+    // copy the vowelsound artifacts under their original name
+        if (file.includes('vowelsound-artifacts')) {
+            const vowelSoundArtifactsDir = path.join(__dirname, '../images/vowelsound-artifacts');
+            const originalPath = path.relative(vowelSoundArtifactsDir, file).replace(/\\/g, '/');
+
+            const dest_dir = path.join(imageOutputDir, 'vowelsound-artifacts');
+            if (!fs.existsSync(dest_dir)) {
+                fs.mkdirSync(dest_dir, {recursive: true});
+            }
+
+            fs.copyFileSync(file, path.join(dest_dir, originalPath));
+            return;
+        }
+
         const buffer = fs.readFileSync(file);
         const hash = crypto.createHash('sha256').update(buffer).digest('hex');
         const ext = path.extname(file);
@@ -46,6 +60,7 @@ function gatherAssets() {
     // Write the mapping to a JSON file
     fs.writeFileSync(mappingFilePath, JSON.stringify(imageMapping, null, 2));
     console.log('Image processing complete. Mapping saved to:', mappingFilePath, 'Found', Object.keys(imageMapping).length, 'images.');
+
 }
 
 

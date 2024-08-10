@@ -237,5 +237,5 @@ for (let i = 11; i <= 29; i++) {
     drawTwoDigitNumber(i, startX, startY, ctx);
 
     // Save the canvas with the number
-    saveCanvas(canvas, `vowel-sounds-cover-art-${i}`);
+    saveCanvas(canvas, `../src/images/vowelsound-artifacts/${i}`);
 }

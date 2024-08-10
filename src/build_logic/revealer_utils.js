@@ -89,13 +89,12 @@ export async function getVowelsoundContributions() {
         let thisLeader = leaders[i];
         let amountInWei = thisLeader[0];
 
+        leaders[i] = {"amount": amountInWei, "address": thisLeader[1], "rank": i};
 
         let ensName = await fetchEnsName(config, {address: thisLeader[1], chainId: 1});
-        if (ensName == undefined) {
-            ensName = thisLeader[1];
+        if (ensName !== null) {
+            leaders[i]["ensName"] = ensName;
         }
-
-        leaders[i] = {"amount": amountInWei, "address": ensName};
     };
 
     return leaders;
