@@ -1,4 +1,4 @@
-import { createConfig, http, writeContract, getAccount } from '@wagmi/core';
+import { createConfig, http, writeContract, getAccount, connect } from '@wagmi/core';
 import { optimismSepolia } from '@wagmi/core/chains';
 import Web3 from 'web3';
 import {createWeb3Modal} from '@web3modal/wagmi'
@@ -8,6 +8,8 @@ import jazzicon from 'jazzicon';
 import { generateDiamondPattern, generateDiamondPatternFromNesPalette } from '../../setstone_drawing.js';
 import { nesPalette } from '../../constants.js';
 import { setStoneContractAddress } from '../../constants.js';
+import Handlebars from 'handlebars';
+import { watchConnections } from '@wagmi/core'
 
 export const config = createConfig({
     chains: [optimismSepolia],
@@ -212,6 +214,40 @@ function randomizeColors() {
 }
 
 
+async function renderOwnedVowelSoundArtifacts(address) {
+    // filter the vowelSoundContributions array to only include the contributions of the given address
+    const filteredVowelSoundContributions = vowelSoundContributions.filter(contribution => contribution.address === address);
+    console.log(filteredVowelSoundContributions);
+
+    // get the unrendered ownedVowelSoundArtifacts from the server
+    // Fetch the Handlebars template
+    const response = await fetch('/partials/owned_vowelsound_artifacts.hbs');
+    const templateText = await response.text();
+
+    // Compile the template
+    const template = Handlebars.compile(templateText);
+
+    // Render the template with the context
+    const renderedHtml = template(filteredVowelSoundContributions);
+
+    // Append the rendered HTML to the DOM
+    document.getElementById('vowelSoundContributions').innerHTML = renderedHtml;
+}
+
+watchConnections(config, {
+  onChange(data) {
+
+    // Check if the wallet is connected
+    const account = getAccount(config);
+    if (account.isConnected) {
+      console.log('Wallet is connected:', account.address);
+     renderOwnedVowelSoundArtifacts(account.address);
+      // You can add additional logic here for when the wallet is connected
+    } 
+  },
+})
+
+
 document.addEventListener('DOMContentLoaded', () => {
     tippy('[data-tippy-content]');
 
@@ -232,4 +268,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const setPicker = document.getElementById("setPicker");
     setPicker.addEventListener('change', fillInFavoriteSongPicker);
     fillInFavoriteSongPicker();
+
 });

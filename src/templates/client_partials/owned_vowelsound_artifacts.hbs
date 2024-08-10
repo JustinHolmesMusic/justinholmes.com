@@ -1,0 +1,14 @@
+<div class="pixel-font">
+        <h2>Your Vowel Sound Artifact</h2>
+        {{!-- <h2>Address: {{artifact.address}}</h2> --}}
+        {{#each this as |artifact|}}
+        {{!-- <p>Amount: {{artifact.amount}}</p> --}}
+        <div class="card shadow-sm rounded-lg overflow-hidden" style="width: 18rem;">
+            <img src="/assets/images/vowelsound-artifacts/{{artifact.rank}}.png" alt="Artifact Image" class="card-img-top" style="object-fit: cover; height: 200px; width: 100%;">
+            <div class="card-body bg-light">
+                <h5 class="card-title">Artifact #{{artifact.rank}}</h5>
+                <p class="card-text">Contribution: {{artifact.amount}} ETH</p>
+            </div>
+        </div>
+        {{/each}}
+</div>

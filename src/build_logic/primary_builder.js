@@ -120,9 +120,6 @@ Handlebars.registerHelper('link', (text, url) => {
 const pageBaseDir = path.resolve(templateDir, 'pages');
 const outputBaseDir = path.resolve(__dirname, '../../_prebuild_output');
 
-// Use glob to find all .hbs files under the input directory
-const pageFiles = glob.sync(`${pageBaseDir}/**/*.hbs`);
-
 /////////////////
 // Page iteration
 //////////////////
@@ -207,6 +204,10 @@ Object.keys(pageyaml).forEach(page => {
     // Write the rendered HTML to the output file path
     fs.writeFileSync(outputFilePath, rendered_page);
 });
+
+
+// Copy client-side partials to the output directory
+fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'partials'), { recursive: true });
 
 
 ////////////////////////////

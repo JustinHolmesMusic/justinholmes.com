@@ -196,6 +196,9 @@
         </div>
     </div>
 
+    <div id="vowelSoundContributions" class="mt-5" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%;">
+    </div>
+
 </div>
 
 <script>
@@ -224,7 +227,7 @@ const setSongs = [
 
 const vowelSoundContributions = [
 {{#each chainData.vowelSoundContributions}}
-    {"amount": {{this.amount}}, "address": "{{this.address}}", "rank": {{this.rank}}, "ensName": "{{this.ensName}}"},
+    {amount: "{{this.amountEth}}", address: "{{this.address}}", rank: {{this.rank}}, ensName: "{{this.ensName}}"},
 {{/each}}
 ]
 
