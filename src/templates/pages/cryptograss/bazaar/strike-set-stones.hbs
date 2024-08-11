@@ -74,6 +74,12 @@
     <div id="setlist" class="mt-5">
         <h1><span class="pixel-font">Setlist</span></h1>
 
+        {{#if (eq (objectLength show.sets) 0)}}
+            <div class="alert alert-info" role="alert">
+                <p class="mb-0 pixel-font">The setlist for this show has not been committed yet. Check back later to see the setlist and mint your Set Stone!</p>
+            </div>
+        {{/if}}
+
         {{#each show.sets as |this setId|}}
         <div class="border-bottom border-black mb-3" id="setContainer{{@index}}" style="display: flex; flex-wrap: wrap;">
             <div class="mb-3" style="flex: 1; min-width: 300px; max-width: 500px; background-color: #1e1e1e; color: #ffffff; padding: 15px; border-radius: 5px; font-family: 'Courier New', Courier, monospace;">
@@ -178,9 +184,10 @@
             
             </select>
 
-            <h4 class="pixel-font mt-2" style="color: black;">Favorite song:</h3>
+            <h4 data-tippy-content="Select a song from the setlist to make it your favorite song for this set stone." class="pixel-font mt-2" style="color: black;">Favorite song:</h3>
             <select id="favoriteSongPicker" class="form-select pixel-font mt-2">
             </select>
+
 
             <div class="input-group mt-2" style="width: 100%">
                 <input id="amount" type="number" class="form-control" placeholder="Enter the amount">

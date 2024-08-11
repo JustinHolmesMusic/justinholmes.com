@@ -66,6 +66,10 @@ Handlebars.registerHelper('fourCycle', function (index, options) {
     return index % 4;
 });
 
+Handlebars.registerHelper('objectLength', function(obj) {
+    return Object.keys(obj).length;
+});
+
 // Register a custom helper to iterate two items at a time
 Handlebars.registerHelper('eachPair', function(context, options) {
   let result = '';

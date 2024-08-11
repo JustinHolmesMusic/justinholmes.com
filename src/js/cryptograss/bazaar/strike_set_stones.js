@@ -54,10 +54,20 @@ function verifyRabbit() {
     }
 }
 
+function hideMintStoneModalIfSetlistNotCommitted() {
+    if (setSongs.length == 0) {
+        document.getElementById("donationModal").style.display = "none";
+    }
+}
+
 function fillInFavoriteSongPicker() {
     // take the selected set value
     const setPicker = document.getElementById("setPicker");
     const selectedSet = setPicker.value;
+    if(selectedSet == "") { // the sets are not yet committed, before the show when the show page is live but the set is yet unknown
+        return;
+    }
+
     const favoriteSongPicker = document.getElementById("favoriteSongPicker");
 
     // clear the favoriteSongPicker
@@ -268,5 +278,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const setPicker = document.getElementById("setPicker");
     setPicker.addEventListener('change', fillInFavoriteSongPicker);
     fillInFavoriteSongPicker();
+    hideMintStoneModalIfSetlistNotCommitted();
 
 });
