@@ -59,16 +59,15 @@
     <p id="verifyResult" class="text-light" style="display: none;"></p>
     <p id="invalidRabbitErrorMessage" style="display: none; color: red;">Invalid secret rabbit</p>
 
-    <div id="showOverview" class="border-bottom border-black pb-3">
-        <h1><span class="pixel-font">Show Overview</span></h1>
-        <span class="pixel-font">Show name:</span> <b>{{show.title}}</b><br>
-        <span class="pixel-font">Venue:</span> <b>{{show.venue}}</b><br>
-        <span class="pixel-font">Host:</span> <b>{{show.host}}</b><br>
-        <span class="pixel-font">Locality:</span> <b>{{show.locality}}</b><br>
-        <span class="pixel-font">Event URL:</span> <a href="{{show.event_url}}">{{show.event_url}}</a><br>
-        <span class="pixel-font">Block height:</span> <b>{{show.blockheight}}</b><br>
-        <span class="pixel-font">Artist ID:</span> <b>{{show.artist_id}}</b><br>
-        {{!-- <span class="pixel-font">Stone price:</span> <b>{{show.stone_price}}</b><br> --}}
+    <div id="showOverview" class="border-bottom border-black pb-3 pixel-font">
+        <h1>{{show.venue}} - {{show.locality}}</h1><h3>Showtime Blockheight: {{show.blockheight}}</h3>
+        <span>Venue:</span> <b>{{show.venue}}</b><br>
+        <span>Host:</span> <b>{{show.host}}</b><br>
+        <span>Locality:</span> <b>{{show.locality}}</b><br>
+        <span>Event URL:</span> <a href="{{show.event_url}}">{{show.event_url}}</a><br>
+        <span>Block height:</span> <b>{{show.blockheight}}</b><br>
+        <span>Artist ID:</span> <b>{{show.artist_id}}</b><br>
+        {{!-- <span>Stone price:</span> <b>{{show.stone_price}}</b><br> --}}
     </div>
 
     <div id="setlist" class="mt-5">
