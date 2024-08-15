@@ -16,9 +16,9 @@ const web3 = new Web3();
 export const config = createConfig({
     chains: [mainnet, optimism, optimismSepolia],
     transports: {
-        [mainnet.id]: http(),
-        [optimism.id]: http(),
-        [optimismSepolia.id]: http(),
+        [mainnet.id]: http("https://mainnet.infura.io/v3/08ebc943a2844ce7a78678a320b67d54"),
+        [optimism.id]: http("https://optimism-mainnet.infura.io/v3/08ebc943a2844ce7a78678a320b67d54"),
+        [optimismSepolia.id]: http("https://optimism-sepolia.infura.io/v3/08ebc943a2844ce7a78678a320b67d54"),
     },
 })
 

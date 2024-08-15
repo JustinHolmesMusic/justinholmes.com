@@ -8,7 +8,7 @@ import { revealerContributionABI } from "../abi/revealerContributionABI.js";
 const config = createConfig({
     chains: [mainnet],
     transports: {
-        [mainnet.id]: http(),
+        [mainnet.id]: http("https://mainnet.infura.io/v3/08ebc943a2844ce7a78678a320b67d54"),
     },
 })
 
