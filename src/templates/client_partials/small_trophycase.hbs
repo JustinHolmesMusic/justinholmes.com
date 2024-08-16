@@ -1,0 +1,15 @@
+<div class="pixel-font">
+    <div class="row w-25">
+        <div class="col-1"></div>
+        <div class="col-1">VS:</div>
+        <div class="col-1"></div>
+        {{#each this as | artifact|}}
+            <div class="col-1 g-0">
+                <a href="/artifacts/vowel-sounds/{{artifact.rank}}">
+                    <img class="w-50" src="/assets/images/vowelsound-artifacts/{{artifact.rank}}.png"
+                         alt="Artifact Image">
+                </a>
+            </div>
+        {{/each}}
+    </div>
+</div>

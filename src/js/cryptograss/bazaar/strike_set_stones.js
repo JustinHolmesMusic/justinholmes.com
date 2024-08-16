@@ -223,7 +223,7 @@ function randomizeColors() {
     });
 }
 
-
+// TODO: This needs to be generalized and moved alongside other trophy case rendering logic.
 async function renderOwnedVowelSoundArtifacts(address) {
     // filter the vowelSoundContributions array to only include the contributions of the given address
     const filteredVowelSoundContributions = vowelSoundContributions.filter(contribution => contribution.address === address);
@@ -231,17 +231,28 @@ async function renderOwnedVowelSoundArtifacts(address) {
 
     // get the unrendered ownedVowelSoundArtifacts from the server
     // Fetch the Handlebars template
-    const response = await fetch('/partials/owned_vowelsound_artifacts.hbs');
-    const templateText = await response.text();
+    const large_vowel_sounds_artifact_display_response = await fetch('/partials/owned_vowelsound_artifacts.hbs');
+    const templateText = await large_vowel_sounds_artifact_display_response.text();
 
-    // Compile the template
+    const small_trophycase_response = await fetch('/partials/small_trophycase.hbs');
+    const small_trophycase_template = await small_trophycase_response.text();
+
+    // Compile the templates
     const template = Handlebars.compile(templateText);
+
+    // TODO: Better for this to live somewhere else, where Set Stones, Blue Railroads, Ursa Minors, etc. can also be rendered
+    const compiled_small_trophycase_template = Handlebars.compile(small_trophycase_template);
 
     // Render the template with the context
     const renderedHtml = template(filteredVowelSoundContributions);
 
     // Append the rendered HTML to the DOM
     document.getElementById('vowelSoundContributions').innerHTML = renderedHtml;
+
+    // Render the small trophy case
+    const rendered_small_trophycase = compiled_small_trophycase_template(filteredVowelSoundContributions);;
+    document.getElementById('top-fixed-area').innerHTML = rendered_small_trophycase;
+
 }
 
 watchConnections(config, {
