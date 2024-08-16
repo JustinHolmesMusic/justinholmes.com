@@ -52,7 +52,7 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
             numberOfSets: showData[1],
             stonePrice: showData[2],
             rabbitHashes: showData[3],
-            setShapes: showData[4],
+            setShapeBySetId: showData[4],
 
         };
 
@@ -68,9 +68,9 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
             console.log(`Error: Number of sets on chain (${unpackedShowData.numberOfSets}) does not match the number of sets in the yaml (${show.sets.length}) for show ID ${show_id}`);
         }
 
-        // unpack setShapes
+        // unpack setShapeBySetId
         for (let i = 0; i < Object.keys(show["sets"]).length; i++) {
-            show["sets"][i]["shape"] = unpackedShowData.setShapes[i];
+            show["sets"][i]["shape"] = unpackedShowData.setShapeBySetId[i];
         }
 
     }

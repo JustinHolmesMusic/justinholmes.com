@@ -349,7 +349,7 @@ export const setStoneABI = [
     },
     {
       "type": "function",
-      "name": "setShapes",
+      "name": "setShapeBySetId",
       "inputs": [
         { "name": "", "type": "bytes32", "internalType": "bytes32" },
         { "name": "", "type": "uint256", "internalType": "uint256" }
