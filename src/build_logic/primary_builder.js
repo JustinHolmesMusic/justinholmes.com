@@ -243,7 +243,7 @@ Object.entries(chainData.showsWithChainData).forEach(([show_id, show]) => {
 
     let context = {
         page_name: page,
-        page_title: "Mint a set stone",
+        page_title: "Strike a set stone",
         show,
         imageMapping,
         chainData,
