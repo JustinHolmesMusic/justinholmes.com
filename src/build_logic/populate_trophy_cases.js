@@ -1,6 +1,6 @@
 // @ts-check
 import {createConfig, http, readContract, fetchBlockNumber, fetchEnsName} from '@wagmi/core';
-import {mainnet, optimism,  optimismSepolia} from '@wagmi/core/chains';
+import {mainnet, optimism,  optimismSepolia, arbitrum } from '@wagmi/core/chains';
 import {brABI as abi} from "../abi/blueRailroadABI.js";
 import {setStoneABI} from "../abi/setStoneABI.js";
 import {shows} from "./show_and_set_data.js";
@@ -14,11 +14,12 @@ const web3 = new Web3();
 
 
 export const config = createConfig({
-    chains: [mainnet, optimism, optimismSepolia],
+    chains: [mainnet, optimism, optimismSepolia, arbitrum],
     transports: {
         [mainnet.id]: http("https://mainnet.infura.io/v3/08ebc943a2844ce7a78678a320b67d54"),
         [optimism.id]: http("https://optimism-mainnet.infura.io/v3/08ebc943a2844ce7a78678a320b67d54"),
         [optimismSepolia.id]: http("https://optimism-sepolia.infura.io/v3/08ebc943a2844ce7a78678a320b67d54"),
+        [arbitrum.id]: http("https://arbitrum-mainnet.infura.io/v3/08ebc943a2844ce7a78678a320b67d54"),
     },
 })
 
@@ -40,7 +41,7 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
             abi: setStoneABI,
             address: setStoneContractAddress,
             functionName: 'getShowData',
-            chainId: optimismSepolia.id,
+            chainId: arbitrum.id,
             args: [artist_id, blockheight],
         });
 
@@ -65,7 +66,7 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
         // integrity check: the number of sets on chain is the same as the number of sets in the yaml, raise an error if not
         if (unpackedShowData.numberOfSets !== Object.keys(show.sets).length) {
             // throw new Error(`Number of sets on chain (${unpackedShowData.numberOfSets}) does not match the number of sets in the yaml (${show.sets.length}) for show ID ${show_id}`);
-            console.log(`Error: Number of sets on chain (${unpackedShowData.numberOfSets}) does not match the number of sets in the yaml (${show.sets.length}) for show ID ${show_id}`);
+            console.log(`Error: Number of sets on chain (${unpackedShowData.numberOfSets}) does not match the number of sets in the yaml (${Object.keys(show.sets).length}) for show ID ${show_id}`);
         }
 
         // unpack setShapeBySetId
@@ -94,7 +95,7 @@ export async function appendSetStoneDataToShows(shows) {
                 abi: setStoneABI,
                 address: setStoneContractAddress,
                 functionName: 'getStonesBySetId',
-                chainId: optimismSepolia.id,
+                chainId: arbitrum.id,
                 args: [artist_id, blockheight, set_order],
             });
 
@@ -110,7 +111,7 @@ export async function appendSetStoneDataToShows(shows) {
                     abi: setStoneABI,
                     address: setStoneContractAddress,
                     functionName: 'getStoneColor',
-                    chainId: optimismSepolia.id,
+                    chainId: arbitrum.id,
                     args: [setStoneId],
                 });
 
@@ -120,7 +121,7 @@ export async function appendSetStoneDataToShows(shows) {
                     abi: setStoneABI,
                     address: setStoneContractAddress,
                     functionName: 'getCrystalizationMsg',
-                    chainId: optimismSepolia.id,
+                    chainId: arbitrum.id,
                     args: [setStoneId],
                 });
 
@@ -130,7 +131,7 @@ export async function appendSetStoneDataToShows(shows) {
                     abi: setStoneABI,
                     address: setStoneContractAddress,
                     functionName: 'getFavoriteSong',
-                    chainId: optimismSepolia.id,
+                    chainId: arbitrum.id,
                     args: [setStoneId],
                 });
                 setstone["favoriteSong"] = favoriteSong;
@@ -140,7 +141,7 @@ export async function appendSetStoneDataToShows(shows) {
                     abi: setStoneABI,
                     address: setStoneContractAddress,
                     functionName: 'getPaidAmountWei',
-                    chainId: optimismSepolia.id,
+                    chainId: arbitrum.id,
                     args: [setStoneId],
                 });
 
@@ -151,7 +152,7 @@ export async function appendSetStoneDataToShows(shows) {
                     abi: setStoneABI,
                     address: setStoneContractAddress,
                     functionName: 'ownerOf',
-                    chainId: optimismSepolia.id,
+                    chainId: arbitrum.id,
                     args: [setStoneId],
                 });
 
@@ -167,7 +168,7 @@ export async function appendSetStoneDataToShows(shows) {
                     abi: setStoneABI,
                     address: setStoneContractAddress,
                     functionName: 'tokenURI',
-                    chainId: optimismSepolia.id,
+                    chainId: arbitrum.id,
                     args: [setStoneId],
                 });
 
@@ -184,7 +185,7 @@ export async function appendSetStoneDataToShows(shows) {
         abi: setStoneABI,
         address: setStoneContractAddress,
         functionName: 'totalSupply',
-        chainId: optimismSepolia.id,
+        chainId: arbitrum.id,
     })
 
 

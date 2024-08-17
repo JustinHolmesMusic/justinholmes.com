@@ -1,14 +1,15 @@
 import { createConfig, http, readContract, writeContract } from '@wagmi/core';
-import { optimismSepolia } from '@wagmi/core/chains';
+import { optimismSepolia, arbitrum } from '@wagmi/core/chains';
 import Web3 from 'web3';
 import $ from 'jquery';
 import {createWeb3Modal} from '@web3modal/wagmi'
 import {setStoneContractAddress} from '../../constants.js';
 
 export const config = createConfig({
-    chains: [optimismSepolia],
+    chains: [optimismSepolia, arbitrum],
     transports: {
         [optimismSepolia.id]: http(),
+        [arbitrum.id]: http(),
     },
 })
 
@@ -45,7 +46,7 @@ async function makeShowAvailableForStoneMinting() {
         address: setStoneContractAddress,
         abi: contractABI,
         functionName: "makeShowAvailableForStoneMinting",
-        chainId: optimismSepolia.id,
+        chainId: arbitrum.id,
         args: [artist_id, blockheight, rabbitHashes, numberOfSets, shapes, stonePriceWei],
     });
 }

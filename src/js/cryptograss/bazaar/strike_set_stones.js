@@ -1,5 +1,5 @@
 import { createConfig, http, writeContract, getAccount, connect } from '@wagmi/core';
-import { optimismSepolia } from '@wagmi/core/chains';
+import { optimismSepolia, arbitrum } from '@wagmi/core/chains';
 import Web3 from 'web3';
 import {createWeb3Modal} from '@web3modal/wagmi'
 import tippy from 'tippy.js';
@@ -13,9 +13,10 @@ import { watchConnections } from '@wagmi/core'
 import {Toast} from 'bootstrap';
 
 export const config = createConfig({
-    chains: [optimismSepolia],
+    chains: [optimismSepolia, arbitrum],
     transports: {
         [optimismSepolia.id]: http(),
+        [arbitrum.id]: http(),
     },
 })
 
@@ -143,7 +144,7 @@ async function mintStone() {
         address: setStoneContractAddress,
         abi: setStoneABI,
         functionName: 'mintStone',
-        chainId: optimismSepolia.id,
+        chainId: arbitrum.id,
         args: args,
         value: web3.utils.toWei(amount, 'ether'),
 
