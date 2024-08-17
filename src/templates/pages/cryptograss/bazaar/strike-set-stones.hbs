@@ -92,6 +92,7 @@
                 {{/each}}
                 </ul>
             </div>
+            <div style="padding-left: 30px;">
                 <h3><span class="pixel-font" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Set Stones</span></h3>
                 <table class="px-3">
                     <thead class="border-bottom border-black">
@@ -111,6 +112,7 @@
                         {{/each}}
                     </tbody>
                 </table>
+            </div>
         </div>
         {{/each}}
     </div>
@@ -179,6 +181,29 @@
     <div id="vowelSoundContributions" class="mt-5" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%;">
     </div>
 
+
+</div>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="not-enough-eth-toast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body" style="color: black;">
+        Not enough ETH to strike a set stone.
+      </div>
+    </div>
+</div>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="connect-wallet-toast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body" style="color: black;">
+        Please connect your wallet.
+      </div>
+    </div>
 </div>
 
 <script>

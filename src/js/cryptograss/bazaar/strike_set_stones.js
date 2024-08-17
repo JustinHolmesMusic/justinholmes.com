@@ -10,6 +10,7 @@ import { nesPalette } from '../../constants.js';
 import { setStoneContractAddress } from '../../constants.js';
 import Handlebars from 'handlebars';
 import { watchConnections } from '@wagmi/core'
+import {Toast} from 'bootstrap';
 
 export const config = createConfig({
     chains: [optimismSepolia],
@@ -93,13 +94,23 @@ async function mintStone() {
     const address = account?.address;
     const secretRabbit = getUrlParameters().rabbit;
     const amount = document.getElementById("amount").value;
-
     window.web3 = web3;
 
-    if (!address) {
-        console.error("No address found. Please connect your wallet.");
+    let stonePriceEth = web3.utils.fromWei(stone_price_wei.toString(), 'ether');
+    
+    if (amount < stonePriceEth) {
+        let notEnoughEthToast = new Toast(document.getElementById('not-enough-eth-toast'));
+        notEnoughEthToast.show();
         return;
     }
+
+
+    if (!address) {
+        let connectWalletToast = new Toast(document.getElementById('connect-wallet-toast'));
+        connectWalletToast.show();
+        return;
+    }
+
 
     const order = document.getElementById("setPicker").value;
 
