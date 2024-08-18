@@ -4,4 +4,47 @@ host: "Y Berlin"
 locality: "Berlin"
 region1: "Germany"
 event_url: ""
-sets: []
+sets:
+  0:
+    songplays:
+      - Hell or High Water (a Policeman and a Fortunte Teller)
+      - Song of Storms:
+        video_game:
+          "The Legend of Zelda: Ocarina of Time"
+      - Red Haired Boy:
+        traditional: true
+      - Silver .44:
+        teases:
+          - Song of Storms
+      - The Goy's Teeth:
+        video_game:
+          "A Serious Man"
+      - Manzanita:
+        cover: Tony Rice
+      - O Death:
+        traditional: true
+        type: justin-solo
+      - Loser:
+        cover: Grateful Dead
+
+  1:
+    songplays:
+      - Seven Bridges Road:
+        cover: Steve Young
+        type: can
+      - Paint Exchange
+      - Drowsy Maggie:
+        traditional: true
+        type: segue
+      - Little Maggie:
+        traditional: true
+      - Dragon Roost Island:
+        video_game:
+          "The Legend of Zelda: The Wind Waker"
+      - Mercedez Benz:
+        cover: Janis Joplin
+        type: segue
+      - Cicada Song
+      - Bubak and Hungaricus:
+        traditional: true
+      - Power Underneath
