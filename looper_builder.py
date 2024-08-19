@@ -7,6 +7,8 @@
 
 import os
 import subprocess
+import time
+from datetime import datetime
 
 # Change the working directory to the script's directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -37,5 +39,9 @@ commands = [
 
 
 for command in commands:
+    # Log the time and the command to be executed
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"[{current_time}] Running command: {' '.join(command)}")
+
     run_command(command)
 
