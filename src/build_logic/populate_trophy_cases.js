@@ -5,22 +5,28 @@ import {brABI as abi} from "../abi/blueRailroadABI.js";
 import {setStoneABI} from "../abi/setStoneABI.js";
 import {shows} from "./show_and_set_data.js";
 import {serializeChainData} from "./chaindata_db.js";
-import {stringify} from "../js/utils.js";
 import {setStoneContractAddress, blueRailroadContractAddress} from "../js/constants.js";
 import { getVowelsoundContributions } from "./revealer_utils.js";
 import Web3 from 'web3';
 const web3 = new Web3();
+import { config as dotenvConfig } from 'dotenv';
 
+const env = process.env.NODE_ENV || 'development';
+dotenvConfig({ path: `.env` });
+
+// Use the environment-specific variables
+const apiKey = process.env.INFURA_API_KEY;
 
 
 export const config = createConfig({
     chains: [mainnet, optimism, optimismSepolia, arbitrum],
     transports: {
-        [mainnet.id]: http("https://mainnet.infura.io/v3/08ebc943a2844ce7a78678a320b67d54"),
-        [optimism.id]: http("https://optimism-mainnet.infura.io/v3/08ebc943a2844ce7a78678a320b67d54"),
-        [optimismSepolia.id]: http("https://optimism-sepolia.infura.io/v3/08ebc943a2844ce7a78678a320b67d54"),
-        [arbitrum.id]: http("https://arbitrum-mainnet.infura.io/v3/08ebc943a2844ce7a78678a320b67d54"),
+        [mainnet.id]: http(`https://mainnet.infura.io/v3/${apiKey}`),
+        [optimism.id]: http(`https://optimism-mainnet.infura.io/v3/${apiKey}`),
+        [optimismSepolia.id]: http(`https://optimism-sepolia.infura.io/v3/${apiKey}`),
+        [arbitrum.id]: http(`https://arbitrum-mainnet.infura.io/v3/${apiKey}`),
     },
+    ssr: true,
 })
 
 

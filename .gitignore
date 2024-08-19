@@ -137,3 +137,5 @@ dmypy.json
 
 _prebuild_output
 _prebuild_chain_data
+
+.env

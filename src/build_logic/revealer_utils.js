@@ -5,10 +5,20 @@ import {mainnet} from '@wagmi/core/chains';
 import { revealerContractAddress } from "../js/constants.js";
 import { revealerContributionABI } from "../abi/revealerContributionABI.js";
 
+import { config as dotenvConfig } from 'dotenv';
+
+const env = process.env.NODE_ENV || 'development';
+dotenvConfig({ path: `.env` });
+
+// Use the environment-specific variables
+const apiKey = process.env.INFURA_API_KEY;
+
+
+// TODO: Consolodate all API/url declarations (and indeed, all chain reads) in one place.
 const config = createConfig({
     chains: [mainnet],
     transports: {
-        [mainnet.id]: http("https://mainnet.infura.io/v3/08ebc943a2844ce7a78678a320b67d54"),
+        [mainnet.id]: http(`https://mainnet.infura.io/v3/${apiKey}`),
     },
 })
 
