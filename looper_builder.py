@@ -14,6 +14,7 @@ from datetime import datetime
 script_dir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(script_dir)
 
+
 def run_command(command):
     try:
         # Run the command and check for errors
@@ -30,18 +31,19 @@ commands = [
     ["/usr/bin/git", "checkout", "production"],
     ["/usr/bin/git", "reset", "--hard", "origin/production"],
     ["/root/.nvm/versions/node/v22.6.0/bin/npm", "install"],
-    ["/root/.nvm/versions/node/v22.6.0/bin/npm", "run", "build"],
     ["/root/.nvm/versions/node/v22.6.0/bin/npm", "run", "fetch-chain-data"],
+    ["/root/.nvm/versions/node/v22.6.0/bin/npm", "run", "build"],
     ["/usr/bin/rsync", "-vah", "--progress",
      "/root/projects/justinholmes.com/dist/",
      "jmyles_justinholmescom@ssh.nyc1.nearlyfreespeech.net:"]
 ]
 
+while True:
+    for command in commands:
+        # Log the time and the command to be executed
+        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print(f"[{current_time}] Running command: {' '.join(command)}")
 
-for command in commands:
-    # Log the time and the command to be executed
-    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(f"[{current_time}] Running command: {' '.join(command)}")
-
-    run_command(command)
-
+        run_command(command)
+        print("Sleeping for 60 seconds...")
+        time.sleep(60)
