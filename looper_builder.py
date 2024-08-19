@@ -45,5 +45,5 @@ while True:
         print(f"[{current_time}] Running command: {' '.join(command)}")
 
         run_command(command)
-        print("Sleeping for 60 seconds...")
-        time.sleep(60)
+    print("Sleeping for 60 seconds...")
+    time.sleep(60)
