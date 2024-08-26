@@ -1,10 +1,10 @@
 import Handlebars from 'handlebars';
-import { DateTime } from 'luxon';
+import {DateTime} from 'luxon';
 
 // Reference block details
 const REFERENCE_BLOCK = 20612385; // Example block number
 const REFERENCE_TIMESTAMP = 1724670731; // Unix timestamp in seconds
-const AVERAGE_BLOCK_TIME = 12.068; // Average block time in seconds
+const AVERAGE_BLOCK_TIME = 12.08; // Average block time in seconds
 
 let _helpers_are_registered = false;
 
