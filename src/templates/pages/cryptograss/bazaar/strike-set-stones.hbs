@@ -50,8 +50,8 @@
     <p id="invalidRabbitErrorMessage" style="display: none; color: red;">Invalid secret rabbit</p>
 
     <div id="showOverview" class="border-bottom border-black pb-3 pixel-font">
-        <h1>{{show.venue}} - {{show.locality}}</h1>
-        <h3>Scheduled for Blockheight: {{numberWithCommas show.blockheight}} ({{blockToDate show.blockheight show.timezone}})</h3>
+        <h1>{{show.title}} - {{show.locality}}</h1>
+        <h4>Scheduled for Blockheight: {{numberWithCommas show.blockheight}} ({{blockToDate show.blockheight show.timezone}})</h4>
         <span>Venue:</span> <b>{{show.venue}}</b><br>
         <span>Host:</span> <b>{{show.host}}</b><br>
         <span>Locality:</span> <b>{{show.locality}}, {{show.region0}}</b><br>
@@ -60,8 +60,6 @@
     </div>
 
     <div id="setlist" class="mt-5">
-        <h1><span class="pixel-font">Setlist</span></h1>
-
         {{#if (eq (objectLength show.sets) 0)}}
             <div class="alert alert-info" role="alert">
                 <p class="mb-0 pixel-font">The setlist for this show has not been committed yet. Check back later to see the setlist and mint your Set Stone!</p>
