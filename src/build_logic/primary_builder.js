@@ -9,6 +9,7 @@ import {gatherAssets, unusedImages} from './asset_builder.js';
 import {deserializeChainData} from './chaindata_db.js';
 import {execSync} from 'child_process';
 import {generateSetStoneMetadataJsons, renderSetStoneImages} from './setstone_utils.js';
+import {registerHelpers} from './utils/template_helpers.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,6 +39,8 @@ const imageMapping = getImageMapping();
 
 ///// Helpers
 /////////////
+registerHelpers();
+
 
 Handlebars.registerHelper("inc", function(value, options)
 {
@@ -214,9 +217,9 @@ Object.keys(pageyaml).forEach(page => {
 fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'partials'), { recursive: true });
 
 
-////////////////////////////
-/// Render SetStone pages //
-////////////////////////////
+////////////////////////////////////////////////////////
+/// Render Show pages, including set stone minting    //
+////////////////////////////////////////////////////////
 
 // for every show in chainData, render a page
 

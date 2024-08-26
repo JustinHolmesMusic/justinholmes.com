@@ -4,6 +4,7 @@ host: "Regens Unite"
 locality: "Brussels"
 region1: "Belgium"
 event_url: "https://lu.ma/jmfb5xdj"
+timezone: "Europe/Berlin"
 sets:
   0:
     songplays:
