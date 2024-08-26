@@ -1,0 +1,20 @@
+title: "Building Network States: Atoms Edition"
+venue: "Brussels Aquaponic Farm - BIGH Anderlecht"
+host: "buildcities"
+locality: "Brussels"
+region1: "Belgium"
+timezone: "Europe/Berlin"
+tour: "europe-2024"
+sets:
+  0:
+    songplays:
+      - Dragon Roost Island:
+        video_game:
+          "The Legend of Zelda: The Wind Waker"
+      - Back Up and Push (traditional)
+      - Salt Creek (traditional)
+      - Drowsy Maggie (traditional)
+      - Lost
+      - Fish and Whistle (John Prine cover)
+      - Aquanoodle
+      - Rueben's Train (traditional)

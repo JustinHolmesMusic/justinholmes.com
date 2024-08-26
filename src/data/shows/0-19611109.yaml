@@ -1,0 +1,20 @@
+title: "Arbitrum Govhack Brussels 2024"
+venue: "Brussels Doubletree"
+host: "Hack Humanity"
+locality: "Brussels"
+region1: "Belgium"
+timezone: "Europe/Berlin"
+tour: "europe-2024"
+sets:
+  0:
+    songplays:
+      - Lost
+      - What is consensus?
+      - Dragon Roost Island:
+        video_game:
+          "The Legend of Zelda: The Wind Waker"
+      - Nanny State Fiddler
+      - Rollups and Rearview Mirrors
+      - Cork Board
+      - Drowsy Maggie (traditional)
+      - Man of Constant Sorrow (traditional)
