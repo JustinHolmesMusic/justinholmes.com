@@ -5,12 +5,6 @@
 {{/if}}
 
     <style>
-        /*#donationModalContainer {*/
-        /*    display: flex;*/
-        /*    justify-content: center;*/
-        /*    width: 100%;*/
-        /*    align-items: center;*/
-        /*}*/
 
         #donationModal {
             /*display: flex;*/
@@ -50,23 +44,18 @@
 
 
 <div id="cryptograss-content" class="container mb-5 gradient-transparent-bg p-4">
-    <h1 class="text-light pixel-font text-center mb-3">Strike a set stone</h1>
-    <hr/>
-
     <div id="shapeRenderingArea" style="display: flex; flex-direction: row; flex-wrap: wrap;"></div>
 
     <p id="verifyResult" class="text-light" style="display: none;"></p>
     <p id="invalidRabbitErrorMessage" style="display: none; color: red;">Invalid secret rabbit</p>
 
     <div id="showOverview" class="border-bottom border-black pb-3 pixel-font">
-        <h1>{{show.venue}} - {{show.locality}}</h1><h3>Showtime Blockheight: {{show.blockheight}}</h3>
+        <h1>{{show.venue}} - {{show.locality}}</h1>
+        <h3>Scheduled for Blockheight: {{numberWithCommas show.blockheight}} ({{blockToDate show.blockheight show.timezone}})</h3>
         <span>Venue:</span> <b>{{show.venue}}</b><br>
         <span>Host:</span> <b>{{show.host}}</b><br>
-        <span>Locality:</span> <b>{{show.locality}}</b><br>
+        <span>Locality:</span> <b>{{show.locality}}, {{show.region0}}</b><br>
         <span>Event URL:</span> <a href="{{show.event_url}}">{{show.event_url}}</a><br>
-        <span>Block height:</span> <b>{{show.blockheight}}</b><br>
-        <span>Datetime: <b>{{blockToDate show.blockheight show.timezone}}</b></span>
-        <span>Artist ID:</span> <b>{{show.artist_id}}</b><br>
         {{!-- <span>Stone price:</span> <b>{{show.stone_price}}</b><br> --}}
     </div>
 
