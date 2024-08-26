@@ -9,12 +9,14 @@ const dataDir = path.resolve(__dirname, '../data');
 // iterate through the shows directory in data, get the YAML filenames.
 import path from "path";
 import fs from "fs";
-import { stringify } from "../js/utils.js";
+import {stringify} from "../js/utils.js";
 
 const showsDir = path.resolve(dataDir, 'shows');
 const liveShowYAMLs = fs.readdirSync(showsDir);
 
 let shows = {};
+let allSongsPlayed = {};
+let tours = {};
 
 // Iterate through the YAML files.
 // We're going to get the show metadata and,
@@ -29,6 +31,15 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
     let showYAMLFile = fs.readFileSync(path.resolve(showsDir, showYAML));
     let showYAMLData = yaml.load(showYAMLFile);
 
+    // Populate tours.
+    let tour = showYAMLData['tour'];
+    // Do nothing if tour is undefined.
+    if (tour != undefined) {
+        if (!tours.hasOwnProperty(tour)) {
+            tours[tour] = [];
+        }
+        tours[tour].push(showID);
+    }
     // This array will become an array of sets with songs formatted as we imagine they one day will be onchain.
     let sets_in_this_show = {}
 
@@ -54,13 +65,21 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
                     }
                 }
             }
-                
+
             // fill the default values for unspecified fields
             if (!songObject.hasOwnProperty('type')) {
                 songObject['type'] = "normal";
             }
             // And put the song back into the set object.
             this_set["songplays"][s] = songObject;
+
+            // And add it to the allSongsPlayed object.
+            if (!allSongsPlayed.hasOwnProperty(songObject['title'])) {
+                allSongsPlayed[songObject['title']] = 1;
+            } else {
+                allSongsPlayed[songObject['title']] += 1;
+            }
+
         }
 
 
