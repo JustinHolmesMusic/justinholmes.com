@@ -44,7 +44,6 @@ function getContributionsByAddress(contributionsMetadata) {
 
         if (is_combined) {
             if (contributionsByAddress[address].length === 0) {
-                // console.log("wtf");
                 // This ought to be an impossible situaiton - how did they dcombine with a bid that didn't exist?
                 contributionsByAddress[address].push(Number(0))
             }

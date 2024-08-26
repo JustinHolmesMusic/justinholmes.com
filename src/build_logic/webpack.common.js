@@ -24,8 +24,6 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
     // Compute the output filename by maintaining the relative directory structure
     const relativePath = path.relative(preBuildOutputDirectory, templatePath);
 
-    console.log(relativePath);
-
     if (relativePath.startsWith('music/vowel-sounds')) {
         var chunks = ['vowel_sounds'];
     } else if (relativePath.startsWith('sign')) {

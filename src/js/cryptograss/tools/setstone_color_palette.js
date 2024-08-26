@@ -3,8 +3,6 @@ import { generateDiamondPattern, nesPalette, setstoneColors } from '../../shapes
 function displaySetStoneColorPalette() {
 
     Object.entries(setstoneColors).forEach(([index, color]) => {
-        console.log(index, " color: ", nesPalette[color[0]], nesPalette[color[1]], nesPalette[color[2]]);
-
         const div = document.createElement('div');
         const innerDiv = document.createElement('div');
         innerDiv.id = `stoneRender-${index}`;
