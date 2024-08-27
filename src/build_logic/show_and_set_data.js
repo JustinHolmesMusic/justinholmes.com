@@ -34,15 +34,17 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
     let showYAMLFile = fs.readFileSync(path.resolve(showsDir, showYAML));
     let showYAMLData = yaml.load(showYAMLFile);
 
-    // Populate tours.
-    let tour = showYAMLData['tour'];
-    // Do nothing if tour is undefined.
-    if (tour != undefined) {
+    // If show is part of a tour, add it to that tour.
+    if (showYAMLData.hasOwnProperty('tour')) {
+        let tour = showYAMLData['tour'];
+
         if (!tours.hasOwnProperty(tour)) {
             tours[tour] = [];
         }
+
         tours[tour].push(showID);
     }
+
     // This array will become an array of sets with songs formatted as we imagine they one day will be onchain.
     let sets_in_this_show = {}
 
