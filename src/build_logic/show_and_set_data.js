@@ -14,6 +14,9 @@ import {stringify} from "../js/utils.js";
 const showsDir = path.resolve(dataDir, 'shows');
 const liveShowYAMLs = fs.readdirSync(showsDir);
 
+// Sort liveShowYAMLs in reverse (so that most recent shows are first)..
+liveShowYAMLs.sort().reverse();
+
 let shows = {};
 let allSongsPlayed = {};
 let tours = {};
