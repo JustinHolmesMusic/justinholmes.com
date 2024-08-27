@@ -27,7 +27,7 @@ function gatherAssets() {
     let imageFiles = globSync(imageDirPattern);
 
     imageFiles.forEach(file => {
-    // copy the vowelsound artifacts under their original name
+        // copy the vowelsound artifacts under their original name
         if (file.includes('vowelsound-artifacts')) {
             const vowelSoundArtifactsDir = path.join(__dirname, '../images/vowelsound-artifacts');
             const originalPath = path.relative(vowelSoundArtifactsDir, file).replace(/\\/g, '/');
@@ -86,7 +86,12 @@ Handlebars.registerHelper('resolveImage', function (originalPath) {
 Handlebars.registerHelper('resolveChart', function (artist_id, blockheight, setId) {
 
     let foundImage;
-    let originalPath = `charts/${artist_id}-${blockheight}-set-${setId}-provenance.png`;
+    let originalPath
+    if (setId === "full-show") {
+        originalPath = `charts/${artist_id}-${blockheight}-full-show-provenance.png`;
+    } else {
+        originalPath = `charts/${artist_id}-${blockheight}-set-${setId}-provenance.png`;
+    }
     try {
         foundImage = imageMapping[originalPath];
     } catch (e) {
@@ -103,7 +108,7 @@ Handlebars.registerHelper('resolveChart', function (artist_id, blockheight, setI
 });
 
 
-Handlebars.registerHelper('safeHTML', function(content) {
+Handlebars.registerHelper('safeHTML', function (content) {
     return new Handlebars.SafeString(content);
 });
 

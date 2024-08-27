@@ -289,17 +289,19 @@ for (const songPlay of allSongPlays) {
 
 // Now, we'll go through each set again and make a chart for song provenance.
 for (let [showID, show] of Object.entries(shows)) {
+    let show_provenances = {'original': 0, 'traditional': 0, 'cover': 0, 'video_game': 0, 'film': 0, 'one-off': 0};
     for (let [set_number, set] of Object.entries(show['sets'])) {
         let set_provenances = {'original': 0, 'traditional': 0, 'cover': 0, 'video_game': 0, 'film': 0, 'one-off': 0};
         for (let songPlay of Object.values(set['songplays'])) {
             if (songPlay.hasOwnProperty('provenance')) {
                 set_provenances[songPlay['provenance']] += 1;
+                show_provenances[songPlay['provenance']] += 1;
             } else {
                 throw new Error("SongPlay does not have provenance; seems like an impossible state.");
             }
         }
         //////// CHART TIME ////////
-// Set up the canvas using the canvas library
+        // Set up the canvas using the canvas library
         const width = 800;
         const height = 600;
         const canvas = createCanvas(width, height);
@@ -309,7 +311,7 @@ for (let [showID, show] of Object.entries(shows)) {
             labels: ['Originals', 'Traditionals', 'Covers', 'Video Game Tunes'],
             datasets: [
                 {
-                    label: 'My First Dataset',
+                    label: 'Song Breakdown',
                     data: [set_provenances['original'],
                         set_provenances['traditional'],
                         set_provenances['cover'],
@@ -361,7 +363,70 @@ for (let [showID, show] of Object.entries(shows)) {
         let output_file_name = `${chartsDir}//${showID}-set-${set_number}-provenance.png`;
 
         fs.writeFileSync(output_file_name, buffer);
-    }
+    } // Set loop
+
+    // Now the chart for the full show.
+    // Set up the canvas using the canvas library
+    const width = 800;
+    const height = 600;
+    const canvas = createCanvas(width, height);
+    const ctx = canvas.getContext('2d');
+
+    const data = {
+        labels: ['Originals', 'Traditionals', 'Covers', 'Video Game Tunes'],
+        datasets: [
+            {
+                label: 'Song Breakdown',
+                data: [show_provenances['original'],
+                    show_provenances['traditional'],
+                    show_provenances['cover'],
+                    show_provenances['video_game']],
+                backgroundColor: [
+                    'rgb(3,63,218)',
+                    'rgb(58,123,5)',
+                    'rgba(231,57,57)',
+                    'rgba(206,159,6)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1,
+            },
+        ],
+    };
+
+    const config = {
+        type: 'doughnut',
+        data: data,
+        options: {
+            responsive: false, // Since we're rendering server-side, disable responsiveness
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            size: 38,
+                        },
+                        textAlign: 'left',
+                        boxWidth: 20, // Increase the box width for legend items
+                    },
+                },
+            },
+        },
+    };
+    // Render the chart using Chart.js
+    const myChart = new Chart(ctx, config);
+
+    // Save the chart as an image
+    const buffer = canvas.toBuffer('image/png');
+    let output_file_name = `${chartsDir}//${showID}-full-show-provenance.png`;
+
+    fs.writeFileSync(output_file_name, buffer);
 }
 
 

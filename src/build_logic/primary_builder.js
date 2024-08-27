@@ -204,11 +204,11 @@ Object.entries(chainData.showsWithChainData).forEach(([show_id, show]) => {
 
     let context = {
         page_name: page,
-        page_title: "Strike a set stone",
+        page_title: show.title,
         show,
         imageMapping,
         chainData,
-    };
+    };  
 
     // console.log(context);
 

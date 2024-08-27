@@ -513,3 +513,15 @@ nav a img {
     padding:25px;
     border: 1px solid rgb(58, 34, 75);
 }
+
+.all-shows-list h1 {
+    font-size: 1.8em;
+}
+
+.all-shows-list h4 {
+    font-size: 1.2em;
+}
+
+.all-shows-list .showOverview {
+    background-color: rgba(108, 108, 108, 0.46);
+}
