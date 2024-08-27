@@ -1,0 +1,17 @@
+title: "Klub Betlémská"
+venue: "Klub Betlémská"
+host: "Band 7"
+locality: "Prague"
+region1: "Czech Republic"
+event_url: ""
+timezone: "Europe/Berlin"
+sets:
+  0:
+    songplays:
+      -Paint Exchange
+      -The Two Sisters
+      -Cork Board
+      -Loser
+      -Drowsy Maggie
+      -Bank Run
+      -Dragon Roost Island

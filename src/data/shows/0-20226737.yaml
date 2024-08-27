@@ -1,0 +1,15 @@
+title: "DAO Brussels"
+venue: "Commons Hub Brussels"
+host: "DAO Brussels"
+locality: "Brussels"
+region1: "Belgium"
+timezone: "Europe/Berlin"
+tour: "europe-2024"
+sets:
+  0:
+    songplays:
+      - Bank Run
+      - Dire Wolf -=>
+      - Nanny State Fiddler
+      - Song of Storms
+      - Vowel Sounds

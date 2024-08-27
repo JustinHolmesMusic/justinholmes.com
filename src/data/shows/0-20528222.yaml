@@ -1,0 +1,27 @@
+title: "Bar Vorovka"
+venue: "Bar Vorovka"
+locality: "Vědomice-Roudnice"
+region1: "Czech Republic"
+event_url: ""
+timezone: "Europe/Berlin"
+sets:
+  0:
+    songplays:
+      -Lost
+      -Back Up and Push
+      -Millenial Fair
+      -Nanny State Fiddler
+      -Manzanita
+      -Can the Circle Be Unbroken
+      -Shady Grove
+      -Seven Bridges Road
+  1:
+    songplays:
+      -Hell or High Water
+      -August
+      -Silver .44
+      -Red Haired Boy
+      -Where Rainbows Never Die
+      -The Frog
+      -Bubak and Hungaricus
+      -Power Underneath
