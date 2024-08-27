@@ -51,6 +51,13 @@ tour:
     context:
       page_title: "Tour dates"
 
+shows:
+    template: shows.hbs
+    include_chaindata_as_context:
+      - showsWithChainData
+    context:
+        page_title: "Shows"
+
 add-live-set:
   context:
     page_title: "Add a live set"

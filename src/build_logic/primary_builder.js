@@ -123,6 +123,12 @@ Object.keys(pageyaml).forEach(page => {
         specified_context = {};
     }
 
+    if (pageInfo['include_chaindata_as_context'] != undefined) {
+        for (let chainDataSection of pageInfo['include_chaindata_as_context']) {
+            specified_context[chainDataSection] = chainData[chainDataSection];
+        }
+    }
+
     let context = {
         page_name: page,
         ...pageInfo['context'],
