@@ -1,0 +1,15 @@
+{{#if compact}}
+    {{> slicey}}
+{{else}}
+    {{> bigger-banner}}
+{{/if}}
+
+
+<div id="content" class="container text-light">
+    <div class="accordion col-md-8 center">
+        {{#each songs}}<br/>
+            {{stringify this}}
+            <hr/>
+        {{/each}}
+    </div>
+</div>
