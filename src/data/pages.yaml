@@ -77,3 +77,8 @@ sign-things:
   template: "cryptograss/tools/sign-things.hbs"
   context:
     page_title: "Sign things if you want!"
+
+all-songs:
+  template: "songs/all-songs.hbs"
+  include_data_in_context:
+    - songs

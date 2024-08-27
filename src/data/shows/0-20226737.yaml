@@ -9,7 +9,8 @@ sets:
   0:
     songplays:
       - Bank Run
-      - Dire Wolf -=>
+      - Dire Wolf:
+        mode: segue
       - Nanny State Fiddler
       - Song of Storms
       - Vowel Sounds

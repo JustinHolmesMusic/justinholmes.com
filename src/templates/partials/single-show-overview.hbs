@@ -1,5 +1,5 @@
 <div id="showOverview" class="border-bottom border-black pb-3 pixel-font">
-    <h1>{{show.title}} - {{show.locality}}</h1>
+    {{# if title_as_link}}<a href="/shows/{{show.artist_id}}-{{show.blockheight}}.html">{{/if}}<h1>{{show.title}} - {{show.locality}}</h1>{{# if title_as_link}}</a>{{/if}}
     <h4>Scheduled for Blockheight: {{numberWithCommas show.blockheight}} ({{blockToDate show.blockheight show.timezone}}
         )</h4>
     <span>Venue:</span> <b>{{show.venue}}</b><br>

@@ -1,5 +1,6 @@
 import Handlebars from 'handlebars';
 import {DateTime} from 'luxon';
+import {songs} from '../show_and_set_data.js'
 
 // Reference block details
 const REFERENCE_BLOCK = 20612385; // Example block number
@@ -81,12 +82,23 @@ export function registerHelpers() {
         return result;
     });
 
+    Handlebars.registerHelper('addSongFromPlayToContext', function (context, options) {
+        // This feels like spooky action at a distnace.  I wish handlebars could just call a method.
+        this.song = songs[this.songSlug];
+    });
+
+
 // New helper to truncate a string if it is longer than a threshold
     Handlebars.registerHelper('truncate', function (str, len) {
         if (str.length > len) {
             return str.substring(0, len) + '...';
         }
         return str;
+    });
+
+    // Stringify
+    Handlebars.registerHelper('stringify', function (obj) {
+        return JSON.stringify(obj, null, 3);
     });
 
 // Register the not-eq helper

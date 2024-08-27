@@ -8,44 +8,29 @@ timezone: "Europe/Berlin"
 sets:
   0:
     songplays:
-      - Hell or High Water (a Policeman and a Fortunte Teller)
-      - Song of Storms:
-        video_game:
-          "The Legend of Zelda: Ocarina of Time"
-      - Red Haired Boy:
-        traditional: true
+      - hohw
+      - Song of Storms
+      - Red Haired Boy
       - Silver .44:
         teases:
           - Song of Storms
-      - The Goy's Teeth:
-        video_game:
-          "A Serious Man"
-      - Manzanita:
-        cover: Tony Rice
+      - The Goy's Teeth
+      - Manzanita
       - O Death:
-        traditional: true
-        type: justin-solo
-      - Loser:
-        cover: Grateful Dead
+        ensemble-modification: justin-solo
+      - Loser
 
   1:
     songplays:
       - Seven Bridges Road:
-        cover: Steve Young
-        type: can
+        performance_modification: can
       - Paint Exchange
       - Drowsy Maggie:
-        traditional: true
-        type: segue
-      - Little Maggie:
-        traditional: true
+        mode: segue
+      - Little Maggie
       - Dragon Roost Island:
-        video_game:
-          "The Legend of Zelda: The Wind Waker"
       - Mercedez Benz:
-        cover: Janis Joplin
-        type: segue
+        mode: segue
       - Cicada Song
-      - Bubak and Hungaricus:
-        traditional: true
+      - Bubak and Hungaricus
       - Power Underneath

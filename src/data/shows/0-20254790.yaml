@@ -10,11 +10,9 @@ sets:
     songplays:
       - Lost
       - What is consensus?
-      - Dragon Roost Island:
-        video_game:
-          "The Legend of Zelda: The Wind Waker"
+      - Dragon Roost Island
       - Nanny State Fiddler
       - Rollups and Rearview Mirrors
       - Cork Board
-      - Drowsy Maggie (traditional)
-      - Man of Constant Sorrow (traditional)
+      - Drowsy Maggie
+      - Man of Constant Sorrow

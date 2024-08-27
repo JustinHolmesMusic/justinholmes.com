@@ -8,10 +8,10 @@ timezone: "Europe/Berlin"
 sets:
   0:
     songplays:
-      -Paint Exchange
-      -The Two Sisters
-      -Cork Board
-      -Loser
-      -Drowsy Maggie
-      -Bank Run
-      -Dragon Roost Island
+      - Paint Exchange
+      - The Two Sisters
+      - Cork Board
+      - Loser
+      - Drowsy Maggie
+      - The Morning of The Bank Run
+      - Dragon Roost Island

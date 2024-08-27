@@ -4,6 +4,7 @@ import * as glob from 'glob';
 import {fileURLToPath} from 'url';
 import yaml from 'js-yaml';
 import path from 'path';
+import {songs} from "./show_and_set_data.js";
 import {marked} from 'marked';
 import {gatherAssets, unusedImages} from './asset_builder.js';
 import {deserializeChainData} from './chaindata_db.js';
@@ -17,6 +18,7 @@ const __dirname = path.dirname(__filename);
 const templateDir = path.resolve(__dirname, '../templates');
 
 const chainData = deserializeChainData();
+const dataAvailableAsContext = {"songs": songs};
 
 let pageyamlFile = fs.readFileSync("src/data/pages.yaml");
 let pageyaml = yaml.load(pageyamlFile);
@@ -129,6 +131,16 @@ Object.keys(pageyaml).forEach(page => {
         }
     }
 
+    if (pageInfo['include_data_in_context'] != undefined) {
+        for (let dataSection of pageInfo['include_data_in_context']) {
+            let dataSectionToInclude = dataAvailableAsContext[dataSection];
+            if (dataSectionToInclude === undefined) {
+                throw new Error(`Data section ${dataSection} requested for page ${page} but not found in dataAvailableAsContext.`);
+            }
+            specified_context[dataSection] = dataSectionToInclude;
+        }
+    }
+
     let context = {
         page_name: page,
         ...pageInfo['context'],
@@ -161,7 +173,7 @@ Object.keys(pageyaml).forEach(page => {
 
 
 // Copy client-side partials to the output directory
-fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'partials'), { recursive: true });
+fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'partials'), {recursive: true});
 
 
 ////////////////////////////////////////////////////////

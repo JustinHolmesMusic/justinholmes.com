@@ -7,22 +7,23 @@ timezone: "Europe/Berlin"
 sets:
   0:
     songplays:
-      -August
-      -Last Train From Poor Valley -=>
-      -Salt Creek
-      -The Two Sisters
-      -Victory
-      -Swords to Ploughshares
-      -Morrison's Jig
-      -Man of Constant Sorrow
-      -Manzanita
-      -Nanny State Fiddler
-      -Lost
-      -The Frog
-      -Rueben's Train
-      -Back Up and Push
-      -Rollups and Rearview Mirrors
-      -Drowsy Maggie
-      -Shady Grove
-      -Dragon Roost Island
-      -Bank Run
+      - August
+      - Last Train From Poor Valley:
+        mode: segue
+      - Salt Creek
+      - The Two Sisters
+      - victory-ff7
+      - Swords to Ploughshares
+      - Morrison's Jig
+      - Man of Constant Sorrow
+      - Manzanita
+      - Nanny State Fiddler
+      - Lost
+      - The Frog
+      - Rueben's Train
+      - Back Up and Push
+      - Rollups and Rearview Mirrors
+      - Drowsy Maggie
+      - Shady Grove
+      - Dragon Roost Island
+      - Bank Run

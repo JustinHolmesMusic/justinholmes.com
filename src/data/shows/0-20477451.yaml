@@ -8,13 +8,11 @@ tour: "europe-2024"
 sets:
   0:
     songplays:
-      - Dragon Roost Island:
-        video_game:
-          "The Legend of Zelda: The Wind Waker"
-      - Back Up and Push (traditional)
-      - Salt Creek (traditional)
-      - Drowsy Maggie (traditional)
+      - Dragon Roost Island
+      - Back Up and Push
+      - Salt Creek
+      - Drowsy Maggie
       - Lost
-      - Fish and Whistle (John Prine cover)
+      - Fish and Whistle
       - Aquanoodle
-      - Rueben's Train (traditional)
+      - Rueben's Train
