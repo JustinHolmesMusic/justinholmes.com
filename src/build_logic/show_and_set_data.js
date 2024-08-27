@@ -155,6 +155,7 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
 
         // All songs are now objects.  TODO: Just give shows an ID and persist them, etc.
         showYAMLData['sets'] = sets_in_this_show;
+        showYAMLData['number_of_sets'] = Object.keys(sets_in_this_show).length
         shows[showID] = showYAMLData;
     } // Sets loop
 
@@ -317,10 +318,10 @@ for (let [showID, show] of Object.entries(shows)) {
                         set_provenances['cover'],
                         set_provenances['video_game']],
                     backgroundColor: [
-                        'rgb(3,63,218)',
-                        'rgb(58,123,5)',
-                        'rgba(231,57,57)',
-                        'rgba(206,159,6)',
+                        '#2F50D7',
+                        'rgb(62,98,32)',
+                        'rgb(206,159,6)',
+                        'rgb(192, 4, 4)',
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
@@ -348,7 +349,7 @@ for (let [showID, show] of Object.entries(shows)) {
                                 size: 38,
                             },
                             textAlign: 'left',
-                            boxWidth: 20, // Increase the box width for legend items
+                            boxWidth: 40,
                         },
                     },
                 },
@@ -382,11 +383,11 @@ for (let [showID, show] of Object.entries(shows)) {
                     show_provenances['cover'],
                     show_provenances['video_game']],
                 backgroundColor: [
-                    'rgb(3,63,218)',
-                    'rgb(58,123,5)',
-                    'rgba(231,57,57)',
-                    'rgba(206,159,6)',
-                ],
+                        '#2F50D7',
+                        'rgb(62,98,32)',
+                        'rgb(206,159,6)',
+                        'rgb(192, 4, 4)',
+                    ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
@@ -413,7 +414,7 @@ for (let [showID, show] of Object.entries(shows)) {
                             size: 38,
                         },
                         textAlign: 'left',
-                        boxWidth: 20, // Increase the box width for legend items
+                        boxWidth: 40, // Increase the box width for legend items
                     },
                 },
             },

@@ -51,164 +51,167 @@
 
     {{> single-show-overview show=show}}
 
-<div id="setlist" class="mt-5">
-    {{#if (eq (objectLength show.sets) 0)}}
-        <div class="alert alert-info" role="alert">
-            <p class="mb-0 pixel-font">The setlist for this show has not been committed yet. Check back later to see
-                the setlist and mint your Set Stone!</p>
-        </div>
-    {{/if}}
+    <div id="setlist" class="mt-5">
+        {{#if (eq (objectLength show.sets) 0)}}
+            <div class="alert alert-info" role="alert">
+                <p class="mb-0 pixel-font">The setlist for this show has not been committed yet. Check back later to see
+                    the setlist and mint your Set Stone!</p>
+            </div>
+        {{/if}}
 
-    {{#each show.sets as |this setId|}}
-        <div class="row">
-            <div class="border-bottom border-black mb-3 col-5" id="setContainer{{@index}}"
-                 style="display: flex; flex-wrap: wrap;">
-                <div class="mb-3"
-                     style="flex: 1; min-width: 300px; max-width: 500px; background-color: #1e1e1e; color: #ffffff; padding: 15px; border-radius: 5px; font-family: 'Courier New', Courier, monospace;">
-                    <h3><span class="pixel-font" style="color: #00ff00; font-size: 1.3em;">Set #{{inc @index}}</span>
-                    </h3>
+        {{#each show.sets as |this setId|}}
+            <div class="row">
+                <div class="border-bottom border-black mb-3 col-5" id="setContainer{{@index}}"
+                     style="display: flex; flex-wrap: wrap;">
+                    <div class="mb-3"
+                         style="flex: 1; min-width: 300px; max-width: 500px; background-color: #1e1e1e; color: #ffffff; padding: 15px; border-radius: 5px; font-family: 'Courier New', Courier, monospace;">
+                        {{#if (eq ../show.number_of_sets 1)}}
+                        {{else}}
+                            <h3><span class="pixel-font" style="color: #00ff00; font-size: 1.3em;">Set #{{inc
+                                    @index}}</span>
+                            </h3>
+                        {{/if}}
 
-                    {{!-- <ul style="list-style-type: none; padding-left: 0;"> --}}
-                    <ul>
-                        {{#each this.songplays as |songPlay|}}
-                            {{addSongFromPlayToContext}}
-                            <li><span
-                                    {{#if songPlay.mode}}data-tippy-content="{{songPlay.mode}}"{{/if}}
-                                    class="pixel-font" style="color: #00ff00; font-size: 1.1em;"
-                            >
+                        {{!-- <ul style="list-style-type: none; padding-left: 0;"> --}}
+                        <ul>
+                            {{#each this.songplays as |songPlay|}}
+                                {{addSongFromPlayToContext}}
+                                <li><span
+                                        {{#if songPlay.mode}}data-tippy-content="{{songPlay.mode}}"{{/if}}
+                                        class="pixel-font {{songPlay.provenance}} songPlay">
                                 {{#if (eq songPlay.mode "reprise")}}
                                     <span style="color:#fff7ae"><b>⇚</b></span>
                                 {{/if}}
-                                {{songPlay.song.title}}
-                                {{#if (eq songPlay.provenance "traditional")}}
-                                    <span style="color:#ffa500">(Traditional)</span>
-                                {{/if}}
-                                {{#if (eq songPlay.provenance "cover")}}
-                                    <span style="color:#8fffd4">({{songPlay.song.by_artist}} cover)</span>
-                                {{/if}}
-                                {{#if (eq songPlay.provenance "video_game")}}
-                                    <span style="color:#ffaef8">(from {{songPlay.song.video_game}})</span>
-                                {{/if}}
-                                {{#if songPlay.detail}}
-                                    <span>{{songPlay.detail}}</span>
-                                {{/if}}
-                                {{#if (eq songPlay.mode "segue")}}
-                                    <span style="color:#fff7ae"><b>⇛</b></span>
-                                {{/if}}</span>
-                            </li>
-                        {{/each}}
-                    </ul>
+                                    {{songPlay.song.title}}
+                                    {{#if (eq songPlay.provenance "traditional")}}
+                                        <span class="traditional-detail">(Traditional)</span>
+                                    {{/if}}
+                                    {{#if (eq songPlay.provenance "cover")}}
+                                        <span class="cover-detail">({{songPlay.song.by_artist}} cover)</span>
+                                    {{/if}}
+                                    {{#if (eq songPlay.provenance "video_game")}}
+                                        <span class="video-game-detail">(from {{songPlay.song.video_game}})</span>
+                                    {{/if}}
+                                    {{#if songPlay.detail}}
+                                        <span>{{songPlay.detail}}</span>
+                                    {{/if}}
+                                    {{#if (eq songPlay.mode "segue")}}
+                                        <span style="color:#fff7ae"><b>⇛</b></span>
+                                    {{/if}}</span>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <img class="img-fluid" src="{{resolveChart ../show.artist_id ../show.blockheight setId}}">
                 </div>
             </div>
-            <div class="col-6">
-                <img class="img-fluid" src="{{resolveChart ../show.artist_id ../show.blockheight setId}}">
+            <div class="row">
+                <div class="set-stones">
+                    <h3><span class="pixel-font" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Set Stones</span>
+                    </h3>
+                    <table class="px-3">
+                        <thead class="border-bottom border-black">
+                        <tr>
+                            <th class="text-center">Owner</th>
+                            <th class="text-center">Paid (ETH)</th>
+                            <th class="text-center">Set Stone</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each this.setstones as |stone stoneId|}}
+                            <tr class="border-bottom border-black">
+                                <td class="px-3" data-tippy-content="{{stone.owner}}"><a
+                                        href="https://etherscan.io/address/{{stone.owner}}" target="_blank">{{truncate
+                                        stone.owner 12}}</a></td>
+                                <td class="px-3">{{stone.paidAmountEth}}</td>
+                                <td class="px-3"><a href="/assets/images/setstones/{{stone.tokenId}}.png"
+                                                    target="_blank"><img
+                                        src="/assets/images/setstones/{{stone.tokenId}}.png" style="width: 50px;"></a>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-    <div class="row">
-        <div class="set-stones">
-            <h3><span class="pixel-font" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Set Stones</span>
-            </h3>
-            <table class="px-3">
-                <thead class="border-bottom border-black">
-                <tr>
-                    <th class="text-center">Owner</th>
-                    <th class="text-center">Paid (ETH)</th>
-                    <th class="text-center">Set Stone</th>
-                </tr>
-                </thead>
-                <tbody>
-                {{#each this.setstones as |stone stoneId|}}
-                    <tr class="border-bottom border-black">
-                        <td class="px-3" data-tippy-content="{{stone.owner}}"><a
-                                href="https://etherscan.io/address/{{stone.owner}}" target="_blank">{{truncate
-                                stone.owner 12}}</a></td>
-                        <td class="px-3">{{stone.paidAmountEth}}</td>
-                        <td class="px-3"><a href="/assets/images/setstones/{{stone.tokenId}}.png"
-                                            target="_blank"><img
-                                src="/assets/images/setstones/{{stone.tokenId}}.png" style="width: 50px;"></a>
-                        </td>
-                    </tr>
-                {{/each}}
-                </tbody>
-            </table>
-        </div>
+        {{/each}}
     </div>
-    {{/each}}
-</div>
 
-<div id="donationModalContainer" class="mt-5 row">
-    <div class="col-3"></div>
-    <div id="donationModal" class="col-md-6">
-        <span class="pixel-font" style="color: black;"><h2>Strike set stone for this show</h2></span>
+    <div id="donationModalContainer" class="mt-5 row">
+        <div class="col-3"></div>
+        <div id="donationModal" class="col-md-6">
+            <span class="pixel-font" style="color: black;"><h2>Strike set stone for this show</h2></span>
 
-        <div id="rabbitHashIconContainer" style="display: flex; flex-direction: row; align-items: center;">
-            <div id="rabbitHashIcon" style="padding-right: 10px;"></div>
-            <h3 class="pixel-font">Secret Rabbit Hash:</h3>
-        </div>
-
-        <h3 id="rabbithash" style="font-family: 'Courier New', Courier, monospace; word-break: break-all;"></h2>
-            {{!-- <div style="display: flex; justify-content: space-between; width: 100%; padding: 10px;">
-                    <button class="btn btn-primary" onclick="setAmount(0.05)">0.05</button>
-                    <button class="btn btn-primary" onclick="setAmount(0.1)">0.1</button>
-                    <button class="btn btn-primary" onclick="setAmount(0.3)">0.3</button>
-            </div> --}}
-
-            <div id="mintStoneDetails" style="width: 100%; align-items: left; color: black;">
-                <h4><span class="pixel-font">Stone price:</span> <span id="stonePrice"
-                                                                       style="font-family: 'Courier New', Courier, monospace;"></span>
-                </h4>
+            <div id="rabbitHashIconContainer" style="display: flex; flex-direction: row; align-items: center;">
+                <div id="rabbitHashIcon" style="padding-right: 10px;"></div>
+                <h3 class="pixel-font">Secret Rabbit Hash:</h3>
             </div>
 
-            <div id="setStoneColorPicker" style="width: 100%; align-items: left; color: black;">
-                <select id="colorDropdown1" class="form-select pixel-font"></select>
-                <select id="colorDropdown2" class="form-select pixel-font"></select>
-                <select id="colorDropdown3" class="form-select pixel-font"></select>
-                <button id="randomizeColors" class="btn btn-primary mt-2 pixel-font" onclick="randomizeColors()">
-                    Randomize
-                </button>
-            </div>
+            <h3 id="rabbithash" style="font-family: 'Courier New', Courier, monospace; word-break: break-all;"></h2>
+                {{!-- <div style="display: flex; justify-content: space-between; width: 100%; padding: 10px;">
+                        <button class="btn btn-primary" onclick="setAmount(0.05)">0.05</button>
+                        <button class="btn btn-primary" onclick="setAmount(0.1)">0.1</button>
+                        <button class="btn btn-primary" onclick="setAmount(0.3)">0.3</button>
+                </div> --}}
 
-            <div id="stoneRenderArea"></div>
+                <div id="mintStoneDetails" style="width: 100%; align-items: left; color: black;">
+                    <h4><span class="pixel-font">Stone price:</span> <span id="stonePrice"
+                                                                           style="font-family: 'Courier New', Courier, monospace;"></span>
+                    </h4>
+                </div>
 
-            <div id="crystalizationMessage">
-                <h4 class="pixel-font" style="color: black;">Crystalization message:</h4>
-                <input id="crystalizationMessageText" type="text" class="form-control"
-                       placeholder="Enter personal message">
-            </div>
+                <div id="setStoneColorPicker" style="width: 100%; align-items: left; color: black;">
+                    <select id="colorDropdown1" class="form-select pixel-font"></select>
+                    <select id="colorDropdown2" class="form-select pixel-font"></select>
+                    <select id="colorDropdown3" class="form-select pixel-font"></select>
+                    <button id="randomizeColors" class="btn btn-primary mt-2 pixel-font" onclick="randomizeColors()">
+                        Randomize
+                    </button>
+                </div>
 
-            <select id="setPicker" class="form-select pixel-font mt-2">
-                {{#each show.sets}}
-                    <option value="{{@index}}">Set #{{inc @index}}</option>
-                {{/each}}
+                <div id="stoneRenderArea"></div>
 
+                <div id="crystalizationMessage">
+                    <h4 class="pixel-font" style="color: black;">Crystalization message:</h4>
+                    <input id="crystalizationMessageText" type="text" class="form-control"
+                           placeholder="Enter personal message">
+                </div>
+
+                <select id="setPicker" class="form-select pixel-font mt-2">
+                    {{#each show.sets}}
+                        <option value="{{@index}}">Set #{{inc @index}}</option>
+                    {{/each}}
+
+                </select>
+
+                <h4 data-tippy-content="Select a song from the setlist to make it your favorite song for this set stone."
+                    class="pixel-font mt-2" style="color: black;">Favorite song:</h3>
+            <select id="favoriteSongPicker" class="form-select pixel-font mt-2">
             </select>
 
-            <h4 data-tippy-content="Select a song from the setlist to make it your favorite song for this set stone."
-                class="pixel-font mt-2" style="color: black;">Favorite song:</h3>
-        <select id="favoriteSongPicker" class="form-select pixel-font mt-2">
-        </select>
 
+            <div class="input-group mt-2" style="width: 100%">
+                <input id="amount" type="number" class="form-control" placeholder="Enter the amount">
+                <span class="input-group-addon">ETH</span>
+            </div>
+            {{!-- <button id="verify" class="btn btn-primary" onclick="verifyRabbit()">Verify</button> --}}
 
-        <div class="input-group mt-2" style="width: 100%">
-            <input id="amount" type="number" class="form-control" placeholder="Enter the amount">
-            <span class="input-group-addon">ETH</span>
+            <div class="mt-5" style="display: flex; justify-content: space-between; width: 100%">
+                <button id="mintStone" class="btn btn-primary pixel-font"
+                        style="padding: 10px; background-color: hsl(345, 100%, 51%); border-color: hsl(345, 100%, 51%);"
+                        onclick="mintStone()">Strike SetStone
+                </button>
+                <w3m-button></w3m-button>
+            </div>
+
         </div>
-        {{!-- <button id="verify" class="btn btn-primary" onclick="verifyRabbit()">Verify</button> --}}
-
-        <div class="mt-5" style="display: flex; justify-content: space-between; width: 100%">
-            <button id="mintStone" class="btn btn-primary pixel-font"
-                    style="padding: 10px; background-color: hsl(345, 100%, 51%); border-color: hsl(345, 100%, 51%);"
-                    onclick="mintStone()">Strike SetStone
-            </button>
-            <w3m-button></w3m-button>
-        </div>
-
     </div>
-</div>
 
-<div id="vowelSoundContributions" class="mt-5"
-     style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%;">
-</div>
+    <div id="vowelSoundContributions" class="mt-5"
+         style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%;">
+    </div>
 
 
 </div>
@@ -253,8 +256,10 @@
         {{#each show.sets}}
             [
                 {{#each this.songplays}}
-                    "{{#if (eq this.type "reprise")}}⇚ {{/if}}{{this.title}}{{#if
-                            this.traditional}} (Traditional){{/if}}{{#if this.cover}} ({{this.cover}} cover){{/if}}{{#if
+                    "{{#if (eq this.type "reprise")}}⇚ {{/if}}
+                        {{this.title}}
+                        {{#if this.traditional}} (Traditional){{/if}}{{#if
+                            this.cover}} ({{this.cover}} cover){{/if}}{{#if
                             this.video_game}} (from {{this.video_game}}){{/if}}{{#if (eq this.type "segue")}} ⇛{{/if}}",
                 {{/each}}
             ],

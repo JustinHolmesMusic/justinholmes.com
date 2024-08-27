@@ -525,3 +525,25 @@ nav a img {
 .all-shows-list .showOverview {
     background-color: rgba(108, 108, 108, 0.46);
 }
+
+
+#setlist .songPlay {
+    font-size: 1.1em;
+    color: #b4beb0;
+}
+
+#setlist .original {
+    color: #7692ff;
+}
+
+#setlist .video-game-detail {
+    color: rgb(192, 4, 4);
+}
+
+#setlist .cover-detail {
+    color: rgba(206,159,6);
+}
+
+#setlist .traditional-detail {
+    color: rgb(98, 147, 57);
+}
