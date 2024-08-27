@@ -41,65 +41,6 @@ const imageMapping = getImageMapping();
 /////////////
 registerHelpers();
 
-
-Handlebars.registerHelper("inc", function(value, options)
-{
-    return parseInt(value) + 1;
-});
-
-
-Handlebars.registerHelper('subtract', function(a, b) {
-    return a - b;
-});
-
-Handlebars.registerHelper('getElement', function(array, index) {
-    return array[index];
-});
-
-
-Handlebars.registerHelper('isActive', function (currentPage, expectedPage, options) {
-    return currentPage === expectedPage ? 'active' : '';
-});
-
-Handlebars.registerHelper('isEven', function (index, options) {
-    return (index % 2 === 0);
-});
-
-Handlebars.registerHelper('fourCycle', function (index, options) {
-    return index % 4;
-});
-
-Handlebars.registerHelper('objectLength', function(obj) {
-    return Object.keys(obj).length;
-});
-
-// Register a custom helper to iterate two items at a time
-Handlebars.registerHelper('eachPair', function(context, options) {
-  let result = '';
-  for (let i = 0; i < context.length; i += 2) {
-    const pair = [context[i], context[i + 1]];
-    result += options.fn(pair);
-  }
-  return result;
-});
-
-// New helper to truncate a string if it is longer than a threshold
-Handlebars.registerHelper('truncate', function(str, len) {
-    if (str.length > len) {
-        return str.substring(0, len) + '...';
-    }
-    return str;
-});
-
-// Register the not-eq helper
-Handlebars.registerHelper('not-eq', function(a, b) {
-    return a !== b;
-});
-
-Handlebars.registerHelper('eq', function(a, b) {
-    return a === b;
-});
-
 // Make sure target directory exists
 const targetDir = path.resolve(__dirname, '../../_prebuild_output');
 
