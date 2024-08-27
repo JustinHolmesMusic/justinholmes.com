@@ -1,0 +1,9 @@
+<div id="showOverview" class="border-bottom border-black pb-3 pixel-font">
+    <h1>{{show.title}} - {{show.locality}}</h1>
+    <h4>Scheduled for Blockheight: {{numberWithCommas show.blockheight}} ({{blockToDate show.blockheight show.timezone}}
+        )</h4>
+    <span>Venue:</span> <b>{{show.venue}}</b><br>
+    <span>Host:</span> <b>{{show.host}}</b><br>
+    <span>Locality:</span> <b>{{show.locality}}, {{show.region0}}</b><br>
+    <span>Event URL:</span> <a href="{{show.event_url}}">{{show.event_url}}</a><br>
+</div>

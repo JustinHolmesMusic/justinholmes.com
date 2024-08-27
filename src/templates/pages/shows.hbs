@@ -1,0 +1,14 @@
+{{#if compact}}
+    {{> slicey}}
+{{else}}
+    {{> bigger-banner}}
+{{/if}}
+
+
+<div id="content" class="container text-light">
+    <div class="accordion col-md-8 center">
+        {{#each showsWithChainData}}
+            {{> single-show-overview show=this}}
+        {{/each}}
+    </div>
+</div>
