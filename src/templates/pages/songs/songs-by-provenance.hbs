@@ -1,0 +1,19 @@
+{{#if compact}}
+    {{> slicey}}
+{{else}}
+    {{> bigger-banner}}
+{{/if}}
+
+
+<div id="content" class="container text-light">
+    <div class="accordion col-md-8 center">
+        {{#each songsByProvenance as |songs provenance|}}<br/>
+            <h1>{{provenance}}</h1>
+            {{#each songs as |song|}}
+                <h3>{{song.title}}</h3>
+                {{stringify this}}
+                <hr/>
+            {{/each}}
+        {{/each}}
+    </div>
+</div>

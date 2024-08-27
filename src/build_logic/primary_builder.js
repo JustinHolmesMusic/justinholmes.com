@@ -4,7 +4,7 @@ import * as glob from 'glob';
 import {fileURLToPath} from 'url';
 import yaml from 'js-yaml';
 import path from 'path';
-import {songs} from "./show_and_set_data.js";
+import {songs, songsByProvenance} from "./show_and_set_data.js";
 import {marked} from 'marked';
 import {gatherAssets, unusedImages} from './asset_builder.js';
 import {deserializeChainData} from './chaindata_db.js';
@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 const templateDir = path.resolve(__dirname, '../templates');
 
 const chainData = deserializeChainData();
-const dataAvailableAsContext = {"songs": songs};
+const dataAvailableAsContext = {"songs": songs, 'songsByProvenance': songsByProvenance};
 
 let pageyamlFile = fs.readFileSync("src/data/pages.yaml");
 let pageyaml = yaml.load(pageyamlFile);

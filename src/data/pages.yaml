@@ -82,3 +82,8 @@ all-songs:
   template: "songs/all-songs.hbs"
   include_data_in_context:
     - songs
+
+songs-by-provenance:
+  template: "songs/songs-by-provenance.hbs"
+  include_data_in_context:
+    - songsByProvenance

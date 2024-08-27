@@ -1,8 +1,20 @@
+import {createCanvas} from 'canvas';
+import {Chart, registerables} from 'chart.js';
 import {fileURLToPath} from "url";
 import yaml from 'js-yaml';
 
+Chart.register(...registerables);
+Chart.defaults.color = '#fff';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const imagesSourceDir = path.join(__dirname, '../images');
+// Make a 'charts' directory in the images directory.
+const chartsDir = path.join(imagesSourceDir, 'charts');
+if (!fs.existsSync(chartsDir)) {
+    fs.mkdirSync(chartsDir, {recursive: true});
+}
 
 const dataDir = path.resolve(__dirname, '../data');
 
@@ -121,7 +133,7 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
                             throw new Error("Unknown performance modification: " + songEntry[key]);
                         }
                     } else if (key === "mode") {
-                      songPlay['mode'] = songEntry[key];
+                        songPlay['mode'] = songEntry[key];
                     } else {
                         throw new Error("Unknown key in song object: " + key);
                     }
@@ -237,7 +249,7 @@ for (const songPlay of allSongPlays) {
             // The artist ID of the song is the same of the artist ID of the show.
             // Thus, this is an original.
             songPlay['provenance'] = 'original';
-            songsByProvenance['original'].push(songPlay);
+            songsByProvenance['original'].push(song); // TODO: This is weird - what if someone else is playing it?  Forward-incompatible with other artists.
         } else {
             // This is a cover of another cryptograss artist!  Awesome.
             // TODO: Someday we'll handle this.  But for now, we'll throw an error.
@@ -248,7 +260,7 @@ for (const songPlay of allSongPlays) {
     // Songs with explicit artist name (ie, an artist not in our data ecosystem).
     if (song.hasOwnProperty('by_artist')) {
         songPlay['provenance'] = 'cover';
-        songsByProvenance['cover'].push(songPlay);
+        songsByProvenance['cover'].push(song); // TODO: Again, this needs to be forward-compatible with other artists using the service.  The matter of whether it's a cover depends on who is playing it.
     }
 
     // Sanity check: If the song has a by_artist_id, it should not have a by_artist.
@@ -265,7 +277,92 @@ for (const songPlay of allSongPlays) {
     if (song.hasOwnProperty('video_game')) {
         songPlay['provenance'] = 'video_game';
     }
+    // Video game tunes.
+    if (song.hasOwnProperty('film')) {
+        songPlay['provenance'] = 'film';
+    }
+    // For now, songs that are undocumented will be considered one-offs.
+    if (song.hasOwnProperty('undocumented')) {
+        songPlay['provenance'] = 'one-off';
+    }
 } // songPlays loop
 
+// Now, we'll go through each set again and make a chart for song provenance.
+for (let [showID, show] of Object.entries(shows)) {
+    for (let [set_number, set] of Object.entries(show['sets'])) {
+        let set_provenances = {'original': 0, 'traditional': 0, 'cover': 0, 'video_game': 0, 'film': 0, 'one-off': 0};
+        for (let songPlay of Object.values(set['songplays'])) {
+            if (songPlay.hasOwnProperty('provenance')) {
+                set_provenances[songPlay['provenance']] += 1;
+            } else {
+                throw new Error("SongPlay does not have provenance; seems like an impossible state.");
+            }
+        }
+        //////// CHART TIME ////////
+// Set up the canvas using the canvas library
+        const width = 800;
+        const height = 600;
+        const canvas = createCanvas(width, height);
+        const ctx = canvas.getContext('2d');
 
-export {shows, songs};
+        const data = {
+            labels: ['Originals', 'Traditionals', 'Covers', 'Video Game Tunes'],
+            datasets: [
+                {
+                    label: 'My First Dataset',
+                    data: [set_provenances['original'],
+                        set_provenances['traditional'],
+                        set_provenances['cover'],
+                        set_provenances['video_game']],
+                    backgroundColor: [
+                        'rgb(3,63,218)',
+                        'rgb(58,123,5)',
+                        'rgba(231,57,57)',
+                        'rgba(206,159,6)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                    ],
+                    borderWidth: 1,
+                },
+            ],
+        };
+
+        const config = {
+            type: 'doughnut',
+            data: data,
+            options: {
+                responsive: false, // Since we're rendering server-side, disable responsiveness
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 38,
+                            },
+                            textAlign: 'left',
+                            boxWidth: 20, // Increase the box width for legend items
+                        },
+                    },
+                },
+            },
+        };
+        // Render the chart using Chart.js
+        const myChart = new Chart(ctx, config);
+
+
+        // Save the chart as an image
+        const buffer = canvas.toBuffer('image/png');
+        let output_file_name = `${chartsDir}//${showID}-set-${set_number}-provenance.png`;
+
+        fs.writeFileSync(output_file_name, buffer);
+    }
+}
+
+
+export {shows, songs, songsByVideoGame, songsByProvenance};
