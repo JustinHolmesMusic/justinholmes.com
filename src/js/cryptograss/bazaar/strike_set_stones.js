@@ -51,7 +51,7 @@ function verifyRabbit() {
         // document.getElementById("verifyResult").innerHTML = "Valid rabbit";
     } else {
         tippy('verifyResult', { content: 'Invalid secret rabbit' });
-        document.getElementById("donationModal").style.display = "none";
+        // document.getElementById("donationModal").style.display = "none";
         // document.getElementById("invalidRabbitErrorMessage").style.display = "block";
     }
 }

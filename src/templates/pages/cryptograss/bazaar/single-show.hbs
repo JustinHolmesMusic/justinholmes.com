@@ -234,7 +234,7 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
 
     // take the valid hashes out from the rabbit_hashes array
     // and put them into a new array
@@ -250,15 +250,9 @@
 
     const setSongs = [
         {{#each show.sets}}
-            [
-                {{#each this.songplays}}
-                    "{{#if (eq this.type "reprise")}}⇚ {{/if}}
-                        {{this.title}}
-                        {{#if this.traditional}} (Traditional){{/if}}{{#if
-                            this.cover}} ({{this.cover}} cover){{/if}}{{#if
-                            this.video_game}} (from {{this.video_game}}){{/if}}{{#if (eq this.type "segue")}} ⇛{{/if}}",
-                {{/each}}
-            ],
+            [{{#each this.songplays}}
+                "{{this.song.title}}",
+            {{/each}}],
         {{/each}}
     ]
 
