@@ -547,3 +547,18 @@ nav a img {
 #setlist .traditional-detail {
     color: rgb(98, 147, 57);
 }
+
+.set-stones-available {
+	color: #ff8989;
+	font-family: Vanilla-Whale;
+	font-size: 2em;
+	text-shadow: 1px 1px black;
+}
+
+.single-set-list {
+	background-color: #1e1e1e;
+	color: #ffffff;
+	padding: 15px;
+	border-radius: 5px;
+	font-family: 'Courier New', Courier, monospace;
+}

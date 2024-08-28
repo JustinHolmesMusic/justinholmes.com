@@ -51,6 +51,14 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
             args: [artist_id, blockheight],
         });
 
+        // If number of sets and stone price are both zero, and there are no rabbits, we'll take that to mean the show doesn't exist onchain.
+        if (showData[1] === 0 && showData[2] === 0n && showData[3].length === 0) {
+            show['has_set_stones_available'] = false;
+            continue;
+        } else {
+            show['has_set_stones_available'] = true;
+        }
+
         // (bytes32 showBytes1, uint16 stonesPossible1, uint8 numberOfSets1, uint256 stonePrice1, bytes32[] memory rabbitHashes1)
         // This is the return type of the solidity getShowData function
         // unpack the showData
@@ -60,11 +68,8 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
             stonePrice: showData[2],
             rabbitHashes: showData[3],
             setShapeBySetId: showData[4],
-
         };
 
-        show["artist_id"] = parseInt(artist_id);
-        show["blockheight"] = parseInt(blockheight)
         show["rabbit_hashes"] = unpackedShowData.rabbitHashes;
         show["stone_price"] = unpackedShowData.stonePrice;
 

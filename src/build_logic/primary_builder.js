@@ -190,7 +190,7 @@ Object.entries(chainData.showsWithChainData).forEach(([show_id, show]) => {
     // https://justinholmes.com/cryptograss/bazaar/setstone/<artist_id>-<blockheight>.html?secret_rabbit=%3Ccode%3E
     const outputFilePath = path.join(outputBaseDir, `shows/${show_id}.html`);
 
-    const hbsTemplate = path.join(templateDir, 'pages/cryptograss/bazaar/strike-set-stones.hbs');
+    const hbsTemplate = path.join(templateDir, 'pages/cryptograss/bazaar/single-show.hbs');
 
     const outputDir = path.dirname(outputFilePath);
     if (!fs.existsSync(outputDir)) {

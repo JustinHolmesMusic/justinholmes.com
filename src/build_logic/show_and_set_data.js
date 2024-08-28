@@ -156,6 +156,10 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
         // All songs are now objects.  TODO: Just give shows an ID and persist them, etc.
         showYAMLData['sets'] = sets_in_this_show;
         showYAMLData['number_of_sets'] = Object.keys(sets_in_this_show).length
+
+        // Arguably redundant, but we'll add the artist ID and blockheight to the showYAMLData.
+        showYAMLData["artist_id"] = artistID;
+        showYAMLData["blockheight"] = blockheight;
         shows[showID] = showYAMLData;
     } // Sets loop
 
@@ -343,11 +347,13 @@ for (let [showID, show] of Object.entries(shows)) {
                 responsive: false, // Since we're rendering server-side, disable responsiveness
                 plugins: {
                     legend: {
+                        maxWidth: 100,
                         position: 'bottom',
                         labels: {
                             font: {
                                 size: 38,
                             },
+                            padding: 15,
                             textAlign: 'left',
                             boxWidth: 40,
                         },

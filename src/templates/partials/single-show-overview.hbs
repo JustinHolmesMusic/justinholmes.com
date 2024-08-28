@@ -18,4 +18,10 @@
     <div class="col-5">
         <img class="img-fluid" src="{{resolveChart show.artist_id show.blockheight "full-show"}}">
     </div>
+    {{#if show.has_set_stones_available}}
+        <div class="set-stones-available">
+            Set Stones
+        </div>
+    {{/if}}
+
 </div>
