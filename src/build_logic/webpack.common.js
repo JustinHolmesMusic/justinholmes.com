@@ -35,7 +35,7 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
         var chunks = ['main', 'add_live_set'];
     } else if (relativePath.startsWith('cryptograss/bazaar/setstones')) {
         var chunks = ['main', 'strike_set_stone'];
-    } else if (relativePath.startsWith('shows')) {
+    } else if (relativePath.startsWith('shows/')) {
         var chunks = ['main', 'strike_set_stone'];
     } else if (relativePath.startsWith('cryptograss/tools/generate_art')) {
         var chunks = ['main', 'shapes'];

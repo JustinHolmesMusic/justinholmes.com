@@ -1,16 +1,17 @@
-import { createConfig, http, writeContract, getAccount, connect } from '@wagmi/core';
-import { optimismSepolia, arbitrum } from '@wagmi/core/chains';
+import {createConfig, http, writeContract, getAccount, connect} from '@wagmi/core';
+import {optimismSepolia, arbitrum} from '@wagmi/core/chains';
 import Web3 from 'web3';
 import {createWeb3Modal} from '@web3modal/wagmi'
 import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css'; // optional for styling
 import jazzicon from 'jazzicon';
-import { generateDiamondPattern, generateDiamondPatternFromNesPalette } from '../../setstone_drawing.js';
-import { nesPalette } from '../../constants.js';
-import { setStoneContractAddress } from '../../constants.js';
+import {generateDiamondPattern, generateDiamondPatternFromNesPalette} from '../../setstone_drawing.js';
+import {nesPalette} from '../../constants.js';
+import {setStoneContractAddress} from '../../constants.js';
 import Handlebars from 'handlebars';
-import { watchConnections } from '@wagmi/core'
+import {watchConnections} from '@wagmi/core'
 import {Toast} from 'bootstrap';
+import $ from 'jquery';
 
 export const config = createConfig({
     chains: [optimismSepolia, arbitrum],
@@ -22,7 +23,7 @@ export const config = createConfig({
 
 const web3 = new Web3();
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6';
-import {setStoneABI } from "../../../abi/setStoneABI.js";
+import {setStoneABI} from "../../../abi/setStoneABI.js";
 
 
 function keccak256(value) {
@@ -38,21 +39,39 @@ function getUrlParameters() {
     return paramObj;
 }
 
+function populateRabbitFromUrlParams() {
+    const url_params = getUrlParameters();
+    let rabbit = url_params.rabbit || '';
+
+    // Fill input with id 'rabbit'
+    document.getElementById('rabbit').value = rabbit;
+
+}
 
 function verifyRabbit() {
-    const url_params = getUrlParameters();
-    let secret_rabbit = url_params.rabbit || '';
 
+    const rabbit = document.getElementById('rabbit').value;
     // compute the weccak256 hash of the secretRabbit.value
-    const hash = keccak256(secret_rabbit);
+    let hash = keccak256(rabbit);
     // check if the hash is in the valid_rabbit_hashes array
 
+    console.log("hash", hash);
+    document.getElementById("rabbithash").innerHTML = hash.slice(2, 12);
+    $("#rabbithash").css({color:"black"});
+
+    // show the jazzicon
+    let hexHash = hash.slice(2, 12);
+    let jazzicon_seed = parseInt(hexHash, 16)
+    console.log(jazzicon_seed);
+    let jazz_of_hash = jazzicon(48, jazzicon_seed);
+    document.getElementById("rabbitHashIcon").innerHTML = jazz_of_hash.outerHTML;
     if (valid_rabbit_hashes.includes(hash)) {
-        // document.getElementById("verifyResult").innerHTML = "Valid rabbit";
+        $("#rabbithash").css({color:"green"});
+        return rabbit;
     } else {
-        tippy('verifyResult', { content: 'Invalid secret rabbit' });
-        // document.getElementById("donationModal").style.display = "none";
-        // document.getElementById("invalidRabbitErrorMessage").style.display = "block";
+        tippy('#verifyResult', {content: 'Invalid secret rabbit'});
+        $("#rabbithash").css({color:"red"});
+        return false;
     }
 }
 
@@ -66,7 +85,7 @@ function fillInFavoriteSongPicker() {
     // take the selected set value
     const setPicker = document.getElementById("setPicker");
     const selectedSet = setPicker.value;
-    if(selectedSet == "") { // the sets are not yet committed, before the show when the show page is live but the set is yet unknown
+    if (selectedSet == "") { // the sets are not yet committed, before the show when the show page is live but the set is yet unknown
         return;
     }
 
@@ -93,13 +112,18 @@ function fillInFavoriteSongPicker() {
 async function mintStone() {
     const account = getAccount(config);
     const address = account?.address;
-    const secretRabbit = getUrlParameters().rabbit;
+    const secretRabbit = verifyRabbit();
+    if (secretRabbit === false) {
+        window.alert("That rabbit is no good.")
+        return;
+    }
     const amount = document.getElementById("amount").value;
+    // TODO: Really?  We can't do this with WAGMI?
     window.web3 = web3;
 
     let stonePriceEth = web3.utils.fromWei(stone_price_wei.toString(), 'ether');
-    
-    if (amount < stonePriceEth) {
+
+    if (Number(amount) < Number(stonePriceEth)) {
         let notEnoughEthToast = new Toast(document.getElementById('not-enough-eth-toast'));
         notEnoughEthToast.show();
         return;
@@ -121,7 +145,6 @@ async function mintStone() {
     const color2 = Object.values(nesPalette).indexOf(document.getElementById("colorDropdown2").value);
     const color3 = Object.values(nesPalette).indexOf(document.getElementById("colorDropdown3").value);
 
-
     const crystalizationMessage = document.getElementById("crystalizationMessageText").value;
     const favoriteSong = document.getElementById("favoriteSongPicker").value;
 
@@ -138,6 +161,8 @@ async function mintStone() {
         secretRabbit
     ];
 
+    console.log(args);
+
 
     /// TODO: call the right contract
     const result = await writeContract(config, {
@@ -150,21 +175,6 @@ async function mintStone() {
 
     });
 
-}
-
-function showHash() {
-    const secretRabbit = getUrlParameters().rabbit;
-    if (!secretRabbit) {
-        return;
-    }
-
-    // compute the keccak256 hash of the secretRabbit.value
-    const hash = keccak256(secretRabbit);
-    document.getElementById("rabbithash").innerHTML = hash;
-
-    // show the jazzicon
-    var el = jazzicon(48, hash);
-    document.getElementById("rabbitHashIcon").appendChild(el);
 }
 
 function setAmount(amount) {
@@ -181,7 +191,7 @@ function showStonePrice() {
 
 function createColorDropdown(palette, dropdownId) {
     const dropdown = document.getElementById(dropdownId);
-    
+
     for (const [colorName, colorValue] of Object.entries(palette)) {
         const option = document.createElement('option');
         option.value = colorValue;
@@ -262,26 +272,31 @@ async function renderOwnedVowelSoundArtifacts(address) {
     document.getElementById('vowelSoundContributions').innerHTML = renderedHtml;
 
     // Render the small trophy case
-    const rendered_small_trophycase = compiled_small_trophycase_template(filteredVowelSoundContributions);;
+    const rendered_small_trophycase = compiled_small_trophycase_template(filteredVowelSoundContributions);
+
     document.getElementById('top-fixed-area').innerHTML = rendered_small_trophycase;
 
 }
 
 watchConnections(config, {
-  onChange(data) {
+    onChange(data) {
 
-    // Check if the wallet is connected
-    const account = getAccount(config);
-    if (account.isConnected) {
-      console.log('Wallet is connected:', account.address);
-     renderOwnedVowelSoundArtifacts(account.address);
-      // You can add additional logic here for when the wallet is connected
-    } 
-  },
+        // Check if the wallet is connected
+        const account = getAccount(config);
+        if (account.isConnected) {
+            console.log('Wallet is connected:', account.address);
+            renderOwnedVowelSoundArtifacts(account.address);
+            // You can add additional logic here for when the wallet is connected
+        }
+    },
 })
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    if (window.this_show_has_set_stones !== true) {
+        return;
+    }
+    console.log("This page uses set stones.  We'll proceed.");
     tippy('[data-tippy-content]');
 
     const modal = createWeb3Modal({
@@ -292,11 +307,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.mintStone = mintStone;
     window.setAmount = setAmount;
     window.randomizeColors = randomizeColors;
-    verifyRabbit();
-    showHash();
+    populateRabbitFromUrlParams();
     showStonePrice();
     createColorDropdowns();
 
+    // Use jquery to bind verifyRabbit to the button
+    $('#verifyRabbit').click(verifyRabbit);
 
     const setPicker = document.getElementById("setPicker");
     setPicker.addEventListener('change', fillInFavoriteSongPicker);

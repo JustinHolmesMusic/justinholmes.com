@@ -46,9 +46,6 @@
 <div id="cryptograss-content" class="container mb-5 gradient-transparent-bg p-4">
     <div id="shapeRenderingArea" style="display: flex; flex-direction: row; flex-wrap: wrap;"></div>
 
-    <p id="verifyResult" class="text-light" style="display: none;"></p>
-    <p id="invalidRabbitErrorMessage" style="display: none; color: red;">Invalid secret rabbit</p>
-
     {{> single-show-overview show=show}}
 
     <div id="setlist" class="mt-5">
@@ -98,11 +95,11 @@
                         {{/each}}
                     </ul>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4">
                     <img class="img-fluid" src="{{resolveChart ../show.artist_id ../show.blockheight setId}}">
                 </div>
             </div>
-            {{# if show.has_set_stones_available }}
+            {{# if ../show.has_set_stones_available }}
                 <div class="row">
                     <div class="set-stones">
                         <h3><span class="pixel-font" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Set Stones</span>
@@ -142,64 +139,67 @@
             <div class="col-3"></div>
             <div id="donationModal" class="col-md-6">
                 <span class="pixel-font" style="color: black;"><h2>Strike set stone for this show</h2></span>
-
-                <div id="rabbitHashIconContainer" style="display: flex; flex-direction: row; align-items: center;">
-                    <div id="rabbitHashIcon" style="padding-right: 10px;"></div>
-                    <h3 class="pixel-font">Secret Rabbit Hash:</h3>
+                <p class="text-black">Select three colors from the original NES palette.</p>
+                <div id="setStoneColorPicker" style="width: 100%; align-items: left; color: black;">
+                    <select id="colorDropdown1" class="form-select pixel-font"></select>
+                    <select id="colorDropdown2" class="form-select pixel-font"></select>
+                    <select id="colorDropdown3" class="form-select pixel-font"></select>
+                    <button id="randomizeColors" class="btn btn-primary mt-2 pixel-font"
+                            onclick="randomizeColors()">
+                        Randomize
+                    </button>
                 </div>
 
-                <h3 id="rabbithash" style="font-family: 'Courier New', Courier, monospace; word-break: break-all;"></h2>
+                <div id="stoneRenderArea"></div>
 
-                    <div id="mintStoneDetails" style="width: 100%; align-items: left; color: black;">
-                        <h4><span class="pixel-font">Stone price:</span> <span id="stonePrice"
-                                                                               style="font-family: 'Courier New', Courier, monospace;"></span>
-                        </h4>
-                    </div>
+                <div id="crystalizationMessage">
+                    <h4 class="pixel-font" style="color: black;">Crystalization message:</h4>
+                    <input id="crystalizationMessageText" type="text" class="form-control"
+                           placeholder="Enter personal message">
+                </div>
 
-                    <div id="setStoneColorPicker" style="width: 100%; align-items: left; color: black;">
-                        <select id="colorDropdown1" class="form-select pixel-font"></select>
-                        <select id="colorDropdown2" class="form-select pixel-font"></select>
-                        <select id="colorDropdown3" class="form-select pixel-font"></select>
-                        <button id="randomizeColors" class="btn btn-primary mt-2 pixel-font"
-                                onclick="randomizeColors()">
-                            Randomize
-                        </button>
-                    </div>
+                <select id="setPicker" class="form-select pixel-font mt-2">
+                    {{#each show.sets}}
+                        <option value="{{@index}}">Set #{{inc @index}}</option>
+                    {{/each}}
 
-                    <div id="stoneRenderArea"></div>
-
-                    <div id="crystalizationMessage">
-                        <h4 class="pixel-font" style="color: black;">Crystalization message:</h4>
-                        <input id="crystalizationMessageText" type="text" class="form-control"
-                               placeholder="Enter personal message">
-                    </div>
-
-                    <select id="setPicker" class="form-select pixel-font mt-2">
-                        {{#each show.sets}}
-                            <option value="{{@index}}">Set #{{inc @index}}</option>
-                        {{/each}}
-
-                    </select>
-
-                    <h4 data-tippy-content="Select a song from the setlist to make it your favorite song for this set stone."
-                        class="pixel-font mt-2" style="color: black;">Favorite song:</h3>
-                <select id="favoriteSongPicker" class="form-select pixel-font mt-2">
                 </select>
 
+                <h4 data-tippy-content="Select a song from the setlist to make it your favorite song for this set stone."
+                    class="pixel-font mt-2" style="color: black;">Favorite song:</h3>
+                    <select id="favoriteSongPicker" class="form-select pixel-font mt-2">
+                    </select>
 
-                <div class="input-group mt-2" style="width: 100%">
-                    <input id="amount" type="number" class="form-control" placeholder="Enter the amount">
-                    <span class="input-group-addon">ETH</span>
-                </div>
-                {{!-- <button id="verify" class="btn btn-primary" onclick="verifyRabbit()">Verify</button> --}}
+                    <h4 class="pixel-font text-black"><span>Minimum price:</span>
+                        <span id="stonePrice"></span>
+                    </h4>
+                    <div class="input-group mt-2" style="width: 100%">
+                        <input id="amount">
+                        <span class="input-group-addon">ETH</span>
+                    </div>
 
-                <div class="mt-5" style="display: flex; justify-content: space-between; width: 100%">
-                    <button id="mintStone" class="btn btn-primary pixel-font"
-                            style="padding: 10px; background-color: hsl(345, 100%, 51%); border-color: hsl(345, 100%, 51%);"
-                            onclick="mintStone()">Strike SetStone
-                    </button>
-                    <w3m-button></w3m-button>
-                </div>
+                    <h3 class="pixel-font text-black">Rabbit</h3>
+                    <p class="text-black">You need a secret "rabbit", distributed at the show in the hat that we pass
+                        around, to buy a set stone. Each rabbit is valid to purchase one stone.</p>
+                    <input id="rabbit" type="text"/>
+                    <button id="verifyRabbit" class="btn btn-primary">Verify</button>
+
+                    <div id="rabbitHashIconContainer" style="display: flex; flex-direction: row; align-items: center;">
+                        <div id="rabbitHashIcon"></div>
+                        <span id="rabbithash"></span>
+                    </div>
+
+                    <p id="verifyResult" class="text-light"></p>
+                    <p id="invalidRabbitErrorMessage" style="display: none; color: red;">Invalid secret rabbit</p>
+
+
+                    <div class="mt-5" style="display: flex; justify-content: space-between; width: 100%">
+                        <button id="mintStone" class="btn btn-primary pixel-font"
+                                style="padding: 10px; background-color: hsl(345, 100%, 51%); border-color: hsl(345, 100%, 51%);"
+                                onclick="mintStone()">Strike SetStone
+                        </button>
+                        <w3m-button></w3m-button>
+                    </div>
 
             </div>
         </div>
@@ -218,7 +218,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body" style="color: black;">
-            Not enough ETH to strike a set stone.
+            That's below the minimum price.
         </div>
     </div>
 </div>
@@ -266,5 +266,11 @@
             },
         {{/each}}
     ]
+
+    {{#if show.has_set_stones_available }}
+    window.this_show_has_set_stones = true;
+    {{else}}
+    window.this_show_has_set_stones = false;
+    {{/if}}
 
 </script>
