@@ -53,8 +53,8 @@ tour:
 
 shows:
     template: shows.hbs
-    include_chaindata_as_context:
-      - showsWithChainData
+    include_data_in_context:
+      - shows
     context:
         page_title: "Shows"
 

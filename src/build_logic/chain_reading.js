@@ -1,18 +1,17 @@
 // @ts-check
 import {createConfig, http, readContract, fetchBlockNumber, fetchEnsName} from '@wagmi/core';
-import {mainnet, optimism,  optimismSepolia, arbitrum } from '@wagmi/core/chains';
+import {mainnet, optimism, optimismSepolia, arbitrum} from '@wagmi/core/chains';
 import {brABI as abi} from "../abi/blueRailroadABI.js";
 import {setStoneABI} from "../abi/setStoneABI.js";
-import {shows} from "./show_and_set_data.js";
-import {serializeChainData} from "./chaindata_db.js";
 import {setStoneContractAddress, blueRailroadContractAddress} from "../js/constants.js";
-import { getVowelsoundContributions } from "./revealer_utils.js";
+import {getVowelsoundContributions} from "./revealer_utils.js";
 import Web3 from 'web3';
+
 const web3 = new Web3();
-import { config as dotenvConfig } from 'dotenv';
+import {config as dotenvConfig} from 'dotenv';
 
 const env = process.env.NODE_ENV || 'development';
-dotenvConfig({ path: `.env` });
+dotenvConfig({path: `.env`});
 
 // Use the environment-specific variables
 const apiKey = process.env.INFURA_API_KEY;
@@ -30,17 +29,24 @@ export const config = createConfig({
 })
 
 
-export async function appendChainDataToShows(showsAsReadFromDisk) {
+export async function fetchChainDataForShows(shows) {
+    console.time("chain-data-for-shows");
     // We expect shows to be the result of iterating through the show YAML files.
     // Now we'll add onchain data from those shows.
 
+    // TODO: Why were were cloning the shows object here?
     // Make a copy of shows to mutate and eventually return.
-    let shows = structuredClone(showsAsReadFromDisk);
+    // let shows = structuredClone(showsAsReadFromDisk);
+
+    let showsChainData = {};
 
     // Iterate through show IDs and parse the data.
     for (let [show_id, show] of Object.entries(shows)) {
         // Split ID by "-" into artist_id and blockheight
         const [artist_id, blockheight] = show_id.split('-');
+
+        let singleShowChainData = {"sets": []};
+        showsChainData[show_id] = singleShowChainData;
 
         // Read the contract using the getShowData function
         const showData = await readContract(config, {
@@ -53,10 +59,10 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
 
         // If number of sets and stone price are both zero, and there are no rabbits, we'll take that to mean the show doesn't exist onchain.
         if (showData[1] === 0 && showData[2] === 0n && showData[3].length === 0) {
-            show['has_set_stones_available'] = false;
+            singleShowChainData['has_set_stones_available'] = false;
             continue;
         } else {
-            show['has_set_stones_available'] = true;
+            singleShowChainData['has_set_stones_available'] = true;
         }
 
         // (bytes32 showBytes1, uint16 stonesPossible1, uint8 numberOfSets1, uint256 stonePrice1, bytes32[] memory rabbitHashes1)
@@ -70,8 +76,8 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
             setShapeBySetId: showData[4],
         };
 
-        show["rabbit_hashes"] = unpackedShowData.rabbitHashes;
-        show["stone_price"] = unpackedShowData.stonePrice;
+        singleShowChainData["rabbit_hashes"] = unpackedShowData.rabbitHashes;
+        singleShowChainData["stone_price"] = unpackedShowData.stonePrice;
 
 
         // integrity check: the number of sets on chain is the same as the number of sets in the yaml, raise an error if not
@@ -82,18 +88,20 @@ export async function appendChainDataToShows(showsAsReadFromDisk) {
 
         // unpack setShapeBySetId
         for (let i = 0; i < Object.keys(show["sets"]).length; i++) {
-            show["sets"][i]["shape"] = unpackedShowData.setShapeBySetId[i];
+            singleShowChainData["sets"].push({"shape": unpackedShowData.setShapeBySetId[i]});
         }
 
     }
-    return shows;
+    console.timeEnd("chain-data-for-shows");
+
+    return showsChainData;
 }
 
 export async function appendSetStoneDataToShows(shows) {
+    console.time("set-stone-chaindata");
     // should be called after the shows data has been appended to the shows object
 
     let number_of_stones_in_sets = 0;
-
 
     for (let [show_id, show] of Object.entries(shows)) {
         // Split ID by "-" into artist_id and blockheight
@@ -167,11 +175,10 @@ export async function appendSetStoneDataToShows(shows) {
                     args: [setStoneId],
                 });
 
-
                 let ensName = await fetchEnsName(config, {address: ownerOfThisToken, chainId: 1});
                 if (ensName == undefined) {
                     ensName = ownerOfThisToken;
-        }
+                }
 
                 setstone["owner"] = ensName;
 
@@ -192,12 +199,12 @@ export async function appendSetStoneDataToShows(shows) {
     }
 
     const setStoneCountOnChain = await readContract(config,
-    {
-        abi: setStoneABI,
-        address: setStoneContractAddress,
-        functionName: 'totalSupply',
-        chainId: arbitrum.id,
-    })
+        {
+            abi: setStoneABI,
+            address: setStoneContractAddress,
+            functionName: 'totalSupply',
+            chainId: arbitrum.id,
+        })
 
 
     if (number_of_stones_in_sets != setStoneCountOnChain) {
@@ -205,8 +212,8 @@ export async function appendSetStoneDataToShows(shows) {
         console.log("Number of stones in sets on chain: ", setStoneCountOnChain);
         console.log("Number of stones in sets object: ", number_of_stones_in_sets);
     }
-    
 
+    console.timeEnd("set-stone-chaindata");
     return shows;
 }
 
@@ -214,71 +221,105 @@ export async function appendSetStoneDataToShows(shows) {
 ///////////////////////////
 /// VowelSounds artifact
 ///////////////////////////
-const vowelSoundContributions = await getVowelsoundContributions();
+// const vowelSoundContributions = await getVowelsoundContributions();
 
 
 ///////////BACK TO TONY
 
-const blueRailroadCount = await readContract(config,
-    {
-        abi,
-        address: blueRailroadContractAddress,
-        functionName: 'totalSupply',
-        chainId: optimism.id,
-    })
+async function getBlueRailroads() {
+    console.time("blue-railroads");
+    const blueRailroadCount = await readContract(config,
+        {
+            abi,
+            address: blueRailroadContractAddress,
+            functionName: 'totalSupply',
+            chainId: optimism.id,
+        })
 
-let blueRailroads = {};
+    let blueRailroads = {};
 
-for (let i = 0; i < blueRailroadCount; i++) {
-    let tokenId = await readContract(config, {
-        abi,
-        address: blueRailroadContractAddress,
-        functionName: 'tokenByIndex',
-        chainId: optimism.id,
-        args: [i],
-    });
+    for (let i = 0; i < blueRailroadCount; i++) {
+        let tokenId = await readContract(config, {
+            abi,
+            address: blueRailroadContractAddress,
+            functionName: 'tokenByIndex',
+            chainId: optimism.id,
+            args: [i],
+        });
 
-    let ownerOfThisToken = await readContract(config, {
-        abi,
-        address: blueRailroadContractAddress,
-        functionName: 'ownerOf',
-        chainId: optimism.id,
-        args: [tokenId],
-    });
+        let ownerOfThisToken = await readContract(config, {
+            abi,
+            address: blueRailroadContractAddress,
+            functionName: 'ownerOf',
+            chainId: optimism.id,
+            args: [tokenId],
+        });
 
-    let uriOfVideo = await readContract(config, {
-        abi,
-        address: blueRailroadContractAddress,
-        functionName: 'tokenURI',
-        chainId: optimism.id,
-        args: [tokenId],
-    });
+        let uriOfVideo = await readContract(config, {
+            abi,
+            address: blueRailroadContractAddress,
+            functionName: 'tokenURI',
+            chainId: optimism.id,
+            args: [tokenId],
+        });
 
-    blueRailroads[tokenId] = {
-        owner: ownerOfThisToken,
-        uri: uriOfVideo,
-        id: tokenId
-    };
+        blueRailroads[tokenId] = {
+            owner: ownerOfThisToken,
+            uri: uriOfVideo,
+            id: tokenId
+        };
 
+    }
+    console.timeEnd("blue-railroads");
+    return blueRailroads;
 }
 
+export function appendChainDataToShows(shows, chainData) {
+    const showsChainData = chainData["showsWithChainData"];
+    for (let [show_id, show] of Object.entries(shows)) {
+        let chainDataForShow = showsChainData[show_id];
+        if (chainDataForShow['has_set_stones_available'] === false) {
 
+        } else {
 
-// And the current block number.
-const mainnetBlockNumber = await fetchBlockNumber(config, {chainId: mainnet.id});
-const optimismBlockNumber = await fetchBlockNumber(config, {chainId: optimism.id});
-const optimismSepoliaBlockNumber = await fetchBlockNumber(config, {chainId: optimismSepolia.id});
-let showsWithChainData = await appendChainDataToShows(shows);
-let showsWithSetStoneData = await appendSetStoneDataToShows(showsWithChainData);
+            show["rabbit_hashes"] = chainDataForShow["rabbit_hashes"]
+            show["stone_price"] = chainDataForShow["stone_price"]
 
-export const chainData = {
-    blueRailroads: blueRailroads,
-    mainnetBlockNumber: mainnetBlockNumber,
-    optimismBlockNumber: optimismBlockNumber,
-    optimismSepoliaBlockNumber: optimismSepoliaBlockNumber,
-    showsWithChainData: showsWithSetStoneData,
-    vowelSoundContributions: vowelSoundContributions,
+            // integrity check: the number of sets on chain is the same as the number of sets in the yaml, raise an error if not
+            if (chainDataForShow.sets.length !== Object.keys(show.sets).length) {
+                throw new Error(`Number of sets on chain (${chainDataForShow.numberOfSets}) does not match the number of sets in the yaml (${show.sets.length}) for show ID ${show_id}`);
+            }
+
+            // unpack setShapeBySetId
+            for (let i = 0; i < Object.keys(show["sets"]).length; i++) {
+                let set = show['sets'][i]
+                set["shape"] = chainDataForShow['sets'][i]['shape'];
+            }
+        }
+    }
 }
 
+export async function fetch_chaindata(shows) {
 
-serializeChainData(chainData);
+    console.time("block-numbers");
+    const mainnetBlockNumber = await fetchBlockNumber(config, {chainId: mainnet.id});
+    const optimismBlockNumber = await fetchBlockNumber(config, {chainId: optimism.id});
+    const optimismSepoliaBlockNumber = await fetchBlockNumber(config, {chainId: optimismSepolia.id});
+    console.timeEnd("block-numbers");
+
+    const blueRailroads = await getBlueRailroads();
+    let showsWithChainData = await fetchChainDataForShows(shows);
+    let showsWithSetStoneData = await appendSetStoneDataToShows(showsWithChainData);
+    const vowelSoundContributions = await getVowelsoundContributions();
+
+
+    const chainData = {
+        blueRailroads: blueRailroads,
+        mainnetBlockNumber: mainnetBlockNumber,
+        optimismBlockNumber: optimismBlockNumber,
+        optimismSepoliaBlockNumber: optimismSepoliaBlockNumber,
+        showsWithChainData: showsWithSetStoneData,
+        vowelSoundContributions: vowelSoundContributions,
+    }
+    return chainData;
+}

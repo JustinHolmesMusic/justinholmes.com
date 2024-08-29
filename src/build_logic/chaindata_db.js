@@ -27,5 +27,6 @@ export function serializeChainData(chainData) {
 
 export function deserializeChainData() {
     const chainDataJson = fs.readFileSync(chain_data_json_path, 'utf8');
-    return JSON.parse(chainDataJson);
+    const parsedChainData = JSON.parse(chainDataJson);
+    return parsedChainData;
 }

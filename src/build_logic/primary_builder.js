@@ -1,34 +1,65 @@
+console.time('primary-build');
+
 import Handlebars from 'handlebars';
 import fs from 'fs';
 import * as glob from 'glob';
 import {fileURLToPath} from 'url';
 import yaml from 'js-yaml';
 import path from 'path';
-import {songs, songsByProvenance} from "./show_and_set_data.js";
+import {songs, shows, songsByProvenance} from "./show_and_set_data.js";
 import {marked} from 'marked';
 import {gatherAssets, unusedImages} from './asset_builder.js';
-import {deserializeChainData} from './chaindata_db.js';
+import {deserializeChainData, serializeChainData} from './chaindata_db.js';
 import {execSync} from 'child_process';
 import {generateSetStoneMetadataJsons, renderSetStoneImages} from './setstone_utils.js';
 import {registerHelpers} from './utils/template_helpers.js';
+import {appendChainDataToShows, fetch_chaindata} from './chain_reading.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const templateDir = path.resolve(__dirname, '../templates');
 
-const chainData = deserializeChainData();
-const dataAvailableAsContext = {"songs": songs, 'songsByProvenance': songsByProvenance};
+const dataAvailableAsContext = {
+    "songs": songs,
+    "shows": shows,
+    'songsByProvenance': songsByProvenance};
 
+console.time('pages-yaml-read');
 let pageyamlFile = fs.readFileSync("src/data/pages.yaml");
 let pageyaml = yaml.load(pageyamlFile);
 
 // TODO: Generalize this to be able to handle multiple yaml files
 let ensembleyamlFile = fs.readFileSync("src/data/ensemble.yaml");
 let ensembleyaml = yaml.load(ensembleyamlFile);
+console.timeEnd('pages-yaml-read');
 
+const skip_chain_data_fetch = process.env.SKIP_CHAIN_DATA_FETCH
+if (skip_chain_data_fetch) {
+    console.log("Skipping chain data generation");
+} else {
+    const fetchedchainData = await fetch_chaindata(shows);
+    serializeChainData(fetchedchainData);
+}
+
+let chainData
+
+try {
+    chainData = deserializeChainData();
+} catch (e) {
+    // If the error is that the directory wasn't found, make a suggestion.
+    if (e.code === 'ENOENT' && skip_chain_data_fetch) {
+        throw new Error("Chain data not found, and you're running with 'skip_chain_data_fetch'. You probably need to fetch chain data.");
+    } else {
+        throw e;
+    }
+}
+
+console.time('asset-gathering');
 gatherAssets();
 
+// Mutates shows.
+appendChainDataToShows(shows, chainData);
 
 function getImageMapping() {
     const mappingFilePath = path.join(__dirname, '../../_prebuild_output/imageMapping.json');
@@ -38,6 +69,7 @@ function getImageMapping() {
 
 // When preparing context for Handlebars
 const imageMapping = getImageMapping();
+console.timeEnd('asset-gathering');
 
 ///// Helpers
 /////////////
@@ -131,7 +163,7 @@ Object.keys(pageyaml).forEach(page => {
         }
     }
 
-    if (pageInfo['include_data_in_context'] != undefined) {
+    if (pageInfo['include_data_in_context'] !== undefined) {
         for (let dataSection of pageInfo['include_data_in_context']) {
             let dataSectionToInclude = dataAvailableAsContext[dataSection];
             if (dataSectionToInclude === undefined) {
@@ -172,6 +204,12 @@ Object.keys(pageyaml).forEach(page => {
 // Copy client-side partials to the output directory
 fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'partials'), {recursive: true});
 
+// Generate set stone metadata json files.
+generateSetStoneMetadataJsons(chainData.showsWithChainData, path.resolve(__dirname, '../../_prebuild_output/setstones'));
+renderSetStoneImages(chainData.showsWithChainData, path.resolve(__dirname, '../../_prebuild_output/assets/images/setstones'));
+
+
+/////// Reuseable pages (shows, songs, artifacts, etc)
 
 ////////////////////////////////////////////////////////
 /// Render Show pages, including set stone minting    //
@@ -179,7 +217,7 @@ fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'p
 
 // for every show in chainData, render a page
 
-Object.entries(chainData.showsWithChainData).forEach(([show_id, show]) => {
+Object.entries(shows).forEach(([show_id, show]) => {
     const page = `show_${show_id}`;
     const outputFilePath = path.join(outputBaseDir, `shows/${show_id}.html`);
 
@@ -201,7 +239,7 @@ Object.entries(chainData.showsWithChainData).forEach(([show_id, show]) => {
         show,
         imageMapping,
         chainData,
-    };  
+    };
 
     // console.log(context);
 
@@ -236,11 +274,10 @@ Object.entries(songs).forEach(([song_slug, song]) => {
     const templateSource = fs.readFileSync(hbsTemplate, 'utf8');
     const template = Handlebars.compile(templateSource);
 
-
     let context = {
         page_name: page,
         page_title: song.name,
-        shows: chainData.showsWithChainData,
+        shows: shows,
         song,
         imageMapping,
         chainData,
@@ -257,14 +294,12 @@ Object.entries(songs).forEach(([song_slug, song]) => {
 });
 
 
-
-
-// Generate set stone metadata json files.
-generateSetStoneMetadataJsons(chainData.showsWithChainData, path.resolve(__dirname, '../../_prebuild_output/setstones'));
-renderSetStoneImages(chainData.showsWithChainData, path.resolve(__dirname, '../../_prebuild_output/assets/images/setstones'));
+/////////////// CLEANUP
 
 
 // Warn about each unused image.
 unusedImages.forEach(image => {
     console.warn(`Image not used: ${image}`);
 });
+
+console.timeEnd('primary-build');

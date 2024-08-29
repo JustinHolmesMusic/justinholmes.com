@@ -3,6 +3,7 @@
     Played {{objectLength song.plays}} times:
     {{#each song.plays}}
         {{addShowFromPlayToContext}}
+    {{#each this._set.setstones}}{{this}}LLAMAS{{/each}}
         <li>{{this._show.title}}{{#if this.as_title}} (as "{{this.as_title}}"){{/if}}</li>
     {{/each}}
 </ul>

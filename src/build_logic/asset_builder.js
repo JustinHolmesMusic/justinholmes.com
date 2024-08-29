@@ -6,6 +6,8 @@ import {fileURLToPath} from 'url';
 import Handlebars from 'handlebars';
 import yaml from "js-yaml";
 
+console.time('asset-builder')
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -73,7 +75,6 @@ Handlebars.registerHelper('resolveImage', function (originalPath) {
         throw new Error(`Image not found: ${originalPath}`);
     }
 
-
     if (!foundImage) {
         // Raise an error if the image is not found
         throw new Error(`Image not found: ${originalPath}`);
@@ -119,6 +120,8 @@ let slogans = auxData["slogans"];
 // Write slogans to a JSON file for use in the frontend
 fs.writeFileSync(path.join(outputDir, "slogans.json"), JSON.stringify(slogans));
 
+
+console.timeEnd('asset-builder')
 
 export default gatherAssets;
 export {gatherAssets};

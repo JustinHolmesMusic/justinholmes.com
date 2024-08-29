@@ -6,6 +6,8 @@ import path from "path";
 import fs from "fs";
 import {slugify} from "./utils/text_utils.js";
 
+// Log the time.
+console.time("show-and-song-data");
 
 Chart.register(...registerables);
 Chart.defaults.color = '#fff';
@@ -440,6 +442,8 @@ for (let [showID, show] of Object.entries(shows)) {
 
     fs.writeFileSync(output_file_name, buffer);
 }
+
+console.timeEnd("show-and-song-data");
 
 
 export {shows, songs, songsByVideoGame, songsByProvenance};
