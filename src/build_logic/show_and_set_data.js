@@ -134,7 +134,7 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
             if (songs.hasOwnProperty(songSlug)) {
                 // We read about this song when we read the YAMLs.
                 song = songs[songSlug];
-
+                song.slug = songSlug;
             } else {
                 // We don't know about this song.
                 song = {
@@ -150,11 +150,6 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
             // Note: This presents an odd situation where, if we list a song with titles that both slugify to the filename (ie, with different punctuation), we'll use the first one.
             if (!song.hasOwnProperty('title')) {
                 song.title = songName;
-            }
-
-            // Teases and reprises are just for the setlist; don't count them in the list of plays for a song.
-            if (songPlay.mode !== "tease" && songPlay.mode !== "reprise") {
-                song.plays.push(songPlay);
             }
 
             // Deal with the possible songplay-level properties that might be in the set YAML.
@@ -191,6 +186,11 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
                         throw new Error("Unknown key in song object: " + key);
                     }
                 }
+            }
+
+            // Teases and reprises are just for the setlist; don't count them in the list of plays for a song.
+            if (songPlay.mode !== "tease" && songPlay.mode !== "reprise") {
+                song.plays.push(songPlay);
             }
 
             songPlay['songSlug'] = songSlug;
