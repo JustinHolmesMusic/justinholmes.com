@@ -54,6 +54,7 @@ for (let i = 0; i < songYAMLFiles.length; i++) {
     } else {
         songs[songSlug] = song;
     }
+    song.slug = songSlug;
     // Also slugify any alternate names and add them.
     if (song.hasOwnProperty('alternate_names')) {
         for (let alt_name of song['alternate_names']) {
@@ -102,6 +103,7 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
             let songPlay = {
                 artistID: artistID,
                 showID: showID,
+                _set: this_set,
             }
 
             let songEntry = set["songplays"][s];

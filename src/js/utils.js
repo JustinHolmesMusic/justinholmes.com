@@ -1,5 +1,14 @@
+function replacer(key, value) {
+    // If the key starts with "_", return undefined
+    if (key.startsWith('_')) {
+        return undefined;
+    }
+    if (typeof value === 'bigint') {
+        return value.toString();
+    } else {
+        return value
+    }
+}
 export function stringify(obj) {
-    // Custom replacer function to handle BigInt
-    return JSON.stringify(obj, (key, value) =>
-        typeof value === 'bigint' ? value.toString() : value, 2);
+    return JSON.stringify(obj, replacer, 2);
 }

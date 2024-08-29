@@ -75,15 +75,15 @@
                                 {{#if (eq songPlay.mode "reprise")}}
                                     <span style="color:#fff7ae"><b>⇚</b></span>
                                 {{/if}}
-                                {{songPlay.song.title}}
+                                {{songPlay._song.title}}
                                 {{#if (eq songPlay.provenance "traditional")}}
                                     <span class="traditional-detail">(Traditional)</span>
                                 {{/if}}
                                 {{#if (eq songPlay.provenance "cover")}}
-                                    <span class="cover-detail">({{songPlay.song.by_artist}} cover)</span>
+                                    <span class="cover-detail">({{songPlay._song.by_artist}} cover)</span>
                                 {{/if}}
                                 {{#if (eq songPlay.provenance "video_game")}}
-                                    <span class="video-game-detail">(from {{songPlay.song.video_game}})</span>
+                                    <span class="video-game-detail">(from {{songPlay._song.video_game}})</span>
                                 {{/if}}
                                 {{#if songPlay.detail}}
                                     <span>{{songPlay.detail}}</span>
