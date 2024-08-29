@@ -568,3 +568,7 @@ nav a img {
 	font-size: 2em;
 	text-shadow: 1px 1px black;
 }
+
+.stone-in-long-list {
+    height: 25px;
+}
