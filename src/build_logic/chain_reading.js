@@ -34,10 +34,6 @@ export async function fetchChainDataForShows(shows) {
     // We expect shows to be the result of iterating through the show YAML files.
     // Now we'll add onchain data from those shows.
 
-    // TODO: Why were were cloning the shows object here?
-    // Make a copy of shows to mutate and eventually return.
-    // let shows = structuredClone(showsAsReadFromDisk);
-
     let showsChainData = {};
 
     // Iterate through show IDs and parse the data.
@@ -97,13 +93,13 @@ export async function fetchChainDataForShows(shows) {
     return showsChainData;
 }
 
-export async function appendSetStoneDataToShows(shows) {
+export async function appendSetStoneDataToShows(showsChainData) {
     console.time("set-stone-chaindata");
     // should be called after the shows data has been appended to the shows object
 
     let number_of_stones_in_sets = 0;
 
-    for (let [show_id, show] of Object.entries(shows)) {
+    for (let [show_id, show] of Object.entries(showsChainData)) {
         // Split ID by "-" into artist_id and blockheight
         const [artist_id, blockheight] = show_id.split('-');
 
@@ -214,7 +210,7 @@ export async function appendSetStoneDataToShows(shows) {
     }
 
     console.timeEnd("set-stone-chaindata");
-    return shows;
+    return showsChainData;
 }
 
 
@@ -279,9 +275,10 @@ export function appendChainDataToShows(shows, chainData) {
     for (let [show_id, show] of Object.entries(shows)) {
         let chainDataForShow = showsChainData[show_id];
         if (chainDataForShow['has_set_stones_available'] === false) {
-
+            continue;
         } else {
 
+            show["has_set_stones_available"] = true;
             show["rabbit_hashes"] = chainDataForShow["rabbit_hashes"]
             show["stone_price"] = chainDataForShow["stone_price"]
 
@@ -294,6 +291,7 @@ export function appendChainDataToShows(shows, chainData) {
             for (let i = 0; i < Object.keys(show["sets"]).length; i++) {
                 let set = show['sets'][i]
                 set["shape"] = chainDataForShow['sets'][i]['shape'];
+                set['setstones'] = chainDataForShow['sets'][i]['setstones'];
             }
         }
     }

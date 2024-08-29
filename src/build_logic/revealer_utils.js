@@ -80,7 +80,7 @@ function getTopContributions(contributionsByAddress) {
 
 
 export async function getVowelsoundContributions() {
-
+    console.time("vowel-sounds-artifacts")
     const contributionsMetadata = await readContract(config, {
         address: revealerContractAddress,
         abi: revealerContributionABI,
@@ -107,6 +107,6 @@ export async function getVowelsoundContributions() {
             leaders[i]["ensName"] = ensName;
         }
     };
-
+    console.timeEnd("vowel-sounds-artifacts")
     return leaders;
 }
