@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import {DateTime} from 'luxon';
-import {songs} from '../show_and_set_data.js'
+import {shows, songs} from '../show_and_set_data.js'
 
 // Reference block details
 const REFERENCE_BLOCK = 20612385; // Example block number
@@ -82,10 +82,18 @@ export function registerHelpers() {
         return result;
     });
 
+    ////////////////////////
+    // These next two feel like spooky action at a distance - modifying context without the template specifying which keys are modified.
+    // I wish handlebars could just call a method like jinja.
     Handlebars.registerHelper('addSongFromPlayToContext', function (context, options) {
-        // This feels like spooky action at a distnace.  I wish handlebars could just call a method.
-        this.song = songs[this.songSlug];
+        this._song = songs[this.songSlug];
     });
+
+    Handlebars.registerHelper('addShowFromPlayToContext', function (context, options) {
+        this._show = shows[this.showID];
+
+    });
+    ////////////////////////////////
 
 
 // New helper to truncate a string if it is longer than a threshold
@@ -98,6 +106,13 @@ export function registerHelpers() {
 
     // Stringify
     Handlebars.registerHelper('stringify', function (obj) {
+        function replacer(key, value) {
+            // If the key starts with "_", return undefined
+            if (key.startsWith('_')) {
+                return undefined;
+            }
+            return value;
+        }
         return JSON.stringify(obj, null, 3);
     });
 

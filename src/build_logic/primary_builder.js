@@ -153,9 +153,6 @@ Object.keys(pageyaml).forEach(page => {
         context = Object.assign({}, context, contextFromPageSpecificFiles[page])
     }
 
-    // Add latest git commit to context.
-    context['_latest_git_commit'] = execSync('git rev-parse HEAD').toString().trim();
-
     // Render the template with context (implement getContextForTemplate as needed)
     const mainBlockContent = template(context);
 
@@ -184,13 +181,9 @@ fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'p
 
 Object.entries(chainData.showsWithChainData).forEach(([show_id, show]) => {
     const page = `show_${show_id}`;
-
-
-    // TODO: the URL should look like
-    // https://justinholmes.com/cryptograss/bazaar/setstone/<artist_id>-<blockheight>.html?secret_rabbit=%3Ccode%3E
     const outputFilePath = path.join(outputBaseDir, `shows/${show_id}.html`);
 
-    const hbsTemplate = path.join(templateDir, 'pages/cryptograss/bazaar/single-show.hbs');
+    const hbsTemplate = path.join(templateDir, 'reuse/single-show.hbs');
 
     const outputDir = path.dirname(outputFilePath);
     if (!fs.existsSync(outputDir)) {
@@ -226,6 +219,45 @@ Object.entries(chainData.showsWithChainData).forEach(([show_id, show]) => {
     // Write the rendered HTML to the output file path
     fs.writeFileSync(outputFilePath, rendered_page);
 });
+
+// Same for each song (one page per).
+Object.entries(songs).forEach(([song_slug, song]) => {
+    const page = `song_${song_slug}`;
+    const outputFilePath = path.join(outputBaseDir, `songs/${song_slug}.html`);
+
+    const hbsTemplate = path.join(templateDir, 'reuse/single-song.hbs');
+
+    const outputDir = path.dirname(outputFilePath);
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, {recursive: true});
+    }
+
+    // Load and compile the template
+    const templateSource = fs.readFileSync(hbsTemplate, 'utf8');
+    const template = Handlebars.compile(templateSource);
+
+
+    let context = {
+        page_name: page,
+        page_title: song.name,
+        shows: chainData.showsWithChainData,
+        song,
+        imageMapping,
+        chainData,
+    };
+
+    // Render the template with context
+    const mainBlockContent = template(context);
+    const baseTemplate = Handlebars.compile(fs.readFileSync(path.join(templateDir, 'layouts', 'base.hbs'), 'utf8'));
+
+    let rendered_page = baseTemplate({...context, main_block: mainBlockContent})
+
+    // Write the rendered HTML to the output file path
+    fs.writeFileSync(outputFilePath, rendered_page);
+});
+
+
+
 
 // Generate set stone metadata json files.
 generateSetStoneMetadataJsons(chainData.showsWithChainData, path.resolve(__dirname, '../../_prebuild_output/setstones'));

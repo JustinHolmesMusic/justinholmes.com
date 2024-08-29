@@ -1,0 +1,8 @@
+<a href="/songs/{{song.slug}}.html"><h2>{{song.title}}</h2></a>
+<ul>
+    Played {{objectLength song.plays}} times:
+    {{#each song.plays}}
+        {{addShowFromPlayToContext}}
+        <li>{{this._show.title}}{{#if this.as_title}} (as "{{this.as_title}}"){{/if}}</li>
+    {{/each}}
+</ul>

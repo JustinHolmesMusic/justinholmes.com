@@ -2,6 +2,10 @@ import {createCanvas} from 'canvas';
 import {Chart, registerables} from 'chart.js';
 import {fileURLToPath} from "url";
 import yaml from 'js-yaml';
+import path from "path";
+import fs from "fs";
+import {slugify} from "./utils/text_utils.js";
+
 
 Chart.register(...registerables);
 Chart.defaults.color = '#fff';
@@ -18,25 +22,51 @@ if (!fs.existsSync(chartsDir)) {
 
 const dataDir = path.resolve(__dirname, '../data');
 
-// iterate through the shows directory in data, get the YAML filenames.
-import path from "path";
-import fs from "fs";
-import {slugify} from "./utils/text_utils.js";
-
 const showsDir = path.resolve(dataDir, 'shows');
 const liveShowYAMLs = fs.readdirSync(showsDir);
 
-// Sort liveShowYAMLs in reverse (so that most recent shows are first)..
-liveShowYAMLs.sort().reverse();
-
 let shows = {};
 let songs = {};
+let songAlternateNames = {};
+let songShorthands = {};
 let allSongPlays = [];
 let tours = {};
 
-// Iterate through the YAML files.
-// We're going to get the show metadata and,
-// FOR NOW, the list of songs, which we'll turn into a plausible future format.
+
+/// FIRST LOOP: SONG YAML FILES ///
+
+const songYAMLFiles = fs.readdirSync(path.resolve(dataDir, 'songs_and_tunes'));
+
+for (let i = 0; i < songYAMLFiles.length; i++) {
+    let songYAML = songYAMLFiles[i];
+    let songSlug = songYAML.split('.')[0];
+
+    let songYAMLFile = fs.readFileSync(path.resolve(dataDir, 'songs_and_tunes', songYAML));
+    let song = yaml.load(songYAMLFile);
+    song.plays = [];
+
+    // If the song has a primary display name, use that as the title and slug.
+    if (song.hasOwnProperty('primary_display_name')) {
+        song.title = song['primary_display_name'];
+        songs[slugify(song['primary_display_name'])] = song;
+        // And add the filename slug as a shorthand.
+        songShorthands[songSlug] = slugify(song['primary_display_name']);
+    } else {
+        songs[songSlug] = song;
+    }
+    // Also slugify any alternate names and add them.
+    if (song.hasOwnProperty('alternate_names')) {
+        for (let alt_name of song['alternate_names']) {
+            songAlternateNames[slugify(alt_name)] = songSlug;
+        }
+    }
+} // First song loop.
+
+
+////////////// SHOW YAMLs //////////////
+// Sort liveShowYAMLs in reverse (so that most recent shows are first)..
+liveShowYAMLs.sort().reverse();
+
 let liveShowIDs = [];
 for (let i = 0; i < liveShowYAMLs.length; i++) {
     let showYAML = liveShowYAMLs[i];
@@ -45,7 +75,6 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
     let blockheight = showID.split('-')[1];
     liveShowIDs.push(showID);
 
-    // Read the YAML file
     let showYAMLFile = fs.readFileSync(path.resolve(showsDir, showYAML));
     let showYAMLData = yaml.load(showYAMLFile);
 
@@ -60,17 +89,14 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
         tours[tour].push(showID);
     }
 
-    // This array will become an array of sets with songs formatted as we imagine they one day will be onchain.
     let sets_in_this_show = {}
 
     for (let [set_number, set] of Object.entries(showYAMLData['sets'])) {
 
         let this_set = {"songplays": {}}
 
-        // Now we'll iterate through the songs.
-        // Some of them will just be strings, while others will be objects.
-        // For the strings, we'll set the default of type: normal.
-        // TODO: Denest this and run it in a separate loop somewhere.
+        // Now we'll iterate through the songs in this set.
+        // Some of them will just be strings, while others will be objects, with songPlay details.
         for (let s = 0; s < set["songplays"].length; s++) {
 
             let songPlay = {
@@ -80,7 +106,6 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
 
             let songEntry = set["songplays"][s];
 
-            //////
             let songName;
             if (typeof songEntry === 'string') {
                 songName = songEntry;
@@ -88,21 +113,41 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
                 songName = Object.keys(songEntry)[0]
             }
 
-            const songSlug = slugify(songName);
+            let songSlug = slugify(songName);
 
-            //// First let's see if we already know about this song.
-            let songObject;
+            // Check to see if this song is being referenced by an alternate name.
+            if (songAlternateNames.hasOwnProperty(songSlug)) {
+                songPlay['as_title'] = songName;
+                songSlug = songAlternateNames[songSlug];
+            }
+            // Check to see if the song is being referenced by a shorthand.
+            if (songShorthands.hasOwnProperty(songSlug)) {
+                songSlug = songShorthands[songSlug];
+            }
+
+            let song;
+            // Two possibilities: either we know about the song from its YAML, or we don't.
             if (songs.hasOwnProperty(songSlug)) {
-                songObject = songs[songSlug];
+                // We read about this song when we read the YAMLs.
+                song = songs[songSlug];
+
             } else {
-                // TODO: This is a little awkward - these oughts be separate processes, where the song object is already made somewhere else.
-                songObject = {
+                // We don't know about this song.
+                song = {
                     "plays": [],
                     "title": songName,
                     "slug": songSlug,
+                    "undocumented": true,
                 };
+                songs[songSlug] = song; // It wasn't in the YAML files, so we'll add it to our songs list here.
             }
-            songObject.plays.push(songPlay);
+
+            // If the song doesn't have a primary display name, we'll use the songName as the title.
+            // Note: This presents an odd situation where, if we list a song with titles that both slugify to the filename (ie, with different punctuation), we'll use the first one.
+            if (!song.hasOwnProperty('title')) {
+                song.title = songName;
+            }
+            song.plays.push(songPlay);
 
             // Deal with the possible songplay-level properties that might be in the set YAML.
             if (typeof songEntry != 'string') {
@@ -142,8 +187,6 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
 
             songPlay['songSlug'] = songSlug;
 
-            songs[songObject['slug']] = songObject;
-
             // Add it back into the set.
             this_set["songplays"][s] = songPlay;
 
@@ -153,7 +196,6 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
             sets_in_this_show[set_number] = this_set;
         } // Songs loop (turns songs into objects)
 
-        // All songs are now objects.  TODO: Just give shows an ID and persist them, etc.
         showYAMLData['sets'] = sets_in_this_show;
         showYAMLData['number_of_sets'] = Object.keys(sets_in_this_show).length
 
@@ -165,80 +207,34 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
 
 } // Shows loop
 
-////////////// Song data //////////////
-
-// Populate objects of songYAMLData
-const songYAMLFiles = fs.readdirSync(path.resolve(dataDir, 'songs_and_tunes'));
-
-let allSongYAMLData = {};
-
-// Iterate through the songYAMLFiles.
-// We're going to get the song metadata.
-for (let i = 0; i < songYAMLFiles.length; i++) {
-    let songYAML = songYAMLFiles[i];
-    let songSlug = songYAML.split('.')[0];
-
-    // Read the YAML file
-    let songYAMLFile = fs.readFileSync(path.resolve(dataDir, 'songs_and_tunes', songYAML));
-    let songYAMLData = yaml.load(songYAMLFile);
-
-    // Add the songYAMLData to the allSongs object.
-    allSongYAMLData[songSlug] = songYAMLData;
-
-    // Also slugify any alternate names and add them.
-    if (songYAMLData.hasOwnProperty('alternate_names')) {
-        for (let alt_name of songYAMLData['alternate_names']) {
-            allSongYAMLData[slugify(alt_name)] = songYAMLData;
-        }
-    }
-    // Same with primary display name.
-    if (songYAMLData.hasOwnProperty('primary_display_name')) {
-        allSongYAMLData[slugify(songYAMLData['primary_display_name'])] = songYAMLData;
-    }
-}
+// Now that we've dealt with songPLays, we'll loop through songs again, adding details to our other objects.
 
 let songsByProvenance = {'original': [], 'traditional': [], 'cover': [], 'video_game': [], 'film': [], 'one-off': []};
-let songsByArtist = {};
+let songsByArtist = {}; // #TODO: Implement this.
 let songsByVideoGame = {};
 
 // Iterate through allSongs.
 // We're going to add details to the songs.
 Object.entries(songs).forEach(([songSlug, songObject]) => {
 
-    // Check to see if song slug is in the allSongYAMLData yaml data.
-    if (allSongYAMLData.hasOwnProperty(songSlug)) {
-        // If it is, add the songYAMLData to the songObject.
-        let songYAMLData = allSongYAMLData[songSlug];
-
-        // Append keys directly to the songObject from the YAML.
-        for (let key in songYAMLData) {
-            songObject[key] = songYAMLData[key];
-        }
-
-        // Note, traditionals.
-        if (songYAMLData.hasOwnProperty('traditional')) {
-            // TODO: Sometimes, we display songs as traditional, but influenced by a particular artist.
-            // For example, we call 'circle' a "Carter Family Traditional".
-            // Is this a function of the song?  Of the songplay (ie, only when we play it like they did)?
-            // how do we reflect it?
-            songsByProvenance['traditional'].push(songObject);
-        }
-
-        // Video game tunes.
-        if (songYAMLData.hasOwnProperty('video_game')) {
-            songsByProvenance['video_game'].push(songObject);
-            if (!songsByVideoGame.hasOwnProperty(songYAMLData['video_game'])) {
-                songsByVideoGame[songYAMLData['video_game']] = [];
-            }
-            songsByVideoGame[songYAMLData['video_game']].push(songObject);
-        }
-
-        // TODO Is this the place to track metrics like number of times played?
-        // songYAMLData['times_played'] = allSongsPlayed[song];
-
-    } else {
-        songObject['undocumented'] = true;
+    // Note traditionals.
+    if (songObject.hasOwnProperty('traditional')) {
+        // TODO: Sometimes, we display songs as traditional, but influenced by a particular artist.
+        // For example, we call 'circle' a "Carter Family Traditional".
+        // Is this a function of the song?  Of the songplay (ie, only when we play it like they did)?
+        // how do we reflect it?
+        songsByProvenance['traditional'].push(songObject);
     }
+
+    // Video game tunes.
+    if (songObject.hasOwnProperty('video_game')) {
+        songsByProvenance['video_game'].push(songObject);
+        if (!songsByVideoGame.hasOwnProperty(songObject['video_game'])) {
+            songsByVideoGame[songObject['video_game']] = [];
+        }
+        songsByVideoGame[songObject['video_game']].push(songObject);
+    }
+
 }); // Second songs loop.
 
 
@@ -246,6 +242,7 @@ Object.entries(songs).forEach(([songSlug, songObject]) => {
 for (const songPlay of allSongPlays) {
 
     let song = songs[songPlay.songSlug];
+
     // Determine the provenances: original, traditional, cover, or video game tune.
 
     // Songs with explicit artist ID (ie, an artist already in our data ecosystem).
@@ -290,6 +287,12 @@ for (const songPlay of allSongPlays) {
     if (song.hasOwnProperty('undocumented')) {
         songPlay['provenance'] = 'one-off';
     }
+
+    // Sanity check: did we set a provenance?
+    if (!songPlay.hasOwnProperty('provenance')) {
+        throw new Error("SongPlay does not have provenance; seems like an impossible state.");
+    }
+
 } // songPlays loop
 
 // Now, we'll go through each set again and make a chart for song provenance.
@@ -389,11 +392,11 @@ for (let [showID, show] of Object.entries(shows)) {
                     show_provenances['cover'],
                     show_provenances['video_game']],
                 backgroundColor: [
-                        '#2F50D7',
-                        'rgb(62,98,32)',
-                        'rgb(206,159,6)',
-                        'rgb(192, 4, 4)',
-                    ],
+                    '#2F50D7',
+                    'rgb(62,98,32)',
+                    'rgb(206,159,6)',
+                    'rgb(192, 4, 4)',
+                ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
