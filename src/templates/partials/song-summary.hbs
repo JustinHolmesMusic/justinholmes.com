@@ -3,7 +3,7 @@
     Played {{objectLength song.plays}} times:
     {{#each song.plays}}
         {{addShowFromPlayToContext}}
-        <li>{{this._show.title}}{{#if this.as_title}} (as "{{this.as_title}}"){{/if}}
+        <li><a href="/shows/{{this._show.artist_id}}-{{this._show.blockheight}}.html">{{this._show.title}}</a>{{#if this.as_title}} (as "{{this.as_title}}"){{/if}}
             {{#each this._set.setstones as |stone|}}
                 <a href="/assets/images/setstones/{{stone.tokenId}}.png"><img class="stone-in-long-list"
                                                                               src="/assets/images/setstones/{{stone.tokenId}}.png"></a>{{/each}}

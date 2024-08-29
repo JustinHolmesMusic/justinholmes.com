@@ -75,7 +75,7 @@
                                 {{#if (eq songPlay.mode "reprise")}}
                                     <span style="color:#fff7ae"><b>⇚</b></span>
                                 {{/if}}
-                                {{songPlay._song.title}}
+                                <a href="/songs/{{songPlay._song.slug}}.html">{{songPlay._song.title}}</a>
                                 {{#if (eq songPlay.provenance "traditional")}}
                                     <span class="traditional-detail">(Traditional)</span>
                                 {{/if}}

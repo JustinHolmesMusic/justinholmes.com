@@ -151,7 +151,11 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
             if (!song.hasOwnProperty('title')) {
                 song.title = songName;
             }
-            song.plays.push(songPlay);
+
+            // Teases and reprises are just for the setlist; don't count them in the list of plays for a song.
+            if (songPlay.mode !== "tease" && songPlay.mode !== "reprise") {
+                song.plays.push(songPlay);
+            }
 
             // Deal with the possible songplay-level properties that might be in the set YAML.
             if (typeof songEntry != 'string') {

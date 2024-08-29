@@ -527,12 +527,12 @@ nav a img {
 }
 
 
-#setlist .songPlay {
+#setlist .songPlay a {
     font-size: 1.1em;
     color: #b4beb0;
 }
 
-#setlist .original {
+#setlist .original a {
     color: #7692ff;
 }
 
