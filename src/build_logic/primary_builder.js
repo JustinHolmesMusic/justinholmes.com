@@ -276,7 +276,7 @@ Object.entries(songs).forEach(([song_slug, song]) => {
 
     let context = {
         page_name: page,
-        page_title: song.name,
+        page_title: song.title,
         shows: shows,
         song,
         imageMapping,

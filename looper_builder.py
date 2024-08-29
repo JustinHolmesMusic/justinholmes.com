@@ -31,7 +31,6 @@ commands = [
     ["/usr/bin/git", "checkout", "production"],
     ["/usr/bin/git", "reset", "--hard", "origin/production"],
     ["/root/.nvm/versions/node/v22.6.0/bin/npm", "install"],
-    ["/root/.nvm/versions/node/v22.6.0/bin/npm", "run", "fetch-chain-data"],
     ["/root/.nvm/versions/node/v22.6.0/bin/npm", "run", "build"],
     ["/usr/bin/rsync", "-vah", "--progress",
      "/root/projects/justinholmes.com/dist/",
