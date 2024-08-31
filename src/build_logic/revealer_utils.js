@@ -110,3 +110,17 @@ export async function getVowelsoundContributions() {
     console.timeEnd("vowel-sounds-artifacts")
     return leaders;
 }
+
+export const artifactImageMapping = {
+    1: "aaa.png",
+    2: "eee.png",
+    3: "ce.png",
+    4:'ot.png',
+    5: 'b.png',
+    6: 'horseshoe.png',
+    7: 'iii.png',
+    8: 'uu.png',
+    9: 'vv.png',
+    10: 'Y.png',
+
+}
