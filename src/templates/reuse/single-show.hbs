@@ -1,8 +1,4 @@
-{{#if compact}}
-    {{> slicey}}
-{{else}}
-    {{> bigger-banner}}
-{{/if}}
+{% include 'partials/bigger-banner.hbs' %}
 
 <style>
 
@@ -46,60 +42,58 @@
 <div id="cryptograss-content" class="container mb-5 gradient-transparent-bg p-4">
     <div id="shapeRenderingArea" style="display: flex; flex-direction: row; flex-wrap: wrap;"></div>
 
-    {{> single-show-overview show=show}}
+    {% include "partials/single-show-overview.hbs" %}
 
     <div id="setlist" class="mt-5">
-        {{#if (eq (objectLength show.sets) 0)}}
+        {% if show.sets.length==0 %}
             <div class="alert alert-info" role="alert">
                 <p class="mb-0 pixel-font">The setlist for this show has not been committed yet. Check back later to see
                     the setlist and mint your Set Stone!</p>
             </div>
-        {{/if}}
+        {% endif %}
 
-        {{#each show.sets as |this setId|}}
+        {% for this, setId in show.sets %}
             <div class="row">
                 <div class="col-md-8 single-set-list">
-                    {{#if (eq ../show.number_of_sets 1)}}
-                    {{else}}
-                        <h3><span class="pixel-font" style="color: #00ff00; font-size: 1.3em;">Set #{{inc
-                                @index}}</span>
+                    {% if show.number_of_sets==1 %}
+                    {% else %}
+                        <h3><span class="pixel-font" style="color: #00ff00; font-size: 1.3em;">Set #{{loop.index}}</span>
                         </h3>
-                    {{/if}}
+                    {% endif %}
 
                     <ul>
-                        {{#each this.songplays as |songPlay|}}
-                            {{addSongFromPlayToContext}}
+                        {% for songPLay in this.songplays %}
                             <li><span
-                                    {{#if songPlay.mode}}data-tippy-content="{{songPlay.mode}}"{{/if}}
+                                    {% if songPlay.mode %}data-tippy-content="{{songPlay.mode}}" {% endif %}
                                     class="pixel-font {{songPlay.provenance}} songPlay">
-                                {{#if (eq songPlay.mode "reprise")}}
+                                {% if songPlay.mode=="reprise" %}
                                     <span style="color:#fff7ae"><b>⇚</b></span>
-                                {{/if}}
+                                {% endif %}
                                 <a href="/songs/{{songPlay._song.slug}}.html">{{songPlay._song.title}}</a>
-                                {{#if (eq songPlay.provenance "traditional")}}
+                                {% if songPlay.provenance=="traditional" %}
                                     <span class="traditional-detail">(Traditional)</span>
-                                {{/if}}
-                                {{#if (eq songPlay.provenance "cover")}}
+                                {% endif %}
+                                {% if songPlay.provenance=="cover" %}
                                     <span class="cover-detail">({{songPlay._song.by_artist}} cover)</span>
-                                {{/if}}
-                                {{#if (eq songPlay.provenance "video_game")}}
+                                {% endif %}
+                                {% if songPlay.provenance=="video_game" %}
                                     <span class="video-game-detail">(from {{songPlay._song.video_game}})</span>
-                                {{/if}}
-                                {{#if songPlay.detail}}
+                                {% endif %}
+                                {% if songPlay.detail %}
                                     <span>{{songPlay.detail}}</span>
-                                {{/if}}
-                                {{#if (eq songPlay.mode "segue")}}
+                                {% endif %}
+                                {% if songPlay.mode=="segue" %}
                                     <span style="color:#fff7ae"><b>⇛</b></span>
-                                {{/if}}</span>
+                                {% endif %}</span>
                             </li>
-                        {{/each}}
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <img class="img-fluid" src="{{resolveChart ../show.artist_id ../show.blockheight setId}}">
+                    <img class="img-fluid" src="{{show.artist_id | resolveChart(show.blockheight, this)}}">
                 </div>
             </div>
-            {{# if ../show.has_set_stones_available }}
+            {% if show.has_set_stones_available %}
                 <div class="row">
                     <div class="set-stones">
                         <h3><span class="pixel-font" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Set Stones</span>
@@ -113,12 +107,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {{#each this.setstones as |stone stoneId|}}
+                            {% for stone in this.setstones %}
                                 <tr class="border-bottom border-black">
                                     <td class="px-3" data-tippy-content="{{stone.owner}}"><a
                                             href="https://etherscan.io/address/{{stone.owner}}"
-                                            target="_blank">{{truncate
-                                            stone.owner 12}}</a></td>
+                                            target="_blank">{{stone.owner | truncate(12)}}</a></td>
                                     <td class="px-3">{{stone.paidAmountEth}}</td>
                                     <td class="px-3"><a href="/assets/images/setstones/{{stone.tokenId}}.png"
                                                         target="_blank"><img
@@ -126,15 +119,15 @@
                                             style="width: 50px;"></a>
                                     </td>
                                 </tr>
-                            {{/each}}
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
                 </div>
-            {{/if}}
-        {{/each}}
+            {% endif %}
+        {% endfor %}
     </div>
-    {{#if show.has_set_stones_available }}
+    {% if show.has_set_stones_available %}
         <div id="donationModalContainer" class="mt-5 row">
             <div class="col-3"></div>
             <div id="donationModal" class="col-md-6">
@@ -159,9 +152,9 @@
                 </div>
 
                 <select id="setPicker" class="form-select pixel-font mt-2">
-                    {{#each show.sets}}
-                        <option value="{{@index}}">Set #{{inc @index}}</option>
-                    {{/each}}
+                    {% for set in  show.sets %}
+                        <option value="{{loop.index}}">Set #{{loop.index}}</option>
+                    {% endfor %}
 
                 </select>
 
@@ -203,7 +196,7 @@
 
             </div>
         </div>
-    {{/if}}
+    {% endif %}
 
     <div id="vowelSoundContributions" class="mt-5"
          style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%;">
@@ -239,9 +232,9 @@
     // take the valid hashes out from the rabbit_hashes array
     // and put them into a new array
     const valid_rabbit_hashes = [
-        {{#each show.rabbit_hashes}}
-            "{{this}}",
-        {{/each}}
+        {% for rabbit_hash in show.rabbit_hashes %}
+            "{{rabbit_hash}}",
+        {% endfor %}
     ]
 
     const stone_price_wei = {{show.stone_price}}
@@ -249,29 +242,28 @@
     const blockheight = {{show.blockheight}}
 
     const setSongs = [
-        {{#each show.sets}}
-            [{{#each this.songplays}}
-                {{addSongFromPlayToContext}}
+        {% for set in show.sets %}
+            [{% for songPlay in set.songplays %}
                 "{{this._song.title}}",
-            {{/each}}],
-        {{/each}}
+            {% endfor %}],
+        {% endfor %}
     ]
 
     const vowelSoundContributions = [
-        {{#each chainData.vowelSoundContributions}}
+        {% for this in chainData.vowelSoundContributions %}
             {
                 amount: "{{this.amountEth}}",
                 address: "{{this.address}}",
                 rank: {{this.rank}},
                 ensName: "{{this.ensName}}"
             },
-        {{/each}}
+        {% endfor %}
     ]
 
-        {{#if show.has_set_stones_available }}
+        {% if show.has_set_stones_available %}
         window.this_show_has_set_stones = true;
-        {{else}}
+{% else %}
         window.this_show_has_set_stones = false;
-        {{/if}}
+{% endif %}
 
 </script>

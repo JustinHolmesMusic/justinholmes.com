@@ -1,8 +1,4 @@
-{{#if compact}}
-    {{> slicey}}
-{{else}}
-    {{> bigger-banner}}
-{{/if}}
+{% include 'partials/bigger-banner.hbs' %}
 
 <div class="container-fluid mt-2 mb-5">
     <div class="embed-responsive embed-responsive-16by9 d-flex justify-content-center">
@@ -25,7 +21,7 @@
                 and playgrounds unto ubiquity, simple but superior food and drink, roads and paths that seem designed to
                 joyously convey one to nowhere in particular.
             </p>
-            <img class="img-fluid" src="{{resolveImage "bike-with-instruments.png" }}">
+            <img class="img-fluid" src="{{ imageMapping["bike-with-instruments.png"] }}">
             <p>
                 The Danish people have a character that is palpably distinct from the rest of continental Europe: they
                 are
@@ -45,7 +41,7 @@
                 The three of us started the sunny day with local kombucha, local yogurt, and local mushrooms (the trippy
                 kind), before meeting up with these new friends and being welcomed aboard.
             </p>
-            <img class="img-fluid" src="{{resolveImage "copenhagen-bat-country.png" }}">
+            <img class="img-fluid" src="{{ imageMapping["copenhagen-bat-country.png"] }}">
 
             <p>
                 After departing the marina into a field of massive flowery wind turbines, tilting hello specifically to

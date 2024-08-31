@@ -1,4 +1,4 @@
-{{> bigger-banner}}
+{% include 'partials/bigger-banner.hbs' %}
 
 <div id="content" class="container text-light">
     <h3 class="pixel-font center">Set Stone {{show.show_id}}-{{set.set_number}}-{{setstone.tokenId}}</h3>
@@ -10,8 +10,7 @@
         </div>
         <div class="col-6 stone-data">
             <p>Show: {{show.title}}</p>
-            <p>{{blockToDate show.blockheight
-                             show.timezone}}</p>
+            <p>{{show.blockheight | blockToDate(show.timezone)}}</p>
             <p>Set #: {{set.set_number}}</p>
             <p>Owner: {{setstone.owner}}</p>
             <p>Colors: {{colors}}</p>

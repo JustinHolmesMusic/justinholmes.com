@@ -1,8 +1,4 @@
-{{#if compact}}
-    {{> slicey}}
-{{else}}
-    {{> bigger-banner}}
-{{/if}}
+{% include 'partials/bigger-banner.hbs' %}
 
 
 <div class="container mb-5">
@@ -10,7 +6,6 @@
         <h1 class="pixel-font">Make show available for stone minting</h1>
         <p class="lead">Make a show available for stone minting by adding it to the SetStone contract</p>
 
-        {{!-- link to ether scan --}}
         <p>
             <a id="contractEtherscanLink">
                 View SetStone Contract on Etherscan

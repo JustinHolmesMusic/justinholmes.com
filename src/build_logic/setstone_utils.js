@@ -94,7 +94,7 @@ export function renderSetStoneImages(shows, outputDir) {
         // We're only interested in shows that have set stones.
         if (!show.has_set_stones_available) {
             continue;
-        }
+        }   
 
         Object.entries(show.sets).forEach(([setNumber, set]) => {
             set.setstones.forEach((setstone, setstoneNumber) => {

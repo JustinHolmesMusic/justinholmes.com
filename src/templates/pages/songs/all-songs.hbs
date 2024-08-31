@@ -1,13 +1,10 @@
-{{#if compact}}
-    {{> slicey}}
-{{else}}
-    {{> bigger-banner}}
-{{/if}}
+{% include 'partials/bigger-banner.hbs' %}
 
 
 <div id="content" class="container text-light">
-    {{#each songs}}<br/>
-        {{> song-summary song=this}}
+    {% for song in songs %}
+        <br/>
+        {$ include 'reuse/song-summary.hbs' %}
         <hr/>
-    {{/each}}
+    {% endfor %}
 </div>

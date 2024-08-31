@@ -1,8 +1,4 @@
-{{#if compact}}
-    {{> slicey}}
-{{else}}
-    {{> bigger-banner}}
-{{/if}}
+{% include 'partials/bigger-banner.hbs' %}
 
 
 <div id="content" class="mb-5 container text-light">
@@ -11,7 +7,7 @@
         <div class="col-2"></div>
         <div class="col-8">
             <div id="about-text" class="p-3 fs-4 text-start">
-                {{ safeHTML about_text }}
+                {{ about_text }}
             </div>
         </div>
         <div class="col-2"></div>

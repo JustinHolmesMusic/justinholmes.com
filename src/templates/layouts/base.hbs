@@ -19,7 +19,7 @@
 {{#if no_video_bg}}
 {{else}}
     <video preload playsinline autoplay muted loop class="bg">
-        <source src="{{resolveImage 'nsf-background.mp4'}}" type="video/mp4">
+        <source src="{{ imageMapping["'nsf-background.mp4'"] }}" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
 {{/if}}
@@ -34,30 +34,30 @@
     <nav id="footer" class="mt-3 nav nav-fill justify-content-center flex-column flex-sm-row">
 
         <a class="p-0 nav-link" target="_blank" href="https://discord.gg/B8rEXkSAJ4">
-            <img class="mt-2" src="{{resolveImage 'social-logos/discord.png'}}"/>
+            <img class="mt-2" src="{{ imageMapping["'social-logos/discord.png'"] }}"/>
         </a>
 
         <a class="p-0 nav-link" target="_blank" href="https://github.com/jMyles">
-            <img src="{{resolveImage 'social-logos/Octocat.png'}}"/>
+            <img src="{{ imageMapping["'social-logos/Octocat.png'"] }}"/>
         </a>
 
         <a class="p-0 nav-link" target="_blank" href="https://justinholmes.bandcamp.com/">
-            <img src="{{resolveImage 'social-logos/bandcamp-button-bc-circle-green-256.png'}}"/>
+            <img src="{{ imageMapping["'social-logos/bandcamp-button-bc-circle-green-256.png'"] }}"/>
         </a>
 
         <a class="p-0 nav-link" target="_blank" href="https://open.spotify.com/artist/2ThESMbZDNeAi02dpZZncE">
-            <img src="{{resolveImage 'social-logos/Spotify_Icon_RGB_Green.png'}}"/>
+            <img src="{{ imageMapping["'social-logos/Spotify_Icon_RGB_Green.png'"] }}"/>
         </a>
 
         <a class="p-0 nav-link" target="_blank" href="https://twitter.com/vowelsoundmode">
-            <img src="{{resolveImage 'social-logos/x-white.png'}}"/>
+            <img src="{{ imageMapping["'social-logos/x-white.png'"] }}"/>
         </a>
 
         <a class="p-0 nav-link" target="_blank" href="https://www.instagram.com/justinmylesholmes/">
-            <img src="{{resolveImage 'social-logos/Instagram_Glyph_Gradient.png' }}"/>
+            <img src="{{ imageMapping["'social-logos/Instagram_Glyph_Gradient.png'"] }}"/>
         </a>
         <a class="p-0 nav-link" target="_blank" href="https://www.youtube.com/@vowelsoundmode">
-            <img class="mt-2" src="{{resolveImage 'social-logos/youtube_social_icon_red.png' }}"/>
+            <img class="mt-2" src="{{ imageMapping["'social-logos/youtube_social_icon_red.png'"] }}"/>
         </a>
     </nav>
 </div>

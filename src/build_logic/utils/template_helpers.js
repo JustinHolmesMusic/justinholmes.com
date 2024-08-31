@@ -1,13 +1,16 @@
-import Handlebars from 'handlebars';
 import {DateTime} from 'luxon';
 import {shows, songs} from '../show_and_set_data.js'
-
+import nunjucks from "nunjucks";
+import {imageMapping, unusedImages} from "../asset_builder.js";
+import {templateDir} from "../constants.js";
 // Reference block details
 const REFERENCE_BLOCK = 20612385; // Example block number
 const REFERENCE_TIMESTAMP = 1724670731; // Unix timestamp in seconds
 const AVERAGE_BLOCK_TIME = 12.08; // Average block time in seconds
 
 let _helpers_are_registered = false;
+
+let env = nunjucks.configure(templateDir, {autoescape: false});
 
 export function registerHelpers() {
 
@@ -16,14 +19,8 @@ export function registerHelpers() {
         return;
     }
 
-    Handlebars.registerHelper('link', (text, url) => {
-        text = Handlebars.escapeExpression(text);
-        url = Handlebars.escapeExpression(url);
-        return new Handlebars.SafeString(`<a href="${url}">${text}</a>`);
-    });
-
     // Blockheight - datetime
-    Handlebars.registerHelper('blockToDate', (blockHeight, timeZone) => {
+    env.addFilter('blockToDate', (blockHeight, timeZone) => {
         const blockDifference = blockHeight - REFERENCE_BLOCK;
         const timeDifference = blockDifference * AVERAGE_BLOCK_TIME;
         const estimatedTimestamp = REFERENCE_TIMESTAMP + timeDifference;
@@ -36,102 +33,30 @@ export function registerHelpers() {
         return formatted_date;
     });
 
-    // RnumberWithCommas
-    Handlebars.registerHelper('numberWithCommas', function (number) {
-        // Ensure the input is a number
-        if (typeof number !== 'number') {
-            number = parseFloat(number);
+
+    env.addFilter('resolveChart', function (artist_id, blockheight, setId) {
+
+        let foundImage;
+        let originalPath
+        if (setId === "full-show") {
+            originalPath = `charts/${artist_id}-${blockheight}-full-show-provenance.png`;
+        } else {
+            originalPath = `charts/${artist_id}-${blockheight}-set-${setId}-provenance.png`;
+        }
+        try {
+            foundImage = imageMapping[originalPath];
+        } catch (e) {
+            throw new Error(`Image not found: ${originalPath}`);
         }
 
-        // Return the number formatted with commas
-        return number.toLocaleString();
-    });
-
-
-    Handlebars.registerHelper("inc", function (value, options) {
-        return parseInt(value) + 1;
-    });
-
-
-    Handlebars.registerHelper('subtract', function (a, b) {
-        return a - b;
-    });
-
-    Handlebars.registerHelper('getElement', function (array, index) {
-        return array[index];
-    });
-
-
-    Handlebars.registerHelper('isActive', function (currentPage, expectedPage, options) {
-        return currentPage === expectedPage ? 'active' : '';
-    });
-
-    Handlebars.registerHelper('isEven', function (index, options) {
-        return (index % 2 === 0);
-    });
-
-    Handlebars.registerHelper('fourCycle', function (index, options) {
-        return index % 4;
-    });
-
-    Handlebars.registerHelper('objectLength', function (obj) {
-        return Object.keys(obj).length;
-    });
-
-// Register a custom helper to iterate two items at a time
-    Handlebars.registerHelper('eachPair', function (context, options) {
-        let result = '';
-        for (let i = 0; i < context.length; i += 2) {
-            const pair = [context[i], context[i + 1]];
-            result += options.fn(pair);
+        if (!foundImage) {
+            // Raise an error if the image is not found
+            throw new Error(`Image not found: ${originalPath}`);
+        } else {
+            unusedImages.delete(originalPath);
         }
-        return result;
+        return foundImage
     });
-
-    ////////////////////////
-    // These next two feel like spooky action at a distance - modifying context without the template specifying which keys are modified.
-    // I wish handlebars could just call a method like jinja.
-    Handlebars.registerHelper('addSongFromPlayToContext', function (context, options) {
-        this._song = songs[this.songSlug];
-    });
-
-    Handlebars.registerHelper('addShowFromPlayToContext', function (context, options) {
-        this._show = shows[this.showID];
-
-    });
-    ////////////////////////////////
-
-
-// New helper to truncate a string if it is longer than a threshold
-    Handlebars.registerHelper('truncate', function (str, len) {
-        if (str.length > len) {
-            return str.substring(0, len) + '...';
-        }
-        return str;
-    });
-
-    // Stringify
-    Handlebars.registerHelper('stringify', function (obj) {
-        function replacer(key, value) {
-            // If the key starts with "_", return undefined
-            if (key.startsWith('_')) {
-                return undefined;
-            }
-            return value;
-        }
-
-        return JSON.stringify(obj, null, 3);
-    });
-
-// Register the not-eq helper
-    Handlebars.registerHelper('not-eq', function (a, b) {
-        return a !== b;
-    });
-
-    Handlebars.registerHelper('eq', function (a, b) {
-        return a === b;
-    });
-
 
     _helpers_are_registered = true;
 }

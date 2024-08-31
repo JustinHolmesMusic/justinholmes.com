@@ -1,8 +1,4 @@
-{{#if compact}}
-    {{> slicey}}
-{{else}}
-    {{> bigger-banner}}
-{{/if}}
+{% include 'partials/bigger-banner.hbs' %}
 
 <div id="cryptograss-content" class="container mt-3">
     <h1 class="text-light pixel-font text-center mb-3">cryptograss.eth</h1>
@@ -10,7 +6,7 @@
     <p class="h5 text-light pixel-font text-center">Decentralized apps written by bluegrassers</p>
     <p class="h3 text-light curly text-center">Bluegrass written by cryptographers</p>
 
-    <div class="row">  {{!-- cryptograss nav --}}
+    <div class="row">
         <div class="col-12">
             <ul class="nav subnav nav-tabs pixel-font">
                 <li class="nav-item">
@@ -36,19 +32,19 @@
             Manzanita album, to the Justin Holmes discord.
         </h4>
         <table class="chainDataList">
-            {{#each chainData.blueRailroads}}
+            {% for this in chainData.blueRailroads %}
                 <tr>
                     <td>{{id}}</td>
                     <td>{{owner}}</td>
                     <td><a href="{{uri}}">video</a></td>
                 </tr>
-            {{/each}}
+            {% endfor %}
         </table>
     </div>
     <div class="row">
         <div class="col-2"></div>
         <div id="faq" class="col-sm-8 cryptograss-nav" style="display: none;">
-            {{safeHTML faq}}
+            {{faq}}
         </div>
         <div class="col-2"></div>
     </div>

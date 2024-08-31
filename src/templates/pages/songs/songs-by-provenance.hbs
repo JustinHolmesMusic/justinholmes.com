@@ -1,19 +1,15 @@
-{{#if compact}}
-    {{> slicey}}
-{{else}}
-    {{> bigger-banner}}
-{{/if}}
+{% include 'partials/bigger-banner.hbs' %}
 
 
 <div id="content" class="container text-light">
-    <div class="accordion col-md-8 center">
-        {{#each songsByProvenance as |songs provenance|}}<br/>
-            <h1>{{provenance}}</h1>
-            {{#each songs as |song|}}
-                <h3>{{song.title}}</h3>
-
-                <hr/>
-            {{/each}}
-        {{/each}}
-    </div>
+    <dv class="accordion col-md-8 center">
+        {% for songs, provenance in songsByProvenance %}<br/>
+        <h1>{{provenance}}</h1>
+        {% for song in songs %}
+        <br/>
+        {$ include 'reuse/song-summary.hbs' %}
+        <hr/>
+        {% endfor %}
+        {% endfor %}
+    </dv>
 </div>

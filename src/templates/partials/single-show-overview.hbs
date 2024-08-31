@@ -1,27 +1,26 @@
 <div class="showOverview border-bottom border-black pb-3 pixel-font row">
     <div class="col-7">
 
-        {{# if title_as_link}}<a href="/shows/{{show.artist_id}}-{{show.blockheight}}.html">{{/if}}<h1>{{show.title}}
-        - {{show.locality}}</h1>{{# if title_as_link}}</a>{{/if}}
-        <h4>Scheduled for Blockheight: {{numberWithCommas show.blockheight}} ({{blockToDate show.blockheight
-                                                                                            show.timezone}}
+        {% if title_as_link %}<a href="/shows/{{show.artist_id}}-{{show.blockheight}}.html">{% endif %}<h1>{{show.title}}
+        - {{show.locality}}</h1>{% if title_as_link %}</a>{% endif %}
+        <h4>Scheduled for Blockheight: {{show.blockheight}} ({{show.blockheight |blockToDate(show.timezone)}}
             )</h4>
         <span>Venue:</span> <b>{{show.venue}}</b><br>
-        {{#if show.host}}
+        {% if show.host %}
             <span>Host:</span> <b>{{show.host}}</b><br>
-        {{/if}}
+        {% endif %}
         <span>Locality:</span> <b>{{show.locality}}, {{show.region1}}</b><br>
-        {{#if show.event_url}}
+        {% if show.event_url %}
             <span>Event URL:</span> <a href="{{show.event_url}}">{{show.event_url}}</a><br>
-        {{/if}}
+        {% endif %}
     </div>
     <div class="col-5">
-        <img class="img-fluid" src="{{resolveChart show.artist_id show.blockheight "full-show"}}">
+        <img class="img-fluid" src="{{show.artist_id |resolveChart(show.blockheight, "full-show")}}">
     </div>
-    {{#if show.has_set_stones_available}}
+    {% if show.has_set_stones_available %}
         <div class="set-stones-available">
             Set Stones
         </div>
-    {{/if}}
+    {% endif %}
 
 </div>

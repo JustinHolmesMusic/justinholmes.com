@@ -1,14 +1,10 @@
-{{#if compact}}
-    {{> slicey}}
-{{else}}
-    {{> bigger-banner}}
-{{/if}}
+{% include 'partials/bigger-banner.hbs' %}
 
 
 <div id="content" class="container text-light all-shows-list">
     <div class="col-md-12">
-        {{#each shows}}
-            {{> single-show-overview show=this title_as_link=true}}
-        {{/each}}
+        {% for show in shows %}
+            {% include "../reuse/single-show-overview.hbs" %}
+        {% endfor %}
     </div>
 </div>

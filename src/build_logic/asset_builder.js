@@ -92,30 +92,6 @@ Handlebars.registerHelper('resolveImage', function (originalPath) {
     return foundImage
 });
 
-Handlebars.registerHelper('resolveChart', function (artist_id, blockheight, setId) {
-
-    let foundImage;
-    let originalPath
-    if (setId === "full-show") {
-        originalPath = `charts/${artist_id}-${blockheight}-full-show-provenance.png`;
-    } else {
-        originalPath = `charts/${artist_id}-${blockheight}-set-${setId}-provenance.png`;
-    }
-    try {
-        foundImage = imageMapping[originalPath];
-    } catch (e) {
-        throw new Error(`Image not found: ${originalPath}`);
-    }
-
-    if (!foundImage) {
-        // Raise an error if the image is not found
-        throw new Error(`Image not found: ${originalPath}`);
-    } else {
-        unusedImages.delete(originalPath);
-    }
-    return foundImage
-});
-
 
 Handlebars.registerHelper('safeHTML', function (content) {
     return new Handlebars.SafeString(content);

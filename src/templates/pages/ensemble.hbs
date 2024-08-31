@@ -1,8 +1,4 @@
-{{#if compact}}
-    {{> slicey}}
-{{else}}
-    {{> bigger-banner}}
-{{/if}}
+{% include 'partials/bigger-banner.hbs' %}
 
 
 <div id="content" class="container text-light">
@@ -38,28 +34,28 @@
 
         </p>
     </div>
-    {{#each ensemble}}
+    {% for name, details in ensemble %}
         <div class="person-info row border-top border-2 border-black mt-2 pt-2">
-            {{#if (isEven @index)}}
+            {% if loop.index % 2 === 0 %}
                 <div class="row">
-                    <h2 class="fs-1 bio-title">{{@key}}</h2>
+                    <h2 class="fs-1 bio-title">{{mame}}</h2>
                 </div>
                 <div class="row">
                     <div class="col-5">
                         <a class='spotlight'
-                           href="{{resolveImage Photo }}"
+                           href="{{ imageMapping["Photo"] }}"
                            title="{{Caption}}">
-                            <img src="{{resolveImage Photo }}"/>
+                            <img src="{{ imageMapping["Photo"] }}"/>
                         </a>
                         <figcaption class="figure-caption text-white fs-5 bio-caption">{{Caption}}</figcaption>
                     </div>
                     <div class="col-1"></div>
                     <div class="col-6 fs-4 person-bio">
-                        {{safeHTML Description}}
-                        {{Address}}
+                        {{details.Description}}
+                        {{details.Address}}
                     </div>
                 </div>
-            {{else}}
+            {% else %}
                 <div class="row">
                     <div class="col-11">
                         <h2 class="fs-1 text-right bio-title">{{@key}}</h2>
@@ -68,25 +64,21 @@
                 </div>
                 <div class="row">
                     <div class="col-6 fs-4 person-bio">
-                        {{safeHTML Description}}
-                        {{Address}}
+                        {{details.Description}}
+                        {{details.Address}}
                     </div>
                     <div class="col-1"></div>
                     <div class="col-5 text-center">
-                        <a class='spotlight'
-                           href="{{resolveImage Photo }}"
-                           title="{{Caption}}">
-                            <img class="w-100" src="{{resolveImage Photo }}"/>
-                        </a>
+
                         <figcaption class="figure-caption text-white fs-5 bio-caption">{{Caption}}</figcaption>
                         <div class="col-1"></div>
 
                     </div>
                 </div>
-            {{/if}}
+            {% endif %}
 
         </div>
-    {{/each}}
+    {% endfor %}
     <hr>
     <h2>Bios to come: </h2>
     <ul>

@@ -1,22 +1,14 @@
-{{#if compact}}
-    {{> slicey}}
-{{else}}
-    {{> bigger-banner}}
-{{/if}}
-
+{% include 'partials/bigger-banner.hbs' %}
 <div class="container mb-5">
     <div class="gradient-transparent-bg p-4">
         <h1 class="pixel-font">Add a live set</h1>
         <p class="lead">Commit a new live set to the LiveSet contract</p>
-
-        {{!-- link to ether scan --}}
         <p>
             <a id="contractEtherscanLink">
                 View Contract on Etherscan
             </a>
         </p>
 
-        <!-- Input for artist_id -->
         <div class="form-group">
             <label for="artist_id">Artist ID</label>
             <input type="number" class="form-control" id="artist_id" name="artist_id" required>

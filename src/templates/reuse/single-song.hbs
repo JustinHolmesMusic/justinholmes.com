@@ -1,10 +1,6 @@
-{{#if compact}}
-    {{> slicey}}
-{{else}}
-    {{> bigger-banner}}
-{{/if}}
+{% include 'partials/bigger-banner.hbs' %}
 
 
 <div id="content" class="container text-light">
-    {{> song-summary song=song}}
+    {% include 'partials/song-summary.hbs' %}
 </div>

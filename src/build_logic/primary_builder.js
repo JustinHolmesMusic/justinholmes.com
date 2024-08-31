@@ -1,9 +1,7 @@
-import {renderPage} from "./utils/rendering_utils.js";
-
 console.time('primary-build');
-
+import {renderPage} from "./utils/rendering_utils.js";
+import nunjucks from 'nunjucks';
 import {outputBaseDir, templateDir} from "./constants.js";
-import Handlebars from 'handlebars';
 import fs from 'fs';
 import * as glob from 'glob';
 import yaml from 'js-yaml';
@@ -72,13 +70,13 @@ const dataAvailableAsContext = {
 };
 
 // ...and partial templates.
-const partialsDir = path.resolve(templateDir, 'partials');
-const partialFiles = glob.sync(`${partialsDir}/*.hbs`);
-partialFiles.forEach(partialPath => {
-    const partialName = path.relative(partialsDir, partialPath).replace(/\.hbs$/, '');
-    const partialTemplate = fs.readFileSync(partialPath, 'utf8');
-    Handlebars.registerPartial(partialName, partialTemplate);
-});
+// const partialsDir = path.resolve(templateDir, 'partials');
+// const partialFiles = glob.sync(`${partialsDir}/*.hbs`);
+// partialFiles.forEach(partialPath => {
+//     const partialName = path.relative(partialsDir, partialPath).replace(/\.hbs$/, '');
+//     const partialTemplate = fs.readFileSync(partialPath, 'utf8');
+//     Handlebars.registerPartial(partialName, partialTemplate);
+// });
 
 // Copy client-side partials to the output directory
 fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'partials'), {recursive: true});

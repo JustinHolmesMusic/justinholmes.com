@@ -1,22 +1,13 @@
 <div class="container">
-    {{#each numbers_to_draw }}
+    {% for this in numbers_to_draw %}
         <div class="row drawNumberHere g-0">
             <div class="col-5">
                 <img id='album-letter-image' class="fluid w-100" alt='album-cover'
-                     src="{{resolveImage 'albums/vowel-sounds-cover-art-400.png' }}">
+                     src="{{ imageMapping["'albums/vowel-sounds-cover-art-400.png'"] }}">
             </div>
             <div class="col-5">
                 <canvas class="pixel-number" data-number="{{@index}}" id="pixelCanvas" width="1000" height="1000"></canvas>
             </div>
         </div>
-    {{/each}}
-<!--    <div class="row g-0">-->
-<!--        <div class="col-5">-->
-<!--            <img id='album-letter-image' class="fluid w-100" alt='album-cover'-->
-<!--                 src="{{resolveImage 'albums/vowel-sounds-cover-art-400.png' }}">-->
-<!--        </div>-->
-<!--        <div class="col-5">-->
-<!--            <canvas class="pixel-number" data-number="4" id="pixelCanvas" width="1000" height="1000"></canvas>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+    {% endfor %}
+</div>

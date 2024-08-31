@@ -1,8 +1,4 @@
-{{#if compact}}
-    {{> slicey}}
-{{else}}
-    {{> bigger-banner}}
-{{/if}}
+{% include 'partials/bigger-banner.hbs' %}
 
 <div id="listen-container" class="container mt-3">
     <h1 class="text-light pixel-font text-center">Listen</h1>
@@ -74,24 +70,24 @@
                     less.</h3>
             </div>
         </div>
-        {{#each sessions}}
-            {{#if (isEven @index)}}
+        {% for this in sessions %}
+            {% if loop.index % 2 === 0 %}
             <div class="row mt-3">
-            {{/if}}
-            <div class="col-sm-5 live-video index-{{fourCycle @index}}">
+            {% endif %}
+            <div class="col-sm-5 live-video index-{{ index % 4 }}">
                 <div class="row">
-                    {{> youtube this}}
+                    {% include 'partials/youtube.hbs' %}
                 </div>
                 <div class="row media-metadata-above-video" style="min-height: 100px">
-                    {{> media-metadata this}}
+                    {% include 'partials/media-metadata.hbs' %}
                 </div>
             </div>
-            {{#if (isEven @index)}}
+            {% if loop.index % 2 === 0 %}
                 <div class="col-2"></div>
-            {{else}}
+            {% else %}
             </div>
-            {{/if}}
-        {{/each}}
+            {% endif %}
+        {% endfor %}
 
     </div>
 
@@ -101,48 +97,48 @@
             the internet all over the world,
             from Nashville to Cape Town to Osaka to Prague.</h4>
 
-        {{#each live}}
-            {{#if (isEven @index)}}
+        {% for this in live %}
+            {% if loop.index % 2 === 0 %}
             <div class="row mt-3">
-            {{/if}}
-            <div class="col-sm-5 live-video index-{{fourCycle @index}}">
+            {% endif %}
+            <div class="col-sm-5 live-video index-{{loop.index % 4}}">
                 <div class="row">
-                    {{> youtube this}}
+                    {% include 'partials/youtube.hbs' %}
                 </div>
                 <div class="row media-metadata-above-video" style="min-height: 100px">
-                    {{> media-metadata this}}
+                    {% include 'partials/media-metadata.hbs' %}
                 </div>
             </div>
-            {{#if (isEven @index)}}
+            {% if loop.index % 2 === 0 %}
                 <div class="col-2"></div>
-            {{else}}
+            {% else %}
             </div>
-            {{/if}}
-        {{/each}}
+            {% endif %}
+        {% endfor %}
 
     </div>
     <div id="talks" class="music-listen-section">
         <h3 class="section-heading">Recordings that may or may not have music, but where the focus is talking about (and
             perhaps performing a live demo of) compelling innovations.</h3>
 
-        {{#each talks}}
-            {{#if (isEven @index)}}
+        {% for this in talks %}
+            {% if loop.index % 2 === 0 %}
             <div class="row mt-3">
-            {{/if}}
-            <div class="col-sm-5 live-video index-{{fourCycle @index}}">
+            {% endif %}
+            <div class="col-sm-5 live-video index-{{loop.index % 4}}">
                 <div class="row">
-                    {{> youtube this}}
+                    {% include 'partials/youtube.hbs' %}
                 </div>
                 <div class="row media-metadata-above-video" style="min-height: 100px">
-                    {{> media-metadata this}}
+                    {% include 'partials/media-metadata.hbs' %}
                 </div>
             </div>
-            {{#if (isEven @index)}}
+            {% if loop.index % 2 === 0 %}
                 <div class="col-2"></div>
-            {{else}}
+            {% else %}
             </div>
-            {{/if}}
-        {{/each}}
+            {% endif %}
+        {% endfor %}
 
     </div>
 
