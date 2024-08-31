@@ -47,27 +47,17 @@
     {% include "partials/single-show-overview.hbs" %}
 
     <div id="setlist" class="mt-5">
-        {% if show.sets.length==0 %}
-            <div class="alert alert-info" role="alert">
-                <p class="mb-0 pixel-font">The setlist for this show has not been committed yet. Check back later to see
-                    the setlist and mint your Set Stone!</p>
-            </div>
-        {% endif %}
-
-        {% for this, setId in show.sets %}
+        {% for set_number, set in show.sets %}
             <div class="row">
                 <div class="col-md-8 single-set-list">
-                    {% if show.number_of_sets==1 %}
-                    {% else %}
-                        <h3><span class="pixel-font" style="color: #00ff00; font-size: 1.3em;">Set #{{loop.index}}</span>
+                    {% if show.sets.length > 1 %}
+                        <h3><span class="pixel-font" style="color: #00ff00; font-size: 1.3em;">Set #{{set_number}}</span>
                         </h3>
                     {% endif %}
 
                     <ul>
-                        {% for songPLay in this.songplays %}
-                            <li><span
-                                    {% if songPlay.mode %}data-tippy-content="{{songPlay.mode}}" {% endif %}
-                                    class="pixel-font {{songPlay.provenance}} songPlay">
+                        {% for songPlay in set.songplays %}
+                            <li><span class="pixel-font {{songPlay.provenance}} songPlay">
                                 {% if songPlay.mode=="reprise" %}
                                     <span style="color:#fff7ae"><b>⇚</b></span>
                                 {% endif %}
@@ -92,7 +82,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <img class="img-fluid" src="{{show.artist_id | resolveChart(show.blockheight, this)}}">
+                    <img class="img-fluid" src="{{show.artist_id | resolveChart(show.blockheight, set_number)}}">
                 </div>
             </div>
             {% if show.has_set_stones_available %}
@@ -127,6 +117,11 @@
                     </div>
                 </div>
             {% endif %}
+        {% else %}
+                    <div class="alert alert-info" role="alert">
+                <p class="mb-0 pixel-font">The setlist for this show has not been committed yet. Check back later to see
+                    the setlist and mint your Set Stone!</p>
+            </div>
         {% endfor %}
     </div>
     {% if show.has_set_stones_available %}

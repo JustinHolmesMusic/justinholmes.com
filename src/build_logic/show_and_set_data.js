@@ -76,7 +76,7 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
     let showID = showYAML.split('.')[0];
     let artistID = showID.split('-')[0];
     let blockheight = showID.split('-')[1];
-    liveShowIDs.push(showID);
+    // liveShowIDs.push(showID);
 
     let showYAMLFile = fs.readFileSync(path.resolve(showsDir, showYAML));
     let showYAMLData = yaml.load(showYAMLFile);
@@ -97,7 +97,9 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
 
     for (let [set_number, set] of Object.entries(showYAMLData['sets'])) {
 
-        let this_set = {"songplays": {},
+        let this_set = {
+            "songplays": [],
+            "_show": showYAMLData,
             "set_number": set_number} // TODO: Better modeling somehow.  WWDD?
 
 
@@ -137,7 +139,7 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
             if (songs.hasOwnProperty(songSlug)) {
                 // We read about this song when we read the YAMLs.
                 song = songs[songSlug];
-                song.slug = songSlug;
+                song.slug = songSlug; // TODO: WWDD?  Just slugify it in a method.
             } else {
                 // We don't know about this song.
                 song = {
@@ -195,14 +197,14 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
             if (songPlay.mode !== "tease" && songPlay.mode !== "reprise") {
                 song.plays.push(songPlay);
             }
-
-            songPlay['songSlug'] = songSlug;
+            songPlay._song = song;
+            songPlay['songSlug'] = songSlug; // TODO: WWDD?  This can be a method.
 
             // Add it back into the set.
-            this_set["songplays"][s] = songPlay;
+            this_set.songplays.push(songPlay);
 
             // And push this songPlay to all songPlays.
-            allSongPlays.push(songPlay);
+            allSongPlays.push(songPlay); // TODO: Why?  Do we use this for something?
 
             sets_in_this_show[set_number] = this_set;
         } // Songs loop (turns songs into objects)
@@ -214,6 +216,7 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
         showYAMLData["artist_id"] = artistID;
         showYAMLData["blockheight"] = blockheight;
         shows[showID] = showYAMLData;
+        shows[showID]['resource_url'] = `/shows/${showID}.html`; // TODO Where does this logic really belong?
     } // Sets loop
 
 } // Shows loop

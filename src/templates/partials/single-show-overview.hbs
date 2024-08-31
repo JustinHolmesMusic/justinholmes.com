@@ -1,7 +1,7 @@
 <div class="showOverview border-bottom border-black pb-3 pixel-font row">
     <div class="col-7">
 
-        {% if title_as_link %}<a href="/shows/{{show.artist_id}}-{{show.blockheight}}.html">{% endif %}<h1>{{show.title}}
+        {% if title_as_link %}<a href="{{show.resource_url}}">{% endif %}<h1>{{show.title}}
         - {{show.locality}}</h1>{% if title_as_link %}</a>{% endif %}
         <h4>Scheduled for Blockheight: {{show.blockheight}} ({{show.blockheight |blockToDate(show.timezone)}}
             )</h4>
@@ -15,7 +15,7 @@
         {% endif %}
     </div>
     <div class="col-5">
-   {#     <img class="img-fluid" src="{{show.artist_id |resolveChart(show.blockheight, "full-show")}}"> #}
+        <img class="img-fluid" src="{{show.artist_id |resolveChart(show.blockheight, "full-show")}}">
     </div>
     {% if show.has_set_stones_available %}
         <div class="set-stones-available">

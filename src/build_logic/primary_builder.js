@@ -3,7 +3,6 @@ import {renderPage} from "./utils/rendering_utils.js";
 import nunjucks from 'nunjucks';
 import {outputBaseDir, templateDir} from "./constants.js";
 import fs from 'fs';
-import * as glob from 'glob';
 import yaml from 'js-yaml';
 import path from 'path';
 import {songs, shows, songsByProvenance} from "./show_and_set_data.js";
@@ -68,15 +67,6 @@ const dataAvailableAsContext = {
     'songsByProvenance': songsByProvenance,
     'latest_git_commit': execSync('git rev-parse HEAD').toString().trim(),
 };
-
-// ...and partial templates.
-// const partialsDir = path.resolve(templateDir, 'partials');
-// const partialFiles = glob.sync(`${partialsDir}/*.hbs`);
-// partialFiles.forEach(partialPath => {
-//     const partialName = path.relative(partialsDir, partialPath).replace(/\.hbs$/, '');
-//     const partialTemplate = fs.readFileSync(partialPath, 'utf8');
-//     Handlebars.registerPartial(partialName, partialTemplate);
-// });
 
 // Copy client-side partials to the output directory
 fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'partials'), {recursive: true});
@@ -157,11 +147,11 @@ Object.keys(pageyaml).forEach(page => {
         context = Object.assign({}, context, contextFromPageSpecificFiles[page])
     }
     const template_path = "pages/" + pageInfo["template"];
-    const outputFilePath = path.join(outputBaseDir, pageInfo["template"]).replace(/\.hbs$/, '.html');
+    const output_path = path.join(pageInfo["template"]).replace(/\.hbs$/, '.html');
 
     renderPage({
             template_path: template_path,
-            output_path: outputFilePath,
+            output_path: output_path,
             context: context,
             layout: pageInfo["base_template"],
         }
@@ -213,7 +203,6 @@ Object.entries(songs).forEach(([song_slug, song]) => {
     let context = {
         page_name: page,
         page_title: song.title,
-        shows: shows,
         song,
         imageMapping,
         chainData,

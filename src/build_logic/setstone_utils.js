@@ -68,10 +68,8 @@ export function generateSetStonePages(shows, outputDir) {
                     colors: setstoneColornames,
                     imageMapping,
                 };
-
-                // TODO: This needs to be reused in some kind of a canonical URL method or something.
-                const outputPath = `artifacts/setstones/${showId}-${setstone.tokenId}.html`;
-
+                const outputPath = `/artifacts/setstones/${showId}-${setstone.tokenId}.html`;
+                setstone.resource_url = outputPath;
                 renderPage({
                         template_path: 'reuse/single-set-stone.hbs',
                         output_path: outputPath,

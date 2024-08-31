@@ -8,7 +8,10 @@ export const templateDir = path.resolve(__dirname, '../templates');
 export const pageBaseDir = path.resolve(templateDir, 'pages');
 export const outputBaseDir = path.resolve(__dirname, '../../_prebuild_output');
 
-// Check if the directory exists, if not, create it
-if (!fs.existsSync(outputBaseDir)) {
-    fs.mkdirSync(outputBaseDir, {recursive: true});
+// Erase the output directory if it exists
+if (fs.existsSync(outputBaseDir)) {
+    fs.rmdirSync(outputBaseDir, {recursive: true});
 }
+
+// And then make a fresh one.
+fs.mkdirSync(outputBaseDir, {recursive: true});

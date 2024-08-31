@@ -40,16 +40,16 @@
         <div class="person-info row border-top border-2 border-black mt-2 pt-2">
             {% if loop.index % 2 === 0 %}
                 <div class="row">
-                    <h2 class="fs-1 bio-title">{{mame}}</h2>
+                    <h2 class="fs-1 bio-title">{{name}}</h2>
                 </div>
                 <div class="row">
                     <div class="col-5">
                         <a class='spotlight'
-                           href="{{ imageMapping["Photo"] }}"
-                           title="{{Caption}}">
-                            <img src="{{ imageMapping["Photo"] }}"/>
+                           href="{{ imageMapping[details.Photo] }}"
+                           title="{{details.Caption}}">
+                            <img src="{{ imageMapping[details.Photo] }}"/>
                         </a>
-                        <figcaption class="figure-caption text-white fs-5 bio-caption">{{Caption}}</figcaption>
+                        <figcaption class="figure-caption text-white fs-5 bio-caption">{{details.Caption}}</figcaption>
                     </div>
                     <div class="col-1"></div>
                     <div class="col-6 fs-4 person-bio">
@@ -60,7 +60,7 @@
             {% else %}
                 <div class="row">
                     <div class="col-11">
-                        <h2 class="fs-1 text-right bio-title">{{@key}}</h2>
+                        <h2 class="fs-1 text-right bio-title">{{name}}</h2>
                     </div>
                     <div class="col-1"></div>
                 </div>
@@ -72,9 +72,12 @@
                     <div class="col-1"></div>
                     <div class="col-5 text-center">
 
-                        <figcaption class="figure-caption text-white fs-5 bio-caption">{{Caption}}</figcaption>
-                        <div class="col-1"></div>
-
+                        <a class='spotlight'
+                           href="{{ imageMapping[details.Photo] }}"
+                           title="{{details.Caption}}">
+                            <img src="{{ imageMapping[details.Photo] }}"/>
+                        </a>
+                        <figcaption class="figure-caption text-white fs-5 bio-caption">{{details.Caption}}</figcaption>
                     </div>
                 </div>
             {% endif %}

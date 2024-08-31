@@ -5,6 +5,7 @@
 
 <div id="content" class="container text-light all-shows-list">
     <div class="col-md-12">
+        {% set title_as_link = true %}
         {% for show_id, show in shows %}
             {% include "../partials/single-show-overview.hbs" %}
         {% endfor %}

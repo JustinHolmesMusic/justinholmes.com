@@ -1,10 +1,10 @@
 <a href="/songs/{{song.slug}}.html"><h2>{{song.title}}</h2></a>
 <ul>
     Played {{song.plays.length}} times:
-    {% for this in song.plays %}
-        <li><a href="/shows/{{this._show.artist_id}}-{{this._show.blockheight}}.html">{{this._show.title}}</a>{% if this.as_title %} (as "{{this.as_title}}"){% endif %} on {{this._show.blockheight | blockToDate(this._show.timezone)}}
-            {% for stone in this._set.setstones %}
-                <a href="/assets/images/setstones/{{stone.tokenId}}.png"><img class="stone-in-long-list" src="/assets/images/setstones/{{stone.tokenId}}.png"></a>
+    {% for song_play in song.plays %}
+        <li><a href="{{song_play._set._show.resource_url}}">{{song_play._set._show.title}}</a>{% if this.as_title %} (as "{{song_play.as_title}}"){% endif %} on {{song_play._set._show.blockheight | blockToDate(song_play._set._show.timezone)}}
+            {% for stone in song_play._set.setstones %}
+                <a href="{{stone.resource_url}}"><img class="stone-in-long-list" src="/assets/images/setstones/{{stone.tokenId}}.png"></a>
             {% endfor %}
         </li>
     {% endfor %}
