@@ -1,9 +1,9 @@
 console.time('primary-build');
 
+import {outputBaseDir, templateDir, pageBaseDir} from "./constants.js";
 import Handlebars from 'handlebars';
 import fs from 'fs';
 import * as glob from 'glob';
-import {fileURLToPath} from 'url';
 import yaml from 'js-yaml';
 import path from 'path';
 import {songs, shows, songsByProvenance} from "./show_and_set_data.js";
@@ -11,19 +11,16 @@ import {marked} from 'marked';
 import {gatherAssets, unusedImages} from './asset_builder.js';
 import {deserializeChainData, serializeChainData} from './chaindata_db.js';
 import {execSync} from 'child_process';
-import {generateSetStoneMetadataJsons, renderSetStoneImages} from './setstone_utils.js';
+import {generateSetStonePages, renderSetStoneImages} from './setstone_utils.js';
 import {registerHelpers} from './utils/template_helpers.js';
 import {appendChainDataToShows, fetch_chaindata} from './chain_reading.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const templateDir = path.resolve(__dirname, '../templates');
 
 const dataAvailableAsContext = {
     "songs": songs,
     "shows": shows,
-    'songsByProvenance': songsByProvenance};
+    'songsByProvenance': songsByProvenance
+};
 
 console.time('pages-yaml-read');
 let pageyamlFile = fs.readFileSync("src/data/pages.yaml");
@@ -62,7 +59,7 @@ gatherAssets();
 appendChainDataToShows(shows, chainData);
 
 function getImageMapping() {
-    const mappingFilePath = path.join(__dirname, '../../_prebuild_output/imageMapping.json');
+    const mappingFilePath = path.join(outputBaseDir, 'imageMapping.json');
     const jsonData = fs.readFileSync(mappingFilePath, {encoding: 'utf8'});
     return JSON.parse(jsonData);
 }
@@ -75,12 +72,9 @@ console.timeEnd('asset-gathering');
 /////////////
 registerHelpers();
 
-// Make sure target directory exists
-const targetDir = path.resolve(__dirname, '../../_prebuild_output');
-
 // Check if the directory exists, if not, create it
-if (!fs.existsSync(targetDir)) {
-    fs.mkdirSync(targetDir, {recursive: true});
+if (!fs.existsSync(outputBaseDir)) {
+    fs.mkdirSync(outputBaseDir, {recursive: true});
 }
 
 // Register Partials
@@ -91,16 +85,6 @@ partialFiles.forEach(partialPath => {
     const partialTemplate = fs.readFileSync(partialPath, 'utf8');
     Handlebars.registerPartial(partialName, partialTemplate);
 });
-
-Handlebars.registerHelper('link', (text, url) => {
-    text = Handlebars.escapeExpression(text);
-    url = Handlebars.escapeExpression(url);
-    return new Handlebars.SafeString(`<a href="${url}">${text}</a>`);
-});
-
-// Define your base directories
-const pageBaseDir = path.resolve(templateDir, 'pages');
-const outputBaseDir = path.resolve(__dirname, '../../_prebuild_output');
 
 /////////////////
 // Page iteration
@@ -205,8 +189,8 @@ Object.keys(pageyaml).forEach(page => {
 fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'partials'), {recursive: true});
 
 // Generate set stone metadata json files.
-generateSetStoneMetadataJsons(chainData.showsWithChainData, path.resolve(__dirname, '../../_prebuild_output/setstones'));
-renderSetStoneImages(chainData.showsWithChainData, path.resolve(__dirname, '../../_prebuild_output/assets/images/setstones'));
+generateSetStonePages(chainData.showsWithChainData, path.resolve(outputBaseDir, 'setstones'));
+renderSetStoneImages(chainData.showsWithChainData, path.resolve(outputBaseDir, 'assets/images/setstones'));
 
 
 /////// Reuseable pages (shows, songs, artifacts, etc)

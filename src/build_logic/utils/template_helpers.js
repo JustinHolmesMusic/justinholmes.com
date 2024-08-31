@@ -16,6 +16,12 @@ export function registerHelpers() {
         return;
     }
 
+    Handlebars.registerHelper('link', (text, url) => {
+        text = Handlebars.escapeExpression(text);
+        url = Handlebars.escapeExpression(url);
+        return new Handlebars.SafeString(`<a href="${url}">${text}</a>`);
+    });
+
     // Blockheight - datetime
     Handlebars.registerHelper('blockToDate', (blockHeight, timeZone) => {
         const blockDifference = blockHeight - REFERENCE_BLOCK;
@@ -113,6 +119,7 @@ export function registerHelpers() {
             }
             return value;
         }
+
         return JSON.stringify(obj, null, 3);
     });
 
