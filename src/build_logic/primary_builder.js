@@ -15,22 +15,10 @@ import {generateSetStonePages, renderSetStoneImages} from './setstone_utils.js';
 import {registerHelpers} from './utils/template_helpers.js';
 import {appendChainDataToShows, fetch_chaindata} from './chain_reading.js';
 
-
-const dataAvailableAsContext = {
-    "songs": songs,
-    "shows": shows,
-    'songsByProvenance': songsByProvenance
-};
-
-console.time('pages-yaml-read');
-let pageyamlFile = fs.readFileSync("src/data/pages.yaml");
-let pageyaml = yaml.load(pageyamlFile);
-
-// TODO: Generalize this to be able to handle multiple yaml files
-let ensembleyamlFile = fs.readFileSync("src/data/ensemble.yaml");
-let ensembleyaml = yaml.load(ensembleyamlFile);
-console.timeEnd('pages-yaml-read');
-
+/////////////////////////
+///// Chapter one: chain data (also triggers show processing).
+////////////////////////////
+console.time("chain-data");
 const skip_chain_data_fetch = process.env.SKIP_CHAIN_DATA_FETCH
 if (skip_chain_data_fetch) {
     console.log("Skipping chain data generation");
@@ -52,11 +40,14 @@ try {
     }
 }
 
+console.timeEnd("chain-data");
+
+//////////////////////////////////
+///// Chapter two: assets
+//////////////////////////////////
+
 console.time('asset-gathering');
 gatherAssets();
-
-// Mutates shows.
-appendChainDataToShows(shows, chainData);
 
 function getImageMapping() {
     const mappingFilePath = path.join(outputBaseDir, 'imageMapping.json');
@@ -68,15 +59,34 @@ function getImageMapping() {
 const imageMapping = getImageMapping();
 console.timeEnd('asset-gathering');
 
-///// Helpers
-/////////////
-registerHelpers();
 
 // Check if the directory exists, if not, create it
 if (!fs.existsSync(outputBaseDir)) {
     fs.mkdirSync(outputBaseDir, {recursive: true});
 }
 
+
+////////////////////////////////////////////////
+///// Chapter three: One-off Pages
+/////////////////////////////////////////////
+console.time('pages-yaml-read');
+
+////////
+/// Chapter 3.1: Register helpers, partials, and context
+//////
+
+// We'll need helpers....
+registerHelpers();
+
+// ...and processed context...
+appendChainDataToShows(shows, chainData); // Mutates shows.
+const dataAvailableAsContext = {
+    "songs": songs,
+    "shows": shows,
+    'songsByProvenance': songsByProvenance
+};
+
+// ...and partial templates.
 // Register Partials
 const partialsDir = path.resolve(templateDir, 'partials');
 const partialFiles = glob.sync(`${partialsDir}/*.hbs`);
@@ -86,9 +96,17 @@ partialFiles.forEach(partialPath => {
     Handlebars.registerPartial(partialName, partialTemplate);
 });
 
-/////////////////
-// Page iteration
-//////////////////
+// Copy client-side partials to the output directory
+fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'partials'), {recursive: true});
+
+
+////////////////////
+// Chapter 3.2: Render one-off pages from YAML
+///////////////////////
+
+let pageyamlFile = fs.readFileSync("src/data/pages.yaml");
+let pageyaml = yaml.load(pageyamlFile);
+
 let contextFromPageSpecificFiles = {};
 Object.keys(pageyaml).forEach(page => {
     let pageInfo = pageyaml[page];
@@ -121,7 +139,7 @@ Object.keys(pageyaml).forEach(page => {
         });
     }
 
-    // Ensure the output directory exists
+    // Ensure the full output path, including subdirs, exists for this particular page.
     const outputDir = path.dirname(outputFilePath);
     if (!fs.existsSync(outputDir)) {
         fs.mkdirSync(outputDir, {recursive: true});
@@ -133,7 +151,7 @@ Object.keys(pageyaml).forEach(page => {
 
     let specified_context;
 
-    if (pageInfo['context_from_yaml'] == true) {
+    if (pageInfo['context_from_yaml'] === true) {
         // Load specified context from yaml
         let yaml_for_this_page = fs.readFileSync(`src/data/${page}.yaml`);
         specified_context = {[page]: yaml.load(yaml_for_this_page)};
@@ -141,7 +159,7 @@ Object.keys(pageyaml).forEach(page => {
         specified_context = {};
     }
 
-    if (pageInfo['include_chaindata_as_context'] != undefined) {
+    if (pageInfo['include_chaindata_as_context'] !== undefined) {
         for (let chainDataSection of pageInfo['include_chaindata_as_context']) {
             specified_context[chainDataSection] = chainData[chainDataSection];
         }
@@ -184,22 +202,19 @@ Object.keys(pageyaml).forEach(page => {
     fs.writeFileSync(outputFilePath, rendered_page);
 });
 
+console.timeEnd('pages-yaml-read');
 
-// Copy client-side partials to the output directory
-fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'partials'), {recursive: true});
+///////////////////////////////////////////
+// Chapter 4: Factory pages (individual shows, songs, etc)  and JSON files
+/////////////////////////////////////////////
 
-// Generate set stone metadata json files.
+// Render things that we'll need later.
 generateSetStonePages(chainData.showsWithChainData, path.resolve(outputBaseDir, 'setstones'));
 renderSetStoneImages(chainData.showsWithChainData, path.resolve(outputBaseDir, 'assets/images/setstones'));
 
-
-/////// Reuseable pages (shows, songs, artifacts, etc)
-
-////////////////////////////////////////////////////////
-/// Render Show pages, including set stone minting    //
-////////////////////////////////////////////////////////
-
-// for every show in chainData, render a page
+//////////////////////
+// Chapter 4.1: Show pages
+////////////////////
 
 Object.entries(shows).forEach(([show_id, show]) => {
     const page = `show_${show_id}`;
@@ -215,7 +230,6 @@ Object.entries(shows).forEach(([show_id, show]) => {
     // Load and compile the template
     const templateSource = fs.readFileSync(hbsTemplate, 'utf8');
     const template = Handlebars.compile(templateSource);
-
 
     let context = {
         page_name: page,
@@ -242,7 +256,10 @@ Object.entries(shows).forEach(([show_id, show]) => {
     fs.writeFileSync(outputFilePath, rendered_page);
 });
 
-// Same for each song (one page per).
+///////////////////////////
+// Chapter 4.2: Song pages
+///////////////////////////
+
 Object.entries(songs).forEach(([song_slug, song]) => {
     const page = `song_${song_slug}`;
     const outputFilePath = path.join(outputBaseDir, `songs/${song_slug}.html`);
@@ -278,8 +295,9 @@ Object.entries(songs).forEach(([song_slug, song]) => {
 });
 
 
-/////////////// CLEANUP
-
+///////////////////////////
+// Chapter 5: Cleanup
+///////////////////////////
 
 // Warn about each unused image.
 unusedImages.forEach(image => {
