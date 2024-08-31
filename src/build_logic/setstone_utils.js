@@ -1,17 +1,28 @@
 import fs from 'fs';
 import path from 'path';
-import { generateDiamondPatternFromNesPalette } from '../js/setstone_drawing.js'
+import {generateDiamondPatternFromNesPalette} from '../js/setstone_drawing.js'
+import {renderPage} from "./utils/rendering_utils.js";
+import {imageMapping} from "./asset_builder.js";
+import {nesPalette} from "../js/constants.js";
 
 /**
  * Generates and saves NFT metadata JSON files for each setstone in the shows.
  * @param {Object} showsWithChainData - Object containing show data with chain information.
  * @param {string} outputDir - Directory to save the generated JSON files.
  */
-export function generateSetStoneMetadataJsons(showsWithChainData, outputDir) {
-    Object.entries(showsWithChainData).forEach(([showId, show]) => {
+export function generateSetStonePages(shows, outputDir) {
+    for (const [showId, show] of Object.entries(shows)) {
+        // We're only interested in shows that have set stones.
+        if (!show.has_set_stones_available) {
+            continue;
+        }
+
         Object.entries(show.sets).forEach(([setNumber, set]) => {
             set.setstones.forEach((setstone, setstoneNumber) => {
 
+                ////////////////
+                // metadata JSON for NFT
+                ////////////////
                 const metadata = {
                     name: `Set Stone for show ${showId}`,
                     external_url: `https://justinholmes.com/cryptograss/bazaar/setstones/${showId}.html`,
@@ -41,21 +52,50 @@ export function generateSetStoneMetadataJsons(showsWithChainData, outputDir) {
                 const fileName = `${setstone.tokenId}`;
                 const filePath = path.join(outputDir, fileName);
 
-                fs.mkdirSync(path.dirname(filePath), { recursive: true });
+                fs.mkdirSync(path.dirname(filePath), {recursive: true});
                 fs.writeFileSync(filePath, JSON.stringify(metadata, null, 2));
+
+                ////////////////////////
+                /// Set Stone Profile Page
+                /////////////////////////
+
+                const NEScolorNames = Object.keys(nesPalette)
+                const setstoneColornames = `${NEScolorNames[setstone.color[0]]}, ${NEScolorNames[setstone.color[1]]}, ${NEScolorNames[setstone.color[2]]}` // TODO: Modeling, WWDD
+                let context = {
+                    show: show,
+                    set: set,
+                    setstone: setstone,
+                    colors: setstoneColornames,
+                    imageMapping,
+                };
+
+                // TODO: This needs to be reused in some kind of a canonical URL method or something.
+                const outputPath = `artifacts/setstones/${showId}-${setstone.tokenId}.html`;
+
+                renderPage({
+                        template_path: 'reuse/single-set-stone.hbs',
+                        output_path: outputPath,
+                        context: context
+                    }
+                );
             });
         });
-    });
+    };
 }
 
 
-export function renderSetStoneImages(showsWithChainData, outputDir) {
+export function renderSetStoneImages(shows, outputDir) {
     // create output directory if it doesn't exist
     if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir, { recursive: true });
+        fs.mkdirSync(outputDir, {recursive: true});
     }
 
-    Object.entries(showsWithChainData).forEach(([showId, show]) => {
+    for (const [showId, show] of Object.entries(shows)) {
+        // We're only interested in shows that have set stones.
+        if (!show.has_set_stones_available) {
+            continue;
+        }
+
         Object.entries(show.sets).forEach(([setNumber, set]) => {
             set.setstones.forEach((setstone, setstoneNumber) => {
                 const canvas = generateDiamondPatternFromNesPalette(setstone.color[0], setstone.color[1], setstone.color[2], "transparent", null, 1000);
@@ -66,5 +106,5 @@ export function renderSetStoneImages(showsWithChainData, outputDir) {
                 fs.writeFileSync(filePath, buffer);
             });
         });
-    });
+    };
 }

@@ -564,11 +564,15 @@ nav a img {
 }
 
 #rabbithash {
-	font-weight: bold;
-	font-size: 2em;
-	text-shadow: 1px 1px black;
+    font-weight: bold;
+    font-size: 2em;
+    text-shadow: 1px 1px black;
 }
 
 .stone-in-long-list {
     height: 25px;
+}
+
+.stone-data {
+    background-color: rgba(60, 53, 92, 0.69);
 }
