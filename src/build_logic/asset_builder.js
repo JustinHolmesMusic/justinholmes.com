@@ -5,6 +5,7 @@ import {globSync} from 'glob';
 import {fileURLToPath} from 'url';
 import Handlebars from 'handlebars';
 import yaml from "js-yaml";
+import {outputBaseDir} from "./constants.js";
 
 console.time('asset-builder')
 
@@ -23,9 +24,15 @@ if (!fs.existsSync(imageOutputDir)) {
 }
 
 let imageMapping = {};
-var unusedImages = new Set();
+let unusedImages = new Set();
+
+let _assets_gathered = false;
 
 function gatherAssets() {
+    console.time('asset-gathering');
+    if (_assets_gathered) {
+        throw new Error("Assets have already been gathered.")
+    }
     let imageFiles = globSync(imageDirPattern);
 
     imageFiles.forEach(file => {
@@ -62,6 +69,7 @@ function gatherAssets() {
     // Write the mapping to a JSON file
     fs.writeFileSync(mappingFilePath, JSON.stringify(imageMapping, null, 2));
     console.log('Image processing complete. Mapping saved to:', mappingFilePath, 'Found', Object.keys(imageMapping).length, 'images.');
+    console.timeEnd('asset-gathering');
 
 }
 
@@ -120,9 +128,13 @@ let slogans = auxData["slogans"];
 // Write slogans to a JSON file for use in the frontend
 fs.writeFileSync(path.join(outputDir, "slogans.json"), JSON.stringify(slogans));
 
+function getImageMapping() {
+    if (!_assets_gathered) {
+        throw new Error("Need to gather assets before using image mapping.")
+    }
+    const mappingFilePath = path.join(outputBaseDir, 'imageMapping.json');
+    const jsonData = fs.readFileSync(mappingFilePath, {encoding: 'utf8'});
+    return JSON.parse(jsonData);
+}
 
-console.timeEnd('asset-builder')
-
-export default gatherAssets;
-export {gatherAssets};
-export {unusedImages};
+export {gatherAssets, imageMapping, unusedImages, getImageMapping};

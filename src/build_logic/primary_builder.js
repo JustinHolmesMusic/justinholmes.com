@@ -2,7 +2,7 @@ import {renderPage} from "./utils/rendering_utils.js";
 
 console.time('primary-build');
 
-import {outputBaseDir, templateDir, pageBaseDir} from "./constants.js";
+import {outputBaseDir, templateDir} from "./constants.js";
 import Handlebars from 'handlebars';
 import fs from 'fs';
 import * as glob from 'glob';
@@ -10,7 +10,7 @@ import yaml from 'js-yaml';
 import path from 'path';
 import {songs, shows, songsByProvenance} from "./show_and_set_data.js";
 import {marked} from 'marked';
-import {gatherAssets, unusedImages} from './asset_builder.js';
+import {gatherAssets, unusedImages, imageMapping} from './asset_builder.js';
 import {deserializeChainData, serializeChainData} from './chaindata_db.js';
 import {execSync} from 'child_process';
 import {generateSetStonePages, renderSetStoneImages} from './setstone_utils.js';
@@ -18,7 +18,7 @@ import {registerHelpers} from './utils/template_helpers.js';
 import {appendChainDataToShows, fetch_chaindata} from './chain_reading.js';
 
 /////////////////////////
-///// Chapter one: chain data (also triggers show processing).
+///// Chapter one: chain data
 ////////////////////////////
 console.time("chain-data");
 const skip_chain_data_fetch = process.env.SKIP_CHAIN_DATA_FETCH
@@ -47,19 +47,7 @@ console.timeEnd("chain-data");
 //////////////////////////////////
 ///// Chapter two: assets
 //////////////////////////////////
-
-console.time('asset-gathering');
 gatherAssets();
-
-function getImageMapping() {
-    const mappingFilePath = path.join(outputBaseDir, 'imageMapping.json');
-    const jsonData = fs.readFileSync(mappingFilePath, {encoding: 'utf8'});
-    return JSON.parse(jsonData);
-}
-
-// When preparing context for Handlebars
-const imageMapping = getImageMapping();
-console.timeEnd('asset-gathering');
 
 
 ////////////////////////////////////////////////
@@ -190,8 +178,8 @@ console.timeEnd('pages-yaml-read');
 /////////////////////////////////////////////
 
 // Render things that we'll need later.
-generateSetStonePages(chainData.showsWithChainData, path.resolve(outputBaseDir, 'setstones'));
-renderSetStoneImages(chainData.showsWithChainData, path.resolve(outputBaseDir, 'assets/images/setstones'));
+generateSetStonePages(shows, path.resolve(outputBaseDir, 'setstones'));
+renderSetStoneImages(shows, path.resolve(outputBaseDir, 'assets/images/setstones'));
 
 //////////////////////
 // Chapter 4.1: Show pages

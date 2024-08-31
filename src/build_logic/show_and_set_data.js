@@ -80,6 +80,7 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
 
     let showYAMLFile = fs.readFileSync(path.resolve(showsDir, showYAML));
     let showYAMLData = yaml.load(showYAMLFile);
+    showYAMLData['show_id'] = showID; // TODO: Better modeling somehow.  WWDD?
 
     // If show is part of a tour, add it to that tour.
     if (showYAMLData.hasOwnProperty('tour')) {
@@ -96,7 +97,9 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
 
     for (let [set_number, set] of Object.entries(showYAMLData['sets'])) {
 
-        let this_set = {"songplays": {}}
+        let this_set = {"songplays": {},
+            "set_number": set_number} // TODO: Better modeling somehow.  WWDD?
+
 
         // Now we'll iterate through the songs in this set.
         // Some of them will just be strings, while others will be objects, with songPlay details.
