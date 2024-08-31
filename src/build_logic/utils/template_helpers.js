@@ -1,9 +1,8 @@
 import {DateTime} from 'luxon';
-import {shows, songs} from '../show_and_set_data.js'
 import nunjucks from "nunjucks";
 import {imageMapping, unusedImages} from "../asset_builder.js";
 import {templateDir} from "../constants.js";
-// Reference block details
+
 const REFERENCE_BLOCK = 20612385; // Example block number
 const REFERENCE_TIMESTAMP = 1724670731; // Unix timestamp in seconds
 const AVERAGE_BLOCK_TIME = 12.08; // Average block time in seconds

@@ -157,7 +157,7 @@ Object.keys(pageyaml).forEach(page => {
         context = Object.assign({}, context, contextFromPageSpecificFiles[page])
     }
     const template_path = "pages/" + pageInfo["template"];
-    const outputFilePath = path.join(outputBaseDir, template_path).replace(/\.hbs$/, '.html');
+    const outputFilePath = path.join(outputBaseDir, pageInfo["template"]).replace(/\.hbs$/, '.html');
 
     renderPage({
             template_path: template_path,
