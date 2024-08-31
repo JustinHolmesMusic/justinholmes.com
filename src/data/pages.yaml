@@ -11,6 +11,8 @@ listen:
 
 cryptograss.eth:
   template: cryptograss.hbs
+  include_data_in_context:
+    - latest_git_commit
   context:
     page_title: "Cryptograss.eth | The Metadata is The Merch"
     no_video_bg: true

@@ -1,3 +1,5 @@
+import {renderPage} from "./utils/rendering_utils.js";
+
 console.time('primary-build');
 
 import {outputBaseDir, templateDir, pageBaseDir} from "./constants.js";
@@ -60,12 +62,6 @@ const imageMapping = getImageMapping();
 console.timeEnd('asset-gathering');
 
 
-// Check if the directory exists, if not, create it
-if (!fs.existsSync(outputBaseDir)) {
-    fs.mkdirSync(outputBaseDir, {recursive: true});
-}
-
-
 ////////////////////////////////////////////////
 ///// Chapter three: One-off Pages
 /////////////////////////////////////////////
@@ -83,11 +79,11 @@ appendChainDataToShows(shows, chainData); // Mutates shows.
 const dataAvailableAsContext = {
     "songs": songs,
     "shows": shows,
-    'songsByProvenance': songsByProvenance
+    'songsByProvenance': songsByProvenance,
+    'latest_git_commit': execSync('git rev-parse HEAD').toString().trim(),
 };
 
 // ...and partial templates.
-// Register Partials
 const partialsDir = path.resolve(templateDir, 'partials');
 const partialFiles = glob.sync(`${partialsDir}/*.hbs`);
 partialFiles.forEach(partialPath => {
@@ -110,9 +106,6 @@ let pageyaml = yaml.load(pageyamlFile);
 let contextFromPageSpecificFiles = {};
 Object.keys(pageyaml).forEach(page => {
     let pageInfo = pageyaml[page];
-    let templateName = pageInfo["template"];
-    let hbsTemplate = path.join(pageBaseDir, templateName);
-    const outputFilePath = path.join(outputBaseDir, templateName).replace(/\.hbs$/, '.html');
 
     // See if there is a directory in data/page_specifc for this page.
     const pageSpecificDataPath = `src/data/page_specific/${page}`;
@@ -139,16 +132,6 @@ Object.keys(pageyaml).forEach(page => {
         });
     }
 
-    // Ensure the full output path, including subdirs, exists for this particular page.
-    const outputDir = path.dirname(outputFilePath);
-    if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir, {recursive: true});
-    }
-
-    // Load and compile the template
-    const templateSource = fs.readFileSync(hbsTemplate, 'utf8');
-    const template = Handlebars.compile(templateSource);
-
     let specified_context;
 
     if (pageInfo['context_from_yaml'] === true) {
@@ -159,6 +142,7 @@ Object.keys(pageyaml).forEach(page => {
         specified_context = {};
     }
 
+    // TODO: Why is this special?  Can't this be generalized with other data sections for context inclusion?
     if (pageInfo['include_chaindata_as_context'] !== undefined) {
         for (let chainDataSection of pageInfo['include_chaindata_as_context']) {
             specified_context[chainDataSection] = chainData[chainDataSection];
@@ -186,20 +170,17 @@ Object.keys(pageyaml).forEach(page => {
     if (contextFromPageSpecificFiles[page]) {
         context = Object.assign({}, context, contextFromPageSpecificFiles[page])
     }
+    const template_path = "pages/" + pageInfo["template"];
+    const outputFilePath = path.join(outputBaseDir, template_path).replace(/\.hbs$/, '.html');
 
-    // Render the template with context (implement getContextForTemplate as needed)
-    const mainBlockContent = template(context);
+    renderPage({
+            template_path: template_path,
+            output_path: outputFilePath,
+            context: context,
+            layout: pageInfo["base_template"],
+        }
+    );
 
-    let baseTemplateName = pageInfo["base_template"];
-    if (baseTemplateName === undefined) {
-        baseTemplateName = 'base.hbs';
-    }
-    const baseTemplate = Handlebars.compile(fs.readFileSync(path.join(templateDir, 'layouts', baseTemplateName), 'utf8'));
-
-    let rendered_page = baseTemplate({...context, main_block: mainBlockContent})
-
-    // Write the rendered HTML to the output file path
-    fs.writeFileSync(outputFilePath, rendered_page);
 });
 
 console.timeEnd('pages-yaml-read');
@@ -218,18 +199,6 @@ renderSetStoneImages(chainData.showsWithChainData, path.resolve(outputBaseDir, '
 
 Object.entries(shows).forEach(([show_id, show]) => {
     const page = `show_${show_id}`;
-    const outputFilePath = path.join(outputBaseDir, `shows/${show_id}.html`);
-
-    const hbsTemplate = path.join(templateDir, 'reuse/single-show.hbs');
-
-    const outputDir = path.dirname(outputFilePath);
-    if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir, {recursive: true});
-    }
-
-    // Load and compile the template
-    const templateSource = fs.readFileSync(hbsTemplate, 'utf8');
-    const template = Handlebars.compile(templateSource);
 
     let context = {
         page_name: page,
@@ -239,21 +208,13 @@ Object.entries(shows).forEach(([show_id, show]) => {
         chainData,
     };
 
-    // console.log(context);
+    renderPage({
+            template_path: 'reuse/single-show.hbs',
+            output_path: `shows/${show_id}.html`,
+            context: context
+        }
+    );
 
-    // Add latest git commit to context.
-    context['_latest_git_commit'] = execSync('git rev-parse HEAD').toString().trim();
-
-    // Render the template with context
-    const mainBlockContent = template(context);
-
-    const baseTemplate = Handlebars.compile(fs.readFileSync(path.join(templateDir, 'layouts', 'base.hbs'), 'utf8'));
-
-
-    let rendered_page = baseTemplate({...context, main_block: mainBlockContent})
-
-    // Write the rendered HTML to the output file path
-    fs.writeFileSync(outputFilePath, rendered_page);
 });
 
 ///////////////////////////
@@ -262,18 +223,6 @@ Object.entries(shows).forEach(([show_id, show]) => {
 
 Object.entries(songs).forEach(([song_slug, song]) => {
     const page = `song_${song_slug}`;
-    const outputFilePath = path.join(outputBaseDir, `songs/${song_slug}.html`);
-
-    const hbsTemplate = path.join(templateDir, 'reuse/single-song.hbs');
-
-    const outputDir = path.dirname(outputFilePath);
-    if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir, {recursive: true});
-    }
-
-    // Load and compile the template
-    const templateSource = fs.readFileSync(hbsTemplate, 'utf8');
-    const template = Handlebars.compile(templateSource);
 
     let context = {
         page_name: page,
@@ -284,14 +233,13 @@ Object.entries(songs).forEach(([song_slug, song]) => {
         chainData,
     };
 
-    // Render the template with context
-    const mainBlockContent = template(context);
-    const baseTemplate = Handlebars.compile(fs.readFileSync(path.join(templateDir, 'layouts', 'base.hbs'), 'utf8'));
+    renderPage({
+            template_path: 'reuse/single-song.hbs',
+            output_path: `songs/${song_slug}.html`,
+            context: context
+        }
+    );
 
-    let rendered_page = baseTemplate({...context, main_block: mainBlockContent})
-
-    // Write the rendered HTML to the output file path
-    fs.writeFileSync(outputFilePath, rendered_page);
 });
 
 
