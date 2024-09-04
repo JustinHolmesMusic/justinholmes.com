@@ -583,3 +583,9 @@ nav a img {
     background-color: rgba(248, 235, 216, 0.36);
     font-family: fell serif;
 }
+
+.ensemble a {
+    color: #070836;
+    text-shadow: #818181 1px 1px 2px;
+
+}

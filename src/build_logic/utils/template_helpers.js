@@ -2,6 +2,7 @@ import {DateTime} from 'luxon';
 import nunjucks from "nunjucks";
 import {imageMapping, unusedImages} from "../asset_builder.js";
 import {templateDir} from "../constants.js";
+import {slugify} from "./text_utils.js";
 
 const REFERENCE_BLOCK = 20612385; // Example block number
 const REFERENCE_TIMESTAMP = 1724670731; // Unix timestamp in seconds
@@ -35,6 +36,9 @@ export function registerHelpers() {
         return formatted_date;
     });
 
+    env.addFilter('slugify', function(string_to_slugify) {
+      return slugify(string_to_slugify);
+    });
 
     env.addFilter('resolveChart', function (artist_id, blockheight, setId) {
 

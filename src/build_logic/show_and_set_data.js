@@ -98,9 +98,13 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
     if (showYAMLData.hasOwnProperty('ensemble')) {
         for (let [picker, instruments] of Object.entries(showYAMLData['ensemble'])) {
             if (!pickers.hasOwnProperty(picker)) {
-                pickers[picker] = {};
+                const picker_slug = slugify(picker)
+                pickers[picker] = {
+                    resource_url: `/pickers/${picker_slug}.html`,
+                    shows: {}
+                };
             }
-            pickers[picker][showID] = instruments
+            pickers[picker]["shows"][showID] = instruments
         }
     }
 

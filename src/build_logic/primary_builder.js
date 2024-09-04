@@ -224,11 +224,12 @@ Object.entries(songs).forEach(([song_slug, song]) => {
 // Chapter 4.2: Musician pages
 ///////////////////////////
 
-Object.entries(pickers).forEach(([picker, show_list]) => {
+Object.entries(pickers).forEach(([picker, picker_data]) => {
 
     let picker_slug = slugify(picker);
 
     let shows_played_by_this_picker = []
+    let show_list = picker_data['shows'];
     for (let [show_id, instruments] of Object.entries(show_list)) {
         shows_played_by_this_picker.push({
             show_id,
@@ -240,8 +241,8 @@ Object.entries(pickers).forEach(([picker, show_list]) => {
     let context = {
         page_name: picker,
         page_title: picker,
-        shows_played_by_this_picker,
         picker,
+        shows_played_by_this_picker,
         imageMapping,
         chainData,
     };
