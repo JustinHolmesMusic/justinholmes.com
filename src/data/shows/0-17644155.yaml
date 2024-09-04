@@ -1,0 +1,24 @@
+title: "EthBarcelona 2023"
+venue: "BIG C"
+region0: "Barcelona"
+region1: "Catalonia"
+region2: "Spain"
+timezone: "Europe/Paris"
+ensemble:
+  "Justin Holmes": [ "guitar", "wood flute", "six-whistle", "melodica"]
+  "Jakub Vysoky": [ "mandolin" ]
+  "Kuba Hejhal": [ "fiddle" ]
+  "Fabian Aguilera": [ "bass" ]
+sets:
+  0:
+    songplays:
+      - Morrison's Jig
+      - Hell or High Water (A Policeman and a Fortune Teller)
+      - The World
+      - From Bill to Brewster
+      - Rollups and Rearview Mirrors
+      - Barlow's Jig
+      - Power Underneath
+      - The Morning of the Bank Run:
+        mode: segue
+      - Manzanita

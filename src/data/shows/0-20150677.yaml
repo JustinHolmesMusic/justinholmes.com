@@ -1,0 +1,26 @@
+title: "Porcupine 2024"
+venue: "North Country Camp"
+host: "North Country Porcupines"
+locality: "Lancaster"
+region1: "New Hampshire"
+region2: "United States of America"
+timezone: "America/New_York"
+ensemble:
+  "Justin Holmes": ["guitar", "mandolin", "wood flute", "six-whistle"]
+  "Skyler Golden": ["bass"]
+  "Mike Merenda": ["banjo"]
+  "Brendan Daniel": ["guitar"]
+sets:
+  0:
+    songplays:
+      - The Two Sisters
+      - Lost
+      - Paint Exchange
+      - On My Way Home (via Mike Merenda)
+      - Dire Wolf
+      - Silver .44
+      - Cork Board
+      - Needle On The Outskirts (via Brendan Daniel)
+      - The Morning of The Bank Run
+      - Free State of Mind (via Mike Merenda)
+      - Seven Bridges Road

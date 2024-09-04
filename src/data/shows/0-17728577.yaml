@@ -1,0 +1,19 @@
+title: "Gitcoin House Paris"
+venue: "Gitcoin House"
+host: "Gitcoin"
+region0: "Paris"
+region1: "France"
+timezone: "Europe/Paris"
+ensemble:
+  "Justin Holmes": [ "guitar", "wood flute", "six-whistle", "melodica"]
+sets:
+  0:
+    songplays:
+      - Hell or High Water (a Policeman and a Fortune Teller)
+      - The Morning of the Bank Run
+      - Power Underneath
+      - Cork Board
+      - Where Rainbows Never Die
+      - Song of Storms
+      - Song of Time
+      - Rollups and Rearview Mirrors

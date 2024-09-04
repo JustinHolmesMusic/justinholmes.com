@@ -1,0 +1,22 @@
+title: "Festival MY 2023"
+venue: "Farmě v Krabčicích"
+locality: "Krabčicích"
+region1: "Czech Republic"
+timezone: "Europe/Paris"
+ensemble:
+  Justin Holmes: [guitar, six-whistle]
+  Jakub Vysoky: [mandolin]
+  Honza Špringl: [5-string banjo (clawhammer)]
+  Kuba Hejhal: [fiddle]
+  Jirka Hoření : [bass]
+  Jarda Vysoky: [accordion]
+sets:
+  0:
+    songplays:
+      - Morrison's Jig
+      - Hell or High Water
+      - Barlow's Jig
+      - The Two Sisters
+      - Dragon Roost Island
+      - The Morning of the Bank Run
+      - Bubak and Hungaricus

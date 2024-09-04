@@ -1,0 +1,26 @@
+title: "EthPrague 2023"
+venue: "La Fabrika"
+locality: "Prague"
+region1: "Czech Republic"
+timezone: "Europe/Paris"
+ensemble:
+  Justin Holmes: [guitar, six-whistle]
+  Jakub Vysoky: [mandolin]
+  Honza Špringl: [5-string banjo (clawhammer)]
+  Petr Potoček: [dobro]
+  Kuba Hejhal: [fiddle]
+  Jirka Hoření : [bass]
+  Jarda Vysoky: [accordion]
+sets:
+  0:
+    songplays:
+      - The Morning of The Bank Run
+      - Barlow's Jig
+      - Dragon Roost Island
+      - Slavíci Z Madridu:
+          ensemble-modification:
+            lead-vocal: Jarda Vysoky
+      - Nanny State Fiddler
+      - The Two Sisters
+      - Vowel Sounds
+      - Bubak and Hungaricus

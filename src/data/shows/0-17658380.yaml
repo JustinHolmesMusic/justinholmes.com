@@ -1,0 +1,24 @@
+title: "Hootena @ EthBarcelona doorway"
+venue: "BIG C"
+region0: "Barcelona"
+region1: "Catalonia"
+region2: "Spain"
+timezone: "Europe/Paris"
+ensemble:
+  "Justin Holmes": [ "guitar", "wood flute", "six-whistle", "melodica"]
+  "Jakub Vysoky": [ "mandolin" ]
+  "Kuba Hejhal": [ "fiddle" ]
+sets:
+  0:
+    songplays:
+      - Nanny State Fiddler
+      - Song of Storms
+      - Dragon Roost Island
+      - The Two Sisters
+      - Power Underneath
+      - Cork Board
+      - "Barlow's Jig":
+        mode: segue
+      - Manzanita
+      - Bubak and Hungaricus
+      - Lost

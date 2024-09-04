@@ -1,0 +1,29 @@
+title: "Roudnice Castle (RCNL Podzámčí)"
+venue: "Roudnice Castle (RCNL Podzámčí)"
+locality: "Roudnice nad Labem"
+region1: "Czech Republic"
+timezone: "Europe/Paris"
+ensemble:
+  Justin Holmes: [guitar, six-whistle]
+  Jakub Vysoky: [mandolin]
+  Honza Špringl: [5-string banjo (clawhammer)]
+  Kuba Hejhal: [fiddle]
+  Jirka Hoření : [bass]
+  Jarda Vysoky: [accordion]
+sets:
+  0:
+    songplays:
+      - Song of Storms
+      - Nanny State Fiddler
+      - Morrison's Jig
+      - Jirka's 12
+      - Bubak and Hungaricus
+
+  1:
+    songplays:
+      - Dragon Roost Island
+      - Hell or High Water
+      - Medvidek
+      - Slavíci Z Madridu:
+        ensemble-modification:
+          lead-vocal: Jarda Vysoky

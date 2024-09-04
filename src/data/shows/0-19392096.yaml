@@ -1,0 +1,17 @@
+title: "Green Pill Podcast"
+venue: "Green Pill Studios"
+host: "Green Pill Network"
+region1: "Colorado"
+region2: "United States of America"
+timezone: "America/Denver"
+ensemble:
+  "Justin Holmes": [ "guitar", "wood flute"]
+sets:
+  0:
+    songplays:
+      - Hell or High Water (a Policeman and a Fortune Teller)
+      - The Morning of The Bank Run
+      - Cork Board
+      - The Two Sisters
+      - Last Train From Poor Valley
+      - Lost

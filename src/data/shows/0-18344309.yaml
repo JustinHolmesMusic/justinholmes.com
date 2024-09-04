@@ -1,0 +1,39 @@
+title: "Global Forum on Ethereum Localism 2023"
+venue: "Bridgespace"
+host: "PDX DAO"
+region0: "Portland"
+region1: "Oregon"
+region2: "United States of America"
+timezone: "America/Seattle"
+ensemble:
+  "Justin Holmes": [ "guitar", "wood flute", "six-whistle"]
+  "Open Tony": ["fiddle"]
+  "Miriam Hacksaw": ["fiddle"]
+  "Kyle Bestape": ["mandolin"]
+sets:
+  0:
+    songplays:
+      - Where are we?
+      - Hell or High Water (a Policeman and a Fortune Teller)
+      - Is it a money thing?
+      - Open Up
+      - On Quantum Implications of Local Movements
+          
+  1:
+    note: "24 hour intermission"
+    songplays:
+      - Lost:
+        mode: segue
+      - Last Train From Poor Valley
+      - The Morning of The Bank Run
+      - Nanny State Fiddler
+      - Silver .44
+      - Loser
+      - Drowsy Maggie:
+        mode: segue
+      - Little Maggie:
+        mode: segue
+      - Drowsy Maggie:
+        mode: reprise
+      - Power Underneath
+      - Song of Time

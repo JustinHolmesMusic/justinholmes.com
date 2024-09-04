@@ -1,0 +1,34 @@
+title: "MycoFi Day"
+venue: "Gitcoin House"
+host: "Gitcoin"
+locality: "Denver"
+region1: "Colorado"
+region2: "United States of America"
+timezone: "America/Denver"
+ensemble:
+  "Justin Holmes": [ "guitar", "wood flute"]
+  "Skyler Golden": ["bass", "dobro"]
+  "Jakub Vysoky": ["mandolin"]
+  "Laura Quam": ["fiddle"]
+sets:
+  0:
+    songplays:
+      - Power Underneath
+      - Song of Storms
+      - Lost
+      - Loser
+      - Rollups and Rearview Mirrors
+      - Swallowtail Jig
+      - Kesh Jig
+      - Last Train From Poor Valley
+      - Nanny State Fiddler
+  1:
+    songplays:
+      - O Death:
+        ensemble-modification:
+          solo: Justin
+      - Mercedes Benz
+      - The Morning of The Bank Run
+      - Angel Band
+      - Ashokan Farewell
+      - Can the Circle Be Unbroken? (By and By)

@@ -1,0 +1,14 @@
+title: "Justin Holmes + David Grier"
+venue: "Tunesmith Studios"
+host: ""
+locality: "Nashville"
+region1: "Tennessee"
+timezone: "American/Chicago"
+ensemble:
+  "Justin Holmes": [ "guitar", "six-whistle"]
+  "David Grier": [ "guitar" ]
+sets:
+  0:
+    songplays:
+      - Drowsy Maggie
+      - Barlow's Jig
