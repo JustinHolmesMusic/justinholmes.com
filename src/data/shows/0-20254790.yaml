@@ -5,6 +5,10 @@ locality: "Brussels"
 region1: "Belgium"
 timezone: "Europe/Berlin"
 tour: "europe-2024"
+ensemble:
+  "Justin Holmes": ['wood flute']
+  "Skyler Golden": ["bass"]
+  "Kuba Hejhal": ["fiddle"]
 sets:
   0:
     songplays:

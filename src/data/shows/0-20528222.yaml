@@ -4,6 +4,11 @@ locality: "Vědomice-Roudnice"
 region1: "Czech Republic"
 event_url: ""
 timezone: "Europe/Berlin"
+ensemble:
+  "Justin Holmes": ['guitar', 'six-whistle', 'melodica']
+  "Skyler Golden": [ "bass" ]
+  "Kuba Hejhal": [ "fiddle" ]
+  "Jakub Vysoky": [ "mandolin" ]
 sets:
   0:
     songplays:

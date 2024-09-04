@@ -5,6 +5,9 @@ locality: "Brussels"
 region1: "Belgium"
 timezone: "Europe/Berlin"
 tour: "europe-2024"
+ensemble:
+  "Justin Holmes": ["guitar", "melodica", "six-whistle"]
+  "Skyler Golden": ["bass"]
 sets:
   0:
     songplays:

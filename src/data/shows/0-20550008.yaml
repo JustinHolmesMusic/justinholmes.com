@@ -5,6 +5,11 @@ locality: "Berlin"
 region1: "Germany"
 event_url: ""
 timezone: "Europe/Berlin"
+ensemble:
+  "Justin Holmes": ["guitar", "six-whistle", "melodica"]
+  "Skyler Golden": [ "bass" ]
+  "Kuba Hejhal": [ "fiddle" ]
+  "Jakub Vysoky": [ "mandolin" ]
 sets:
   0:
     songplays:
@@ -17,7 +22,8 @@ sets:
       - The Goy's Teeth
       - Manzanita
       - O Death:
-        ensemble-modification: justin-solo
+        ensemble-modification:
+          solo: Justin
       - Loser
 
   1:
@@ -29,7 +35,7 @@ sets:
         mode: segue
       - Little Maggie
       - Dragon Roost Island:
-      - Mercedez Benz:
+      - Mercedes Benz:
         mode: segue
       - Cicada Song
       - Bubak and Hungaricus

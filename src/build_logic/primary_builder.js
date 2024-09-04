@@ -1,3 +1,5 @@
+import {slugify} from "./utils/text_utils.js";
+
 console.time('primary-build');
 import {renderPage} from "./utils/rendering_utils.js";
 import nunjucks from 'nunjucks';
@@ -5,7 +7,7 @@ import {outputBaseDir, templateDir} from "./constants.js";
 import fs from 'fs';
 import yaml from 'js-yaml';
 import path from 'path';
-import {songs, shows, songsByProvenance} from "./show_and_set_data.js";
+import {songs, shows, songsByProvenance, pickers} from "./show_and_set_data.js";
 import {marked} from 'marked';
 import {gatherAssets, unusedImages, imageMapping} from './asset_builder.js';
 import {deserializeChainData, serializeChainData} from './chaindata_db.js';
@@ -216,6 +218,43 @@ Object.entries(songs).forEach(([song_slug, song]) => {
     );
 
 });
+
+
+///////////////////////////
+// Chapter 4.2: Musician pages
+///////////////////////////
+
+Object.entries(pickers).forEach(([picker, show_list]) => {
+
+    let picker_slug = slugify(picker);
+
+    let shows_played_by_this_picker = []
+    for (let [show_id, instruments] of Object.entries(show_list)) {
+        shows_played_by_this_picker.push({
+            show_id,
+            show: shows[show_id],
+            instruments
+        });
+    }
+
+    let context = {
+        page_name: picker,
+        page_title: picker,
+        shows_played_by_this_picker,
+        picker,
+        imageMapping,
+        chainData,
+    };
+
+    renderPage({
+            template_path: 'reuse/single-picker.html',
+            output_path: `pickers/${picker_slug}.html`,
+            context: context
+        }
+    );
+
+});
+
 
 
 ///////////////////////////

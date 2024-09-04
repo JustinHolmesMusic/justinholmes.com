@@ -4,6 +4,11 @@ host: "web3 foundation"
 locality: "Berlin"
 region1: "Germany"
 timezone: "Europe/Berlin"
+ensemble:
+  "Justin Holmes": [ "guitar", "melodica", "six-whistle"]
+  "Skyler Golden": [ "bass" ]
+  "Kuba Hejhal": [ "fiddle" ]
+  "Jakub Vysoky": [ "mandolin" ]
 sets:
   0:
     songplays:

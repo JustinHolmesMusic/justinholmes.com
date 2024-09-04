@@ -576,3 +576,10 @@ nav a img {
 .stone-data {
     background-color: rgba(60, 53, 92, 0.69);
 }
+
+.ensemble {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: rgba(248, 235, 216, 0.36);
+    font-family: fell serif;
+}

@@ -6,6 +6,11 @@ region1: "Belgium"
 event_url: "https://lu.ma/jmfb5xdj"
 timezone: "Europe/Berlin"
 tour: "europe-2024"
+ensemble:
+  "Justin Holmes": ['guitar', 'mandolin', 'six-whistle', 'melodica']
+  "Skyler Golden": ["bass"]
+  "Kuba Hejhal": ["fiddle"]
+  "Kyle Bestape": ["mandolin"]
 sets:
   0:
     songplays:

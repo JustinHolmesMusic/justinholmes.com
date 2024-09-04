@@ -33,6 +33,7 @@ let songAlternateNames = {};
 let songShorthands = {};
 let allSongPlays = [];
 let tours = {};
+let pickers = {};
 
 
 /// FIRST LOOP: SONG YAML FILES ///
@@ -91,6 +92,16 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
         }
 
         tours[tour].push(showID);
+    }
+
+    // Get the pickers from the ensemble object.
+    if (showYAMLData.hasOwnProperty('ensemble')) {
+        for (let [picker, instruments] of Object.entries(showYAMLData['ensemble'])) {
+            if (!pickers.hasOwnProperty(picker)) {
+                pickers[picker] = {};
+            }
+            pickers[picker][showID] = instruments
+        }
     }
 
     let sets_in_this_show = {}
@@ -179,11 +190,18 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
                         }
                     } else if (key === "ensemble-modification") {
                         // TODO: Same - does this belong in a parsing loop?
-                        if (songEntry[key] === "justin-solo") {
+
+                        for (let [modification, detail] of Object.entries(songEntry[key])) {
                             // TODO: Track this?
-                            songPlay["detail"] = "(Justin Solo)";
-                        } else {
-                            throw new Error("Unknown performance modification: " + songEntry[key]);
+                            if (modification === "solo") {
+                                const soloist = detail;
+                                songPlay["detail"] = `(${soloist} Solo)`;
+                            } else if (modification === "lead-vocal") {
+                                const vocalist = detail;
+                                songPlay["detail"] = `(${vocalist} Solo)`;
+                            } else {
+                                throw new Error("Unknown performance modification: " + songEntry[key]);
+                            }
                         }
                     } else if (key === "mode") {
                         songPlay['mode'] = songEntry[key];
@@ -456,4 +474,4 @@ for (let [showID, show] of Object.entries(shows)) {
 console.timeEnd("show-and-song-data");
 
 
-export {shows, songs, songsByVideoGame, songsByProvenance};
+export {shows, songs, pickers, songsByVideoGame, songsByProvenance};

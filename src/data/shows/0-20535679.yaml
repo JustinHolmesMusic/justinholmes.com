@@ -5,6 +5,11 @@ locality: "Prague"
 region1: "Czech Republic"
 event_url: ""
 timezone: "Europe/Berlin"
+ensemble:
+  "Justin Holmes": ['guitar', 'wood flute', 'six-whistle']
+  "Skyler Golden": ["bass"]
+  "Kuba Hejhal": ["fiddle"]
+  "Jakub Vysoky": ["mandolin"]
 sets:
   0:
     songplays:
