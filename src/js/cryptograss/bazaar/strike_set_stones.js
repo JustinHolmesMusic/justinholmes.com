@@ -76,12 +76,6 @@ function verifyRabbit() {
     }
 }
 
-function hideMintStoneModalIfSetlistNotCommitted() {
-    if (setSongs.length == 0) {
-        document.getElementById("donationModal").style.display = "none";
-    }
-}
-
 function fillInFavoriteSongPicker() {
     // take the selected set value
     const setPicker = document.getElementById("setPicker");
@@ -162,10 +156,6 @@ async function mintStone() {
         secretRabbit
     ];
 
-    console.log(args);
-
-
-    /// TODO: call the right contract
     const result = await writeContract(config, {
         address: setStoneContractAddress,
         abi: setStoneABI,
@@ -317,6 +307,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const setPicker = document.getElementById("setPicker");
     setPicker.addEventListener('change', fillInFavoriteSongPicker);
     fillInFavoriteSongPicker();
-    hideMintStoneModalIfSetlistNotCommitted();
-
 });
