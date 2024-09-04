@@ -1,12 +1,12 @@
-{% extends 'layouts/base.hbs' %}
+{% extends 'layouts/base.html' %}
 {% block main %}
-{% include 'partials/bigger-banner.hbs' %}
+{% include 'partials/bigger-banner.html' %}
 
 
 <div id="content" class="container text-light">
     {% for song in songs %}
         <br/>
-        {$ include 'reuse/song-summary.hbs' %}
+        {$ include 'reuse/song-summary.html' %}
         <hr/>
     {% endfor %}
 </div>

@@ -1,0 +1,24 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <title>{{ page_title }} | Justin Holmes</title>
+
+    <meta content="{%if
+            meta_description %}{{ meta_description }}{{ else }}Justin Holmes: future-proofing old-timey music{% endif %}"
+          name="description">
+
+    <meta content="Justin Myles Holmes" name="author">
+</head>
+
+<body>
+<div class="fixed-top" id="top-fixed-area"></div>
+
+{% block main %}{% endblock %}
+
+</body>

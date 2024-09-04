@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %}
+{% block main %}
+{% include 'partials/bigger-banner.html' %}
+
+
+<div id="content" class="container text-light all-shows-list">
+    <h2 class="center mt-2 mb-2">{{shows_played_by_this_picker.length}} shows played by {{picker}}</h2>
+    <div class="col-md-12">
+        {% set title_as_link = true %}
+        {% for show_data in shows_played_by_this_picker %}
+        {% set show = show_data["show"] %}
+        {% include "../partials/single-show-overview.html" %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

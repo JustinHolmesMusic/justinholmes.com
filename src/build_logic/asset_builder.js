@@ -3,7 +3,6 @@ import path from 'path';
 import crypto from 'crypto';
 import {globSync} from 'glob';
 import {fileURLToPath} from 'url';
-import Handlebars from 'handlebars';
 import yaml from "js-yaml";
 import {outputBaseDir} from "./constants.js";
 
@@ -72,30 +71,6 @@ function gatherAssets() {
     console.timeEnd('asset-gathering');
 
 }
-
-
-Handlebars.registerHelper('resolveImage', function (originalPath) {
-
-    let foundImage;
-    try {
-        foundImage = imageMapping[originalPath];
-    } catch (e) {
-        throw new Error(`Image not found: ${originalPath}`);
-    }
-
-    if (!foundImage) {
-        // Raise an error if the image is not found
-        throw new Error(`Image not found: ${originalPath}`);
-    } else {
-        unusedImages.delete(originalPath);
-    }
-    return foundImage
-});
-
-
-Handlebars.registerHelper('safeHTML', function (content) {
-    return new Handlebars.SafeString(content);
-});
 
 let auxDataFile = fs.readFileSync("src/data/aux_data.yaml");
 let auxData = yaml.load(auxDataFile);

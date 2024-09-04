@@ -4,7 +4,7 @@ import fs from "fs";
 import nunjucks from "nunjucks";
 
 
-export function renderPage({template_path, context, output_path, layout = "base.hbs"}) {
+export function renderPage({template_path, context, output_path, layout = "base.html"}) {
     const outputFilePath = path.join(outputBaseDir, output_path);
 
     if (!fs.existsSync(outputFilePath)) {

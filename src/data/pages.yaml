@@ -1,16 +1,16 @@
 index:
-  template: index.hbs
+  template: index.html
   context:
     page_title: "Future-proofing Bluegrass"
 
 listen:
-  template: listen.hbs
+  template: listen.html
   context:
     page_title: "Listen"
     no_video_bg: true
 
 cryptograss.eth:
-  template: cryptograss.hbs
+  template: cryptograss.html
   include_data_in_context:
     - latest_git_commit
   context:
@@ -18,12 +18,12 @@ cryptograss.eth:
     no_video_bg: true
 
 about:
-  template: about.hbs
+  template: about.html
   context:
     page_title: "About the JH Production"
 
 contact:
-  template: contact.hbs
+  template: contact.html
   context:
     page_title: "Contact the JH Production about booking, hacking, or whatever"
 
@@ -31,30 +31,30 @@ vowel-sounds:
   context:
     page_title: Vowel Sounds Album
     no_video_bg: true
-  template: "music/vowel-sounds/index.hbs"
+  template: "music/vowel-sounds/index.html"
 
 vowel-sounds-album-art:
   context:
     page_title: Vowel Sounds Album Art
     no_video_bg: true
     numbers_to_draw: [0, 1, 2, 3, 4, 5]
-  template: "cryptograss/tools/generate_art.hbs"
-  base_template: blank.hbs
+  template: "cryptograss/tools/generate_art.html"
+  base_template: blank.html
 
 ensemble:
-  template: ensemble.hbs
+  template: ensemble.html
   context_from_yaml: true
   context:
     page_title: "The Immutable String Band"
 
 tour:
-    template: tour.hbs
+    template: tour.html
     context_from_yaml: true
     context:
       page_title: "Tour dates"
 
 shows:
-    template: shows.hbs
+    template: shows.html
     include_data_in_context:
       - shows
     context:
@@ -63,29 +63,29 @@ shows:
 add-live-set:
   context:
     page_title: "Add a live set"
-  template: "cryptograss/tools/add-live-set.hbs"
+  template: "cryptograss/tools/add-live-set.html"
 
 add-show-for-stone-minting:
   context:
     page_title: "Make show available for stone minting"
-  template: "cryptograss/tools/add-show-for-stone-minting.hbs"
+  template: "cryptograss/tools/add-show-for-stone-minting.html"
 
 setstone-color-palette:
   context:
     page_title: "Setstone color palette"
-  template: "cryptograss/tools/setstone-color-palette.hbs"
+  template: "cryptograss/tools/setstone-color-palette.html"
 
 sign-things:
-  template: "cryptograss/tools/sign-things.hbs"
+  template: "cryptograss/tools/sign-things.html"
   context:
     page_title: "Sign things if you want!"
 
 all-songs:
-  template: "songs/all-songs.hbs"
+  template: "songs/all-songs.html"
   include_data_in_context:
     - songs
 
 songs-by-provenance:
-  template: "songs/songs-by-provenance.hbs"
+  template: "songs/songs-by-provenance.html"
   include_data_in_context:
     - songsByProvenance

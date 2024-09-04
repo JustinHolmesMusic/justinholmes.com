@@ -1,0 +1,31 @@
+{% extends 'layouts/blank.html' %}
+{% block main %}
+
+
+<div class="kuba-tribute">
+    {% set no_nav = true %}
+    {% set no_slogan = true %}
+    {% set use_white_logo = true %}
+    {% include "partials/bigger-banner.html" %}
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-md-6">
+                <img class="img-fluid align-content-center" src="{{ imageMapping["kuba-on-boat.jpeg"] }}"
+                class="img-fluid" alt="Kuba on a boat" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+            </div>
+            <div class="col-md-6 text-white text-center">
+                <h1 class="pixel-font">Jakub "Kuba" Hejhal</h1>
+                <h1 class="pixel-font">1997-2024</h1>
+                <h1 class="curly">mír a vytrvalost</h1>
+                <h3><a href="/pickers/kuba-hejhal.html">Kuba's shows</a></h3>
+                <h3><a href="https://github.com/JustinHolmesMusic/justinholmes.com/commits/main/?author=kubic71">Kuba's commits to this project</a></h3>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

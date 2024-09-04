@@ -71,7 +71,7 @@ export function generateSetStonePages(shows, outputDir) {
                 const outputPath = `/artifacts/setstones/${showId}-${setstone.tokenId}.html`;
                 setstone.resource_url = outputPath;
                 renderPage({
-                        template_path: 'reuse/single-set-stone.hbs',
+                        template_path: 'reuse/single-set-stone.html',
                         output_path: outputPath,
                         context: context
                     }

@@ -1,15 +1,17 @@
-{% extends 'layouts/base.hbs' %}
+{% extends 'layouts/base.html' %}
 {% block main %}
-{% include 'partials/bigger-banner.hbs' %}
+{% include 'partials/bigger-banner.html' %}
 
 
 <div id="content" class="container text-light">
     <dv class="accordion col-md-8 center">
-        {% for songs, provenance in songsByProvenance %}<br/>
+        {% for provenance, songs in songsByProvenance %}<br/>
         <h1>{{provenance}}</h1>
         {% for song in songs %}
         <br/>
-        {$ include 'reuse/song-summary.hbs' %}
+        {{ song.slug }}
+        <br/>
+        {% include 'partials/song-summary.html' %}
         <hr/>
         {% endfor %}
         {% endfor %}

@@ -69,7 +69,7 @@ const dataAvailableAsContext = {
 };
 
 // Copy client-side partials to the output directory
-fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'partials'), {recursive: true});
+fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'client_partials'), {recursive: true});
 
 
 ////////////////////
@@ -147,7 +147,7 @@ Object.keys(pageyaml).forEach(page => {
         context = Object.assign({}, context, contextFromPageSpecificFiles[page])
     }
     const template_path = "pages/" + pageInfo["template"];
-    const output_path = path.join(pageInfo["template"]).replace(/\.hbs$/, '.html');
+    const output_path = path.join(pageInfo["template"]).replace(/\.html$/, '.html');
 
     renderPage({
             template_path: template_path,
@@ -185,7 +185,7 @@ Object.entries(shows).forEach(([show_id, show]) => {
     };
 
     renderPage({
-            template_path: 'reuse/single-show.hbs',
+            template_path: 'reuse/single-show.html',
             output_path: `shows/${show_id}.html`,
             context: context
         }
@@ -209,7 +209,7 @@ Object.entries(songs).forEach(([song_slug, song]) => {
     };
 
     renderPage({
-            template_path: 'reuse/single-song.hbs',
+            template_path: 'reuse/single-song.html',
             output_path: `songs/${song_slug}.html`,
             context: context
         }

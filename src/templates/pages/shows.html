@@ -1,13 +1,13 @@
-{% extends 'layouts/base.hbs' %}
+{% extends 'layouts/base.html' %}
 {% block main %}
-{% include 'partials/bigger-banner.hbs' %}
+{% include 'partials/bigger-banner.html' %}
 
 
 <div id="content" class="container text-light all-shows-list">
     <div class="col-md-12">
         {% set title_as_link = true %}
         {% for show_id, show in shows %}
-            {% include "../partials/single-show-overview.hbs" %}
+            {% include "../partials/single-show-overview.html" %}
         {% endfor %}
     </div>
 </div>

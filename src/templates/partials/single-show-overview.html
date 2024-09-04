@@ -1,0 +1,34 @@
+<div class="showOverview border-bottom border-black pb-3 pixel-font row">
+    <div class="col-7">
+
+        {% if title_as_link %}<a href="{{show.resource_url}}">{% endif %}<h1>{{show.title}}
+        - {{show.locality}}</h1>{% if title_as_link %}</a>{% endif %}
+        <h4>{{show.blockheight |blockToDate(show.timezone, date_only=true)}}</h4>
+        <span>Blockheight: <b>{{show.blockheight}} </b></span><br>
+        <span>Venue:</span> <b>{{show.venue}}</b><br>
+        {% if show.host %}
+        <span>Host:</span> <b>{{show.host}}</b><br>
+        {% endif %}
+        <span><b>{{show.locality}}, {{show.region1}}</b><br>
+        {% if show.event_url %}
+        <span>Event URL:</span> <a href="{{show.event_url}}">{{show.event_url}}</a><br>
+        {% endif %}
+        {% if show.ensemble %}
+        <div class="ensemble w-75 p-1 text-black">
+            <h4 class="mb-0 pixel-font">Ensemble:</h4>
+            {% for player, instruments in show.ensemble %}
+            <a href="/pickers/{{player | slugify}}.html">{{ player }}</a>: {{ instruments }}<br/>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-5">
+        <img class="img-fluid" full-show src="{{show.artist_id |resolveChart(show.blockheight, "full-show")}}">
+    </div>
+    {% if show.has_set_stones_available %}
+    <div class="set-stones-available">
+        Set Stones
+    </div>
+    {% endif %}
+
+</div>

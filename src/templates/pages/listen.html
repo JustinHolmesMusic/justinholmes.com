@@ -1,6 +1,6 @@
-{% extends 'layouts/base.hbs' %}
+{% extends 'layouts/base.html' %}
 {% block main %}
-{% include 'partials/bigger-banner.hbs' %}
+{% include 'partials/bigger-banner.html' %}
 
 <div id="listen-container" class="container mt-3">
     <h1 class="text-light pixel-font text-center">Listen</h1>
@@ -78,10 +78,10 @@
             {% endif %}
             <div class="col-sm-5 live-video index-{{ index % 4 }}">
                 <div class="row">
-                    {% include 'partials/youtube.hbs' %}
+                    {% include 'partials/youtube.html' %}
                 </div>
                 <div class="row media-metadata-above-video" style="min-height: 100px">
-                    {% include 'partials/media-metadata.hbs' %}
+                    {% include 'partials/media-metadata.html' %}
                 </div>
             </div>
             {% if loop.index % 2 === 0 %}
@@ -105,10 +105,10 @@
             {% endif %}
             <div class="col-sm-5 live-video index-{{loop.index % 4}}">
                 <div class="row">
-                    {% include 'partials/youtube.hbs' %}
+                    {% include 'partials/youtube.html' %}
                 </div>
                 <div class="row media-metadata-above-video" style="min-height: 100px">
-                    {% include 'partials/media-metadata.hbs' %}
+                    {% include 'partials/media-metadata.html' %}
                 </div>
             </div>
             {% if loop.index % 2 === 0 %}
@@ -129,10 +129,10 @@
             {% endif %}
             <div class="col-sm-5 live-video index-{{loop.index % 4}}">
                 <div class="row">
-                    {% include 'partials/youtube.hbs' %}
+                    {% include 'partials/youtube.html' %}
                 </div>
                 <div class="row media-metadata-above-video" style="min-height: 100px">
-                    {% include 'partials/media-metadata.hbs' %}
+                    {% include 'partials/media-metadata.html' %}
                 </div>
             </div>
             {% if loop.index % 2 === 0 %}

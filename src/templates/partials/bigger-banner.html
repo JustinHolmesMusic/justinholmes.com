@@ -2,9 +2,15 @@
 
     <div class="row justify-content-center">
         <div class="col-sm-5">
+            {% if use_white_logo %}
+            <a id="home-link-at-top" href="/">
+                <img id="main-logo-at-top" class="img-fluid" src="{{ imageMapping["name-with-logo-white.png"] }}">
+            </a>
+            {% else %}
             <a id="home-link-at-top" href="/">
                 <img id="main-logo-at-top" class="img-fluid" src="{{ imageMapping["name-with-log.png"] }}">
             </a>
+            {% endif %}
         </div>
     </div>
     <div class="row mt-2">
@@ -16,12 +22,19 @@
         </a>
     </div>
 
+    {% if no_slogan %}
+    <!-- no slogan -->
+    {% else %}
     <div class="row">
         <div class="top-title text-center">
             <h4 id="slogan" class="bright pixel-font">{{slogans[1]}}</h4>
         </div>
     </div>
+    {% endif %}
 
-
-    {% include 'partials/nav.hbs' %}
+    {% if no_nav %}
+    <!-- no nav -->
+    {% else %}
+    {% include 'partials/nav.html' %}
+    {% endif %}
 </div>

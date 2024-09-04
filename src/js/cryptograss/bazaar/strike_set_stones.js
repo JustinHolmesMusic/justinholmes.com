@@ -8,10 +8,11 @@ import jazzicon from 'jazzicon';
 import {generateDiamondPattern, generateDiamondPatternFromNesPalette} from '../../setstone_drawing.js';
 import {nesPalette} from '../../constants.js';
 import {setStoneContractAddress} from '../../constants.js';
-import Handlebars from 'handlebars';
 import {watchConnections} from '@wagmi/core'
 import {Toast} from 'bootstrap';
 import $ from 'jquery';
+import nunjucks from "nunjucks";
+
 
 export const config = createConfig({
     chains: [optimismSepolia, arbitrum],
@@ -251,19 +252,18 @@ async function renderOwnedVowelSoundArtifacts(address) {
     const filteredVowelSoundContributions = vowelSoundContributions.filter(contribution => contribution.address === address);
     console.log(filteredVowelSoundContributions);
 
-    // get the unrendered ownedVowelSoundArtifacts from the server
-    // Fetch the Handlebars template
-    const large_vowel_sounds_artifact_display_response = await fetch('/partials/owned_vowelsound_artifacts.hbs');
+    // get the unrendered ownedVowelSoundArtifacts from the servernunjucks
+    const large_vowel_sounds_artifact_display_response = await fetch('/partials/owned_vowelsound_artifacts.html');
     const templateText = await large_vowel_sounds_artifact_display_response.text();
 
-    const small_trophycase_response = await fetch('/partials/small_trophycase.hbs');
+    const small_trophycase_response = await fetch('/partials/small_trophycase.html');
     const small_trophycase_template = await small_trophycase_response.text();
 
     // Compile the templates
-    const template = Handlebars.compile(templateText);
+    const template = nunjucks.compile(templateText);
 
     // TODO: Better for this to live somewhere else, where Set Stones, Blue Railroads, Ursa Minors, etc. can also be rendered
-    const compiled_small_trophycase_template = Handlebars.compile(small_trophycase_template);
+    const compiled_small_trophycase_template = nunjucks.compile(small_trophycase_template);
 
     // Render the template with the context
     const renderedHtml = template(filteredVowelSoundContributions);
