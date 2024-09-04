@@ -274,7 +274,10 @@ export function appendChainDataToShows(shows, chainData) {
     const showsChainData = chainData["showsWithChainData"];
     for (let [show_id, show] of Object.entries(shows)) {
         let chainDataForShow = showsChainData[show_id];
-        if (chainDataForShow['has_set_stones_available'] === false) {
+        // TODO: Handle the show not being in the chain data at all - emit a warning that it's time to refresh chain data?  And an error in prod?
+        if (chainDataForShow === undefined) {
+            continue;
+        } else if (chainDataForShow['has_set_stones_available'] === false) {
             continue;
         } else {
 
