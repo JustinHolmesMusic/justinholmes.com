@@ -111,7 +111,8 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
         let this_set = {
             "songplays": [],
             "_show": showYAMLData,
-            "set_number": set_number} // TODO: Better modeling somehow.  WWDD?
+            "set_number": set_number
+        } // TODO: Better modeling somehow.  WWDD?
 
 
         // Now we'll iterate through the songs in this set.
@@ -241,7 +242,14 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
 
 // Now that we've dealt with songPLays, we'll loop through songs again, adding details to our other objects.
 
-let songsByProvenance = {'original': [], 'traditional': [], 'cover': [], 'video_game': [], 'film': [], 'one-off': []};
+let songsByProvenance = {
+    'original': [],
+    'traditional': [],
+    'cover': [],
+    'video_game': [],
+    'film': [],
+    'one-off': []
+};
 let songsByArtist = {}; // #TODO: Implement this.
 let songsByVideoGame = {};
 
@@ -273,7 +281,7 @@ Object.entries(songs).forEach(([songSlug, songObject]) => {
 // Iterate through songPlays and add the song details.
 for (const songPlay of allSongPlays) {
 
-    let song = songs[songPlay.songSlug];
+    let song = songPlay._song;
 
     // Determine the provenances: original, traditional, cover, or video game tune.
 
@@ -317,6 +325,7 @@ for (const songPlay of allSongPlays) {
     }
     // For now, songs that are undocumented will be considered one-offs.
     if (song.hasOwnProperty('undocumented')) {
+        songsByProvenance['one-off'].push(song);
         songPlay['provenance'] = 'one-off';
     }
 
@@ -329,9 +338,23 @@ for (const songPlay of allSongPlays) {
 
 // Now, we'll go through each set again and make a chart for song provenance.
 for (let [showID, show] of Object.entries(shows)) {
-    let show_provenances = {'original': 0, 'traditional': 0, 'cover': 0, 'video_game': 0, 'film': 0, 'one-off': 0};
+    let show_provenances = {
+        'original': 0,
+        'traditional': 0,
+        'cover': 0,
+        'video_game': 0,
+        'film': 0,
+        'one-off': 0
+    };
     for (let [set_number, set] of Object.entries(show['sets'])) {
-        let set_provenances = {'original': 0, 'traditional': 0, 'cover': 0, 'video_game': 0, 'film': 0, 'one-off': 0};
+        let set_provenances = {
+            'original': 0,
+            'traditional': 0,
+            'cover': 0,
+            'video_game': 0,
+            'film': 0,
+            'one-off': 0
+        };
         for (let songPlay of Object.values(set['songplays'])) {
             if (songPlay.hasOwnProperty('provenance')) {
                 set_provenances[songPlay['provenance']] += 1;
