@@ -89,3 +89,8 @@ songs-by-provenance:
   template: "songs/songs-by-provenance.html"
   include_data_in_context:
     - songsByProvenance
+
+kuba:
+  template: kuba.html
+  context:
+    page_title: "Kuba Hejhal, mír a vytrvalost"
