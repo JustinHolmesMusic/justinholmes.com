@@ -50,8 +50,8 @@
         {% for set_number, set in show.sets %}
             <div class="row">
                 <div class="col-md-8 single-set-list">
-                    {% if show.sets.length > 1 %}
-                        <h3><span class="pixel-font" style="color: #00ff00; font-size: 1.3em;">Set #{{set_number}}</span>
+                    {% if show.sets |length > 1 %}
+                        <h3><span class="pixel-font" style="color: #00ff00; font-size: 1.3em;">Set #{{loop.index}}</span>
                         </h3>
                     {% endif %}
 
