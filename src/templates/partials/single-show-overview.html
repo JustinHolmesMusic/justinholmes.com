@@ -2,7 +2,7 @@
     <div class="col-7">
 
         {% if title_as_link %}<a href="{{show.resource_url}}">{% endif %}<h1>{{show.title}}</h1>{% if title_as_link %}</a>{% endif %}
-        <h3>{{show.locality}}, {{show.region1}}</h3>
+        <h3>{{show.locality}}, {{show.region1}}{% if show.region2 %}, {{show.region2}}{% endif %}</h3>
         <h4>{{show.blockheight |blockToDate(show.timezone, date_only=true)}}</h4>
         <span>Blockheight: <b>{{show.blockheight}} </b></span><br>
         <span>Venue:</span> <b>{{show.venue}}</b><br>
