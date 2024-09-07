@@ -310,6 +310,11 @@ for (const songPlay of allSongPlays) {
 
     let song = songPlay._song;
 
+    // Sanity check: If the song has a by_artist_id, it should not have a by_artist.
+    if (song.hasOwnProperty('by_artist_id') && song.hasOwnProperty('by_artist')) {
+        throw new Error("Song has both by_artist_id and by_artist.  This is not allowed.");
+    }
+
     // Determine the provenances: original, traditional, cover, or video game tune.
 
     // Songs with explicit artist ID (ie, an artist already in our data ecosystem).
@@ -328,14 +333,18 @@ for (const songPlay of allSongPlays) {
 
     // Songs with explicit artist name (ie, an artist not in our data ecosystem).
     if (song.hasOwnProperty('by_artist')) {
-        songPlay['provenance'] = 'cover';
-        songsByProvenance['cover'].push(song); // TODO: Again, this needs to be forward-compatible with other artists using the service.  The matter of whether it's a cover depends on who is playing it.
+
+        // If the artist is in the ensemble, we'll add a detail that it's "via" that artist.
+        if (songPlay._set._show.ensemble.hasOwnProperty(song['by_artist'])) {
+            songPlay['provenance'] = 'original';
+            songPlay['detail'] = `(via ${song['by_artist']})`;
+            songsByProvenance['original'].push(song); // TODO: Again, this needs to be forward-compatible with other artists using the service.  The matter of whether it's a cover depends on who is playing it.
+        } else {
+            songPlay['provenance'] = 'cover';
+            songsByProvenance['cover'].push(song); // TODO: Again, this needs to be forward-compatible with other artists using the service.  The matter of whether it's a cover depends on who is playing it.
+        }
     }
 
-    // Sanity check: If the song has a by_artist_id, it should not have a by_artist.
-    if (song.hasOwnProperty('by_artist_id') && song.hasOwnProperty('by_artist')) {
-        throw new Error("Song has both by_artist_id and by_artist.  This is not allowed.");
-    }
 
     // Now, traditionals.
     if (song.hasOwnProperty('traditional')) {
