@@ -16,7 +16,9 @@ sets:
       - Power Underneath
       - Song of Storms
       - Lost
-      - Loser
+      - Loser:
+        ensemble-modifications:
+          featuring: [Fibonacci Emery Holmes]
       - Rollups and Rearview Mirrors
       - Swallowtail Jig
       - Kesh Jig
@@ -25,10 +27,12 @@ sets:
   1:
     songplays:
       - O Death:
-        ensemble-modification:
+        ensemble-modifications:
           solo: Justin
       - Mercedes Benz
       - The Morning of The Bank Run
       - Angel Band
       - Ashokan Farewell
-      - Can the Circle Be Unbroken? (By and By)
+      - Can the Circle Be Unbroken? (By and By):
+        ensemble-modifications:
+          featuring: [ Fibonacci Emery Holmes ]

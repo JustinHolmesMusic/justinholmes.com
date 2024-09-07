@@ -193,17 +193,40 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
                         } else {
                             throw new Error("Unknown performance modification: " + songEntry[key]);
                         }
-                    } else if (key === "ensemble-modification") {
+                    } else if (key === "ensemble-modifications") {
                         // TODO: Same - does this belong in a parsing loop?
 
-                        for (let [modification, detail] of Object.entries(songEntry[key])) {
+                        const modifications = songEntry[key]
+
+                        for (let [modification, detail] of Object.entries(modifications)) {
                             // TODO: Track this?
                             if (modification === "solo") {
                                 const soloist = detail;
                                 songPlay["detail"] = `(${soloist} Solo)`;
                             } else if (modification === "lead-vocal") {
                                 const vocalist = detail;
-                                songPlay["detail"] = `(${vocalist} Solo)`;
+                                songPlay["detail"] = `(${vocalist} Lead Vocal)`;
+                            } else if (modification === "featuring") {
+                                // TODO: What if this piece has multiple modifications?
+
+                                songPlay["detail"] = "(feat. ";
+                                for (let featured_artist of detail) {
+
+                                    const picker_slug = slugify(featured_artist)
+
+                                    if (pickers.hasOwnProperty(picker_slug)) {
+                                        pickers[featured_artist]["shows"][showID] = "featured"; // TODO: Show instrument(s) here.
+                                    } else {
+
+                                        pickers[featured_artist] = {
+                                            resource_url: `/pickers/${picker_slug}.html`,
+                                            shows: {[showID]: "featured"} // TODO: Show instrument(s) here.
+                                        }
+                                    }
+
+                                    songPlay["detail"] += featured_artist;
+                                }
+                                songPlay["detail"] += ")";
                             } else {
                                 throw new Error("Unknown performance modification: " + songEntry[key]);
                             }

@@ -231,6 +231,12 @@ Object.entries(pickers).forEach(([picker, picker_data]) => {
     let shows_played_by_this_picker = []
     let show_list = picker_data['shows'];
     for (let [show_id, instruments] of Object.entries(show_list)) {
+
+        // Sanity check: if we don't know about this show, this will fail later.
+        if (!shows[show_id]) {
+            throw new Error(`Show ${show_id} not found when trying to populate shows for ${picker}`);
+        }
+
         shows_played_by_this_picker.push({
             show_id,
             show: shows[show_id],
@@ -255,7 +261,6 @@ Object.entries(pickers).forEach(([picker, picker_data]) => {
     );
 
 });
-
 
 
 ///////////////////////////

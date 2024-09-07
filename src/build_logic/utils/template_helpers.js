@@ -42,8 +42,13 @@ export function registerHelpers() {
 
     env.addFilter('resolveChart', function (artist_id, blockheight, setId) {
 
+        // Sanity check.
+        if (artist_id === undefined || blockheight === undefined || setId === undefined) {
+            throw new Error("resolveChart requires artist_id, blockheight, and setId");
+        }
+
         let foundImage;
-        let originalPath
+        let originalPath;
         if (setId === "full-show") {
             originalPath = `charts/${artist_id}-${blockheight}-full-show-provenance.png`;
         } else {
