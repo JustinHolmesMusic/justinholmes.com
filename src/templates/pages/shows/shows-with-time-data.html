@@ -1,0 +1,10 @@
+{% for show_id, show in shows %}
+<h2><a href="{{ show.resource_url}}">{{show.title}}</a></h2>
+<ul>
+    <li>show timezone: {{show.timezone}}</li>
+    <li>blockheight: <a href="https://etherscan.io/block/{{ show.blockheight }}">{{ show.blockheight }}</a></li>
+    <li>blockheight epoch: {{show.epoch_time}}</li>
+    <li>Show local time: {{ show.local_datetime_full }} </li>
+    <li>show UTC time: {{ show.utc_datetime_full }}</li>
+</ul>
+{% endfor %}
