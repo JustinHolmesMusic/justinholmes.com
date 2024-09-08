@@ -3,7 +3,6 @@ venue: "Gitcoin House"
 host: "Gitcoin"
 locality: "Denver"
 region1: "Colorado"
-region2: "United States of America"
 timezone: "America/Denver"
 ensemble:
   "Justin Holmes": [ "guitar", "wood flute"]

@@ -1,0 +1,24 @@
+title: "re:generate / The Merge"
+venue: "Full Node"
+locality: "Berlin"
+region1: "Germany"
+timezone: "Europe/Berlin"
+ensemble:
+  Justin Holmes: [guitar, melodica, six-whistle]
+  Jakub Vysoky: [mandolin]
+  Shaka Lei Kaumaka: [bass]
+sets:
+  0:
+    songplays:
+      - Lost
+      - Song of Storms
+      - I Just Wanna Play:
+        ensemble-modifications:
+          lead-vocal: Shaka Lei Kaumaka
+      - Simple Melody; Simple Peace:
+        ensemble-modifications:
+          lead-vocal: Shaka Lei Kaumaka
+      - Dragon Roost Island
+      - The Morning of the Bank Run
+      - Power Underneath
+      - Vowel Sounds

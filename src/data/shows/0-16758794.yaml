@@ -1,0 +1,21 @@
+title: "EthDenver 2023"
+venue: "National Western Stock Show"
+locality: "Denver"
+region1: "Colorado"
+timezone: "America/Denver"
+ensemble:
+  Justin Holmes: [guitar, six-whistle]
+  Jakub Vysoky: [mandolin]
+  Cory Walker: [5-string banjo]
+  Christian Ward: [fiddle]
+  Jake Stargel: [bass]
+sets:
+  0:
+    songplays:
+      - Lost
+      - Dragon Roost Island
+      - Vowel Sounds
+      - Nanny State Fiddler
+      - Barlow's Jig:
+        mode: scratch
+        scratch_reason: out of time

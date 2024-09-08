@@ -1,0 +1,23 @@
+title: "Zero Knowledge Summit 8"
+locality: "Berlin"
+region1: "Germany"
+timezone: "Europe/Berlin"
+ensemble:
+  Justin Holmes: [guitar, melodica, six-whistle, kalimba]
+  Jakub Vysoky: [mandolin]
+  Shaka Lei Kaumaka: [bass]
+sets:
+  0:
+    songplays:
+      - Song of Storms
+      - Nanny State Fiddler
+      - Cork Board
+      - The Two Sisters:
+        ensemble-modifications:
+          featuring: [Viv Ford]
+      - Power Underneath
+      - Hell or High Water:
+        mode: segue
+      - Salt Creek
+      - Hell or High Water:
+        mode: reprise

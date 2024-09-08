@@ -3,7 +3,6 @@ venue: "North Country Camp"
 host: "North Country Porcupines"
 locality: "Lancaster"
 region1: "New Hampshire"
-region2: "United States of America"
 timezone: "America/New_York"
 ensemble:
   "Justin Holmes": ["guitar", "mandolin", "wood flute", "six-whistle"]

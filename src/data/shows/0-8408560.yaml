@@ -1,0 +1,11 @@
+title: EthBerlin 2019
+venue: The Factory
+locality: Berlin
+region1: Germany
+timezone: "Europe/Berlin"
+ensemble:
+  Justin Holmes: [guitar]
+sets:
+  0:
+    songplays:
+      - As long as I am in this world, you will never hack alone

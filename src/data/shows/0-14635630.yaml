@@ -1,0 +1,14 @@
+title: "Justin Holmes @ devconnect cowork"
+locality: "Amsterdam"
+region1: "Netherlands"
+timezone: "Europe/Berlin"
+ensemble:
+  Justin Holmes: [guitar, kalimba, six-whistle]
+  Jakub Vysoky: [ukelele, cajon]
+sets:
+  0:
+    songplays:
+      - What goes on the blockchain?
+      - The Morning of The Bank Run
+      - Hell or High Water
+      - Song of Storms

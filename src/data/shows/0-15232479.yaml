@@ -1,0 +1,25 @@
+title: "EthBarcelona 2022"
+venue: "Centre Convencions International Barcelona"
+locality: "Barcelona"
+region1: "Catalonia"
+region2: "Spain"
+timezone: "Europe/Paris"
+ensemble:
+  "Justin Holmes": [ "guitar", "wood flute", "six-whistle", "melodica"]
+  "Jakub Vysoky": [ "mandolin" ]
+  "David Flores Pradillas": [ "fiddle" ]
+  "Shaka Lei Kaumaka": [ "bass", "cajon" ]
+sets:
+  0:
+    songplays:
+      - The Morning of The Bank Run
+      - Todo es Posible
+      - Millennial Fair
+      - Nanny State Fiddler
+      - Song of Storms
+      - Vowel Sounds
+      - Cork Board
+      - Hell or High Water
+  encore:
+    songplays:
+      - Thresholds and Enclaves

@@ -1,0 +1,14 @@
+title: EthCapetown 2019
+locality: Capetown
+region1: South Africa
+timezone: Africa/Johannesburg
+ensemble:
+  "Justin Holmes": [ "guitar", "wood flute", "Laúd", "kalimba"]
+sets:
+  0:
+    songplays:
+      - Mercedes Benz
+      - Is it a money thing?
+      - Give Freely of The Chain
+
+# https://x.com/PintSzPorcupine/status/1122649571455270913

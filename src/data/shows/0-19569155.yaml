@@ -3,7 +3,7 @@ venue: "Tunesmith Studios"
 host: ""
 locality: "Nashville"
 region1: "Tennessee"
-timezone: "American/Chicago"
+timezone: "America/Chicago"
 ensemble:
   "Justin Holmes": [ "guitar", "six-whistle"]
   "David Grier": [ "guitar" ]

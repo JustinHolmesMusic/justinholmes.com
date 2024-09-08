@@ -1,0 +1,11 @@
+title: EthNY 2019
+venue: "Brooklyn Navy Yard"
+locality: Brooklyn
+region1: New York
+ensemble:
+  "Justin Holmes": [ "guitar", "wood flute", "Laúd", "six-whistle", "kalimba" ]
+sets:
+  0:
+    songplays:
+      - Vowel Sounds
+      - Ohio

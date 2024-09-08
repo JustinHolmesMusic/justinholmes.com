@@ -1,0 +1,32 @@
+title: "Threshold Network @ River"
+venue: "River Bar Denver"
+locality: "Denver"
+region1: "Colorado"
+timezone: "America/Denver"
+ensemble:
+  Justin Holmes: [guitar, six-whistle]
+  Jakub Vysoky: [mandolin]
+  Cory Walker: [5-string banjo]
+  Christian Ward: [fiddle]
+  Jake Stargel: [bass]
+sets:
+  0:
+    songplays:
+      - Barlow's Jig
+      - Rollups and Rearview Mirrors
+      - From Bill to Brewster:
+        mode: segue
+      - The Two Sisters
+      - Cork Board
+      - Last Train From Poor Valley
+      - Bubak and Hungaricus
+  1:
+    songplays:
+      - Rooster:
+        ensemble-modifications:
+          solo: Justin
+      - Hell or High Water
+      - Song of Storms
+      - Power Underneath
+      - gm☕
+      - The Morning of the Bank Run

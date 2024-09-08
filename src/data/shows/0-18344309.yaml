@@ -3,8 +3,7 @@ venue: "Bridgespace"
 host: "PDX DAO"
 locality: "Portland"
 region1: "Oregon"
-region2: "United States of America"
-timezone: "America/Seattle"
+timezone: "US/Pacific"
 ensemble:
   "Justin Holmes": [ "guitar", "wood flute", "six-whistle"]
   "Open Tony": ["fiddle"]

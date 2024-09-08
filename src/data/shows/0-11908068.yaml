@@ -1,0 +1,14 @@
+title: "Hello Decentralization"
+locality: "Barcelona"
+region1: "Catalonia"
+region2: "Spain"
+timezone: "Europe/Paris"
+ensemble:
+  "Justin Holmes": [ "Laúd", "wood flute", "six-whistle", "kalimba"]
+  "Leify Green": [ "guitar", "fiddle" ]
+sets:
+  0:
+    songplays:
+      - "The Morning of the Bank Run"
+      - Song of Storms
+      - What happens on Layers 0, 1, and 2?

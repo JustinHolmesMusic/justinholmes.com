@@ -1,0 +1,16 @@
+title: "devconnect 2022"
+locality: "Amsterdam"
+region1: "Netherlands"
+timezone: "Europe/Berlin"
+ensemble:
+  Justin Holmes: [guitar, kalimba, six-whistle]
+  Shaka Lei Kaumaka: [bass, percussion]
+sets:
+  0:
+    songplays:
+      - Hell or High Water
+      - Zero Knowledge and Time Machines
+      - Song of Time
+      - The Morning of The Bank Run
+      - Todo es Posible
+      - Song of Storms

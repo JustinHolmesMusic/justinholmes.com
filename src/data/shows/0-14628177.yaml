@@ -1,0 +1,12 @@
+title: "Zero Knowledge Summit 7"
+locality: "Amsterdam"
+region1: "Netherlands"
+timezone: "Europe/Berlin"
+ensemble:
+  Justin Holmes: [guitar, kalimba]
+sets:
+  0:
+    songplays:
+      - The Morning of The Bank Run
+
+# https://www.youtube.com/watch?v=XRhcqmJdruk

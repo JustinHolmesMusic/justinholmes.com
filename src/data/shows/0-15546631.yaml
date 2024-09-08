@@ -1,0 +1,21 @@
+title: "Threshodlers welcome you to The Bridge"
+venue: "Treptower Bridge"
+locality: "Berlin"
+region1: "Germany"
+timezone: "Europe/Berlin"
+ensemble:
+  Justin Holmes: [guitar, melodica, six-whistle]
+  Jakub Vysoky: [mandolin]
+  Shaka Lei Kaumaka: [bass]
+sets:
+  0:
+    songplays:
+      - Hell or High Water
+      - Todo Es Posible
+      - Lost
+      - Last Train from Poor Valley
+      - Millennial Fair
+      - Simple Melody; Simple Peace
+      - Dragon Roost Island
+      - Wind and Rain
+      - Nanny State Fiddler

@@ -1,0 +1,23 @@
+title: "devcon VI night 1"
+venue: "chiva lounge"
+locality: "Bogotá"
+region1: "Colombia"
+timezone: "America/Bogota"
+ensemble:
+  Justin Holmes: [guitar, piano, melodica, six-whistle]
+  Jakub Vysoky: [mandolin]
+  Pepa Lopera: [fiddle]
+  Shaka Lei Kaumaka: [bass]
+sets:
+  0:
+    songplays:
+      - Wind and Rain
+      - Dragon Roost Island
+      - Vowel Sounds
+      - Hell or High Water
+      - Chrono Trigger:
+        ensemble-modifications:
+          solo: Justin
+      - Bubak and Hungaricus
+      - Q&A
+      - Nanny State Fiddler

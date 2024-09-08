@@ -1,0 +1,39 @@
+title: "devcon VI night 2"
+venue: "chiva lounge"
+locality: "Bogotá"
+region1: "Colombia"
+timezone: "America/Bogota"
+ensemble:
+  Justin Holmes: [guitar, piano, melodica, six-whistle]
+  Jakub Vysoky: [mandolin]
+  Pepa Lopera: [fiddle]
+  Shaka Lei Kaumaka: [bass, percussion]
+sets:
+  0:
+    songplays:
+      - Last Train From Poor Valley:
+        ensemble-modifications:
+          solo: Justin
+      - Hard Time / Killing Floor Blues:
+        ensemble-modifications:
+          solo: Justin
+      - Morrison's Jig
+      - I Lost My Seed Phrase
+      - Millennial Fair
+      - Power Underneath
+      - Song of Storms:
+        ensemble-modifications:
+          featuring:
+            - Jonathan Mann
+            - Matteo Tambussi
+            - Scotty Poi
+      - Cork Board
+      - The Decisive Battle:
+        ensemble-modifications:
+          solo: Justin
+      - Victory-ff4
+      - Clandestino:
+        ensemble-modifications:
+          lead-vocal: Pepa
+      - The Morning of the Bank Run:
+        mode: segue
