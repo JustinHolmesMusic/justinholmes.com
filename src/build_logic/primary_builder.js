@@ -2,7 +2,6 @@ import {slugify} from "./utils/text_utils.js";
 
 console.time('primary-build');
 import {renderPage} from "./utils/rendering_utils.js";
-import nunjucks from 'nunjucks';
 import {outputBaseDir, templateDir} from "./constants.js";
 import fs from 'fs';
 import yaml from 'js-yaml';

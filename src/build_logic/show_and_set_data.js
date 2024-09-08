@@ -259,14 +259,21 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
                         }
                     } else if (key === "mode") {
                         songPlay['mode'] = songEntry[key];
+                    } else if (key === "scratch_reason") {
+                        if (songEntry["mode"] === "scratch") {
+                            songPlay.scratch_reason = songEntry['scratch_reason'];
+                        } else {
+                            raise
+                            new Error("Can't have a scratch_reason if song isn't scratched.");
+                        }
                     } else {
-                        throw new Error("Unknown key in song object: " + key);
+                        throw new Error("Unknown song property: " + key);
                     }
                 }
             }
 
             // Teases and reprises are just for the setlist; don't count them in the list of plays for a song.
-            if (songPlay.mode !== "tease" && songPlay.mode !== "reprise") {
+            if (songPlay.mode !== "tease" && songPlay.mode !== "reprise" && songPlay.mode !== "scratch") {
                 song.plays.push(songPlay);
             }
             songPlay._song = song;
@@ -553,5 +560,9 @@ for (let [showID, show] of Object.entries(shows)) {
 
 console.timeEnd("show-and-song-data");
 
+// sort shows by key, with largest numbers first
+shows = Object.fromEntries(Object.entries(shows).sort(function (a, b) {
+    return parseInt(b[0].split('-')[1]) - parseInt(a[0].split('-')[1]);
+}));
 
 export {shows, songs, pickers, songsByVideoGame, songsByProvenance};

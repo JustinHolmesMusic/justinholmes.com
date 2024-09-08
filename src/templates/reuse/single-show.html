@@ -61,7 +61,10 @@
                                 {% if songPlay.mode=="reprise" %}
                                     <span style="color:#fff7ae"><b>⇚</b></span>
                                 {% endif %}
+                                {% if songPlay.mode=="scratch" %}<s>{% endif %}
                                 <a href="/songs/{{songPlay._song.slug}}.html">{{songPlay._song.title}}</a>
+                                {% if songPlay.mode=="scratch" %}</s> ({{songPlay.scratch_reason}}){% endif %}
+
                                 {% if songPlay.provenance=="traditional" %}
                                     <span class="traditional-detail">(Traditional)</span>
                                 {% endif %}

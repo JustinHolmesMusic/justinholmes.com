@@ -2,7 +2,7 @@
 <ul>
     Played {{song.plays.length}} times:
     {% for song_play in song.plays %}
-        <li><a href="{{song_play._set._show.resource_url}}">{{song_play._set._show.title}}</a>{% if this.as_title %} (as "{{song_play.as_title}}"){% endif %} on {{song_play._set._show.blockheight | blockToDate(song_play._set._show.timezone)}}
+        <li><a href="{{song_play._set._show.resource_url}}">{{song_play._set._show.title}}</a>{% if this.as_title %} (as "{{song_play.as_title}}"){% endif %} on {{song_play._set._show.epoch}}
             {% for stone in song_play._set.setstones %}
                 <a href="{{stone.resource_url}}"><img class="stone-in-long-list" src="/assets/images/setstones/{{stone.tokenId}}.png"></a>
             {% endfor %}

@@ -42,7 +42,8 @@ export async function fetchChainDataForShows(shows) {
     // Iterate through show IDs and parse the data.
     for (let [show_id, show] of Object.entries(shows)) {
         // Split ID by "-" into artist_id and blockheight
-        const [artist_id, blockheight] = show_id.split('-');
+        const [artist_id, _blockheight] = show_id.split('-');
+        const blockheight = parseInt(_blockheight);
 
         let singleShowChainData = {"sets": []};
         showsChainData[show_id] = singleShowChainData;
@@ -279,9 +280,9 @@ export function appendChainDataToShows(shows, chainData) {
         let chainDataForShow = showsChainData[show_id];
         // TODO: Handle the show not being in the chain data at all - emit a warning that it's time to refresh chain data?  And an error in prod?
         if (chainDataForShow === undefined) {
-            continue;
+
         } else if (chainDataForShow['has_set_stones_available'] === false) {
-            continue;
+
         } else {
 
             show["has_set_stones_available"] = true;

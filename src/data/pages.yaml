@@ -90,6 +90,11 @@ songs-by-provenance:
   include_data_in_context:
     - songsByProvenance
 
+shows-and-times:
+  template: "shows/shows-with-time-data.html"
+  include_data_in_context:
+    - shows
+
 kuba:
   template: kuba.html
   context:
