@@ -30,3 +30,9 @@ export function deserializeChainData() {
     const parsedChainData = JSON.parse(chainDataJson);
     return parsedChainData;
 }
+
+export function deserializeTimeData() {
+    const time_data_json_path = path.resolve(__dirname, '../data/time_data.json');
+    const time_data_json = fs.readFileSync(time_data_json_path, 'utf8');
+    return JSON.parse(time_data_json);
+}

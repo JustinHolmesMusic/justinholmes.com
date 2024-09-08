@@ -1,5 +1,5 @@
 // @ts-check
-import {createConfig, http, readContract, fetchBlockNumber, fetchEnsName} from '@wagmi/core';
+import {createConfig, http, readContract, fetchBlockNumber, fetchEnsName, getBlock} from '@wagmi/core';
 import {mainnet, optimism, optimismSepolia, arbitrum} from '@wagmi/core/chains';
 import {brABI as abi} from "../abi/blueRailroadABI.js";
 import {setStoneABI} from "../abi/setStoneABI.js";
@@ -9,13 +9,16 @@ import Web3 from 'web3';
 
 const web3 = new Web3();
 import {config as dotenvConfig} from 'dotenv';
+import {fileURLToPath} from "url";
+import path from "path";
+import fs from "fs";
+import {showsDir} from "./constants.js";
 
 const env = process.env.NODE_ENV || 'development';
 dotenvConfig({path: `.env`});
 
 // Use the environment-specific variables
 const apiKey = process.env.INFURA_API_KEY;
-
 
 export const config = createConfig({
     chains: [mainnet, optimism, optimismSepolia, arbitrum],
@@ -323,4 +326,19 @@ export async function fetch_chaindata(shows) {
         vowelSoundContributions: vowelSoundContributions,
     }
     return chainData;
+}
+
+export async function get_times_for_shows() {
+    const liveShowYAMLs = fs.readdirSync(showsDir);
+
+    let times_for_shows = {};
+    for (let i = 0; i < liveShowYAMLs.length; i++) {
+        let showYAML = liveShowYAMLs[i];
+        let showID = showYAML.split('.')[0];
+        const block_number = showID.split('-')[1];
+        const block = await getBlock(config,
+            {chainId: mainnet.id, blockNumber: block_number});
+        times_for_shows[showID] = block.timestamp;
+    }
+    return times_for_shows;
 }

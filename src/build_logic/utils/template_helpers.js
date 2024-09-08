@@ -1,4 +1,4 @@
-import {DateTime} from 'luxon';
+
 import nunjucks from "nunjucks";
 import {imageMapping, unusedImages} from "../asset_builder.js";
 import {templateDir} from "../constants.js";
@@ -6,7 +6,7 @@ import {slugify} from "./text_utils.js";
 
 const REFERENCE_BLOCK = 20612385; // Example block number
 const REFERENCE_TIMESTAMP = 1724670731; // Unix timestamp in seconds
-const AVERAGE_BLOCK_TIME = 12.08; // Average block time in seconds
+const AVERAGE_BLOCK_TIME = 12.12; // Average block time in seconds
 
 let _helpers_are_registered = false;
 
@@ -19,25 +19,8 @@ export function registerHelpers() {
         return;
     }
 
-    // Blockheight - datetime
-    env.addFilter('blockToDate', (blockHeight, timeZone, date_only=false) => {
-        const blockDifference = blockHeight - REFERENCE_BLOCK;
-        const timeDifference = blockDifference * AVERAGE_BLOCK_TIME;
-        const estimatedTimestamp = REFERENCE_TIMESTAMP + timeDifference;
-
-        const date = DateTime.fromSeconds(estimatedTimestamp, {zone: timeZone});
-
-        let formatted_date;
-        if (date_only) {
-            formatted_date = date.toFormat('MMMM dd, yyyy');
-        } else {
-            formatted_date = date.toFormat('MMMM dd, yyyy, h:mm a'); // e.g., "January 01, 2023, 2:30:45 PM EST";
-        }
-        return formatted_date;
-    });
-
-    env.addFilter('slugify', function(string_to_slugify) {
-      return slugify(string_to_slugify);
+    env.addFilter('slugify', function (string_to_slugify) {
+        return slugify(string_to_slugify);
     });
 
     env.addFilter('resolveChart', function (artist_id, blockheight, setId) {

@@ -5,6 +5,11 @@ import yaml from 'js-yaml';
 import path from "path";
 import fs from "fs";
 import {slugify} from "./utils/text_utils.js";
+import {deserializeTimeData} from "./chaindata_db.js";
+
+import {DateTime} from 'luxon';
+import {dataDir, imagesSourceDir, showsDir} from "./constants.js";
+
 
 // Log the time.
 console.time("show-and-song-data");
@@ -12,19 +17,13 @@ console.time("show-and-song-data");
 Chart.register(...registerables);
 Chart.defaults.color = '#fff';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
-const imagesSourceDir = path.join(__dirname, '../images');
 // Make a 'charts' directory in the images directory.
 const chartsDir = path.join(imagesSourceDir, 'charts');
 if (!fs.existsSync(chartsDir)) {
     fs.mkdirSync(chartsDir, {recursive: true});
 }
 
-const dataDir = path.resolve(__dirname, '../data');
-
-const showsDir = path.resolve(dataDir, 'shows');
 const liveShowYAMLs = fs.readdirSync(showsDir);
 
 let shows = {};
@@ -39,6 +38,8 @@ let pickers = {};
 /// FIRST LOOP: SONG YAML FILES ///
 
 const songYAMLFiles = fs.readdirSync(path.resolve(dataDir, 'songs_and_tunes'));
+
+const time_data = deserializeTimeData();
 
 for (let i = 0; i < songYAMLFiles.length; i++) {
     let songYAML = songYAMLFiles[i];
@@ -69,19 +70,33 @@ for (let i = 0; i < songYAMLFiles.length; i++) {
 
 ////////////// SHOW YAMLs //////////////
 // Sort liveShowYAMLs in reverse (so that most recent shows are first)..
-liveShowYAMLs.sort().reverse();
 
 let liveShowIDs = [];
 for (let i = 0; i < liveShowYAMLs.length; i++) {
     let showYAML = liveShowYAMLs[i];
     let showID = showYAML.split('.')[0];
     let artistID = showID.split('-')[0];
-    let blockheight = showID.split('-')[1];
-    // liveShowIDs.push(showID);
+    let blockheight = parseInt(showID.split('-')[1]);
 
     let showYAMLFile = fs.readFileSync(path.resolve(showsDir, showYAML));
     let showYAMLData = yaml.load(showYAMLFile);
     showYAMLData['show_id'] = showID; // TODO: Better modeling somehow.  WWDD?
+    if (time_data.hasOwnProperty(showID)) {
+        const show_epoch_time = parseInt(time_data[showID]);
+        const show_timezone = showYAMLData['timezone'];
+
+        const local_dt = DateTime.fromSeconds(show_epoch_time, {zone: show_timezone});
+        const utc_dt = DateTime.fromSeconds(show_epoch_time, {zone: "UTC"});
+        showYAMLData['local_datetime_full'] = local_dt.toLocaleString(DateTime.DATETIME_FULL)
+        showYAMLData['utc_datetime_full'] = utc_dt.toLocaleString(DateTime.DATETIME_FULL)
+
+        // Also save strings as dates only.
+        showYAMLData['local_date'] = local_dt.toLocaleString(DateTime.DATE_FULL)
+
+        showYAMLData["epoch_time"] = show_epoch_time;
+    } else {
+        throw new Error("No time data for show " + showID + ".  Probably need to get time data.");
+    }
 
     // If show is part of a tour, add it to that tour.
     if (showYAMLData.hasOwnProperty('tour')) {
@@ -106,6 +121,17 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
             }
             pickers[picker]["shows"][showID] = instruments
         }
+    }
+
+    shows[showID] = showYAMLData;
+    shows[showID]['resource_url'] = `/shows/${showID}.html`; // TODO Where does this logic really belong?
+    // Arguably redundant, but we'll add the artist ID and blockheight to the showYAMLData.
+    showYAMLData["artist_id"] = artistID;
+    showYAMLData["blockheight"] = blockheight;
+
+    if (showYAMLData['setlist-lost']) {
+        showYAMLData['sets'] = {};
+        continue;
     }
 
     let sets_in_this_show = {}
@@ -258,11 +284,6 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
         showYAMLData['sets'] = sets_in_this_show;
         showYAMLData['number_of_sets'] = Object.keys(sets_in_this_show).length
 
-        // Arguably redundant, but we'll add the artist ID and blockheight to the showYAMLData.
-        showYAMLData["artist_id"] = artistID;
-        showYAMLData["blockheight"] = blockheight;
-        shows[showID] = showYAMLData;
-        shows[showID]['resource_url'] = `/shows/${showID}.html`; // TODO Where does this logic really belong?
     } // Sets loop
 
 } // Shows loop
