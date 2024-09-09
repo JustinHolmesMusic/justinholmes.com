@@ -1,7 +1,8 @@
 <div class="showOverview border-bottom border-black pb-3 pixel-font row">
-    <div class="col-7">
-
+    <div class="row">
         {% if title_as_link %}<a href="{{show.resource_url}}">{% endif %}<h1>{{show.title}}</h1>{% if title_as_link %}</a>{% endif %}
+    </div>
+    <div class="col-7">
         <h3>{% if show.locality %}{{show.locality}}, {% endif %}{{show.region1}}{% if show.region2 %}, {{show.region2}}{% endif %}</h3>
         <h4>{{show.local_date}}</h4>
         <span>Blockheight: <b>{{ show.blockheight.toLocaleString() }} </b></span><br>
