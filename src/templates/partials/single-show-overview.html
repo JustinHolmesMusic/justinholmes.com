@@ -17,7 +17,7 @@
         <div class="ensemble w-75 p-1 text-black">
             <h4 class="mb-0 pixel-font">Ensemble:</h4>
             {% for player, instruments in show.ensemble %}
-            <a href="/pickers/{{player | slugify}}.html">{{ player }}</a>: {{ instruments }}<br/>
+            <a href="/pickers/{{player | slugify}}">{{ player }}</a>: {{ instruments }}<br/>
             {% endfor %}
         </div>
         {% endif %}

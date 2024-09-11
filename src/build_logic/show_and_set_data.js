@@ -115,7 +115,7 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
             if (!pickers.hasOwnProperty(picker)) {
                 const picker_slug = slugify(picker)
                 pickers[picker] = {
-                    resource_url: `/pickers/${picker_slug}.html`,
+                    resource_url: `/pickers/${picker_slug}`,
                     shows: {}
                 };
             }
@@ -124,7 +124,7 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
     }
 
     shows[showID] = showYAMLData;
-    shows[showID]['resource_url'] = `/shows/${showID}.html`; // TODO Where does this logic really belong?
+    shows[showID]['resource_url'] = `/shows/${showID}`; // TODO Where does this logic really belong?
     // Arguably redundant, but we'll add the artist ID and blockheight to the showYAMLData.
     showYAMLData["artist_id"] = artistID;
     showYAMLData["blockheight"] = blockheight;
