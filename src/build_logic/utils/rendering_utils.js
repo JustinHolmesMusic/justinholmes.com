@@ -1,11 +1,11 @@
 import path from "path";
-import {outputBaseDir, templateDir} from "../constants.js";
+import {outputPrebuildBaseDir, templateDir} from "../constants.js";
 import fs from "fs";
 import nunjucks from "nunjucks";
 
 
 export function renderPage({template_path, context, output_path, layout = "base.html"}) {
-    const outputFilePath = path.join(outputBaseDir, output_path);
+    const outputFilePath = path.join(outputPrebuildBaseDir, output_path);
 
     if (!fs.existsSync(outputFilePath)) {
         fs.mkdirSync(path.dirname(outputFilePath), {recursive: true});

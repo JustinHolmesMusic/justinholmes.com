@@ -2,7 +2,7 @@ import {slugify} from "./utils/text_utils.js";
 
 console.time('primary-build');
 import {renderPage} from "./utils/rendering_utils.js";
-import {outputBaseDir, templateDir} from "./constants.js";
+import {outputPrebuildBaseDir, templateDir} from "./constants.js";
 import fs from 'fs';
 import yaml from 'js-yaml';
 import path from 'path';
@@ -70,7 +70,7 @@ const dataAvailableAsContext = {
 };
 
 // Copy client-side partials to the output directory
-fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputBaseDir, 'client_partials'), {recursive: true});
+fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputPrebuildBaseDir, 'client_partials'), {recursive: true});
 
 
 ////////////////////
@@ -148,6 +148,8 @@ Object.keys(pageyaml).forEach(page => {
         context = Object.assign({}, context, contextFromPageSpecificFiles[page])
     }
     const template_path = "pages/" + pageInfo["template"];
+
+    // TODO: What are we even doing here, replacing?  Now that both sides are .html, does this make sense?  Do we want to rename templates to .njk or something?
     const output_path = path.join(pageInfo["template"]).replace(/\.html$/, '.html');
 
     renderPage({
@@ -167,8 +169,8 @@ console.timeEnd('pages-yaml-read');
 /////////////////////////////////////////////
 
 // Render things that we'll need later.
-generateSetStonePages(shows, path.resolve(outputBaseDir, 'setstones'));
-renderSetStoneImages(shows, path.resolve(outputBaseDir, 'assets/images/setstones'));
+generateSetStonePages(shows, path.resolve(outputPrebuildBaseDir, 'setstones'));
+renderSetStoneImages(shows, path.resolve(outputPrebuildBaseDir, 'assets/images/setstones'));
 
 //////////////////////
 // Chapter 4.1: Show pages

@@ -4,7 +4,7 @@ import crypto from 'crypto';
 import {globSync} from 'glob';
 import {fileURLToPath} from 'url';
 import yaml from "js-yaml";
-import {outputBaseDir} from "./constants.js";
+import {outputPrebuildBaseDir} from "./constants.js";
 
 console.time('asset-builder')
 
@@ -83,7 +83,7 @@ function getImageMapping() {
     if (!_assets_gathered) {
         throw new Error("Need to gather assets before using image mapping.")
     }
-    const mappingFilePath = path.join(outputBaseDir, 'imageMapping.json');
+    const mappingFilePath = path.join(outputPrebuildBaseDir, 'imageMapping.json');
     const jsonData = fs.readFileSync(mappingFilePath, {encoding: 'utf8'});
     return JSON.parse(jsonData);
 }
