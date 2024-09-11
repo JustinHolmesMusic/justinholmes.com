@@ -8,7 +8,7 @@
     "prebuild-offchain": "SKIP_CHAIN_DATA_FETCH=true node src/build_logic/primary_builder.js",
     "devserver": "npm run prebuild && webpack serve --port 4000 --client-progress --config src/build_logic/webpack.dev.js",
     "devserver-no-chain-data": "npm run prebuild-offchain && webpack serve --port 4000 --client-progress --config src/build_logic/webpack.dev.js",
-    "devserver-test-chain-data": "TEST_CHAIN_DATA=true npm run prebuild && webpack serve --port 4000 --client-progress --config src/b uild_logic/webpack.dev.js",
+    "devserver-test-chain-data": "TEST_CHAIN_DATA=true npm run prebuild && webpack serve --port 4000 --client-progress --config src/build_logic/webpack.dev.js",
     "build": "npm run prebuild && webpack --mode production --config src/build_logic/webpack.prod.js"
   },
   "type": "module",

@@ -2,25 +2,15 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import {globSync} from 'glob';
-import {fileURLToPath} from 'url';
 import yaml from "js-yaml";
-import {outputPrebuildBaseDir} from "./constants.js";
+import {imagesSourceDir, outputPrebuildBaseDir} from "./constants.js";
 
 console.time('asset-builder')
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const imagesSourceDir = path.join(__dirname, '../images');
 const imageDirPattern = `${imagesSourceDir}/**/*.{png,jpg,jpeg,gif,avif,svg,webp,mp4}`
-const outputDir = path.join(__dirname, '../../_prebuild_output/assets');
-const imageOutputDir = path.join(outputDir, 'images');
-const mappingFilePath = path.join(__dirname, '../../_prebuild_output/imageMapping.json');
-
-// Ensure the output directory exists
-if (!fs.existsSync(imageOutputDir)) {
-    fs.mkdirSync(imageOutputDir, {recursive: true});
-}
+const assetsOutputDir = path.join(outputPrebuildBaseDir, 'assets');
+const imageOutputDir = path.join(assetsOutputDir, 'images');
+const mappingFilePath = path.join(outputPrebuildBaseDir, 'imageMapping.json');
 
 let imageMapping = {};
 let unusedImages = new Set();
@@ -29,6 +19,11 @@ let _assets_gathered = false;
 
 function gatherAssets() {
     console.time('asset-gathering');
+    // Ensure the output directory exists
+    if (!fs.existsSync(imageOutputDir)) {
+        fs.mkdirSync(imageOutputDir, {recursive: true});
+    }
+
     if (_assets_gathered) {
         throw new Error("Assets have already been gathered.")
     }
@@ -37,7 +32,7 @@ function gatherAssets() {
     imageFiles.forEach(file => {
         // copy the vowelsound artifacts under their original name
         if (file.includes('vowelsound-artifacts')) {
-            const vowelSoundArtifactsDir = path.join(__dirname, '../images/vowelsound-artifacts');
+            const vowelSoundArtifactsDir = path.join(imagesSourceDir, 'vowelsound-artifacts');
             const originalPath = path.relative(vowelSoundArtifactsDir, file).replace(/\\/g, '/');
 
             const dest_dir = path.join(imageOutputDir, 'vowelsound-artifacts');
@@ -70,14 +65,15 @@ function gatherAssets() {
     console.log('Image processing complete. Mapping saved to:', mappingFilePath, 'Found', Object.keys(imageMapping).length, 'images.');
     console.timeEnd('asset-gathering');
 
+    let auxDataFile = fs.readFileSync("src/data/aux_data.yaml");
+    let auxData = yaml.load(auxDataFile);
+    let slogans = auxData["slogans"];
+
+    // Write slogans to a JSON file for use in the frontend
+    fs.writeFileSync(path.join(assetsOutputDir, "slogans.json"), JSON.stringify(slogans));
+
 }
 
-let auxDataFile = fs.readFileSync("src/data/aux_data.yaml");
-let auxData = yaml.load(auxDataFile);
-let slogans = auxData["slogans"];
-
-// Write slogans to a JSON file for use in the frontend
-fs.writeFileSync(path.join(outputDir, "slogans.json"), JSON.stringify(slogans));
 
 function getImageMapping() {
     if (!_assets_gathered) {

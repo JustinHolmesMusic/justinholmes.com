@@ -3,19 +3,18 @@ import path from "path";
 import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-export const templateDir = path.resolve(__dirname, '../templates');
+export const srcDir = path.resolve(__filename, '../..');
+export const projectRootDir = path.resolve(srcDir, '..');
+
+// Templates directories
+export const templateDir = path.resolve(srcDir, 'templates');
 export const pageBaseDir = path.resolve(templateDir, 'pages');
-export const outputPrebuildBaseDir = path.resolve(__dirname, '../../_prebuild_output');
-export const outputDistBaseDir = path.resolve(__dirname, '../../dist');
-export const dataDir = path.resolve(__dirname, '../data');
+
+// Data directories.
+export const dataDir = path.resolve(srcDir, 'data');
 export const showsDir = path.resolve(dataDir, 'shows');
-export const imagesSourceDir = path.join(__dirname, '../images');
+export const imagesSourceDir = path.join(srcDir, 'images');
 
-// Erase the output directory if it exists
-if (fs.existsSync(outputPrebuildBaseDir)) {
-    fs.rmSync(outputPrebuildBaseDir, {recursive: true});
-}
-
-// And then make a fresh one.
-fs.mkdirSync(outputPrebuildBaseDir, {recursive: true});
+// Output directories
+export const outputPrebuildBaseDir = path.resolve(projectRootDir, '_prebuild_output');
+export const outputDistBaseDir = path.resolve(projectRootDir, 'justinholmes.com.public.dist');

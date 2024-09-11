@@ -14,7 +14,7 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist
+justinholmes.com.public.dist
 downloads/
 eggs/
 .eggs/

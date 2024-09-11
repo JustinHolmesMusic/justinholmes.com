@@ -15,6 +15,16 @@ import {generateSetStonePages, renderSetStoneImages} from './setstone_utils.js';
 import {registerHelpers} from './utils/template_helpers.js';
 import {appendChainDataToShows, fetch_chaindata} from './chain_reading.js';
 
+// Prepare output directories.
+
+// Erase the output directory if it exists
+if (fs.existsSync(outputPrebuildBaseDir)) {
+    fs.rmSync(outputPrebuildBaseDir, {recursive: true});
+}
+
+// And then make a fresh one.
+fs.mkdirSync(outputPrebuildBaseDir, {recursive: true});
+
 /////////////////////////
 ///// Chapter one: chain data
 ////////////////////////////
