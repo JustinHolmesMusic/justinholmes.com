@@ -1,6 +1,5 @@
 import {fileURLToPath} from "url";
 import path from "path";
-import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 export const srcDir = path.resolve(__filename, '../..');
@@ -16,5 +15,6 @@ export const showsDir = path.resolve(dataDir, 'shows');
 export const imagesSourceDir = path.join(srcDir, 'images');
 
 // Output directories
-export const outputPrebuildBaseDir = path.resolve(projectRootDir, '_prebuild_output');
-export const outputDistBaseDir = path.resolve(projectRootDir, 'justinholmes.com.public.dist');
+export const outputBaseDir = path.resolve(projectRootDir, 'output');
+export const outputPrimaryDir = path.resolve(outputBaseDir, '_prebuild_output');
+export const outputDistDir = path.resolve(outputBaseDir, 'justinholmes.com.public.dist');

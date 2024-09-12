@@ -2,18 +2,15 @@ import fs from 'fs';
 import path from 'path';
 import {fileURLToPath} from 'url';
 import { stringify } from "../js/utils.js"
+import {dataDir, outputBaseDir, outputPrimaryDir} from "./constants.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// 
-const chain_data_dir = path.resolve(__dirname, '../../_prebuild_chain_data');
+const chain_data_dir = path.resolve(outputBaseDir, '_prebuild_chain_data');
 
 
 // If the environment variable TEST_CHAIN_DATA is set, use the testChainData.json instead
 const chain_data_json_path = process.env.TEST_CHAIN_DATA 
-    ? path.resolve(__dirname, '../../_prebuild_chain_data/testChainData.json') 
-    : path.resolve(__dirname, '../../_prebuild_chain_data/chainData.json');
+    ? path.resolve(chain_data_dir, 'testChainData.json')
+    : path.resolve(chain_data_dir, 'chainData.json');
 
 
 export function serializeChainData(chainData) {
@@ -32,7 +29,7 @@ export function deserializeChainData() {
 }
 
 export function deserializeTimeData() {
-    const time_data_json_path = path.resolve(__dirname, '../data/time_data.json');
+    const time_data_json_path = path.resolve(dataDir, 'time_data.json');
     const time_data_json = fs.readFileSync(time_data_json_path, 'utf8');
     return JSON.parse(time_data_json);
 }

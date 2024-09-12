@@ -14,7 +14,7 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-justinholmes.com.public.dist
+
 downloads/
 eggs/
 .eggs/
@@ -135,7 +135,6 @@ dmypy.json
 .DS_Store
 .idea 
 
-_prebuild_output
-_prebuild_chain_data
-
 .env
+
+output

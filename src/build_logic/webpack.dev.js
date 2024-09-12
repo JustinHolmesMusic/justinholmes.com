@@ -1,6 +1,8 @@
 import common from './webpack.common.js';
 import webpack from 'webpack';
 import {merge} from 'webpack-merge';
+import {outputPrimaryDir} from "./constants.js";
+import path from 'path';
 
 const devExport = merge(common, {
     devServer: {
@@ -15,6 +17,11 @@ const devExport = merge(common, {
                 },
             ],
         },
+        // TODO: Enforce this matching the CopyPlugin
+        static: [{
+            directory: path.join(outputPrimaryDir, 'assets'),
+            publicPath: '/assets',
+        },]
     },
     mode: 'development',
     devtool: 'eval-source-map',

@@ -3,10 +3,10 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import {outputDistBaseDir, outputPrebuildBaseDir, srcDir} from "./constants.js";
+import {outputDistDir, outputPrimaryDir, srcDir} from "./constants.js";
 
 // Pattern to match all HTML files recursively within the prebuilt directory
-const templatesPattern = path.join(outputPrebuildBaseDir, '**/*.html');
+const templatesPattern = path.join(outputPrimaryDir, '**/*.html');
 
 // Use glob to find matching files
 const templateFiles = glob.sync(templatesPattern);
@@ -15,7 +15,7 @@ const templateFiles = glob.sync(templatesPattern);
 const htmlPluginInstances = templateFiles.map(templatePath => {
     // Compute the output filename by maintaining the relative directory structure
     // TODO: This is getting a little stretched - let's have a more explicit way to decide the output path.
-    const relativePath = path.relative(outputPrebuildBaseDir, templatePath);
+    const relativePath = path.relative(outputPrimaryDir, templatePath);
 
     // TODO: This is a simply horrible way to decide which scripts to include.
     if (relativePath.startsWith('music/vowel-sounds')) {
@@ -57,12 +57,12 @@ const common = {
             patterns: [
                 // TODO: Copy .htaccess ?
                 {
-                    from: path.resolve(outputPrebuildBaseDir, 'assets'),
-                    to: path.resolve(outputDistBaseDir, 'assets')
+                    from: path.resolve(outputPrimaryDir, 'assets'),
+                    to: path.resolve(outputDistDir, 'assets')
                 },
                 {
-                    from: path.resolve(outputPrebuildBaseDir, 'setstones'),
-                    to: path.resolve(outputDistBaseDir, 'setstones')
+                    from: path.resolve(outputPrimaryDir, 'setstones'),
+                    to: path.resolve(outputDistDir, 'setstones')
                 },
 
                 // TODO: Design decision on client partials.

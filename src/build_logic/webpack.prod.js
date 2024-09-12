@@ -2,16 +2,17 @@ import common from './webpack.common.js';
 import {merge} from 'webpack-merge';
 import TerserPlugin from 'terser-webpack-plugin';
 import webpack from 'webpack';
-import {outputDistBaseDir} from "./constants.js";
+import {outputDistDir} from "./constants.js";
 
 let prodExport = merge(common, {
     mode: 'production',
+    devtool: false,
     optimization: {
         minimizer: [new TerserPlugin()],
     },
     output: {
         filename: '[name].bundle.js',
-        path: outputDistBaseDir,
+        path: outputDistDir,
     },
     plugins: [
         new webpack.DefinePlugin({

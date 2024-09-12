@@ -2,7 +2,7 @@ import {slugify} from "./utils/text_utils.js";
 
 console.time('primary-build');
 import {renderPage} from "./utils/rendering_utils.js";
-import {outputPrebuildBaseDir, templateDir} from "./constants.js";
+import {outputPrimaryDir, templateDir} from "./constants.js";
 import fs from 'fs';
 import yaml from 'js-yaml';
 import path from 'path';
@@ -18,12 +18,12 @@ import {appendChainDataToShows, fetch_chaindata} from './chain_reading.js';
 // Prepare output directories.
 
 // Erase the output directory if it exists
-if (fs.existsSync(outputPrebuildBaseDir)) {
-    fs.rmSync(outputPrebuildBaseDir, {recursive: true});
+if (fs.existsSync(outputPrimaryDir)) {
+    fs.rmSync(outputPrimaryDir, {recursive: true});
 }
 
 // And then make a fresh one.
-fs.mkdirSync(outputPrebuildBaseDir, {recursive: true});
+fs.mkdirSync(outputPrimaryDir, {recursive: true});
 
 /////////////////////////
 ///// Chapter one: chain data
@@ -80,7 +80,7 @@ const dataAvailableAsContext = {
 };
 
 // Copy client-side partials to the output directory
-fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputPrebuildBaseDir, 'client_partials'), {recursive: true});
+fs.cpSync(path.join(templateDir, 'client_partials'), path.join(outputPrimaryDir, 'client_partials'), {recursive: true});
 
 
 ////////////////////
@@ -179,8 +179,8 @@ console.timeEnd('pages-yaml-read');
 /////////////////////////////////////////////
 
 // Render things that we'll need later.
-generateSetStonePages(shows, path.resolve(outputPrebuildBaseDir, 'setstones'));
-renderSetStoneImages(shows, path.resolve(outputPrebuildBaseDir, 'assets/images/setstones'));
+generateSetStonePages(shows, path.resolve(outputPrimaryDir, 'setstones'));
+renderSetStoneImages(shows, path.resolve(outputPrimaryDir, 'assets/images/setstones'));
 
 //////////////////////
 // Chapter 4.1: Show pages
