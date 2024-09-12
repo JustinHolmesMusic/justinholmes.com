@@ -72,8 +72,8 @@
                     less.</h3>
             </div>
         </div>
-        {% for this in sessions %}
-            {% if loop.index % 2 === 0 %}
+        {% for media in sessions %}
+            {% if loop.index0 % 2 === 0 %}
             <div class="row mt-3">
             {% endif %}
             <div class="col-sm-5 live-video index-{{ index % 4 }}">
@@ -84,10 +84,10 @@
                     {% include 'partials/media-metadata.html' %}
                 </div>
             </div>
-            {% if loop.index % 2 === 0 %}
-                <div class="col-2"></div>
+            {% if loop.index0 % 2 != 0 or loop.last %}
+                </div>
             {% else %}
-            </div>
+                <div class="col-2"></div>
             {% endif %}
         {% endfor %}
 
@@ -99,8 +99,8 @@
             the internet all over the world,
             from Nashville to Cape Town to Osaka to Prague.</h4>
 
-        {% for this in live %}
-            {% if loop.index % 2 === 0 %}
+        {% for media in live %}
+            {% if loop.index0 % 2 === 0 %}
             <div class="row mt-3">
             {% endif %}
             <div class="col-sm-5 live-video index-{{loop.index % 4}}">
@@ -111,10 +111,10 @@
                     {% include 'partials/media-metadata.html' %}
                 </div>
             </div>
-            {% if loop.index % 2 === 0 %}
-                <div class="col-2"></div>
+            {% if loop.index0 % 2 != 0 or loop.last %}
+                </div>
             {% else %}
-            </div>
+                <div class="col-2"></div>
             {% endif %}
         {% endfor %}
 
@@ -123,8 +123,8 @@
         <h3 class="section-heading">Recordings that may or may not have music, but where the focus is talking about (and
             perhaps performing a live demo of) compelling innovations.</h3>
 
-        {% for this in talks %}
-            {% if loop.index % 2 === 0 %}
+        {% for media in talks %}
+            {% if loop.index0 % 2 === 0 %}
             <div class="row mt-3">
             {% endif %}
             <div class="col-sm-5 live-video index-{{loop.index % 4}}">
@@ -135,10 +135,10 @@
                     {% include 'partials/media-metadata.html' %}
                 </div>
             </div>
-            {% if loop.index % 2 === 0 %}
-                <div class="col-2"></div>
+            {% if loop.index0 % 2 != 0 or loop.last %}
+                </div> <! -- End of row llamas -->
             {% else %}
-            </div>
+                <div class="col-2"></div>
             {% endif %}
         {% endfor %}
 
