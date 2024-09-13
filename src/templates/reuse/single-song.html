@@ -1,9 +1,28 @@
 {% extends 'layouts/base.html' %}
 {% block main %}
-{% include 'partials/bigger-banner.html' %}
+{% include 'partials/bigger-banner.njk' %}
 
+<div class="container text-light long-form" id="content">
 
-<div id="content" class="container text-light">
-    {% include 'partials/song-summary.html' %}
+    <div class="row">
+        <div class="col-md-8 semi-transparent-bg">
+            <h1 class="container-fluid text-center">{{song.title}}</h1>
+            <div class="commentary text-shadow">
+                {{ commentary }}
+            </div>
+        </div>
+
+        <div class="col-md-4 mt-2 text-shadow">
+            {% include 'partials/song-all-plays.njk' %}
+
+            <h2>Notable versions</h2>
+            {% for media in song.notable_versions %}
+            {{media.artist}}
+            {% if media.youtube %}
+
+            {% endfor %}
+        </div>
+
+    </div>
 </div>
 {% endblock %}

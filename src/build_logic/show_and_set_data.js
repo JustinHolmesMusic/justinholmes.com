@@ -37,7 +37,10 @@ let pickers = {};
 
 /// FIRST LOOP: SONG YAML FILES ///
 
-const songYAMLFiles = fs.readdirSync(path.resolve(dataDir, 'songs_and_tunes'));
+let songYAMLFiles = fs.readdirSync(path.resolve(dataDir, 'songs_and_tunes'));
+
+// Find only files that have the .yaml extension.
+songYAMLFiles = songYAMLFiles.filter(file => file.endsWith('.yaml'));
 
 const time_data = deserializeTimeData();
 

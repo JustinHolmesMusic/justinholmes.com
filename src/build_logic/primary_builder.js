@@ -2,7 +2,7 @@ import {slugify} from "./utils/text_utils.js";
 
 console.time('primary-build');
 import {renderPage} from "./utils/rendering_utils.js";
-import {outputPrimaryDir, templateDir} from "./constants.js";
+import {dataDir, outputPrimaryDir, templateDir} from "./constants.js";
 import fs from 'fs';
 import yaml from 'js-yaml';
 import path from 'path';
@@ -213,10 +213,18 @@ Object.entries(shows).forEach(([show_id, show]) => {
 Object.entries(songs).forEach(([song_slug, song]) => {
     const page = `song_${song_slug}`;
 
+    // See if we have a MD file with long-form description.
+    let commentary;
+    const commentary_path = path.resolve(dataDir, `songs_and_tunes/${song_slug}.md`);
+    if (fs.existsSync(commentary_path)) {
+        commentary = marked(fs.readFileSync(commentary_path, 'utf8'));
+    }
+
     let context = {
         page_name: page,
         page_title: song.title,
         song,
+        commentary,
         imageMapping,
         chainData,
     };

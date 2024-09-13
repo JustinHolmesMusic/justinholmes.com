@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% block main %}
-{% include 'partials/bigger-banner.html' %}
+{% include 'partials/bigger-banner.njk' %}
 
 <style>
 
@@ -41,7 +41,7 @@
 </style>
 
 
-<div id="cryptograss-content" class="container mb-5 gradient-transparent-bg p-4">
+<div id="cryptograss-content" class="container mb-5 semi-transparent-bg p-4">
     <div id="shapeRenderingArea" style="display: flex; flex-direction: row; flex-wrap: wrap;"></div>
 
     {% include "partials/single-show-overview.html" %}

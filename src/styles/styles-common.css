@@ -17,17 +17,13 @@ a {
 }
 
 a:hover {
-    color: #8e845d;
-    text-shadow: black 1px 1px 1px;
+    color: #ffb06b;
+    text-shadow: 1px 1px 3px black, 0px 0px 10px black;
     text-decoration: underline;
 }
 
 #page-build-metadata {
     font-size: 5px;
-}
-
-#ensemble-intro, #about-text, #top-nav, .gradient-transparent-bg {
-    background: linear-gradient(180deg, rgba(77, 83, 84, 0.7) 0%, rgba(77, 83, 84, .2) 100%);
 }
 
 #vowel-sounds a {
@@ -38,8 +34,8 @@ a:hover {
     color: black;
 }
 
-.person-bio, .bio-caption, .bio-title, h1, #about-text {
-    text-shadow: 2px 2px 2px black, 0px 0px 10px black;
+.person-bio, .bio-caption, .bio-title, h1, #about-text, .text-shadow {
+    text-shadow: -1px -1px 2px black, 1px 1px 3px black, 0px 0px 10px black;
 }
 
 .person-info img {
@@ -86,7 +82,6 @@ a:hover {
 
 #top-nav {
     border-top: 1px solid #383b67;
-    border-bottom: 1px solid #383b67;
 }
 
 #slogan {
@@ -522,10 +517,9 @@ nav a img {
     font-size: 1.2em;
 }
 
-.all-shows-list .showOverview {
-    background-color: rgba(108, 108, 108, 0.46);
+.semi-transparent-bg {
+    background: linear-gradient(90deg, rgba(64, 70, 84, 0.7) 0%, rgba(58, 58, 62, .84) 100%);
 }
-
 
 #setlist .songPlay a {
     font-size: 1.1em;
@@ -591,4 +585,25 @@ nav a img {
 
 .kuba-tribute {
     background-color: black;
+}
+
+.long-form h1 {
+    font-family: ll-pixel;
+    font-size: 3em;
+}
+
+.long-form h2 {
+    font-family: ll-pixel;
+    font-size: 2em;
+}
+
+.long-form h3 {
+    font-family: Kreon;
+    font-size: 1.5em;
+}
+
+.long-form blockquote {
+    font-style: italic;
+    margin-left: 40px;
+    margin-right: 40px;
 }
