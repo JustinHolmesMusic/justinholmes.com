@@ -230,7 +230,7 @@ Object.entries(songs).forEach(([song_slug, song]) => {
     };
 
     renderPage({
-            template_path: 'reuse/single-song.html',
+            template_path: 'reuse/single-song.njk',
             output_path: `songs/${song_slug}.html`,
             context: context
         }

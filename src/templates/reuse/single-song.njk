@@ -1,0 +1,34 @@
+{% extends 'layouts/base.html' %}
+{% block main %}
+    {% include 'partials/bigger-banner.njk' %}
+
+    <div class="container text-light long-form" id="content">
+
+        <div class="row">
+            <div class="col-md-8 semi-transparent-bg">
+                <h1 class="container-fluid text-center">{{ song.title }}</h1>
+                {% if song.traditional %}
+                    <h3 class="container-fluid text-center">(traditional)</h3>
+                {% endif %}
+                <div class="commentary text-shadow">
+                    {{ commentary }}
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-2 text-shadow">
+                {% set instrument_to_show=song.instrumentalist_to_display %}
+                {% include 'partials/song-all-plays.njk' %}
+
+                <h2>Notable versions</h2>
+                {% for media in song.notable_versions %}
+                    {{ media.artist }}
+                    {% if media.youtube %}
+                        {% set url = media.youtube %}
+                        {% include 'partials/youtube.html' %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

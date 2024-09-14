@@ -78,6 +78,7 @@
             {% endif %}
             <div class="col-sm-5 live-video index-{{ index % 4 }}">
                 <div class="row">
+                    {% set url = media.url %}
                     {% include 'partials/youtube.html' %}
                 </div>
                 <div class="row media-metadata-above-video" style="min-height: 100px">
@@ -105,6 +106,7 @@
             {% endif %}
             <div class="col-sm-5 live-video index-{{loop.index % 4}}">
                 <div class="row">
+                    {% set url = media.url %}
                     {% include 'partials/youtube.html' %}
                 </div>
                 <div class="row media-metadata-above-video" style="min-height: 100px">
@@ -129,6 +131,7 @@
             {% endif %}
             <div class="col-sm-5 live-video index-{{loop.index % 4}}">
                 <div class="row">
+                    {% set url = media.url %}
                     {% include 'partials/youtube.html' %}
                 </div>
                 <div class="row media-metadata-above-video" style="min-height: 100px">
