@@ -159,8 +159,7 @@ Object.keys(pageyaml).forEach(page => {
     }
     const template_path = "pages/" + pageInfo["template"];
 
-    // TODO: What are we even doing here, replacing?  Now that both sides are .html, does this make sense?  Do we want to rename templates to .njk or something?
-    const output_path = path.join(pageInfo["template"]).replace(/\.html$/, '.html');
+    const output_path = path.join(pageInfo["template"]).replace(/\.njk$/, '.html');
 
     renderPage({
             template_path: template_path,
@@ -198,7 +197,7 @@ Object.entries(shows).forEach(([show_id, show]) => {
     };
 
     renderPage({
-            template_path: 'reuse/single-show.html',
+            template_path: 'reuse/single-show.njk',
             output_path: `shows/${show_id}.html`,
             context: context
         }
@@ -273,7 +272,7 @@ Object.entries(pickers).forEach(([picker, picker_data]) => {
     };
 
     renderPage({
-            template_path: 'reuse/single-picker.html',
+            template_path: 'reuse/single-picker.njk',
             output_path: `pickers/${picker_slug}.html`,
             context: context
         }

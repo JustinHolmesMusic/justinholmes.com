@@ -1,4 +1,4 @@
-{% extends 'layouts/base.html' %}
+{% extends 'layouts/base.njk' %}
 {% block main %}
 {% include 'partials/bigger-banner.njk' %}
 
@@ -7,7 +7,7 @@
     <div class="col-md-12">
         {% set title_as_link = true %}
         {% for show_id, show in shows %}
-            {% include "../partials/single-show-overview.html" %}
+            {% include "../partials/single-show-overview.njk" %}
         {% endfor %}
     </div>
 </div>

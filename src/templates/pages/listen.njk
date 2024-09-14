@@ -1,4 +1,4 @@
-{% extends 'layouts/base.html' %}
+{% extends 'layouts/base.njk' %}
 {% block main %}
 {% include 'partials/bigger-banner.njk' %}
 
@@ -79,10 +79,10 @@
             <div class="col-sm-5 live-video index-{{ index % 4 }}">
                 <div class="row">
                     {% set url = media.url %}
-                    {% include 'partials/youtube.html' %}
+                    {% include 'partials/youtube.njk' %}
                 </div>
                 <div class="row media-metadata-above-video" style="min-height: 100px">
-                    {% include 'partials/media-metadata.html' %}
+                    {% include 'partials/media-metadata.njk' %}
                 </div>
             </div>
             {% if loop.index0 % 2 != 0 or loop.last %}
@@ -107,10 +107,10 @@
             <div class="col-sm-5 live-video index-{{loop.index % 4}}">
                 <div class="row">
                     {% set url = media.url %}
-                    {% include 'partials/youtube.html' %}
+                    {% include 'partials/youtube.njk' %}
                 </div>
                 <div class="row media-metadata-above-video" style="min-height: 100px">
-                    {% include 'partials/media-metadata.html' %}
+                    {% include 'partials/media-metadata.njk' %}
                 </div>
             </div>
             {% if loop.index0 % 2 != 0 or loop.last %}
@@ -132,10 +132,10 @@
             <div class="col-sm-5 live-video index-{{loop.index % 4}}">
                 <div class="row">
                     {% set url = media.url %}
-                    {% include 'partials/youtube.html' %}
+                    {% include 'partials/youtube.njk' %}
                 </div>
                 <div class="row media-metadata-above-video" style="min-height: 100px">
-                    {% include 'partials/media-metadata.html' %}
+                    {% include 'partials/media-metadata.njk' %}
                 </div>
             </div>
             {% if loop.index0 % 2 != 0 or loop.last %}

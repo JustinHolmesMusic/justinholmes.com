@@ -1,4 +1,4 @@
-{% extends 'layouts/base.html' %}
+{% extends 'layouts/base.njk' %}
 {% block main %}
     {% include 'partials/bigger-banner.njk' %}
 
@@ -24,7 +24,7 @@
                     {{ media.artist }}
                     {% if media.youtube %}
                         {% set url = media.youtube %}
-                        {% include 'partials/youtube.html' %}
+                        {% include 'partials/youtube.njk' %}
                     {% endif %}
                 {% endfor %}
             </div>

@@ -1,4 +1,4 @@
-{% extends 'layouts/base.html' %}
+{% extends 'layouts/base.njk' %}
 {% block main %}
 {% include 'partials/bigger-banner.njk' %}
 
@@ -6,7 +6,7 @@
 <div id="content" class="container text-light">
     {% for song in songs %}
         <br/>
-        {$ include 'reuse/song-summary.html' %}
+        {% include 'reuse/song-summary.njk' %}
         <hr/>
     {% endfor %}
 </div>

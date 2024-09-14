@@ -1,4 +1,4 @@
-{% extends 'layouts/base.html' %}
+{% extends 'layouts/base.njk' %}
 {% block main %}
 {% include 'partials/bigger-banner.njk' %}
 
@@ -44,7 +44,7 @@
 <div id="cryptograss-content" class="container mb-5 semi-transparent-bg p-4">
     <div id="shapeRenderingArea" style="display: flex; flex-direction: row; flex-wrap: wrap;"></div>
 
-    {% include "partials/single-show-overview.html" %}
+    {% include "partials/single-show-overview.njk" %}
 
     <div id="setlist" class="mt-5">
         {% for set_number, set in show.sets %}

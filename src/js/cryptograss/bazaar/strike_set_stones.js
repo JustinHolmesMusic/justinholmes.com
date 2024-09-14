@@ -243,10 +243,10 @@ async function renderOwnedVowelSoundArtifacts(address) {
     console.log(filteredVowelSoundContributions);
 
     // get the unrendered ownedVowelSoundArtifacts from the servernunjucks
-    const large_vowel_sounds_artifact_display_response = await fetch('/partials/owned_vowelsound_artifacts.html');
+    const large_vowel_sounds_artifact_display_response = await fetch('/partials/owned_vowelsound_artifacts.njk');
     const templateText = await large_vowel_sounds_artifact_display_response.text();
 
-    const small_trophycase_response = await fetch('/partials/small_trophycase.html');
+    const small_trophycase_response = await fetch('/partials/small_trophycase.njk');
     const small_trophycase_template = await small_trophycase_response.text();
 
     // Compile the templates
