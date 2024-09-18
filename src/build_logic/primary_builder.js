@@ -14,6 +14,7 @@ import {execSync} from 'child_process';
 import {generateSetStonePages, renderSetStoneImages} from './setstone_utils.js';
 import {registerHelpers} from './utils/template_helpers.js';
 import {appendChainDataToShows, fetch_chaindata} from './chain_reading.js';
+import nunjucks from "nunjucks";
 
 // Prepare output directories.
 
@@ -205,6 +206,7 @@ Object.entries(shows).forEach(([show_id, show]) => {
 
 });
 
+
 ///////////////////////////
 // Chapter 4.2: Song pages
 ///////////////////////////
@@ -212,21 +214,24 @@ Object.entries(shows).forEach(([show_id, show]) => {
 Object.entries(songs).forEach(([song_slug, song]) => {
     const page = `song_${song_slug}`;
 
-    // See if we have a MD file with long-form description.
-    let commentary;
-    const commentary_path = path.resolve(dataDir, `songs_and_tunes/${song_slug}.md`);
-    if (fs.existsSync(commentary_path)) {
-        commentary = marked(fs.readFileSync(commentary_path, 'utf8'));
-    }
-
     let context = {
         page_name: page,
         page_title: song.title,
         song,
-        commentary,
         imageMapping,
         chainData,
     };
+
+    // See if we have a MD file with long-form description.
+    let commentary;
+    const commentary_path = path.resolve(dataDir, `songs_and_tunes/${song_slug}.md`);
+    if (fs.existsSync(commentary_path)) {
+        const commentary_raw = fs.readFileSync(commentary_path, 'utf8');
+        const commentary_njk_rendered = nunjucks.renderString(commentary_raw, context)
+        commentary = marked(commentary_njk_rendered);
+    }
+
+    context.commentary = commentary;
 
     renderPage({
             template_path: 'reuse/single-song.njk',
@@ -236,6 +241,34 @@ Object.entries(songs).forEach(([song_slug, song]) => {
     );
 
 });
+
+///////////////////////////
+// Chapter 4.2a: Lists of songs
+///////////////////////////
+
+// TODO: Not jazzed to do this here instead of just making this available in the context.
+
+// Make a new array of songs, sorted by song.plays.length
+let songs_sorted_by_plays = Object.values(songs);
+songs_sorted_by_plays.sort((a, b) => {
+    return b.plays.length - a.plays.length;
+});
+
+let context = {
+    page_name: "songs-by-plays",
+    page_title: "Songs sorted by plays",
+    songs: songs_sorted_by_plays,
+    imageMapping,
+    chainData,
+};
+
+renderPage({
+        template_path: 'pages/songs/songs-by-plays.njk',
+        output_path: `songs/songs-by-plays.html`,
+        context: context
+    }
+);
+
 
 
 ///////////////////////////

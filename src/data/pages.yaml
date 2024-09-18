@@ -1,16 +1,16 @@
 index:
-  template: index.html
+  template: index.njk
   context:
     page_title: "Future-proofing Bluegrass"
 
 listen:
-  template: listen.html
+  template: listen.njk
   context:
     page_title: "Listen"
     no_video_bg: true
 
 cryptograss.eth:
-  template: cryptograss.html
+  template: cryptograss.njk
   include_data_in_context:
     - latest_git_commit
   context:
@@ -18,12 +18,12 @@ cryptograss.eth:
     no_video_bg: true
 
 about:
-  template: about.html
+  template: about.njk
   context:
     page_title: "About the JH Production"
 
 contact:
-  template: contact.html
+  template: contact.njk
   context:
     page_title: "Contact the JH Production about booking, hacking, or whatever"
 
@@ -31,30 +31,30 @@ vowel-sounds:
   context:
     page_title: Vowel Sounds Album
     no_video_bg: true
-  template: "music/vowel-sounds/index.html"
+  template: "music/vowel-sounds/index.njk"
 
 vowel-sounds-album-art:
   context:
     page_title: Vowel Sounds Album Art
     no_video_bg: true
     numbers_to_draw: [0, 1, 2, 3, 4, 5]
-  template: "cryptograss/tools/generate_art.html"
-  base_template: blank.html
+  template: "cryptograss/tools/generate_art.njk"
+  base_template: blank.njk
 
 ensemble:
-  template: ensemble.html
+  template: ensemble.njk
   context_from_yaml: true
   context:
     page_title: "The Immutable String Band"
 
 tour:
-    template: tour.html
+    template: tour.njk
     context_from_yaml: true
     context:
       page_title: "Tour dates"
 
 shows:
-    template: shows.html
+    template: shows.njk
     include_data_in_context:
       - shows
     context:
@@ -63,44 +63,44 @@ shows:
 add-live-set:
   context:
     page_title: "Add a live set"
-  template: "cryptograss/tools/add-live-set.html"
+  template: "cryptograss/tools/add-live-set.njk"
 
 add-show-for-stone-minting:
   context:
     page_title: "Make show available for stone minting"
-  template: "cryptograss/tools/add-show-for-stone-minting.html"
+  template: "cryptograss/tools/add-show-for-stone-minting.njk"
 
 setstone-color-palette:
   context:
     page_title: "Setstone color palette"
-  template: "cryptograss/tools/setstone-color-palette.html"
+  template: "cryptograss/tools/setstone-color-palette.njk"
 
 sign-things:
-  template: "cryptograss/tools/sign-things.html"
+  template: "cryptograss/tools/sign-things.njk"
   context:
     page_title: "Sign things if you want!"
 
 all-songs:
-  template: "songs/all-songs.html"
+  template: "songs/all-songs.njk"
   include_data_in_context:
     - songs
 
 songs-by-provenance:
-  template: "songs/songs-by-provenance.html"
+  template: "songs/songs-by-provenance.njk"
   include_data_in_context:
     - songsByProvenance
 
 traditionals:
-  template: "songs/traditionals.html"
+  template: "songs/traditionals.njk"
   include_data_in_context:
     - songsByProvenance
 
 shows-and-times:
-  template: "shows/shows-with-time-data.html"
+  template: "shows/shows-with-time-data.njk"
   include_data_in_context:
     - shows
 
 kuba:
-  template: kuba.html
+  template: kuba.njk
   context:
     page_title: "Kuba Hejhal, mír a vytrvalost"

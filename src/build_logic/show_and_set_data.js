@@ -46,22 +46,27 @@ const time_data = deserializeTimeData();
 
 for (let i = 0; i < songYAMLFiles.length; i++) {
     let songYAML = songYAMLFiles[i];
-    let songSlug = songYAML.split('.')[0];
 
     let songYAMLFile = fs.readFileSync(path.resolve(dataDir, 'songs_and_tunes', songYAML));
     let song = yaml.load(songYAMLFile);
     song.plays = [];
 
+    let songSlug;
+
     // If the song has a primary display name, use that as the title and slug.
     if (song.hasOwnProperty('primary_display_name')) {
         song.title = song['primary_display_name'];
-        songs[slugify(song['primary_display_name'])] = song;
+        songSlug = slugify(song['primary_display_name']);
+
         // And add the filename slug as a shorthand.
+        // TODO: Is this still relevant?
         songShorthands[songSlug] = slugify(song['primary_display_name']);
     } else {
-        songs[songSlug] = song;
+        songSlug = songYAML.split('.')[0];
     }
+    songs[songSlug] = song;
     song.slug = songSlug;
+    song.resource_url = `/songs/${songSlug}`;
     // Also slugify any alternate names and add them.
     if (song.hasOwnProperty('alternate_names')) {
         for (let alt_name of song['alternate_names']) {
@@ -400,6 +405,7 @@ for (const songPlay of allSongPlays) {
     if (!songPlay.hasOwnProperty('provenance')) {
         throw new Error("SongPlay does not have provenance; seems like an impossible state.");
     }
+
 
 } // songPlays loop
 

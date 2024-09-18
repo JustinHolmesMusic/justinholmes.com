@@ -41,6 +41,8 @@ export function registerHelpers() {
         return slugify(string_to_slugify);
     });
 
+    // TODO: We removed 'resolveImage', so we now show every image as unused.  No good.
+
     env.addFilter('resolveChart', function (artist_id, blockheight, setId) {
 
         // Sanity check.

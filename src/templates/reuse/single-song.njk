@@ -10,23 +10,41 @@
                 {% if song.traditional %}
                     <h3 class="container-fluid text-center">(traditional)</h3>
                 {% endif %}
-                <div class="commentary text-shadow">
-                    {{ commentary }}
-                </div>
+                {% if song.quick_facts %}
+                    <ul>
+                        {% for fact_name, fact_value in song.quick_facts %}
+                            <li>{{ fact_name }}: {{ fact_value }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% if commentary %}
+                    <h2 class="vanilla">Commentary from Justin:</h2>
+                    <div class="commentary text-shadow">
+                        {{ commentary |safe }}
+                    </div>
+                {% endif %}
             </div>
 
             <div class="col-md-4 mt-2 text-shadow">
                 {% set instrument_to_show=song.instrumentalist_to_display %}
                 {% include 'partials/song-all-plays.njk' %}
 
-                <h2>Notable versions</h2>
-                {% for media in song.notable_versions %}
-                    {{ media.artist }}
-                    {% if media.youtube %}
-                        {% set url = media.youtube %}
-                        {% include 'partials/youtube.njk' %}
-                    {% endif %}
-                {% endfor %}
+                {% if song.selected_versions %}
+                    <h2>Selected versions</h2>
+
+                    {% for media in song.selected_versions %}
+                        <div class="row index-{{ loop.index % 4 }} mb-2 center">
+                            <div class="row">{{ media.artist }}</div>
+                            <div class="row">
+                                {% if media.youtube %}
+                                    {% set url = media.youtube %}
+                                    {% include 'partials/youtube.njk' %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                {% endif %}
             </div>
 
         </div>

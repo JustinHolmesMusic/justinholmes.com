@@ -62,7 +62,7 @@
                                     <span style="color:#fff7ae"><b>⇚</b></span>
                                 {% endif %}
                                 {% if songPlay.mode=="scratch" %}<s>{% endif %}
-                                <a href="/songs/{{songPlay._song.slug}}">{{songPlay._song.title}}</a>
+                                <a href="{{songPlay._song.resource_url}}">{{songPlay._song.title}}</a>
                                 {% if songPlay.mode=="scratch" %}</s> ({{songPlay.scratch_reason}}){% endif %}
 
                                 {% if songPlay.provenance=="traditional" %}
@@ -155,7 +155,6 @@
                     {% for set_number, set in show.sets %}
                         <option value="{{set_number}}">Set #{{loop.index}}</option>
                     {% endfor %}
-
                 </select>
 
                 <h4 data-tippy-content="Select a song from the setlist to make it your favorite song for this set stone."
