@@ -1,0 +1,12 @@
+{% extends 'layouts/base.njk' %}
+{% block main %}
+    {% include 'partials/bigger-banner.njk' %}
+    <div id="content" class="container text-light">
+    <h1>Songs by number of times played at shows</h1>
+        <ul class="col-md-8">
+            {% for song in songs %}<br/>
+                <li><a href="{{ song.resource_url }}">{{ song.title }}</a> ({{ song.plays.length }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
