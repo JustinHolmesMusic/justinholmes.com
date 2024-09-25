@@ -10,6 +10,9 @@
                 {% if song.traditional %}
                     <h3 class="container-fluid text-center">(traditional)</h3>
                 {% endif %}
+                {% if song.by_artist %}
+                    <h3 class="container-fluid text-center">by {{ song.by_artist }}</h3>
+                {% endif %}
                 {% if song.quick_facts %}
                     <ul>
                         {% for fact_name, fact_value in song.quick_facts %}
