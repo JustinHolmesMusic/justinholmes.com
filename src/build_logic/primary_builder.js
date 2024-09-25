@@ -32,7 +32,7 @@ fs.mkdirSync(outputPrimaryDir, {recursive: true});
 console.time("chain-data");
 const skip_chain_data_fetch = process.env.SKIP_CHAIN_DATA_FETCH
 if (skip_chain_data_fetch) {
-    console.log("Skipping chain data generation");
+    console.log("Skipping chain data retrieval.");
 } else {
     const fetchedchainData = await fetch_chaindata(shows);
     serializeChainData(fetchedchainData);

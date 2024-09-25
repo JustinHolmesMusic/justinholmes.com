@@ -23,6 +23,15 @@
                         {{ commentary |safe }}
                     </div>
                 {% endif %}
+
+                {% if song.other_resources %}
+                    <h2>Other resources</h2>
+                    <ul>
+                        {% for resource_name, other_resource_url in song.other_resources %}
+                            <li><a href="{{ other_resource_url }}">{{ resource_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             </div>
 
             <div class="col-md-4 mt-2 text-shadow">

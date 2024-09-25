@@ -1,4 +1,47 @@
 traditional: true
+quick_facts:
+  Other Prominent Names: ['"Oh, the Wind and Rain"',
+                          '"Binnorie"',
+                          '"The Cruel Sister"',
+                          '"The Twa Sisters"',
+                          "The Miller and the King's Daughter'"  ,
+                          '"The Bonny Swans"',
+                          '"The Bonny Bows of London"']
+  Regional Traditions: [ "Scottish", "English", "Appalachian" ]
+  Style: "Ballad"
+  Sub-style: "Murder Ballad"
+  Oldest Surviving Version: 1658
+  Child Number: 10
+  Roud Number: 8
+  Key: E
 alternate_names:
   - "Oh, the Dreadful Wind and Rain"
   - "Wind and Rain"
+instrumentalist_to_display: "fiddle"
+selected_versions:
+    - artist: Jerry Garcia and David Grisman
+      album: "Shady Grove"
+      year: 1996
+      youtube: "https://www.youtube.com/embed/SybfYzby9UI?si=uyEQNNcmPFsUw-yg"
+    - artist: "Billy Strings w/ Greensky Bluegrass"
+      year: 2015
+      youtube: "https://www.youtube.com/watch?v=45eqAfT4vT0"
+    - artist: "Crooked Still with Lula Wiles"
+      youtube: "https://www.youtube.com/embed/pyiTXWhDwIA?si=uQLVPC0vs8ot8BVi"
+      year: 2019
+    - artist: Gillian Welch and David Rawlings
+      youtube: "https://www.youtube.com/embed/47cAfrhugRQ?si=QcqkZ-tKCaHLf-Kk"
+      album: "Songcatcher: Music from and Inspired by the Motion Picture"
+      year: 2001
+    - artist: "Julie Fowlis"
+      year: 2009
+      album: Uam (From Me)
+      youtube: https://www.youtube.com/embed/t8O4on493oM?si=urdNl1bG65mrEcU_
+    - artist: "Kilby Snow"
+      year: 1969
+      youtube: https://www.youtube.com/embed/qi6sCxYhNow?si=YJMX4phGU56-MHIH
+other_resources:
+    "Mudcat Discussion Thread": "https://mudcat.org/thread.cfm?threadid=164203"
+
+#https://youtube/bYLrIGOEVPU?t=1563
+#https://www.youtube.com/watch?v=Y3s9Fu4yu7o&t=2726s

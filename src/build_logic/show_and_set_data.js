@@ -284,6 +284,13 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
             if (songPlay.mode !== "tease" && songPlay.mode !== "reprise" && songPlay.mode !== "scratch") {
                 song.plays.push(songPlay);
             }
+
+            // If there are Set Stones for this set, note that on the song.
+            // TODO: Genericize this for other merch.
+            if (set.hasOwnProperty('setstones')) {
+                songPlay['set_stones'] = set['set_stones'];
+            }
+
             songPlay._song = song;
             songPlay['songSlug'] = songSlug; // TODO: WWDD?  This can be a method.
 
