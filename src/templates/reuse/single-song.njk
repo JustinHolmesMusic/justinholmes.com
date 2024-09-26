@@ -24,11 +24,49 @@
                     </ul>
                 {% endif %}
                 {% if commentary %}
-                    <h2 class="vanilla">Commentary from Justin:</h2>
+                    <h2 class="vanilla center">Justin's Commentary</h2>
                     <div class="commentary text-shadow">
                         {{ commentary |safe }}
                     </div>
                 {% endif %}
+{% if false %} {#  Until we figure out empty set stones display, TODO #}
+                <h2 class="set-stones-available vanilla">Set Stones</h2>
+                <table class="px-3">
+                    <thead class="border-bottom border-black">
+                    <tr>
+                        <th class="text-center">Show</th>
+                        <th class="text-center">Owner</th>
+                        <th class="text-center">Paid (ETH)</th>
+                        <th class="text-center">Set Stone</th>
+                    </tr>
+                    </thead>
+
+                    {% for play in song.plays %}
+
+
+                        <tbody>
+                        {% for stone in play._set.setstones %}
+                            <tr class="border-bottom border-black">
+                            <td class="px-3" data-tippy-content="{{ play._set._show.title }}"><a
+                                        href="{{ play._set.show.resource_url }}"
+                                        target="_blank">{{ play._set._show.title }}</a></td>
+                                <td class="px-3" data-tippy-content="{{ stone.owner }}"><a
+                                        href="https://etherscan.io/address/{{ stone.owner }}"
+                                        target="_blank">{{ stone.owner | truncate(16) }}</a></td>
+                                <td class="px-3">{{ stone.paidAmountEth }}</td>
+                                <td class="px-3"><a href="/assets/images/setstones/{{ stone.tokenId }}.png"
+                                                    target="_blank"><img
+                                        src="/assets/images/setstones/{{ stone.tokenId }}.png"
+                                        style="width: 50px;"></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+
+                    {% endfor %}
+                </table>
+{% endif %}
 
                 {% if song.other_resources %}
                     <h2>Other resources</h2>

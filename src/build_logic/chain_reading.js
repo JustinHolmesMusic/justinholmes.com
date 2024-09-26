@@ -298,7 +298,11 @@ export function appendChainDataToShows(shows, chainData) {
             for (let i = 0; i < Object.keys(show["sets"]).length; i++) {
                 let set = show['sets'][i]
                 set["shape"] = chainDataForShow['sets'][i]['shape'];
-                set['setstones'] = chainDataForShow['sets'][i]['setstones'];
+                const set_stones_for_this_Set = chainDataForShow['sets'][i]['setstones'];
+
+                // TODO: Iterate through songs and note that this set stone is present.
+                // TODO: Note if the song is favorited.
+                set['setstones'] = set_stones_for_this_Set;
             }
         }
     }

@@ -287,9 +287,13 @@ for (let i = 0; i < liveShowYAMLs.length; i++) {
 
             // If there are Set Stones for this set, note that on the song.
             // TODO: Genericize this for other merch.
-            if (set.hasOwnProperty('setstones')) {
-                songPlay['set_stones'] = set['set_stones'];
+            if (songPlay._set._show.hasOwnProperty("has_set_stones_available")) {
+                console.log("llamas");
             }
+            //
+            // if (set.hasOwnProperty('setstones')) {
+            //     songPlay['set_stones'] = set['set_stones'];
+            // }
 
             songPlay._song = song;
             songPlay['songSlug'] = songSlug; // TODO: WWDD?  This can be a method.
