@@ -13,6 +13,9 @@
                 {% if song.by_artist %}
                     <h3 class="container-fluid text-center">by {{ song.by_artist }}</h3>
                 {% endif %}
+                {% if song.video_game %}
+                    <span class="video-game-detail">(from {{ song.video_game }})</span>
+                {% endif %}
                 {% if song.quick_facts %}
                     <ul>
                         {% for fact_name, fact_value in song.quick_facts %}

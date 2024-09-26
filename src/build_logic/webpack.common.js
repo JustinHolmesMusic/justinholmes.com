@@ -1,9 +1,10 @@
+import fs from 'fs';
 import {glob} from 'glob';
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import {outputDistDir, outputPrimaryDir, srcDir} from "./constants.js";
+import {outputDistDir, outputPrimaryDir, srcDir, templateDir} from "./constants.js";
 
 // Pattern to match all HTML files recursively within the prebuilt directory
 const templatesPattern = path.join(outputPrimaryDir, '**/*.html');
@@ -52,10 +53,20 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
 
 
 const common = {
+    output: {path: outputDistDir},
     plugins: [
+        // Copy the .htaccess.
+        {
+            apply: (compiler) => {
+                compiler.hooks.done.tap('CopyHtaccessPlugin', () => {
+                    fs.copyFileSync(path.resolve(templateDir, 'pages/.htaccess'), path.resolve(outputDistDir, '.htaccess'));
+                    console.log('.htaccess file copied');
+                });
+            },
+        },
+        // Copy assets and such.
         new CopyPlugin({
             patterns: [
-                // TODO: Copy .htaccess ?
                 {
                     from: path.resolve(outputPrimaryDir, 'assets'),
                     to: path.resolve(outputDistDir, 'assets')
@@ -77,6 +88,7 @@ const common = {
         }),
         ...htmlPluginInstances,
     ],
+
     entry: {
         main: './src/js/index.js',
         vowel_sounds: './src/js/vowel_sounds.js',

@@ -33,7 +33,7 @@ commands = [
     ["/root/.nvm/versions/node/v22.6.0/bin/npm", "install"],
     ["/root/.nvm/versions/node/v22.6.0/bin/npm", "run", "build"],
     ["/usr/bin/rsync", "-vah", "--progress", "--delete",
-     "/root/projects/justinholmes.com/justinholmes.com.public.dist/",
+     "/root/projects/justinholmes.com/output/justinholmes.com.public.dist/",
      "jmyles_justinholmescom@ssh.nyc1.nearlyfreespeech.net:"]
 ]
 
