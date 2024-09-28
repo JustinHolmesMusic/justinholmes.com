@@ -84,4 +84,10 @@ function getImageMapping() {
     return JSON.parse(jsonData);
 }
 
-export {gatherAssets, imageMapping, unusedImages, getImageMapping};
+function get_image_from_asset_mapping(filename) {
+    // remove this filename from unusedImages
+    unusedImages.delete(filename);
+    return imageMapping[filename];  // Return empty string if not found
+}
+
+export {gatherAssets, imageMapping, unusedImages, getImageMapping, get_image_from_asset_mapping};

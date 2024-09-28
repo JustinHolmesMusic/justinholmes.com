@@ -1,6 +1,5 @@
-
 import nunjucks from "nunjucks";
-import {imageMapping, unusedImages} from "../asset_builder.js";
+import {get_image_from_asset_mapping, imageMapping, unusedImages} from "../asset_builder.js";
 import {templateDir} from "../constants.js";
 import {slugify} from "./text_utils.js";
 import {pickers} from "../show_and_set_data.js";
@@ -20,7 +19,12 @@ export function registerHelpers() {
         return;
     }
 
-    env.addFilter('showInstrumentalist', function(song_play, instrument_to_show) {
+    // Add the 'get_image' filter that looks up images in the imageMapping object
+    env.addGlobal('get_image', function (filename, imageMapping) {
+        return get_image_from_asset_mapping(filename);  // Return empty string if not found
+    });
+
+    env.addFilter('showInstrumentalist', function (song_play, instrument_to_show) {
         const ensemble = song_play._set._show.ensemble
 
         // We have the ensemble object; iterate through artists and their instruments.

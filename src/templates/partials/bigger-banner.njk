@@ -6,11 +6,11 @@
                 {% if use_white_logo %}
                     <a href="/" id="home-link-at-top">
                         <img class="img-fluid" id="main-logo-at-top"
-                             src="{{ imageMapping["name-with-logo-white.png"] }}">
+                             src="{{ get_image("name-with-logo-white.png") }}">
                     </a>
                 {% else %}
                     <a href="/" id="home-link-at-top">
-                        <img class="img-fluid" id="main-logo-at-top" src="{{ imageMapping["name-with-log.png"] }}">
+                        <img class="img-fluid" id="main-logo-at-top" src="{{ get_image("name-with-log.png") }}">
                     </a>
                 {% endif %}
             </div>

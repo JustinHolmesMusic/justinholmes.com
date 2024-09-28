@@ -319,6 +319,7 @@ Object.entries(pickers).forEach(([picker, picker_data]) => {
 ///////////////////////////
 
 // Warn about each unused image.
+console.log(unusedImages.size, 'images were not used.');
 unusedImages.forEach(image => {
     console.warn(`Image not used: ${image}`);
 });

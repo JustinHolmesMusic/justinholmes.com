@@ -1,24 +1,52 @@
 {% extends 'layouts/base.njk' %}
 {% block main %}
-{% include 'partials/bigger-banner.njk' %}
+    {% include 'partials/bigger-banner.njk' %}
 
-<div id="cryptograss-content" class="container mt-3">
-    <h1 class="text-light pixel-font text-center mb-3">cryptograss.eth</h1>
+    <div id="cryptograss-content" class="container mt-3">
+        <div class="row">
+            <p class="h3 text-light kreon text-center">BLUEGRASS BELONGS ON THE BLOCKCHAIN.</p>
+            <p class="h3 text-light kreon text-center">THE MUSIC "INDUSTRY" NEVER GOT US ANYWAY.</p>
+        </div>
+
+        <hr/>
+
+        <div class="row">
+            <div class="col-3"></div>
+            <p class="col-md-6">
+                <span class="big">Why are there so many songs about freight trains?</span> When our
+                music came down from the
+                mountains and into the cities in search of AM radio play and record distribution, we sang about the
+                vehicles
+                that brought us there.<span class="big">  Traditional music has always spoke of the technological liberations movements of the day.</span>
+                And it's no coincidence: innovation thrives in the same environments as traditional music: in warm,
+                diverse, neighborly, decentralized societies, with few or no notions of ownership of ideas.</p>
+
+        </div>
+        <div class="row mb-4">
+            <div class="col-2"></div>
+            <p class="col-md-8">
+                <span class="big">The cryptographic tools here are written by bluegrassers, and the songs by cryptographic engineers.</span>
+            </p>
+        </div>
+    </div>
     <hr/>
-    <p class="h5 text-light pixel-font text-center">Decentralized apps written by bluegrassers</p>
-    <p class="h3 text-light curly text-center">Bluegrass written by cryptographers</p>
-
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-12">
             <ul class="nav subnav nav-tabs pixel-font">
                 <li class="nav-item">
-                    <button data-group="cryptograss-nav" data-show="shows" class="nav-link exclusive active">live show data</button>
+                    <button data-group="cryptograss-nav" data-show="shows" class="nav-link exclusive active">
+                        live
+                        show data
+                    </button>
                 <li class="nav-item pi">
-                    <button data-group="cryptograss-nav" data-show="bazaar" class="nav-link exclusive active">onchain
-                        bazaar</button>
+                    <button data-group="cryptograss-nav" data-show="bazaar" class="nav-link exclusive active">
+                        onchain
+                        bazaar
+                    </button>
                 </li>
                 <li class="nav-item">
-                    <button data-group="cryptograss-nav" data-show="faq" class="nav-link exclusive">FAQs</button>
+                    <button data-group="cryptograss-nav" data-show="faq" class="nav-link exclusive">FAQs
+                    </button>
                 </li>
             </ul>
         </div>
@@ -30,15 +58,16 @@
             Blue Railroad Train Squats
         </h3>
         <h4 class="text-white">
-            You can earn one by taking a video of yourself doing squats with "Blue Railroad Train", from Tony Rice's
+            You can earn one by taking a video of yourself doing squats with "Blue Railroad Train", from Tony
+            Rice's
             Manzanita album, to the Justin Holmes discord.
         </h4>
         <table class="chainDataList">
             {% for this in chainData.blueRailroads %}
                 <tr>
-                    <td>{{id}}</td>
-                    <td>{{owner}}</td>
-                    <td><a href="{{uri}}">video</a></td>
+                    <td>{{ id }}</td>
+                    <td>{{ owner }}</td>
+                    <td><a href="{{ uri }}">video</a></td>
                 </tr>
             {% endfor %}
         </table>
@@ -46,31 +75,31 @@
     <div class="row">
         <div class="col-2"></div>
         <div id="faq" class="col-sm-8 cryptograss-nav" style="display: none;">
-            {{faq}}
+            {{ faq }}
         </div>
         <div class="col-2"></div>
     </div>
-</div>
+    </div>
 
-<div id="page-build-metadata">
-                Page build metadata:<br/>
-    <ul>
-        <li>
-            Build on ref:
-            {{latest_git_commit}}
-        </li>
-        <li>
-            Mainnet block height
-            {{chainData.mainnetBlockNumber}}
-        </li>
-        <li>
-            Optimism block height
-            {{chainData.optimismBlockNumber}}
-        </li>
-        <li>
-            Optimism Sepolia block height
-            {{chainData.optimismSepoliaBlockNumber}}
-        </li>
-    </ul>
-</div>
+    <div id="page-build-metadata">
+        Page build metadata:<br/>
+        <ul>
+            <li>
+                Build on ref:
+                {{ latest_git_commit }}
+            </li>
+            <li>
+                Mainnet block height
+                {{ chainData.mainnetBlockNumber }}
+            </li>
+            <li>
+                Optimism block height
+                {{ chainData.optimismBlockNumber }}
+            </li>
+            <li>
+                Optimism Sepolia block height
+                {{ chainData.optimismSepoliaBlockNumber }}
+            </li>
+        </ul>
+    </div>
 {% endblock %}

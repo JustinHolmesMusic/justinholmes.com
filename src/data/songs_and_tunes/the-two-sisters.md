@@ -21,8 +21,8 @@ The third of these is remarkably steady, appearing in essentially all versions f
 In **1852**, in [Volume 5 of the Oxford University Press journal "Notes and Queries"](https://archive.org/details/sim_notes-and-queries_1852-06-19_5_138/page/591/mode/1up), we find research into a song called "The Miller's Melody", which by that time was already, and is expressly referred to as, *"an old ballad"*. The entry includes an account from British hymnologist and organ player Edward Francis Rimbault, who says:
 
 <div class="long-form-aside">
-<a href="{{ imageMapping["two-sisters-notes-and-queries.png"] }}">
-  <img src="{{ imageMapping["two-sisters-notes-and-queries.png"] }}"/>
+<a href="{{ get_image("two-sisters-notes-and-queries.png") }}">
+  <img src="{{ get_image("two-sisters-notes-and-queries.png") }}"/>
 </a>
   <div class="caption">The excerpt from an 1852 volume of "Notes and Queries", describing the broadside with the verses to the song. (<a href="https://archive.org/details/sim_notes-and-queries_1852-06-19_5_138/page/591/mode/1up">scan from archive.org</a>)</div>
 </div>
@@ -37,7 +37,7 @@ in the **1658** book "Wit Restor’d" to which he refers, and this book has surv
 The title of the book is given in five lines:
 
 <div class="long-form-aside">
-  <a href="{{ imageMapping["two-sisters-wit-restored.png"] }}"><img src="{{ imageMapping["two-sisters-wit-restored.png"] }}"/></a>
+  <a href="{{ get_image("two-sisters-wit-restored.png") }}"><img src="{{ get_image("two-sisters-wit-restored.png") }}"/></a>
   <div class="caption">The oldest known surviving written version of the song, from the 1658 book "Wit Restor'd". (<a href="https://archive.org/details/bim_early-english-books-1641-1700_wit-restord-in-severall_mennes-sir-john_1658/page/n52/mode/1up">scan from archive.org</a>)</div>
 </div>
 
@@ -69,8 +69,8 @@ This seems to me a fair assessment.  Rimbault's phrasing suggests that he too re
 In the mid-1700s, we start to see the song appear with many names: "Damned mil-damm" in **1749**, "The Cruel Sister" in **1760**, and in **1770**, "Bonny Bows of London" and "The King Lived in the North Country" (more on this, the "Bow Down" variant, below).
 
 <div class="long-form-aside">
-<a href="{{ imageMapping["binnorie-lullaby.jpg"] }}">
-  <img src="{{ imageMapping["binnorie-lullaby.jpg"] }}"/>
+<a href="{{ get_image("binnorie-lullaby.jpg") }}">
+  <img src="{{ get_image("binnorie-lullaby.jpg") }}"/>
 </a>
   <div class="caption">An illustration from the 1890 fairy tale version of "Binnorie"</div>
 </div>
