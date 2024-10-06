@@ -56,14 +56,6 @@ const common = {
     output: {path: outputDistDir},
     plugins: [
         // Copy the .htaccess.
-        {
-            apply: (compiler) => {
-                compiler.hooks.done.tap('CopyHtaccessPlugin', () => {
-                    fs.copyFileSync(path.resolve(templateDir, 'pages/.htaccess'), path.resolve(outputDistDir, '.htaccess'));
-                    console.log('.htaccess file copied');
-                });
-            },
-        },
         // Copy assets and such.
         new CopyPlugin({
             patterns: [

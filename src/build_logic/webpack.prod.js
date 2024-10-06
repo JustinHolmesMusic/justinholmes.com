@@ -2,7 +2,9 @@ import common from './webpack.common.js';
 import {merge} from 'webpack-merge';
 import TerserPlugin from 'terser-webpack-plugin';
 import webpack from 'webpack';
-import {outputDistDir} from "./constants.js";
+import {outputDistDir, templateDir} from "./constants.js";
+import fs from "fs";
+import path from "path";
 
 let prodExport = merge(common, {
     mode: 'production',
@@ -18,6 +20,14 @@ let prodExport = merge(common, {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production'),
         }),
+        {
+            apply: (compiler) => {
+                compiler.hooks.done.tap('CopyHtaccessPlugin', () => {
+                    fs.copyFileSync(path.resolve(templateDir, 'pages/.htaccess'), path.resolve(outputDistDir, '.htaccess'));
+                    console.log('.htaccess file copied');
+                });
+            },
+        },
     ]
 });
 
