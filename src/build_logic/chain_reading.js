@@ -17,22 +17,7 @@ import {showsDir} from "./constants.js";
 const env = process.env.NODE_ENV || 'development';
 dotenvConfig({path: `.env`});
 
-// Use the environment-specific variables
-const apiKey = process.env.INFURA_API_KEY;
-
-export const config = createConfig({
-    chains: [mainnet, optimism, optimismSepolia, arbitrum],
-    transports: {
-        [mainnet.id]: http(`https://mainnet.infura.io/v3/${apiKey}`),
-        [optimism.id]: http(`https://optimism-mainnet.infura.io/v3/${apiKey}`),
-        [optimismSepolia.id]: http(`https://optimism-sepolia.infura.io/v3/${apiKey}`),
-        [arbitrum.id]: http(`https://arbitrum-mainnet.infura.io/v3/${apiKey}`),
-    },
-    ssr: true,
-})
-
-
-export async function fetchChainDataForShows(shows) {
+export async function fetchChainDataForShows(shows, config) {
     console.time("chain-data-for-shows");
     // We expect shows to be the result of iterating through the show YAML files.
     // Now we'll add onchain data from those shows.
@@ -97,7 +82,7 @@ export async function fetchChainDataForShows(shows) {
     return showsChainData;
 }
 
-export async function appendSetStoneDataToShows(showsChainData) {
+export async function appendSetStoneDataToShows(showsChainData, config) {
     console.time("set-stone-chaindata");
     // should be called after the shows data has been appended to the shows object
 
@@ -226,7 +211,7 @@ export async function appendSetStoneDataToShows(showsChainData) {
 
 ///////////BACK TO TONY
 
-async function getBlueRailroads() {
+async function getBlueRailroads(config) {
     console.time("blue-railroads");
     const blueRailroadCount = await readContract(config,
         {
@@ -311,15 +296,36 @@ export function appendChainDataToShows(shows, chainData) {
 export async function fetch_chaindata(shows) {
 
     console.time("block-numbers");
+
+
+// Use the environment-specific variables
+    const apiKey = process.env.INFURA_API_KEY;
+
+    if (apiKey === undefined) {
+        throw new Error("INFURA_API_KEY is not set in .env - ask Justin or somebody for the secrets file.");
+    }
+
+    const config = createConfig({
+        chains: [mainnet, optimism, optimismSepolia, arbitrum],
+        transports: {
+            [mainnet.id]: http(`https://mainnet.infura.io/v3/${apiKey}`),
+            [optimism.id]: http(`https://optimism-mainnet.infura.io/v3/${apiKey}`),
+            [optimismSepolia.id]: http(`https://optimism-sepolia.infura.io/v3/${apiKey}`),
+            [arbitrum.id]: http(`https://arbitrum-mainnet.infura.io/v3/${apiKey}`),
+        },
+        ssr: true,
+    })
+
+
     const mainnetBlockNumber = await fetchBlockNumber(config, {chainId: mainnet.id});
     const optimismBlockNumber = await fetchBlockNumber(config, {chainId: optimism.id});
     const optimismSepoliaBlockNumber = await fetchBlockNumber(config, {chainId: optimismSepolia.id});
     console.timeEnd("block-numbers");
 
-    const blueRailroads = await getBlueRailroads();
-    let showsWithChainData = await fetchChainDataForShows(shows);
-    let showsWithSetStoneData = await appendSetStoneDataToShows(showsWithChainData);
-    const vowelSoundContributions = await getVowelsoundContributions();
+    const blueRailroads = await getBlueRailroads(config);
+    let showsWithChainData = await fetchChainDataForShows(shows, config);
+    let showsWithSetStoneData = await appendSetStoneDataToShows(showsWithChainData, config);
+    const vowelSoundContributions = await getVowelsoundContributions(config);
 
 
     const chainData = {

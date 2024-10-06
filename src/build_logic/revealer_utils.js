@@ -79,7 +79,7 @@ function getTopContributions(contributionsByAddress) {
 }
 
 
-export async function getVowelsoundContributions() {
+export async function getVowelsoundContributions(config) {
     console.time("vowel-sounds-artifacts")
     const contributionsMetadata = await readContract(config, {
         address: revealerContractAddress,
