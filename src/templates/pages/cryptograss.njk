@@ -38,6 +38,8 @@
                         live
                         show data
                     </button>
+                </li>
+
                 <li class="nav-item pi">
                     <button data-group="cryptograss-nav" data-show="bazaar" class="nav-link exclusive active">
                         onchain
@@ -63,6 +65,7 @@
             Manzanita album, to the Justin Holmes discord.
         </h4>
         <table class="chainDataList">
+            {# For the love of Tony, we're trying to make this codebase beginner-friendly, and still using 'this' as a dang ole' name.  wtf #'''' #}
             {% for this in chainData.blueRailroads %}
                 <tr>
                     <td>{{ id }}</td>
