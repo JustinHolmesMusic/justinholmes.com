@@ -70,6 +70,11 @@ add-show-for-stone-minting:
     page_title: "Make show available for stone minting"
   template: "cryptograss/tools/add-show-for-stone-minting.njk"
 
+add-striking_a_stone-minting:
+  context:
+    page_title: "striking a stone"
+  template: "cryptograss/about_set_stones.njk"
+
 setstone-color-palette:
   context:
     page_title: "Setstone color palette"
