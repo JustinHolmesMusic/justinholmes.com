@@ -256,13 +256,13 @@ async function renderOwnedVowelSoundArtifacts(address) {
     const compiled_small_trophycase_template = nunjucks.compile(small_trophycase_template);
 
     // Render the template with the context
-    const renderedHtml = template(filteredVowelSoundContributions);
+    const renderedHtml = template.render({artifacts: filteredVowelSoundContributions});
 
     // Append the rendered HTML to the DOM
     document.getElementById('vowelSoundContributions').innerHTML = renderedHtml;
 
     // Render the small trophy case
-    const rendered_small_trophycase = compiled_small_trophycase_template(filteredVowelSoundContributions);
+    const rendered_small_trophycase = compiled_small_trophycase_template.render({artifacts: filteredVowelSoundContributions});
 
     document.getElementById('top-fixed-area').innerHTML = rendered_small_trophycase;
 

@@ -69,10 +69,10 @@ const common = {
                 },
 
                 // TODO: Design decision on client partials.
-                // {
-                //     from: path.resolve(__dirname, '../../_prebuild_output/client_partials'),
-                //     to: path.resolve(__dirname, '../../dist/client_partials')
-                // }
+                {
+                    from: path.resolve(outputPrimaryDir, 'client_partials'),
+                    to: path.resolve(outputDistDir, 'partials')
+                }
             ]
         }),
         new MiniCssExtractPlugin({
