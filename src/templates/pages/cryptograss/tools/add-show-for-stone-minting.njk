@@ -6,9 +6,26 @@
 <div class="container mb-5">
     <div class="gradient-transparent-bg p-4">
         <h1 class="pixel-font">Make show available for stone minting</h1>
-        <p class="lead">Make a show available for stone minting by adding it to the SetStone contract</p>
 
-        <p>
+        {# Selector for show, from shows in context #}
+        <div class="form-group">
+            <label for="show">Select a show</label>
+            <select class="form-control" id="show-to-make-available" name="show" required>
+                <option value="">Select a show</option>
+                {% for show_id, show in shows %}
+                    <option value="{{ show_id }}">{{ show.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        {# Input box for number of rabbit secrets to generate #}
+        <div class="form-group">
+            <label for="numberOfRabbitSecrets">Number of Rabbit Secrets to generate</label>
+            <input type="number" class="form-control" id="numberOfRabbitSecrets" name="numberOfRabbitSecrets" required>
+            {# Generate hashes button #}
+            <button class="btn btn-primary" id="generate-rabbit-secrets-button">Generate Rabbit Secrets</button>
+        </div>
+            <p>
             <a id="contractEtherscanLink">
                 View SetStone Contract on Etherscan
             </a>
