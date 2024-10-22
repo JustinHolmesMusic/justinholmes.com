@@ -68,6 +68,8 @@ add-live-set:
 add-show-for-stone-minting:
   context:
     page_title: "Make show available for stone minting"
+  include_data_in_context:
+    - shows
   template: "cryptograss/tools/add-show-for-stone-minting.njk"
 
 add-striking_a_stone-minting:

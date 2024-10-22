@@ -1,5 +1,5 @@
-import { createConfig, http, readContract, writeContract } from '@wagmi/core';
-import { optimismSepolia, arbitrum } from '@wagmi/core/chains';
+import {createConfig, http, readContract, writeContract} from '@wagmi/core';
+import {optimismSepolia, arbitrum} from '@wagmi/core/chains';
 import Web3 from 'web3';
 import $ from 'jquery';
 import {createWeb3Modal} from '@web3modal/wagmi'
