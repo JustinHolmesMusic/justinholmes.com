@@ -13,12 +13,41 @@ export const config = createConfig({
     },
 })
 
+// When <select> element show-to-make-available is changed, update the show_id and blockheight fields by parsing the show_id.
+$('#show-to-make-available').change(function () {
+    let showId = $(this).val();
+
+    // The artist_id is before the "-" in the show_id; the blockheight is after it.
+    let artistId = showId.split('-')[0];
+    let blockheight = showId.split('-')[1];
+
+    // Populate the inputs called artist_id and blockheight with the parsed values.
+    $('#artist_id').val(artistId);
+    $('#blockheight').val(blockheight);
+});
+
+$('#generate-rabbit-secrets-button').click(function () {
+    let numSecrets = parseInt($('#numberOfRabbitSecrets').val());
+    let secrets = [];
+
+
+    for (let i = 0; i < numSecrets; i++) {
+        let array_to_turn_into_integer = [];
+        var buf = new Uint16Array(6);
+        let secret = window.crypto.getRandomValues(buf);
+        // Join secret into a string and push it to the secrets array.
+        secrets.push(secret.join(''));
+    }
+    $('#rabbitSecrets').val(secrets.join('\n'));
+});
+
+
 const web3 = new Web3();
 const projectId = '3e6e7e58a5918c44fa42816d90b735a6'
 import {setStoneABI as contractABI} from "../../../abi/setStoneABI.js";
 
 function keccak256(value) {
-    return web3.utils.soliditySha3({ type: "string", value: value});
+    return web3.utils.soliditySha3({type: "string", value: value});
 }
 
 function parseShapes() {
