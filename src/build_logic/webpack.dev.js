@@ -4,6 +4,8 @@ import {merge} from 'webpack-merge';
 import {outputPrimaryDir} from "./constants.js";
 import path from 'path';
 
+
+
 const devExport = merge(common, {
     devServer: {
         historyApiFallback: {

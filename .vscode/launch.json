@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "name": "Dev Server",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "devserver"]
+        },
+        {
+            "type": "node",
+            "name": "Dev Server (No Chain)",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "devserver-no-chain-data"]
+        },
+        {
+            "type": "node",
+            "name": "Build",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "build"]
+        },
+        {
+            "type": "node",
+            "name": "Test",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "test"]
+        },
+        {
+            "type": "node",
+            "name": "Test (Watch)",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "test:watch"]
+        }
+    ]
+}

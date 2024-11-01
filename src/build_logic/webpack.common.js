@@ -1,10 +1,13 @@
 import fs from 'fs';
-import {glob} from 'glob';
+import { glob } from 'glob';
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import {outputDistDir, outputPrimaryDir, srcDir, templateDir} from "./constants.js";
+import { outputDistDir, outputPrimaryDir, srcDir, templateDir } from "./constants.js";
+import { runPrimaryBuild } from './primary_builder.js';
+
+await runPrimaryBuild();
 
 // Pattern to match all HTML files recursively within the prebuilt directory
 const templatesPattern = path.join(outputPrimaryDir, '**/*.html');
@@ -53,7 +56,7 @@ const htmlPluginInstances = templateFiles.map(templatePath => {
 
 
 const common = {
-    output: {path: outputDistDir},
+    output: { path: outputDistDir },
     plugins: [
         // Copy the .htaccess.
         // Copy assets and such.
