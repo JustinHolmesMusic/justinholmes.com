@@ -8,7 +8,7 @@ import {getVowelsoundContributions} from "./revealer_utils.js";
 import Web3 from 'web3';
 
 const web3 = new Web3();
-import {config as dotenvConfig} from 'dotenv';
+import {config as dotenvConfig} from 'dotenv'; 
 import {fileURLToPath} from "url";
 import path from "path";
 import fs from "fs";

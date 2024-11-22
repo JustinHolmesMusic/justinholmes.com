@@ -30,6 +30,18 @@
             "name": "Test (Watch)",
             "runtimeExecutable": "npm",
             "runtimeArgs": ["run", "test:watch"]
+        },
+        {
+            "type": "node",
+            "name": "Debug Discord Fetcher",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "debug-discord"]
+        },
+        {
+            "type": "node",
+            "name": "Seed Phrase Dice",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "seed-dice"]
         }
     ]
 }
