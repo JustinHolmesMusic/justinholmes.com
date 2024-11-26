@@ -9,7 +9,9 @@
     "devserver-test-chain-data": "TEST_CHAIN_DATA=true webpack serve --port 4000 --client-progress --config src/build_logic/webpack.dev.js",
     "build": "webpack --mode production --config src/build_logic/webpack.prod.js",
     "build-no-chain-update": "webpack --mode production --config src/build_logic/webpack.prod.js",
-    "seed-dice": "node src/build_logic/seed_phrase_dice.js"
+    "seed-dice": "node src/build_logic/seed_phrase_dice.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "jest --watch"
   },
   "type": "module",
   "keywords": [],
