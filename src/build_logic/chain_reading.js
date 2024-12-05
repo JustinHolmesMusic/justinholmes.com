@@ -292,19 +292,19 @@ export async function fetch_chaindata(shows) {
 
 
 // Use the environment-specific variables
-    const apiKey = process.env.INFURA_API_KEY;
+    const apiKey = process.env.ALCHEMY_API_KEY;
 
     if (apiKey === undefined) {
-        throw new Error("INFURA_API_KEY is not set in .env - ask Justin or somebody for the secrets file.");
+        throw new Error("Not seeing API keys in .env - ask Justin or somebody for the secrets file.");
     }
 
     const config = createConfig({
         chains: [mainnet, optimism, optimismSepolia, arbitrum],
         transports: {
-            [mainnet.id]: http(`https://mainnet.infura.io/v3/${apiKey}`),
-            [optimism.id]: http(`https://optimism-mainnet.infura.io/v3/${apiKey}`),
-            [optimismSepolia.id]: http(`https://optimism-sepolia.infura.io/v3/${apiKey}`),
-            [arbitrum.id]: http(`https://arbitrum-mainnet.infura.io/v3/${apiKey}`),
+            [mainnet.id]: http(`https://eth-mainnet.g.alchemy.com/v2/${apiKey}`),
+            [optimism.id]: http(`https://opt-mainnet.g.alchemy.com/v2/${apiKey}`),
+            [optimismSepolia.id]: http(`https://opt-sepolia.g.alchemy.com/v2/${apiKey}`),
+            [arbitrum.id]: http(`https://arb-mainnet.g.alchemy.com/v2/${apiKey}`),
         },
         ssr: true,
     })
