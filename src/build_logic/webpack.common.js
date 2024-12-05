@@ -7,7 +7,10 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { outputDistDir, outputPrimaryDir, srcDir, templateDir } from "./constants.js";
 import { runPrimaryBuild } from './primary_builder.js';
 
-await runPrimaryBuild();
+// Check if SKIP_CHAIN_DATA is set
+const skipChainData = process.env.SKIP_CHAIN_DATA;
+
+await runPrimaryBuild(skipChainData);
 
 // Pattern to match all HTML files recursively within the prebuilt directory
 const templatesPattern = path.join(outputPrimaryDir, '**/*.html');

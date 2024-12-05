@@ -14,7 +14,7 @@ import { registerHelpers } from './utils/template_helpers.js';
 import { appendChainDataToShows, fetch_chaindata } from './chain_reading.js';
 import nunjucks from "nunjucks";
 
-export async function runPrimaryBuild(skip_chain_data_fetch=true) {
+export async function runPrimaryBuild(skip_chain_data_fetch=false) {
     console.time('primary-build');
     // Prepare output directories.
 

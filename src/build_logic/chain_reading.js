@@ -202,13 +202,6 @@ export async function appendSetStoneDataToShows(showsChainData, config) {
     return showsChainData;
 }
 
-
-///////////////////////////
-/// VowelSounds artifact
-///////////////////////////
-// const vowelSoundContributions = await getVowelsoundContributions();
-
-
 ///////////BACK TO TONY
 
 async function getBlueRailroads(config) {
