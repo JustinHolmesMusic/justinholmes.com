@@ -197,7 +197,7 @@ At this point, mandolin player Jarrod Walker (who happens to be the younger brot
 
 And sure enough, Jarrod's choice had been The Two Sisters (which they typically write on setlists as "Oh The Wind And Rain"). Jarrod knows that I like and play this song, and also knew I was going to be in the audience that night, but whether my presence had any effect I don't know; almost certainly coincidence I reckon. Either way, I was thankful because it was a lovely version, and it was a great moment for me and my family.
 
-As an aside: after that show, the band's bassist Royal Masat came over to my AirBnb, where we shared a bottle of wine and talked about music late into the night. He was very encouraging about my music and my career, and it was a very validating moment, just when I needed a reason to keep going. Thanks Royal. 
+As an aside: after that show, the band's bassist Royal Masat came over to my AirBnb, where we shared a bottle of wine and talked about music late into the night, along with my family and our mutual friend Gabrielle Simard, a circus star and software engineer who was in town. Royal very encouraging about my music and my career, and it was a very validating moment, just when I needed a reason to keep going. Thanks Royal. 
 
 ### As cryptograss
 
@@ -205,7 +205,7 @@ Although I don't closely keep track of this statistic, I suspect that The Two Si
 
 We played this song at six show with our dear friend and kickass fiddler [Kuba Hejhal](/kuba), who left this world in September 2024. Kuba was a special cryptograsser; he took very seriously the task of doing justice to this song.
 
-As a band, we've played it at {{ song.plays.length }} shows so far, and it's always interesting to see how y'all respond. For whatever reason(s), it seems to be counter-intuitive to many people to suppose that these old songs might hit so hard, and be such a quintessential piece of the cypherpunk puzzle. But this song has survived and surged for three and a half centuries with no need for copyrights or centralized authorities to protect it. It serves as an easy and obvious example of what we hope decentralized society to be.
+As a band, we've played it at {{ song.plays.length }} shows so far, and it's always interesting to see how y'all respond. For whatever reason(s), it seems to be counter-intuitive to many people to suppose that these old songs might hit so hard, and be such a quintessential piece of the cypherpunk puzzle. But **this song has survived and surged for three and a half centuries with no need for copyrights or centralized authorities** to protect it. It serves as an easy and obvious example of what we hope decentralized society to be.
 
 
 ## Lyrical variations, and choosing which verses to sing
