@@ -1,6 +1,8 @@
 import readline from 'readline';
 import { createHash } from 'crypto';
-import { ethers, wordlists } from 'ethers';
+import { mnemonicToAccount } from 'viem/accounts';
+import { ethers } from 'ethers';
+
 import { wordlist } from '@scure/bip39/wordlists/english';
 
 
@@ -77,52 +79,14 @@ function indicesToBinary(indices) {
     ).join('');
 }
 
-export function generateChecksumWord(words) {
-    // Validation
-    // Validation
-    if (!Array.isArray(words) || words.length !== 11) {
-        throw new Error(`Expected 11 words; you gave me ${words?.length}`);
-    }
+function bitsToBytes(bitString) {
+    // Split entropy into 8-bit chunks (last chunk may be partial)
+    const byteStrings = bitString.match(/.{1,8}/g);
     
-    words.forEach((word, i) => {
-        if (!wordlist.includes(word.toLowerCase())) {
-            throw new Error(`Invalid word at position ${i}: ${word}`);
-        }
-    });
-    
-    // Convert words to indices
-    const indices = words.map(word => wordlist.indexOf(word.toLowerCase()));
-    
-    // Convert indices to binary (each index is 11 bits)
-    const binaryData = indices.map(index => 
-        index.toString(2).padStart(11, '0')
-    ).join('');
-    
-    // Get entropy (first 11 words = 11 * 11 = 121 bits)
-    const entropy = binaryData.slice(0, 121);
-    
-    // New approach to byte conversion
-    const entropyBytes = [];
-    for (let i = 0; i < entropy.length; i += 8) {
-        let byte = entropy.slice(i, i + 8);
-        // Pad last byte if needed
-        if (byte.length < 8) {
-            byte = byte.padEnd(8, '0');
-        }
-        entropyBytes.push(parseInt(byte, 2));
-    }
-    
-    const hash = createHash('sha256')
-        .update(Buffer.from(entropyBytes))
-        .digest();
-        
-    const checksumBits = hash[0].toString(2).padStart(8, '0').slice(0, 4);
-    
-    // Take exactly 11 bits for final index
-    const finalBits = (entropy + checksumBits).slice(-11);
-    const checksumIndex = parseInt(finalBits, 2);
-    
-    return wordlist[checksumIndex];
+    // Convert each chunk to a number, padding if needed
+    return byteStrings.map(bits => 
+        parseInt(bits.padEnd(8, '0'), 2)
+    );
 }
 
 async function generatePhrase() {
@@ -150,7 +114,7 @@ async function generatePhrase() {
     console.log(`\nChecksum word (12th word): ${checksumWord}`);
     
     const finalPhrase = words.join(' ');
-    const wallet = ethers.Wallet.fromPhrase(finalPhrase);
+    const wallet = wordlists.mnemonicToAccount(finalPhrase);
     
     console.log('\nFinal seed phrase (verify each word carefully):', finalPhrase);
     console.log('Ethereum address:', wallet.address);
@@ -184,7 +148,7 @@ async function deriveFromExistingWords() {
     console.log("Final phrase:", finalPhrase);
     
     try {
-        const wallet = ethers.Wallet.fromPhrase(finalPhrase);
+        const wallet = wordlists.mnemonicToAccount(finalPhrase);
         console.log('Ethereum address:', wallet.address);
     } catch (e) {
         console.log("Wallet creation error:", e);
@@ -219,3 +183,32 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
 // Export functions needed for testing
 // export { generateChecksumWord };
+
+export function findValidChecksumWords(words) {
+    // Validation
+    if (!Array.isArray(words) || words.length !== 11) {
+        throw new Error(`Expected 11 words; you gave me ${words?.length}`);
+    }
+    
+    words.forEach((word, i) => {
+        if (!wordlist.includes(word.toLowerCase())) {
+            throw new Error(`Invalid word at position ${i}: ${word}`);
+        }
+    });
+    // Since BIP39 uses 4 bits for checksum,
+    // approximately 1/16 of all possible words will be valid
+    const validWords = [];
+    
+    // Try each word in the wordlist
+    for (const candidate of wordlist) {
+        const phrase = [...words, candidate].join(' ');
+        try {
+            ethers.Wallet.fromPhrase(phrase);  // Will throw if invalid
+            validWords.push(candidate);
+        } catch {
+            continue;
+        }
+    }
+
+    return validWords;
+}
