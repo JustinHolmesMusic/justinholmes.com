@@ -35,7 +35,9 @@
             "type": "node",
             "name": "Debug Discord Fetcher",
             "runtimeExecutable": "npm",
-            "runtimeArgs": ["run", "debug-discord"]
+            "runtimeArgs": ["run", "debug-discord-fetcher"],
+            "console": "integratedTerminal",
+            "outputCapture": "std"
         },
         {
             "type": "node",

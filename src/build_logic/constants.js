@@ -13,6 +13,8 @@ export const pageBaseDir = path.resolve(templateDir, 'pages');
 export const dataDir = path.resolve(srcDir, 'data');
 export const showsDir = path.resolve(dataDir, 'shows');
 export const imagesSourceDir = path.join(srcDir, 'images');
+export const fetchedVideosDir = path.join(srcDir, 'fetched_videos');
+
 
 // Output directories
 export const outputBaseDir = path.resolve(projectRootDir, 'output');
