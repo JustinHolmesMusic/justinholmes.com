@@ -11,7 +11,8 @@
     "build-no-chain-update": "SKIP_CHAIN_DATA=true webpack --mode production --config src/build_logic/webpack.prod.js",
     "seed-dice": "node src/build_logic/seed_phrase_dice.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "debug-discord-fetcher": "node src/build_logic/debug_discord_fetcher.js"
   },
   "type": "module",
   "keywords": [],

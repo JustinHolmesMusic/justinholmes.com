@@ -1,13 +1,26 @@
 import { fetchDiscordVideos } from './discord_video_fetcher.js';
+import { deserializeChainData } from './chaindata_db.js';
 
-// Test URL - replace with an actual Discord message URL from your server
-const testUrls = [
-    'https://discord.com/channels/1126841404056948806/1126841404056948809/1202000078152138752'
-];
+async function fetchBlueRailroadVideos() {
+    const chainData = deserializeChainData();
+    const { blueRailroads } = chainData;
+
+    // Get all Discord URLs from the tokens
+    const discordUrls = Object.values(blueRailroads)
+        .map(token => {
+            // Need to extract Discord URL from token.uri
+            return token.uri;
+        })
+        .filter(url => url && url.includes('discordapp.com'));
+
+    // Fetch videos
+    const videos = await fetchDiscordVideos(discordUrls);
+    return videos;
+}
 
 async function testFetch() {
     try {
-        const videos = await fetchDiscordVideos(testUrls);
+        const videos = await fetchBlueRailroadVideos();
         console.log('Fetched videos:', videos);
     } catch (error) {
         console.error('Test failed:', error);

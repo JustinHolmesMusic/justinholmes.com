@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import fetch from 'node-fetch';
 import { fetchedVideosDir } from './constants.js';
+import { blueRailroadContractAddress } from '../js/constants.js';
 
 dotenv.config();
 
@@ -90,4 +91,59 @@ export async function fetchDiscordVideos(messageUrls) {
         console.error('Error fetching Discord videos:', error);
         throw error;
     }
+}
+
+export function generateVideoFilename(token, videoUrl) {
+    const chainId = '10'; // Optimism TODO: Generalize this somewhere
+    const contractAddress = blueRailroadContractAddress.slice(2, 10);
+    const tokenId = token.id;
+    const extension = videoUrl.split('.').pop() || 'mp4'; //TODO: Fix for no file extension, and also IPFS
+
+    return `${chainId}-${contractAddress}-${tokenId}.${extension}`;
+}
+
+async function fetchBlueRailroadVideos() {
+    const chainData = deserializeChainData();
+    const { blueRailroads } = chainData;
+
+    // Get all Discord URLs from the tokens
+    const discordUrls = Object.values(blueRailroads)
+        .map(token => ({
+            token,
+            url: token.uri
+        }))
+        .filter(({ url }) => url && url.includes('discord.com'));
+
+    // Fetch videos
+    const videos = [];
+    for (const { token, url } of discordUrls) {
+        const videoFileName = generateVideoFilename(token, url);
+        const videoPath = path.join(fetchedVideosDir, videoFileName);
+
+        // Check if we already have this video
+        if (fs.existsSync(videoPath)) {
+            videos.push({
+                originalUrl: url,
+                localPath: videoPath,
+                fileName: videoFileName,
+                token
+            });
+            continue;
+        }
+
+        try {
+            const fetchedVideos = await fetchDiscordVideos([url]);
+            if (fetchedVideos.length > 0) {
+                videos.push({
+                    ...fetchedVideos[0],
+                    fileName: videoFileName,
+                    token
+                });
+            }
+        } catch (error) {
+            console.warn(`Failed to fetch video for token ${token.id}:`, error);
+        }
+    }
+
+    return videos;
 }
