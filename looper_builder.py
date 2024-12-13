@@ -24,8 +24,6 @@ def run_command(command):
         print(f"Error running command: {e}")
         print(e.stderr)
 
-
-# Git operations
 commands = [
     ["/usr/bin/git", "remote", "update"],
     ["/usr/bin/git", "checkout", "production"],
@@ -34,7 +32,7 @@ commands = [
     ["/root/.nvm/versions/node/v22.6.0/bin/npm", "run", "build"],
     ["/usr/bin/rsync", "-vah", "--progress", "--delete",
      "/root/projects/justinholmes.com/output/justinholmes.com.public.dist/",
-     "jmyles_justinholmescom@ssh.nyc1.nearlyfreespeech.net:"]
+     "jmyles_justinholmescom@ssh.nyc1.nearlyfreespeech.net:justinholmes.com"]
 ]
 
 while True:
